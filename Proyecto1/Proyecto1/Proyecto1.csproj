@@ -55,6 +55,7 @@
     <Compile Include="Modelo\Comentario.cs" />
     <Compile Include="Modelo\Consejo.cs" />
     <Compile Include="Modelo\Miembro.cs" />
+    <Compile Include="Modelo\PuntoAgenda.cs" />
     <Compile Include="Modelo\Sesion.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
