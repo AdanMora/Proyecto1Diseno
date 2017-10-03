@@ -8,5 +8,6 @@ namespace Proyecto1.Controlador
 {
     class DB_DAO
     {
+
     }
 }
