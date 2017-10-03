@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace Proyecto1.Controlador
 {
-    class DB_DAO
+    public class DB_DAO
     {
+
+
+        public DB_DAO() {
+        }
     }
 }
