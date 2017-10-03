@@ -6,8 +6,14 @@ using System.Threading.Tasks;
 
 namespace Proyecto1.Controlador
 {
-    class DB_DAO
+    public class DB_DAO
     {
+        private static Proyecto1DB db = new Proyecto1DB();
+
+        public DB_DAO() {
+
+        }
+
 
     }
 }
