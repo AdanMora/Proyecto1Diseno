@@ -8,9 +8,10 @@ namespace Proyecto1.Controlador
 {
     public class DB_DAO
     {
-
+        Proyecto1DB db = new Proyecto1DB();
 
         public DB_DAO() {
+            
         }
     }
 }
