@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Collections;
 
 namespace Proyecto1.Modelo
 {
@@ -13,6 +14,8 @@ namespace Proyecto1.Modelo
         private TimeSpan hora;
         private string lugar;
         private bool estado;
+        private ArrayList miembrosAsistencia = new ArrayList();
+        private ArrayList Agenda = new ArrayList();
 
         public Sesion(){}
 
@@ -71,6 +74,16 @@ namespace Proyecto1.Modelo
         public bool getEstado()
         {
             return this.estado;
+        }
+
+        public string toString()
+        {
+            return "Numero: " + this.numero +
+                "\nFecha: " + this.fecha +
+                "\nHora: " + this.hora +
+                "\nLugar: " + this.lugar +
+                "\nEstado: " + this.estado +
+                "\n#########################################";
         }
     }
 }
