@@ -11,6 +11,7 @@ namespace Proyecto1.Controlador
         private static Proyecto1DB db = new Proyecto1DB();
 
         public DB_DAO() {
+            Miembro m = new Miembro();
 
         }
 
