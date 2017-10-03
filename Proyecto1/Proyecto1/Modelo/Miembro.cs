@@ -21,7 +21,7 @@ namespace Proyecto1.Modelo
             this.correo[0] = correo1;
             this.correo[1] = correo2;
             this.tipoMiembro = tipo;
-        }
+        }        
 
         public void setNombre(string nomb)
         {
@@ -63,5 +63,13 @@ namespace Proyecto1.Modelo
             return this.tipoMiembro;
         }
 
+        public string toString()
+        {
+            return "Nombre: " + this.nombre +
+                "\nCorreo 1: " + this.correo[0] +
+                "\nCorreo 2: " + this.correo[1] +
+                "\nTipo de miembro: " + this.tipoMiembro +
+                "\n#########################################";
+        }
     }
 }
