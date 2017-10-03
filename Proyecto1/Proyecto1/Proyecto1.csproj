@@ -83,8 +83,5 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup />
-  <ItemGroup>
-    <Content Include="Controlador\prueba\HTMLPage1.html" />
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
