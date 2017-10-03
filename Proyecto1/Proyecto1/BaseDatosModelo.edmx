@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Proyecto1ModelDB.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="Proyecto1Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="ActaXSesion">
           <Key>
             <PropertyRef Name="id_ActaXSesion" />
@@ -291,7 +291,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="Proyecto1ModelDBStoreContainer">
+        <EntityContainer Name="Proyecto1ModelStoreContainer">
           <EntitySet Name="ActaXSesion" EntityType="Self.ActaXSesion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AdjuntosXPunto" EntityType="Self.AdjuntosXPunto" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Comentarios" EntityType="Self.Comentarios" Schema="dbo" store:Type="Tables" />
@@ -361,7 +361,7 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="Proyecto1ModelDB" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="Proyecto1Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="ActaXSesion">
           <Key>
             <PropertyRef Name="id_ActaXSesion" />
@@ -745,9 +745,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Proyecto1ModelDBStoreContainer" CdmEntityContainer="Proyecto1DB">
+        <EntityContainerMapping StorageEntityContainer="Proyecto1ModelStoreContainer" CdmEntityContainer="Proyecto1DB">
           <EntitySetMapping Name="ActaXSesions">
-            <EntityTypeMapping TypeName="Proyecto1ModelDB.ActaXSesion">
+            <EntityTypeMapping TypeName="Proyecto1Model.ActaXSesion">
               <MappingFragment StoreEntitySet="ActaXSesion">
                 <ScalarProperty Name="id_ActaXSesion" ColumnName="id_ActaXSesion" />
                 <ScalarProperty Name="sesion" ColumnName="sesion" />
@@ -757,7 +757,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="AdjuntosXPuntoes">
-            <EntityTypeMapping TypeName="Proyecto1ModelDB.AdjuntosXPunto">
+            <EntityTypeMapping TypeName="Proyecto1Model.AdjuntosXPunto">
               <MappingFragment StoreEntitySet="AdjuntosXPunto">
                 <ScalarProperty Name="id_Adjunto" ColumnName="id_Adjunto" />
                 <ScalarProperty Name="punto" ColumnName="punto" />
@@ -768,7 +768,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Comentarios">
-            <EntityTypeMapping TypeName="Proyecto1ModelDB.Comentario">
+            <EntityTypeMapping TypeName="Proyecto1Model.Comentario">
               <MappingFragment StoreEntitySet="Comentarios">
                 <ScalarProperty Name="id_Comentario" ColumnName="id_Comentario" />
                 <ScalarProperty Name="miembro" ColumnName="miembro" />
@@ -777,7 +777,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ComentariosXPuntoes">
-            <EntityTypeMapping TypeName="Proyecto1ModelDB.ComentariosXPunto">
+            <EntityTypeMapping TypeName="Proyecto1Model.ComentariosXPunto">
               <MappingFragment StoreEntitySet="ComentariosXPunto">
                 <ScalarProperty Name="id_ComentariosXPunto" ColumnName="id_ComentariosXPunto" />
                 <ScalarProperty Name="comentario" ColumnName="comentario" />
@@ -786,14 +786,14 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Consejoes">
-            <EntityTypeMapping TypeName="Proyecto1ModelDB.Consejo">
+            <EntityTypeMapping TypeName="Proyecto1Model.Consejo">
               <MappingFragment StoreEntitySet="Consejo">
                 <ScalarProperty Name="id_Consejo" ColumnName="id_Consejo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Miembros">
-            <EntityTypeMapping TypeName="Proyecto1ModelDB.Miembro">
+            <EntityTypeMapping TypeName="Proyecto1Model.Miembro">
               <MappingFragment StoreEntitySet="Miembros">
                 <ScalarProperty Name="correo1" ColumnName="correo1" />
                 <ScalarProperty Name="correo2" ColumnName="correo2" />
@@ -803,7 +803,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Miembros_Consejo">
-            <EntityTypeMapping TypeName="Proyecto1ModelDB.Miembros_Consejo">
+            <EntityTypeMapping TypeName="Proyecto1Model.Miembros_Consejo">
               <MappingFragment StoreEntitySet="Miembros_Consejo">
                 <ScalarProperty Name="id_Miembros_Consejo" ColumnName="id_Miembros_Consejo" />
                 <ScalarProperty Name="id_Consejo" ColumnName="id_Consejo" />
@@ -812,7 +812,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Miembros_Sesion">
-            <EntityTypeMapping TypeName="Proyecto1ModelDB.Miembros_Sesion">
+            <EntityTypeMapping TypeName="Proyecto1Model.Miembros_Sesion">
               <MappingFragment StoreEntitySet="Miembros_Sesion">
                 <ScalarProperty Name="id_Miembros_Sesion" ColumnName="id_Miembros_Sesion" />
                 <ScalarProperty Name="sesion" ColumnName="sesion" />
@@ -822,7 +822,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Punto_Agenda">
-            <EntityTypeMapping TypeName="Proyecto1ModelDB.Punto_Agenda">
+            <EntityTypeMapping TypeName="Proyecto1Model.Punto_Agenda">
               <MappingFragment StoreEntitySet="Punto_Agenda">
                 <ScalarProperty Name="id_Punto" ColumnName="id_Punto" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
@@ -837,7 +837,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="PuntosXSesions">
-            <EntityTypeMapping TypeName="Proyecto1ModelDB.PuntosXSesion">
+            <EntityTypeMapping TypeName="Proyecto1Model.PuntosXSesion">
               <MappingFragment StoreEntitySet="PuntosXSesion">
                 <ScalarProperty Name="id_PuntosXSesion" ColumnName="id_PuntosXSesion" />
                 <ScalarProperty Name="sesion" ColumnName="sesion" />
@@ -846,7 +846,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Sesions">
-            <EntityTypeMapping TypeName="Proyecto1ModelDB.Sesion">
+            <EntityTypeMapping TypeName="Proyecto1Model.Sesion">
               <MappingFragment StoreEntitySet="Sesion">
                 <ScalarProperty Name="numero" ColumnName="numero" />
                 <ScalarProperty Name="fecha" ColumnName="fecha" />
@@ -856,7 +856,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Solicitudes_Puntos">
-            <EntityTypeMapping TypeName="Proyecto1ModelDB.Solicitudes_Puntos">
+            <EntityTypeMapping TypeName="Proyecto1Model.Solicitudes_Puntos">
               <MappingFragment StoreEntitySet="Solicitudes_Puntos">
                 <ScalarProperty Name="id_Solicitudes_Puntos" ColumnName="id_Solicitudes_Puntos" />
                 <ScalarProperty Name="id_Consejo" ColumnName="id_Consejo" />
