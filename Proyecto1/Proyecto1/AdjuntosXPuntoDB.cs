@@ -12,7 +12,7 @@ namespace Proyecto1
     using System;
     using System.Collections.Generic;
     
-    public partial class AdjuntosXPunto
+    public partial class AdjuntosXPuntoDB
     {
         public decimal id_Adjunto { get; set; }
         public Nullable<decimal> punto { get; set; }
@@ -20,6 +20,6 @@ namespace Proyecto1
         public string extension { get; set; }
         public byte[] contenido { get; set; }
     
-        public virtual Punto_Agenda Punto_Agenda { get; set; }
+        public virtual Punto_AgendaDB Punto_AgendaDB { get; set; }
     }
 }

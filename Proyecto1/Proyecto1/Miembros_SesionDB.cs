@@ -12,13 +12,14 @@ namespace Proyecto1
     using System;
     using System.Collections.Generic;
     
-    public partial class ComentariosXPunto
+    public partial class Miembros_SesionDB
     {
-        public decimal id_ComentariosXPunto { get; set; }
-        public Nullable<decimal> comentario { get; set; }
-        public Nullable<decimal> punto { get; set; }
+        public decimal id_Miembros_Sesion { get; set; }
+        public string sesion { get; set; }
+        public string miembro { get; set; }
+        public string estadoAsistencia { get; set; }
     
-        public virtual Comentario Comentario1 { get; set; }
-        public virtual Punto_Agenda Punto_Agenda { get; set; }
+        public virtual MiembrosDB MiembrosDB { get; set; }
+        public virtual SesionDB SesionDB { get; set; }
     }
 }

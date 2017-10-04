@@ -5,16 +5,7 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
       <Schema Namespace="Proyecto1Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="ActaXSesion">
-          <Key>
-            <PropertyRef Name="id_ActaXSesion" />
-          </Key>
-          <Property Name="id_ActaXSesion" Type="numeric" Precision="5" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="sesion" Type="varchar" MaxLength="7" />
-          <Property Name="nombreArchivo" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="contenido" Type="varbinary(max)" Nullable="false" />
-        </EntityType>
-        <EntityType Name="AdjuntosXPunto">
+        <EntityType Name="AdjuntosXPuntoDB">
           <Key>
             <PropertyRef Name="id_Adjunto" />
           </Key>
@@ -24,7 +15,7 @@
           <Property Name="extension" Type="varchar" MaxLength="4" Nullable="false" />
           <Property Name="contenido" Type="varbinary(max)" Nullable="false" />
         </EntityType>
-        <EntityType Name="Comentarios">
+        <EntityType Name="ComentariosDB">
           <Key>
             <PropertyRef Name="id_Comentario" />
           </Key>
@@ -32,7 +23,7 @@
           <Property Name="miembro" Type="varchar" MaxLength="50" />
           <Property Name="contenido" Type="varchar" MaxLength="1000" Nullable="false" />
         </EntityType>
-        <EntityType Name="ComentariosXPunto">
+        <EntityType Name="ComentariosXPuntoDB">
           <Key>
             <PropertyRef Name="id_ComentariosXPunto" />
           </Key>
@@ -40,22 +31,23 @@
           <Property Name="comentario" Type="numeric" Precision="5" Scale="0" />
           <Property Name="punto" Type="numeric" Precision="5" Scale="0" />
         </EntityType>
-        <EntityType Name="Consejo">
+        <EntityType Name="ConsejoDB">
           <Key>
             <PropertyRef Name="id_Consejo" />
           </Key>
           <Property Name="id_Consejo" Type="numeric" Precision="5" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
-        <EntityType Name="Miembros">
+        <EntityType Name="DocXSesionDB">
           <Key>
-            <PropertyRef Name="correo1" />
+            <PropertyRef Name="id_DocXSesion" />
           </Key>
-          <Property Name="correo1" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="correo2" Type="varchar" MaxLength="50" />
-          <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="tipoMiembro" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="id_DocXSesion" Type="numeric" Precision="5" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="sesion" Type="varchar" MaxLength="7" />
+          <Property Name="nombreArchivo" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="contenido" Type="varbinary(max)" Nullable="false" />
+          <Property Name="tipo" Type="char" MaxLength="1" Nullable="false" />
         </EntityType>
-        <EntityType Name="Miembros_Consejo">
+        <EntityType Name="Miembros_ConsejoDB">
           <Key>
             <PropertyRef Name="id_Miembros_Consejo" />
           </Key>
@@ -63,7 +55,7 @@
           <Property Name="id_Consejo" Type="numeric" Precision="5" Scale="0" />
           <Property Name="miembro" Type="varchar" MaxLength="50" />
         </EntityType>
-        <EntityType Name="Miembros_Sesion">
+        <EntityType Name="Miembros_SesionDB">
           <Key>
             <PropertyRef Name="id_Miembros_Sesion" />
           </Key>
@@ -72,7 +64,16 @@
           <Property Name="miembro" Type="varchar" MaxLength="50" />
           <Property Name="estadoAsistencia" Type="char" MaxLength="1" Nullable="false" />
         </EntityType>
-        <EntityType Name="Punto_Agenda">
+        <EntityType Name="MiembrosDB">
+          <Key>
+            <PropertyRef Name="correo1" />
+          </Key>
+          <Property Name="correo1" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="correo2" Type="varchar" MaxLength="50" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="tipoMiembro" Type="char" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Punto_AgendaDB">
           <Key>
             <PropertyRef Name="id_Punto" />
           </Key>
@@ -86,7 +87,7 @@
           <Property Name="votosAbstenciones" Type="numeric" Precision="2" Scale="0" />
           <Property Name="tipoPunto" Type="char" MaxLength="1" Nullable="false" />
         </EntityType>
-        <EntityType Name="PuntosXSesion">
+        <EntityType Name="PuntosXSesionDB">
           <Key>
             <PropertyRef Name="id_PuntosXSesion" />
           </Key>
@@ -94,7 +95,7 @@
           <Property Name="sesion" Type="varchar" MaxLength="7" />
           <Property Name="punto" Type="numeric" Precision="5" Scale="0" />
         </EntityType>
-        <EntityType Name="Sesion">
+        <EntityType Name="SesionDB">
           <Key>
             <PropertyRef Name="numero" />
           </Key>
@@ -103,7 +104,7 @@
           <Property Name="lugar" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="estado" Type="bit" Nullable="false" />
         </EntityType>
-        <EntityType Name="Solicitudes_Puntos">
+        <EntityType Name="Solicitudes_PuntosDB">
           <Key>
             <PropertyRef Name="id_Solicitudes_Puntos" />
           </Key>
@@ -112,249 +113,249 @@
           <Property Name="punto" Type="numeric" Precision="5" Scale="0" />
         </EntityType>
         <Association Name="fk_ComentarioPunto">
-          <End Role="Comentarios" Type="Self.Comentarios" Multiplicity="0..1">
+          <End Role="ComentariosDB" Type="Self.ComentariosDB" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="ComentariosXPunto" Type="Self.ComentariosXPunto" Multiplicity="*" />
+          <End Role="ComentariosXPuntoDB" Type="Self.ComentariosXPuntoDB" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Comentarios">
+            <Principal Role="ComentariosDB">
               <PropertyRef Name="id_Comentario" />
             </Principal>
-            <Dependent Role="ComentariosXPunto">
+            <Dependent Role="ComentariosXPuntoDB">
               <PropertyRef Name="comentario" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="fk_ConsejoMiembros">
-          <End Role="Consejo" Type="Self.Consejo" Multiplicity="0..1">
+          <End Role="ConsejoDB" Type="Self.ConsejoDB" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="Miembros_Consejo" Type="Self.Miembros_Consejo" Multiplicity="*" />
+          <End Role="Miembros_ConsejoDB" Type="Self.Miembros_ConsejoDB" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Consejo">
+            <Principal Role="ConsejoDB">
               <PropertyRef Name="id_Consejo" />
             </Principal>
-            <Dependent Role="Miembros_Consejo">
+            <Dependent Role="Miembros_ConsejoDB">
               <PropertyRef Name="id_Consejo" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="fk_ConsejoSolicitud">
-          <End Role="Consejo" Type="Self.Consejo" Multiplicity="0..1">
+          <End Role="ConsejoDB" Type="Self.ConsejoDB" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="Solicitudes_Puntos" Type="Self.Solicitudes_Puntos" Multiplicity="*" />
+          <End Role="Solicitudes_PuntosDB" Type="Self.Solicitudes_PuntosDB" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Consejo">
+            <Principal Role="ConsejoDB">
               <PropertyRef Name="id_Consejo" />
             </Principal>
-            <Dependent Role="Solicitudes_Puntos">
+            <Dependent Role="Solicitudes_PuntosDB">
               <PropertyRef Name="id_Consejo" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="fk_ConsejoSolicitudes">
-          <End Role="Punto_Agenda" Type="Self.Punto_Agenda" Multiplicity="0..1">
+          <End Role="Punto_AgendaDB" Type="Self.Punto_AgendaDB" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="Solicitudes_Puntos" Type="Self.Solicitudes_Puntos" Multiplicity="*" />
+          <End Role="Solicitudes_PuntosDB" Type="Self.Solicitudes_PuntosDB" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Punto_Agenda">
+            <Principal Role="Punto_AgendaDB">
               <PropertyRef Name="id_Punto" />
             </Principal>
-            <Dependent Role="Solicitudes_Puntos">
+            <Dependent Role="Solicitudes_PuntosDB">
               <PropertyRef Name="punto" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="fk_MiembroComentario">
-          <End Role="Miembros" Type="Self.Miembros" Multiplicity="0..1" />
-          <End Role="Comentarios" Type="Self.Comentarios" Multiplicity="*" />
+          <End Role="MiembrosDB" Type="Self.MiembrosDB" Multiplicity="0..1" />
+          <End Role="ComentariosDB" Type="Self.ComentariosDB" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Miembros">
+            <Principal Role="MiembrosDB">
               <PropertyRef Name="correo1" />
             </Principal>
-            <Dependent Role="Comentarios">
+            <Dependent Role="ComentariosDB">
               <PropertyRef Name="miembro" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="fk_MiembroConsejo">
-          <End Role="Miembros" Type="Self.Miembros" Multiplicity="0..1">
+          <End Role="MiembrosDB" Type="Self.MiembrosDB" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="Miembros_Consejo" Type="Self.Miembros_Consejo" Multiplicity="*" />
+          <End Role="Miembros_ConsejoDB" Type="Self.Miembros_ConsejoDB" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Miembros">
+            <Principal Role="MiembrosDB">
               <PropertyRef Name="correo1" />
             </Principal>
-            <Dependent Role="Miembros_Consejo">
+            <Dependent Role="Miembros_ConsejoDB">
               <PropertyRef Name="miembro" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="fk_MiembroSesion">
-          <End Role="Miembros" Type="Self.Miembros" Multiplicity="0..1">
+          <End Role="MiembrosDB" Type="Self.MiembrosDB" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="Miembros_Sesion" Type="Self.Miembros_Sesion" Multiplicity="*" />
+          <End Role="Miembros_SesionDB" Type="Self.Miembros_SesionDB" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Miembros">
+            <Principal Role="MiembrosDB">
               <PropertyRef Name="correo1" />
             </Principal>
-            <Dependent Role="Miembros_Sesion">
+            <Dependent Role="Miembros_SesionDB">
               <PropertyRef Name="miembro" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="fk_PuntoComentario">
-          <End Role="Punto_Agenda" Type="Self.Punto_Agenda" Multiplicity="0..1">
+          <End Role="Punto_AgendaDB" Type="Self.Punto_AgendaDB" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="ComentariosXPunto" Type="Self.ComentariosXPunto" Multiplicity="*" />
+          <End Role="ComentariosXPuntoDB" Type="Self.ComentariosXPuntoDB" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Punto_Agenda">
+            <Principal Role="Punto_AgendaDB">
               <PropertyRef Name="id_Punto" />
             </Principal>
-            <Dependent Role="ComentariosXPunto">
+            <Dependent Role="ComentariosXPuntoDB">
               <PropertyRef Name="punto" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="fk_PuntosAdjunto">
-          <End Role="Punto_Agenda" Type="Self.Punto_Agenda" Multiplicity="0..1">
+          <End Role="Punto_AgendaDB" Type="Self.Punto_AgendaDB" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="AdjuntosXPunto" Type="Self.AdjuntosXPunto" Multiplicity="*" />
+          <End Role="AdjuntosXPuntoDB" Type="Self.AdjuntosXPuntoDB" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Punto_Agenda">
+            <Principal Role="Punto_AgendaDB">
               <PropertyRef Name="id_Punto" />
             </Principal>
-            <Dependent Role="AdjuntosXPunto">
+            <Dependent Role="AdjuntosXPuntoDB">
               <PropertyRef Name="punto" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="fk_PuntosAgenda">
-          <End Role="Punto_Agenda" Type="Self.Punto_Agenda" Multiplicity="0..1">
+          <End Role="Punto_AgendaDB" Type="Self.Punto_AgendaDB" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="PuntosXSesion" Type="Self.PuntosXSesion" Multiplicity="*" />
+          <End Role="PuntosXSesionDB" Type="Self.PuntosXSesionDB" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Punto_Agenda">
+            <Principal Role="Punto_AgendaDB">
               <PropertyRef Name="id_Punto" />
             </Principal>
-            <Dependent Role="PuntosXSesion">
+            <Dependent Role="PuntosXSesionDB">
               <PropertyRef Name="punto" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="fk_SesionActa">
-          <End Role="Sesion" Type="Self.Sesion" Multiplicity="0..1">
+        <Association Name="fk_SesionAgenda">
+          <End Role="SesionDB" Type="Self.SesionDB" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="ActaXSesion" Type="Self.ActaXSesion" Multiplicity="*" />
+          <End Role="PuntosXSesionDB" Type="Self.PuntosXSesionDB" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Sesion">
+            <Principal Role="SesionDB">
               <PropertyRef Name="numero" />
             </Principal>
-            <Dependent Role="ActaXSesion">
+            <Dependent Role="PuntosXSesionDB">
               <PropertyRef Name="sesion" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="fk_SesionAgenda">
-          <End Role="Sesion" Type="Self.Sesion" Multiplicity="0..1">
+        <Association Name="fk_SesionDoc">
+          <End Role="SesionDB" Type="Self.SesionDB" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="PuntosXSesion" Type="Self.PuntosXSesion" Multiplicity="*" />
+          <End Role="DocXSesionDB" Type="Self.DocXSesionDB" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Sesion">
+            <Principal Role="SesionDB">
               <PropertyRef Name="numero" />
             </Principal>
-            <Dependent Role="PuntosXSesion">
+            <Dependent Role="DocXSesionDB">
               <PropertyRef Name="sesion" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="fk_SesionMiembros">
-          <End Role="Sesion" Type="Self.Sesion" Multiplicity="0..1">
+          <End Role="SesionDB" Type="Self.SesionDB" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="Miembros_Sesion" Type="Self.Miembros_Sesion" Multiplicity="*" />
+          <End Role="Miembros_SesionDB" Type="Self.Miembros_SesionDB" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Sesion">
+            <Principal Role="SesionDB">
               <PropertyRef Name="numero" />
             </Principal>
-            <Dependent Role="Miembros_Sesion">
+            <Dependent Role="Miembros_SesionDB">
               <PropertyRef Name="sesion" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="Proyecto1ModelStoreContainer">
-          <EntitySet Name="ActaXSesion" EntityType="Self.ActaXSesion" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="AdjuntosXPunto" EntityType="Self.AdjuntosXPunto" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Comentarios" EntityType="Self.Comentarios" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="ComentariosXPunto" EntityType="Self.ComentariosXPunto" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Consejo" EntityType="Self.Consejo" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Miembros" EntityType="Self.Miembros" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Miembros_Consejo" EntityType="Self.Miembros_Consejo" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Miembros_Sesion" EntityType="Self.Miembros_Sesion" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Punto_Agenda" EntityType="Self.Punto_Agenda" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="PuntosXSesion" EntityType="Self.PuntosXSesion" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Sesion" EntityType="Self.Sesion" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Solicitudes_Puntos" EntityType="Self.Solicitudes_Puntos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AdjuntosXPuntoDB" EntityType="Self.AdjuntosXPuntoDB" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ComentariosDB" EntityType="Self.ComentariosDB" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ComentariosXPuntoDB" EntityType="Self.ComentariosXPuntoDB" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ConsejoDB" EntityType="Self.ConsejoDB" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DocXSesionDB" EntityType="Self.DocXSesionDB" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Miembros_ConsejoDB" EntityType="Self.Miembros_ConsejoDB" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Miembros_SesionDB" EntityType="Self.Miembros_SesionDB" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MiembrosDB" EntityType="Self.MiembrosDB" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Punto_AgendaDB" EntityType="Self.Punto_AgendaDB" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PuntosXSesionDB" EntityType="Self.PuntosXSesionDB" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SesionDB" EntityType="Self.SesionDB" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Solicitudes_PuntosDB" EntityType="Self.Solicitudes_PuntosDB" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="fk_ComentarioPunto" Association="Self.fk_ComentarioPunto">
-            <End Role="Comentarios" EntitySet="Comentarios" />
-            <End Role="ComentariosXPunto" EntitySet="ComentariosXPunto" />
+            <End Role="ComentariosDB" EntitySet="ComentariosDB" />
+            <End Role="ComentariosXPuntoDB" EntitySet="ComentariosXPuntoDB" />
           </AssociationSet>
           <AssociationSet Name="fk_ConsejoMiembros" Association="Self.fk_ConsejoMiembros">
-            <End Role="Consejo" EntitySet="Consejo" />
-            <End Role="Miembros_Consejo" EntitySet="Miembros_Consejo" />
+            <End Role="ConsejoDB" EntitySet="ConsejoDB" />
+            <End Role="Miembros_ConsejoDB" EntitySet="Miembros_ConsejoDB" />
           </AssociationSet>
           <AssociationSet Name="fk_ConsejoSolicitud" Association="Self.fk_ConsejoSolicitud">
-            <End Role="Consejo" EntitySet="Consejo" />
-            <End Role="Solicitudes_Puntos" EntitySet="Solicitudes_Puntos" />
+            <End Role="ConsejoDB" EntitySet="ConsejoDB" />
+            <End Role="Solicitudes_PuntosDB" EntitySet="Solicitudes_PuntosDB" />
           </AssociationSet>
           <AssociationSet Name="fk_ConsejoSolicitudes" Association="Self.fk_ConsejoSolicitudes">
-            <End Role="Punto_Agenda" EntitySet="Punto_Agenda" />
-            <End Role="Solicitudes_Puntos" EntitySet="Solicitudes_Puntos" />
+            <End Role="Punto_AgendaDB" EntitySet="Punto_AgendaDB" />
+            <End Role="Solicitudes_PuntosDB" EntitySet="Solicitudes_PuntosDB" />
           </AssociationSet>
           <AssociationSet Name="fk_MiembroComentario" Association="Self.fk_MiembroComentario">
-            <End Role="Miembros" EntitySet="Miembros" />
-            <End Role="Comentarios" EntitySet="Comentarios" />
+            <End Role="MiembrosDB" EntitySet="MiembrosDB" />
+            <End Role="ComentariosDB" EntitySet="ComentariosDB" />
           </AssociationSet>
           <AssociationSet Name="fk_MiembroConsejo" Association="Self.fk_MiembroConsejo">
-            <End Role="Miembros" EntitySet="Miembros" />
-            <End Role="Miembros_Consejo" EntitySet="Miembros_Consejo" />
+            <End Role="MiembrosDB" EntitySet="MiembrosDB" />
+            <End Role="Miembros_ConsejoDB" EntitySet="Miembros_ConsejoDB" />
           </AssociationSet>
           <AssociationSet Name="fk_MiembroSesion" Association="Self.fk_MiembroSesion">
-            <End Role="Miembros" EntitySet="Miembros" />
-            <End Role="Miembros_Sesion" EntitySet="Miembros_Sesion" />
+            <End Role="MiembrosDB" EntitySet="MiembrosDB" />
+            <End Role="Miembros_SesionDB" EntitySet="Miembros_SesionDB" />
           </AssociationSet>
           <AssociationSet Name="fk_PuntoComentario" Association="Self.fk_PuntoComentario">
-            <End Role="Punto_Agenda" EntitySet="Punto_Agenda" />
-            <End Role="ComentariosXPunto" EntitySet="ComentariosXPunto" />
+            <End Role="Punto_AgendaDB" EntitySet="Punto_AgendaDB" />
+            <End Role="ComentariosXPuntoDB" EntitySet="ComentariosXPuntoDB" />
           </AssociationSet>
           <AssociationSet Name="fk_PuntosAdjunto" Association="Self.fk_PuntosAdjunto">
-            <End Role="Punto_Agenda" EntitySet="Punto_Agenda" />
-            <End Role="AdjuntosXPunto" EntitySet="AdjuntosXPunto" />
+            <End Role="Punto_AgendaDB" EntitySet="Punto_AgendaDB" />
+            <End Role="AdjuntosXPuntoDB" EntitySet="AdjuntosXPuntoDB" />
           </AssociationSet>
           <AssociationSet Name="fk_PuntosAgenda" Association="Self.fk_PuntosAgenda">
-            <End Role="Punto_Agenda" EntitySet="Punto_Agenda" />
-            <End Role="PuntosXSesion" EntitySet="PuntosXSesion" />
-          </AssociationSet>
-          <AssociationSet Name="fk_SesionActa" Association="Self.fk_SesionActa">
-            <End Role="Sesion" EntitySet="Sesion" />
-            <End Role="ActaXSesion" EntitySet="ActaXSesion" />
+            <End Role="Punto_AgendaDB" EntitySet="Punto_AgendaDB" />
+            <End Role="PuntosXSesionDB" EntitySet="PuntosXSesionDB" />
           </AssociationSet>
           <AssociationSet Name="fk_SesionAgenda" Association="Self.fk_SesionAgenda">
-            <End Role="Sesion" EntitySet="Sesion" />
-            <End Role="PuntosXSesion" EntitySet="PuntosXSesion" />
+            <End Role="SesionDB" EntitySet="SesionDB" />
+            <End Role="PuntosXSesionDB" EntitySet="PuntosXSesionDB" />
+          </AssociationSet>
+          <AssociationSet Name="fk_SesionDoc" Association="Self.fk_SesionDoc">
+            <End Role="SesionDB" EntitySet="SesionDB" />
+            <End Role="DocXSesionDB" EntitySet="DocXSesionDB" />
           </AssociationSet>
           <AssociationSet Name="fk_SesionMiembros" Association="Self.fk_SesionMiembros">
-            <End Role="Sesion" EntitySet="Sesion" />
-            <End Role="Miembros_Sesion" EntitySet="Miembros_Sesion" />
+            <End Role="SesionDB" EntitySet="SesionDB" />
+            <End Role="Miembros_SesionDB" EntitySet="Miembros_SesionDB" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -362,17 +363,7 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Proyecto1Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="ActaXSesion">
-          <Key>
-            <PropertyRef Name="id_ActaXSesion" />
-          </Key>
-          <Property Name="id_ActaXSesion" Type="Decimal" Precision="5" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="sesion" Type="String" MaxLength="7" FixedLength="false" Unicode="false" />
-          <Property Name="nombreArchivo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="contenido" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
-          <NavigationProperty Name="Sesion1" Relationship="Self.fk_SesionActa" FromRole="ActaXSesion" ToRole="Sesion" />
-        </EntityType>
-        <EntityType Name="AdjuntosXPunto">
+        <EntityType Name="AdjuntosXPuntoDB">
           <Key>
             <PropertyRef Name="id_Adjunto" />
           </Key>
@@ -381,59 +372,58 @@
           <Property Name="nombreArchivo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="extension" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="contenido" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
-          <NavigationProperty Name="Punto_Agenda" Relationship="Self.fk_PuntosAdjunto" FromRole="AdjuntosXPunto" ToRole="Punto_Agenda" />
+          <NavigationProperty Name="Punto_AgendaDB" Relationship="Self.fk_PuntosAdjunto" FromRole="AdjuntosXPuntoDB" ToRole="Punto_AgendaDB" />
         </EntityType>
-        <EntityType Name="Comentario">
+        <EntityType Name="ComentariosDB">
           <Key>
             <PropertyRef Name="id_Comentario" />
           </Key>
           <Property Name="id_Comentario" Type="Decimal" Precision="5" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="miembro" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="contenido" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="ComentariosXPuntoes" Relationship="Self.fk_ComentarioPunto" FromRole="Comentarios" ToRole="ComentariosXPunto" />
-          <NavigationProperty Name="Miembro1" Relationship="Self.fk_MiembroComentario" FromRole="Comentarios" ToRole="Miembros" />
+          <NavigationProperty Name="ComentariosXPuntoDBs" Relationship="Self.fk_ComentarioPunto" FromRole="ComentariosDB" ToRole="ComentariosXPuntoDB" />
+          <NavigationProperty Name="MiembrosDB" Relationship="Self.fk_MiembroComentario" FromRole="ComentariosDB" ToRole="MiembrosDB" />
         </EntityType>
-        <EntityType Name="ComentariosXPunto">
+        <EntityType Name="ComentariosXPuntoDB">
           <Key>
             <PropertyRef Name="id_ComentariosXPunto" />
           </Key>
           <Property Name="id_ComentariosXPunto" Type="Decimal" Precision="5" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="comentario" Type="Decimal" Precision="5" Scale="0" />
           <Property Name="punto" Type="Decimal" Precision="5" Scale="0" />
-          <NavigationProperty Name="Comentario1" Relationship="Self.fk_ComentarioPunto" FromRole="ComentariosXPunto" ToRole="Comentarios" />
-          <NavigationProperty Name="Punto_Agenda" Relationship="Self.fk_PuntoComentario" FromRole="ComentariosXPunto" ToRole="Punto_Agenda" />
+          <NavigationProperty Name="ComentariosDB" Relationship="Self.fk_ComentarioPunto" FromRole="ComentariosXPuntoDB" ToRole="ComentariosDB" />
+          <NavigationProperty Name="Punto_AgendaDB" Relationship="Self.fk_PuntoComentario" FromRole="ComentariosXPuntoDB" ToRole="Punto_AgendaDB" />
         </EntityType>
-        <EntityType Name="Consejo">
+        <EntityType Name="ConsejoDB">
           <Key>
             <PropertyRef Name="id_Consejo" />
           </Key>
           <Property Name="id_Consejo" Type="Decimal" Precision="5" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <NavigationProperty Name="Miembros_Consejo" Relationship="Self.fk_ConsejoMiembros" FromRole="Consejo" ToRole="Miembros_Consejo" />
-          <NavigationProperty Name="Solicitudes_Puntos" Relationship="Self.fk_ConsejoSolicitud" FromRole="Consejo" ToRole="Solicitudes_Puntos" />
+          <NavigationProperty Name="Miembros_ConsejoDB" Relationship="Self.fk_ConsejoMiembros" FromRole="ConsejoDB" ToRole="Miembros_ConsejoDB" />
+          <NavigationProperty Name="Solicitudes_PuntosDB" Relationship="Self.fk_ConsejoSolicitud" FromRole="ConsejoDB" ToRole="Solicitudes_PuntosDB" />
         </EntityType>
-        <EntityType Name="Miembro">
+        <EntityType Name="DocXSesionDB">
           <Key>
-            <PropertyRef Name="correo1" />
+            <PropertyRef Name="id_DocXSesion" />
           </Key>
-          <Property Name="correo1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="correo2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="tipoMiembro" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Comentarios" Relationship="Self.fk_MiembroComentario" FromRole="Miembros" ToRole="Comentarios" />
-          <NavigationProperty Name="Miembros_Consejo" Relationship="Self.fk_MiembroConsejo" FromRole="Miembros" ToRole="Miembros_Consejo" />
-          <NavigationProperty Name="Miembros_Sesion" Relationship="Self.fk_MiembroSesion" FromRole="Miembros" ToRole="Miembros_Sesion" />
+          <Property Name="id_DocXSesion" Type="Decimal" Precision="5" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="sesion" Type="String" MaxLength="7" FixedLength="false" Unicode="false" />
+          <Property Name="nombreArchivo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="contenido" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="tipo" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="SesionDB" Relationship="Self.fk_SesionDoc" FromRole="DocXSesionDB" ToRole="SesionDB" />
         </EntityType>
-        <EntityType Name="Miembros_Consejo">
+        <EntityType Name="Miembros_ConsejoDB">
           <Key>
             <PropertyRef Name="id_Miembros_Consejo" />
           </Key>
           <Property Name="id_Miembros_Consejo" Type="Decimal" Precision="5" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="id_Consejo" Type="Decimal" Precision="5" Scale="0" />
           <Property Name="miembro" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Consejo" Relationship="Self.fk_ConsejoMiembros" FromRole="Miembros_Consejo" ToRole="Consejo" />
-          <NavigationProperty Name="Miembro1" Relationship="Self.fk_MiembroConsejo" FromRole="Miembros_Consejo" ToRole="Miembros" />
+          <NavigationProperty Name="ConsejoDB" Relationship="Self.fk_ConsejoMiembros" FromRole="Miembros_ConsejoDB" ToRole="ConsejoDB" />
+          <NavigationProperty Name="MiembrosDB" Relationship="Self.fk_MiembroConsejo" FromRole="Miembros_ConsejoDB" ToRole="MiembrosDB" />
         </EntityType>
-        <EntityType Name="Miembros_Sesion">
+        <EntityType Name="Miembros_SesionDB">
           <Key>
             <PropertyRef Name="id_Miembros_Sesion" />
           </Key>
@@ -441,10 +431,22 @@
           <Property Name="sesion" Type="String" MaxLength="7" FixedLength="false" Unicode="false" />
           <Property Name="miembro" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="estadoAsistencia" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Miembro1" Relationship="Self.fk_MiembroSesion" FromRole="Miembros_Sesion" ToRole="Miembros" />
-          <NavigationProperty Name="Sesion1" Relationship="Self.fk_SesionMiembros" FromRole="Miembros_Sesion" ToRole="Sesion" />
+          <NavigationProperty Name="MiembrosDB" Relationship="Self.fk_MiembroSesion" FromRole="Miembros_SesionDB" ToRole="MiembrosDB" />
+          <NavigationProperty Name="SesionDB" Relationship="Self.fk_SesionMiembros" FromRole="Miembros_SesionDB" ToRole="SesionDB" />
         </EntityType>
-        <EntityType Name="Punto_Agenda">
+        <EntityType Name="MiembrosDB">
+          <Key>
+            <PropertyRef Name="correo1" />
+          </Key>
+          <Property Name="correo1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="correo2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="tipoMiembro" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="ComentariosDBs" Relationship="Self.fk_MiembroComentario" FromRole="MiembrosDB" ToRole="ComentariosDB" />
+          <NavigationProperty Name="Miembros_ConsejoDB" Relationship="Self.fk_MiembroConsejo" FromRole="MiembrosDB" ToRole="Miembros_ConsejoDB" />
+          <NavigationProperty Name="Miembros_SesionDB" Relationship="Self.fk_MiembroSesion" FromRole="MiembrosDB" ToRole="Miembros_SesionDB" />
+        </EntityType>
+        <EntityType Name="Punto_AgendaDB">
           <Key>
             <PropertyRef Name="id_Punto" />
           </Key>
@@ -457,22 +459,22 @@
           <Property Name="votosEnContra" Type="Decimal" Precision="2" Scale="0" />
           <Property Name="votosAbstenciones" Type="Decimal" Precision="2" Scale="0" />
           <Property Name="tipoPunto" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="AdjuntosXPuntoes" Relationship="Self.fk_PuntosAdjunto" FromRole="Punto_Agenda" ToRole="AdjuntosXPunto" />
-          <NavigationProperty Name="ComentariosXPuntoes" Relationship="Self.fk_PuntoComentario" FromRole="Punto_Agenda" ToRole="ComentariosXPunto" />
-          <NavigationProperty Name="Solicitudes_Puntos" Relationship="Self.fk_ConsejoSolicitudes" FromRole="Punto_Agenda" ToRole="Solicitudes_Puntos" />
-          <NavigationProperty Name="PuntosXSesions" Relationship="Self.fk_PuntosAgenda" FromRole="Punto_Agenda" ToRole="PuntosXSesion" />
+          <NavigationProperty Name="AdjuntosXPuntoDBs" Relationship="Self.fk_PuntosAdjunto" FromRole="Punto_AgendaDB" ToRole="AdjuntosXPuntoDB" />
+          <NavigationProperty Name="ComentariosXPuntoDBs" Relationship="Self.fk_PuntoComentario" FromRole="Punto_AgendaDB" ToRole="ComentariosXPuntoDB" />
+          <NavigationProperty Name="Solicitudes_PuntosDB" Relationship="Self.fk_ConsejoSolicitudes" FromRole="Punto_AgendaDB" ToRole="Solicitudes_PuntosDB" />
+          <NavigationProperty Name="PuntosXSesionDBs" Relationship="Self.fk_PuntosAgenda" FromRole="Punto_AgendaDB" ToRole="PuntosXSesionDB" />
         </EntityType>
-        <EntityType Name="PuntosXSesion">
+        <EntityType Name="PuntosXSesionDB">
           <Key>
             <PropertyRef Name="id_PuntosXSesion" />
           </Key>
           <Property Name="id_PuntosXSesion" Type="Decimal" Precision="5" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="sesion" Type="String" MaxLength="7" FixedLength="false" Unicode="false" />
           <Property Name="punto" Type="Decimal" Precision="5" Scale="0" />
-          <NavigationProperty Name="Punto_Agenda" Relationship="Self.fk_PuntosAgenda" FromRole="PuntosXSesion" ToRole="Punto_Agenda" />
-          <NavigationProperty Name="Sesion1" Relationship="Self.fk_SesionAgenda" FromRole="PuntosXSesion" ToRole="Sesion" />
+          <NavigationProperty Name="Punto_AgendaDB" Relationship="Self.fk_PuntosAgenda" FromRole="PuntosXSesionDB" ToRole="Punto_AgendaDB" />
+          <NavigationProperty Name="SesionDB" Relationship="Self.fk_SesionAgenda" FromRole="PuntosXSesionDB" ToRole="SesionDB" />
         </EntityType>
-        <EntityType Name="Sesion">
+        <EntityType Name="SesionDB">
           <Key>
             <PropertyRef Name="numero" />
           </Key>
@@ -480,264 +482,264 @@
           <Property Name="fecha" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="lugar" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="estado" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="ActaXSesions" Relationship="Self.fk_SesionActa" FromRole="Sesion" ToRole="ActaXSesion" />
-          <NavigationProperty Name="Miembros_Sesion" Relationship="Self.fk_SesionMiembros" FromRole="Sesion" ToRole="Miembros_Sesion" />
-          <NavigationProperty Name="PuntosXSesions" Relationship="Self.fk_SesionAgenda" FromRole="Sesion" ToRole="PuntosXSesion" />
+          <NavigationProperty Name="DocXSesionDBs" Relationship="Self.fk_SesionDoc" FromRole="SesionDB" ToRole="DocXSesionDB" />
+          <NavigationProperty Name="Miembros_SesionDB" Relationship="Self.fk_SesionMiembros" FromRole="SesionDB" ToRole="Miembros_SesionDB" />
+          <NavigationProperty Name="PuntosXSesionDBs" Relationship="Self.fk_SesionAgenda" FromRole="SesionDB" ToRole="PuntosXSesionDB" />
         </EntityType>
-        <EntityType Name="Solicitudes_Puntos">
+        <EntityType Name="Solicitudes_PuntosDB">
           <Key>
             <PropertyRef Name="id_Solicitudes_Puntos" />
           </Key>
           <Property Name="id_Solicitudes_Puntos" Type="Decimal" Precision="5" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="id_Consejo" Type="Decimal" Precision="5" Scale="0" />
           <Property Name="punto" Type="Decimal" Precision="5" Scale="0" />
-          <NavigationProperty Name="Consejo" Relationship="Self.fk_ConsejoSolicitud" FromRole="Solicitudes_Puntos" ToRole="Consejo" />
-          <NavigationProperty Name="Punto_Agenda" Relationship="Self.fk_ConsejoSolicitudes" FromRole="Solicitudes_Puntos" ToRole="Punto_Agenda" />
+          <NavigationProperty Name="ConsejoDB" Relationship="Self.fk_ConsejoSolicitud" FromRole="Solicitudes_PuntosDB" ToRole="ConsejoDB" />
+          <NavigationProperty Name="Punto_AgendaDB" Relationship="Self.fk_ConsejoSolicitudes" FromRole="Solicitudes_PuntosDB" ToRole="Punto_AgendaDB" />
         </EntityType>
-        <Association Name="fk_SesionActa">
-          <End Role="Sesion" Type="Self.Sesion" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="ActaXSesion" Type="Self.ActaXSesion" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Sesion">
-              <PropertyRef Name="numero" />
-            </Principal>
-            <Dependent Role="ActaXSesion">
-              <PropertyRef Name="sesion" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="fk_PuntosAdjunto">
-          <End Role="Punto_Agenda" Type="Self.Punto_Agenda" Multiplicity="0..1">
+          <End Role="Punto_AgendaDB" Type="Self.Punto_AgendaDB" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="AdjuntosXPunto" Type="Self.AdjuntosXPunto" Multiplicity="*" />
+          <End Role="AdjuntosXPuntoDB" Type="Self.AdjuntosXPuntoDB" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Punto_Agenda">
+            <Principal Role="Punto_AgendaDB">
               <PropertyRef Name="id_Punto" />
             </Principal>
-            <Dependent Role="AdjuntosXPunto">
+            <Dependent Role="AdjuntosXPuntoDB">
               <PropertyRef Name="punto" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="fk_ComentarioPunto">
-          <End Role="Comentarios" Type="Self.Comentario" Multiplicity="0..1">
+          <End Role="ComentariosDB" Type="Self.ComentariosDB" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="ComentariosXPunto" Type="Self.ComentariosXPunto" Multiplicity="*" />
+          <End Role="ComentariosXPuntoDB" Type="Self.ComentariosXPuntoDB" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Comentarios">
+            <Principal Role="ComentariosDB">
               <PropertyRef Name="id_Comentario" />
             </Principal>
-            <Dependent Role="ComentariosXPunto">
+            <Dependent Role="ComentariosXPuntoDB">
               <PropertyRef Name="comentario" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="fk_MiembroComentario">
-          <End Role="Miembros" Type="Self.Miembro" Multiplicity="0..1" />
-          <End Role="Comentarios" Type="Self.Comentario" Multiplicity="*" />
+          <End Role="MiembrosDB" Type="Self.MiembrosDB" Multiplicity="0..1" />
+          <End Role="ComentariosDB" Type="Self.ComentariosDB" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Miembros">
+            <Principal Role="MiembrosDB">
               <PropertyRef Name="correo1" />
             </Principal>
-            <Dependent Role="Comentarios">
+            <Dependent Role="ComentariosDB">
               <PropertyRef Name="miembro" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="fk_PuntoComentario">
-          <End Role="Punto_Agenda" Type="Self.Punto_Agenda" Multiplicity="0..1">
+          <End Role="Punto_AgendaDB" Type="Self.Punto_AgendaDB" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="ComentariosXPunto" Type="Self.ComentariosXPunto" Multiplicity="*" />
+          <End Role="ComentariosXPuntoDB" Type="Self.ComentariosXPuntoDB" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Punto_Agenda">
+            <Principal Role="Punto_AgendaDB">
               <PropertyRef Name="id_Punto" />
             </Principal>
-            <Dependent Role="ComentariosXPunto">
+            <Dependent Role="ComentariosXPuntoDB">
               <PropertyRef Name="punto" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="fk_ConsejoMiembros">
-          <End Role="Consejo" Type="Self.Consejo" Multiplicity="0..1">
+          <End Role="ConsejoDB" Type="Self.ConsejoDB" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="Miembros_Consejo" Type="Self.Miembros_Consejo" Multiplicity="*" />
+          <End Role="Miembros_ConsejoDB" Type="Self.Miembros_ConsejoDB" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Consejo">
+            <Principal Role="ConsejoDB">
               <PropertyRef Name="id_Consejo" />
             </Principal>
-            <Dependent Role="Miembros_Consejo">
+            <Dependent Role="Miembros_ConsejoDB">
               <PropertyRef Name="id_Consejo" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="fk_ConsejoSolicitud">
-          <End Role="Consejo" Type="Self.Consejo" Multiplicity="0..1">
+          <End Role="ConsejoDB" Type="Self.ConsejoDB" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="Solicitudes_Puntos" Type="Self.Solicitudes_Puntos" Multiplicity="*" />
+          <End Role="Solicitudes_PuntosDB" Type="Self.Solicitudes_PuntosDB" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Consejo">
+            <Principal Role="ConsejoDB">
               <PropertyRef Name="id_Consejo" />
             </Principal>
-            <Dependent Role="Solicitudes_Puntos">
+            <Dependent Role="Solicitudes_PuntosDB">
               <PropertyRef Name="id_Consejo" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="fk_MiembroConsejo">
-          <End Role="Miembros" Type="Self.Miembro" Multiplicity="0..1">
+        <Association Name="fk_SesionDoc">
+          <End Role="SesionDB" Type="Self.SesionDB" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="Miembros_Consejo" Type="Self.Miembros_Consejo" Multiplicity="*" />
+          <End Role="DocXSesionDB" Type="Self.DocXSesionDB" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Miembros">
+            <Principal Role="SesionDB">
+              <PropertyRef Name="numero" />
+            </Principal>
+            <Dependent Role="DocXSesionDB">
+              <PropertyRef Name="sesion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_MiembroConsejo">
+          <End Role="MiembrosDB" Type="Self.MiembrosDB" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Miembros_ConsejoDB" Type="Self.Miembros_ConsejoDB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MiembrosDB">
               <PropertyRef Name="correo1" />
             </Principal>
-            <Dependent Role="Miembros_Consejo">
+            <Dependent Role="Miembros_ConsejoDB">
               <PropertyRef Name="miembro" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="fk_MiembroSesion">
-          <End Role="Miembros" Type="Self.Miembro" Multiplicity="0..1">
+          <End Role="MiembrosDB" Type="Self.MiembrosDB" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="Miembros_Sesion" Type="Self.Miembros_Sesion" Multiplicity="*" />
+          <End Role="Miembros_SesionDB" Type="Self.Miembros_SesionDB" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Miembros">
+            <Principal Role="MiembrosDB">
               <PropertyRef Name="correo1" />
             </Principal>
-            <Dependent Role="Miembros_Sesion">
+            <Dependent Role="Miembros_SesionDB">
               <PropertyRef Name="miembro" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="fk_SesionMiembros">
-          <End Role="Sesion" Type="Self.Sesion" Multiplicity="0..1">
+          <End Role="SesionDB" Type="Self.SesionDB" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="Miembros_Sesion" Type="Self.Miembros_Sesion" Multiplicity="*" />
+          <End Role="Miembros_SesionDB" Type="Self.Miembros_SesionDB" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Sesion">
+            <Principal Role="SesionDB">
               <PropertyRef Name="numero" />
             </Principal>
-            <Dependent Role="Miembros_Sesion">
+            <Dependent Role="Miembros_SesionDB">
               <PropertyRef Name="sesion" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="fk_ConsejoSolicitudes">
-          <End Role="Punto_Agenda" Type="Self.Punto_Agenda" Multiplicity="0..1">
+          <End Role="Punto_AgendaDB" Type="Self.Punto_AgendaDB" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="Solicitudes_Puntos" Type="Self.Solicitudes_Puntos" Multiplicity="*" />
+          <End Role="Solicitudes_PuntosDB" Type="Self.Solicitudes_PuntosDB" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Punto_Agenda">
+            <Principal Role="Punto_AgendaDB">
               <PropertyRef Name="id_Punto" />
             </Principal>
-            <Dependent Role="Solicitudes_Puntos">
+            <Dependent Role="Solicitudes_PuntosDB">
               <PropertyRef Name="punto" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="fk_PuntosAgenda">
-          <End Role="Punto_Agenda" Type="Self.Punto_Agenda" Multiplicity="0..1">
+          <End Role="Punto_AgendaDB" Type="Self.Punto_AgendaDB" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="PuntosXSesion" Type="Self.PuntosXSesion" Multiplicity="*" />
+          <End Role="PuntosXSesionDB" Type="Self.PuntosXSesionDB" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Punto_Agenda">
+            <Principal Role="Punto_AgendaDB">
               <PropertyRef Name="id_Punto" />
             </Principal>
-            <Dependent Role="PuntosXSesion">
+            <Dependent Role="PuntosXSesionDB">
               <PropertyRef Name="punto" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="fk_SesionAgenda">
-          <End Role="Sesion" Type="Self.Sesion" Multiplicity="0..1">
+          <End Role="SesionDB" Type="Self.SesionDB" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="PuntosXSesion" Type="Self.PuntosXSesion" Multiplicity="*" />
+          <End Role="PuntosXSesionDB" Type="Self.PuntosXSesionDB" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Sesion">
+            <Principal Role="SesionDB">
               <PropertyRef Name="numero" />
             </Principal>
-            <Dependent Role="PuntosXSesion">
+            <Dependent Role="PuntosXSesionDB">
               <PropertyRef Name="sesion" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="Proyecto1DB" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="ActaXSesions" EntityType="Self.ActaXSesion" />
-          <EntitySet Name="AdjuntosXPuntoes" EntityType="Self.AdjuntosXPunto" />
-          <EntitySet Name="Comentarios" EntityType="Self.Comentario" />
-          <EntitySet Name="ComentariosXPuntoes" EntityType="Self.ComentariosXPunto" />
-          <EntitySet Name="Consejoes" EntityType="Self.Consejo" />
-          <EntitySet Name="Miembros" EntityType="Self.Miembro" />
-          <EntitySet Name="Miembros_Consejo" EntityType="Self.Miembros_Consejo" />
-          <EntitySet Name="Miembros_Sesion" EntityType="Self.Miembros_Sesion" />
-          <EntitySet Name="Punto_Agenda" EntityType="Self.Punto_Agenda" />
-          <EntitySet Name="PuntosXSesions" EntityType="Self.PuntosXSesion" />
-          <EntitySet Name="Sesions" EntityType="Self.Sesion" />
-          <EntitySet Name="Solicitudes_Puntos" EntityType="Self.Solicitudes_Puntos" />
-          <AssociationSet Name="fk_SesionActa" Association="Self.fk_SesionActa">
-            <End Role="Sesion" EntitySet="Sesions" />
-            <End Role="ActaXSesion" EntitySet="ActaXSesions" />
-          </AssociationSet>
+          <EntitySet Name="AdjuntosXPuntoDBs" EntityType="Self.AdjuntosXPuntoDB" />
+          <EntitySet Name="ComentariosDBs" EntityType="Self.ComentariosDB" />
+          <EntitySet Name="ComentariosXPuntoDBs" EntityType="Self.ComentariosXPuntoDB" />
+          <EntitySet Name="ConsejoDBs" EntityType="Self.ConsejoDB" />
+          <EntitySet Name="DocXSesionDBs" EntityType="Self.DocXSesionDB" />
+          <EntitySet Name="Miembros_ConsejoDB" EntityType="Self.Miembros_ConsejoDB" />
+          <EntitySet Name="Miembros_SesionDB" EntityType="Self.Miembros_SesionDB" />
+          <EntitySet Name="MiembrosDBs" EntityType="Self.MiembrosDB" />
+          <EntitySet Name="Punto_AgendaDB" EntityType="Self.Punto_AgendaDB" />
+          <EntitySet Name="PuntosXSesionDBs" EntityType="Self.PuntosXSesionDB" />
+          <EntitySet Name="SesionDBs" EntityType="Self.SesionDB" />
+          <EntitySet Name="Solicitudes_PuntosDB" EntityType="Self.Solicitudes_PuntosDB" />
           <AssociationSet Name="fk_PuntosAdjunto" Association="Self.fk_PuntosAdjunto">
-            <End Role="Punto_Agenda" EntitySet="Punto_Agenda" />
-            <End Role="AdjuntosXPunto" EntitySet="AdjuntosXPuntoes" />
+            <End Role="Punto_AgendaDB" EntitySet="Punto_AgendaDB" />
+            <End Role="AdjuntosXPuntoDB" EntitySet="AdjuntosXPuntoDBs" />
           </AssociationSet>
           <AssociationSet Name="fk_ComentarioPunto" Association="Self.fk_ComentarioPunto">
-            <End Role="Comentarios" EntitySet="Comentarios" />
-            <End Role="ComentariosXPunto" EntitySet="ComentariosXPuntoes" />
+            <End Role="ComentariosDB" EntitySet="ComentariosDBs" />
+            <End Role="ComentariosXPuntoDB" EntitySet="ComentariosXPuntoDBs" />
           </AssociationSet>
           <AssociationSet Name="fk_MiembroComentario" Association="Self.fk_MiembroComentario">
-            <End Role="Miembros" EntitySet="Miembros" />
-            <End Role="Comentarios" EntitySet="Comentarios" />
+            <End Role="MiembrosDB" EntitySet="MiembrosDBs" />
+            <End Role="ComentariosDB" EntitySet="ComentariosDBs" />
           </AssociationSet>
           <AssociationSet Name="fk_PuntoComentario" Association="Self.fk_PuntoComentario">
-            <End Role="Punto_Agenda" EntitySet="Punto_Agenda" />
-            <End Role="ComentariosXPunto" EntitySet="ComentariosXPuntoes" />
+            <End Role="Punto_AgendaDB" EntitySet="Punto_AgendaDB" />
+            <End Role="ComentariosXPuntoDB" EntitySet="ComentariosXPuntoDBs" />
           </AssociationSet>
           <AssociationSet Name="fk_ConsejoMiembros" Association="Self.fk_ConsejoMiembros">
-            <End Role="Consejo" EntitySet="Consejoes" />
-            <End Role="Miembros_Consejo" EntitySet="Miembros_Consejo" />
+            <End Role="ConsejoDB" EntitySet="ConsejoDBs" />
+            <End Role="Miembros_ConsejoDB" EntitySet="Miembros_ConsejoDB" />
           </AssociationSet>
           <AssociationSet Name="fk_ConsejoSolicitud" Association="Self.fk_ConsejoSolicitud">
-            <End Role="Consejo" EntitySet="Consejoes" />
-            <End Role="Solicitudes_Puntos" EntitySet="Solicitudes_Puntos" />
+            <End Role="ConsejoDB" EntitySet="ConsejoDBs" />
+            <End Role="Solicitudes_PuntosDB" EntitySet="Solicitudes_PuntosDB" />
+          </AssociationSet>
+          <AssociationSet Name="fk_SesionDoc" Association="Self.fk_SesionDoc">
+            <End Role="SesionDB" EntitySet="SesionDBs" />
+            <End Role="DocXSesionDB" EntitySet="DocXSesionDBs" />
           </AssociationSet>
           <AssociationSet Name="fk_MiembroConsejo" Association="Self.fk_MiembroConsejo">
-            <End Role="Miembros" EntitySet="Miembros" />
-            <End Role="Miembros_Consejo" EntitySet="Miembros_Consejo" />
+            <End Role="MiembrosDB" EntitySet="MiembrosDBs" />
+            <End Role="Miembros_ConsejoDB" EntitySet="Miembros_ConsejoDB" />
           </AssociationSet>
           <AssociationSet Name="fk_MiembroSesion" Association="Self.fk_MiembroSesion">
-            <End Role="Miembros" EntitySet="Miembros" />
-            <End Role="Miembros_Sesion" EntitySet="Miembros_Sesion" />
+            <End Role="MiembrosDB" EntitySet="MiembrosDBs" />
+            <End Role="Miembros_SesionDB" EntitySet="Miembros_SesionDB" />
           </AssociationSet>
           <AssociationSet Name="fk_SesionMiembros" Association="Self.fk_SesionMiembros">
-            <End Role="Sesion" EntitySet="Sesions" />
-            <End Role="Miembros_Sesion" EntitySet="Miembros_Sesion" />
+            <End Role="SesionDB" EntitySet="SesionDBs" />
+            <End Role="Miembros_SesionDB" EntitySet="Miembros_SesionDB" />
           </AssociationSet>
           <AssociationSet Name="fk_ConsejoSolicitudes" Association="Self.fk_ConsejoSolicitudes">
-            <End Role="Punto_Agenda" EntitySet="Punto_Agenda" />
-            <End Role="Solicitudes_Puntos" EntitySet="Solicitudes_Puntos" />
+            <End Role="Punto_AgendaDB" EntitySet="Punto_AgendaDB" />
+            <End Role="Solicitudes_PuntosDB" EntitySet="Solicitudes_PuntosDB" />
           </AssociationSet>
           <AssociationSet Name="fk_PuntosAgenda" Association="Self.fk_PuntosAgenda">
-            <End Role="Punto_Agenda" EntitySet="Punto_Agenda" />
-            <End Role="PuntosXSesion" EntitySet="PuntosXSesions" />
+            <End Role="Punto_AgendaDB" EntitySet="Punto_AgendaDB" />
+            <End Role="PuntosXSesionDB" EntitySet="PuntosXSesionDBs" />
           </AssociationSet>
           <AssociationSet Name="fk_SesionAgenda" Association="Self.fk_SesionAgenda">
-            <End Role="Sesion" EntitySet="Sesions" />
-            <End Role="PuntosXSesion" EntitySet="PuntosXSesions" />
+            <End Role="SesionDB" EntitySet="SesionDBs" />
+            <End Role="PuntosXSesionDB" EntitySet="PuntosXSesionDBs" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -746,19 +748,9 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="Proyecto1ModelStoreContainer" CdmEntityContainer="Proyecto1DB">
-          <EntitySetMapping Name="ActaXSesions">
-            <EntityTypeMapping TypeName="Proyecto1Model.ActaXSesion">
-              <MappingFragment StoreEntitySet="ActaXSesion">
-                <ScalarProperty Name="id_ActaXSesion" ColumnName="id_ActaXSesion" />
-                <ScalarProperty Name="sesion" ColumnName="sesion" />
-                <ScalarProperty Name="nombreArchivo" ColumnName="nombreArchivo" />
-                <ScalarProperty Name="contenido" ColumnName="contenido" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="AdjuntosXPuntoes">
-            <EntityTypeMapping TypeName="Proyecto1Model.AdjuntosXPunto">
-              <MappingFragment StoreEntitySet="AdjuntosXPunto">
+          <EntitySetMapping Name="AdjuntosXPuntoDBs">
+            <EntityTypeMapping TypeName="Proyecto1Model.AdjuntosXPuntoDB">
+              <MappingFragment StoreEntitySet="AdjuntosXPuntoDB">
                 <ScalarProperty Name="id_Adjunto" ColumnName="id_Adjunto" />
                 <ScalarProperty Name="punto" ColumnName="punto" />
                 <ScalarProperty Name="nombreArchivo" ColumnName="nombreArchivo" />
@@ -767,53 +759,54 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Comentarios">
-            <EntityTypeMapping TypeName="Proyecto1Model.Comentario">
-              <MappingFragment StoreEntitySet="Comentarios">
+          <EntitySetMapping Name="ComentariosDBs">
+            <EntityTypeMapping TypeName="Proyecto1Model.ComentariosDB">
+              <MappingFragment StoreEntitySet="ComentariosDB">
                 <ScalarProperty Name="id_Comentario" ColumnName="id_Comentario" />
                 <ScalarProperty Name="miembro" ColumnName="miembro" />
                 <ScalarProperty Name="contenido" ColumnName="contenido" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="ComentariosXPuntoes">
-            <EntityTypeMapping TypeName="Proyecto1Model.ComentariosXPunto">
-              <MappingFragment StoreEntitySet="ComentariosXPunto">
+          <EntitySetMapping Name="ComentariosXPuntoDBs">
+            <EntityTypeMapping TypeName="Proyecto1Model.ComentariosXPuntoDB">
+              <MappingFragment StoreEntitySet="ComentariosXPuntoDB">
                 <ScalarProperty Name="id_ComentariosXPunto" ColumnName="id_ComentariosXPunto" />
                 <ScalarProperty Name="comentario" ColumnName="comentario" />
                 <ScalarProperty Name="punto" ColumnName="punto" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Consejoes">
-            <EntityTypeMapping TypeName="Proyecto1Model.Consejo">
-              <MappingFragment StoreEntitySet="Consejo">
+          <EntitySetMapping Name="ConsejoDBs">
+            <EntityTypeMapping TypeName="Proyecto1Model.ConsejoDB">
+              <MappingFragment StoreEntitySet="ConsejoDB">
                 <ScalarProperty Name="id_Consejo" ColumnName="id_Consejo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Miembros">
-            <EntityTypeMapping TypeName="Proyecto1Model.Miembro">
-              <MappingFragment StoreEntitySet="Miembros">
-                <ScalarProperty Name="correo1" ColumnName="correo1" />
-                <ScalarProperty Name="correo2" ColumnName="correo2" />
-                <ScalarProperty Name="nombre" ColumnName="nombre" />
-                <ScalarProperty Name="tipoMiembro" ColumnName="tipoMiembro" />
+          <EntitySetMapping Name="DocXSesionDBs">
+            <EntityTypeMapping TypeName="Proyecto1Model.DocXSesionDB">
+              <MappingFragment StoreEntitySet="DocXSesionDB">
+                <ScalarProperty Name="id_DocXSesion" ColumnName="id_DocXSesion" />
+                <ScalarProperty Name="sesion" ColumnName="sesion" />
+                <ScalarProperty Name="nombreArchivo" ColumnName="nombreArchivo" />
+                <ScalarProperty Name="contenido" ColumnName="contenido" />
+                <ScalarProperty Name="tipo" ColumnName="tipo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Miembros_Consejo">
-            <EntityTypeMapping TypeName="Proyecto1Model.Miembros_Consejo">
-              <MappingFragment StoreEntitySet="Miembros_Consejo">
+          <EntitySetMapping Name="Miembros_ConsejoDB">
+            <EntityTypeMapping TypeName="Proyecto1Model.Miembros_ConsejoDB">
+              <MappingFragment StoreEntitySet="Miembros_ConsejoDB">
                 <ScalarProperty Name="id_Miembros_Consejo" ColumnName="id_Miembros_Consejo" />
                 <ScalarProperty Name="id_Consejo" ColumnName="id_Consejo" />
                 <ScalarProperty Name="miembro" ColumnName="miembro" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Miembros_Sesion">
-            <EntityTypeMapping TypeName="Proyecto1Model.Miembros_Sesion">
-              <MappingFragment StoreEntitySet="Miembros_Sesion">
+          <EntitySetMapping Name="Miembros_SesionDB">
+            <EntityTypeMapping TypeName="Proyecto1Model.Miembros_SesionDB">
+              <MappingFragment StoreEntitySet="Miembros_SesionDB">
                 <ScalarProperty Name="id_Miembros_Sesion" ColumnName="id_Miembros_Sesion" />
                 <ScalarProperty Name="sesion" ColumnName="sesion" />
                 <ScalarProperty Name="miembro" ColumnName="miembro" />
@@ -821,9 +814,19 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Punto_Agenda">
-            <EntityTypeMapping TypeName="Proyecto1Model.Punto_Agenda">
-              <MappingFragment StoreEntitySet="Punto_Agenda">
+          <EntitySetMapping Name="MiembrosDBs">
+            <EntityTypeMapping TypeName="Proyecto1Model.MiembrosDB">
+              <MappingFragment StoreEntitySet="MiembrosDB">
+                <ScalarProperty Name="correo1" ColumnName="correo1" />
+                <ScalarProperty Name="correo2" ColumnName="correo2" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="tipoMiembro" ColumnName="tipoMiembro" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Punto_AgendaDB">
+            <EntityTypeMapping TypeName="Proyecto1Model.Punto_AgendaDB">
+              <MappingFragment StoreEntitySet="Punto_AgendaDB">
                 <ScalarProperty Name="id_Punto" ColumnName="id_Punto" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="resultandos" ColumnName="resultandos" />
@@ -836,18 +839,18 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="PuntosXSesions">
-            <EntityTypeMapping TypeName="Proyecto1Model.PuntosXSesion">
-              <MappingFragment StoreEntitySet="PuntosXSesion">
+          <EntitySetMapping Name="PuntosXSesionDBs">
+            <EntityTypeMapping TypeName="Proyecto1Model.PuntosXSesionDB">
+              <MappingFragment StoreEntitySet="PuntosXSesionDB">
                 <ScalarProperty Name="id_PuntosXSesion" ColumnName="id_PuntosXSesion" />
                 <ScalarProperty Name="sesion" ColumnName="sesion" />
                 <ScalarProperty Name="punto" ColumnName="punto" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Sesions">
-            <EntityTypeMapping TypeName="Proyecto1Model.Sesion">
-              <MappingFragment StoreEntitySet="Sesion">
+          <EntitySetMapping Name="SesionDBs">
+            <EntityTypeMapping TypeName="Proyecto1Model.SesionDB">
+              <MappingFragment StoreEntitySet="SesionDB">
                 <ScalarProperty Name="numero" ColumnName="numero" />
                 <ScalarProperty Name="fecha" ColumnName="fecha" />
                 <ScalarProperty Name="lugar" ColumnName="lugar" />
@@ -855,9 +858,9 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Solicitudes_Puntos">
-            <EntityTypeMapping TypeName="Proyecto1Model.Solicitudes_Puntos">
-              <MappingFragment StoreEntitySet="Solicitudes_Puntos">
+          <EntitySetMapping Name="Solicitudes_PuntosDB">
+            <EntityTypeMapping TypeName="Proyecto1Model.Solicitudes_PuntosDB">
+              <MappingFragment StoreEntitySet="Solicitudes_PuntosDB">
                 <ScalarProperty Name="id_Solicitudes_Puntos" ColumnName="id_Solicitudes_Puntos" />
                 <ScalarProperty Name="id_Consejo" ColumnName="id_Consejo" />
                 <ScalarProperty Name="punto" ColumnName="punto" />

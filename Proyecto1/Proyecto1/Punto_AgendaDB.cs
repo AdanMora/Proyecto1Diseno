@@ -12,15 +12,15 @@ namespace Proyecto1
     using System;
     using System.Collections.Generic;
     
-    public partial class Punto_Agenda
+    public partial class Punto_AgendaDB
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Punto_Agenda()
+        public Punto_AgendaDB()
         {
-            this.AdjuntosXPuntoes = new HashSet<AdjuntosXPunto>();
-            this.ComentariosXPuntoes = new HashSet<ComentariosXPunto>();
-            this.Solicitudes_Puntos = new HashSet<Solicitudes_Puntos>();
-            this.PuntosXSesions = new HashSet<PuntosXSesion>();
+            this.AdjuntosXPuntoDBs = new HashSet<AdjuntosXPuntoDB>();
+            this.ComentariosXPuntoDBs = new HashSet<ComentariosXPuntoDB>();
+            this.Solicitudes_PuntosDB = new HashSet<Solicitudes_PuntosDB>();
+            this.PuntosXSesionDBs = new HashSet<PuntosXSesionDB>();
         }
     
         public decimal id_Punto { get; set; }
@@ -34,12 +34,12 @@ namespace Proyecto1
         public string tipoPunto { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<AdjuntosXPunto> AdjuntosXPuntoes { get; set; }
+        public virtual ICollection<AdjuntosXPuntoDB> AdjuntosXPuntoDBs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ComentariosXPunto> ComentariosXPuntoes { get; set; }
+        public virtual ICollection<ComentariosXPuntoDB> ComentariosXPuntoDBs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Solicitudes_Puntos> Solicitudes_Puntos { get; set; }
+        public virtual ICollection<Solicitudes_PuntosDB> Solicitudes_PuntosDB { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PuntosXSesion> PuntosXSesions { get; set; }
+        public virtual ICollection<PuntosXSesionDB> PuntosXSesionDBs { get; set; }
     }
 }
