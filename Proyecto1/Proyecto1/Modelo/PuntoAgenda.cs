@@ -3,127 +3,130 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Collections;
+using System.Collections.ObjectModel;
 
 namespace Proyecto1.Modelo
 {
     class PuntoAgenda
     {
-        private string nombre { get; set; }
         private string resultado;
         private string considerandos;
         private string seAcuerda;
-        private ArrayList adjuntos = new ArrayList();
         private int[] votacion = new int[3];
         private char tipo;
-        private ArrayList comentarios = new ArrayList();        
-        
+        private Collection<string> adjuntos = new Collection<string>();
+        private Collection<Comentario> comentarios = new Collection<Comentario>();
+
 
         public PuntoAgenda() { }
-        public PuntoAgenda(string nombre,string resultado,string considerandos,string seAcuerda,ArrayList adjuntos,
-            int aFavor,int enContra,int blanco,char tipo)
+        public PuntoAgenda(string nombre, string resultado, string considerandos, string seAcuerda, Collection<Comentario> comentarios,
+            Collection<string> adjuntos, int aFavor, int enContra, int blanco, char tipo)
         {
             this.nombre = nombre;
             this.resultado = resultado;
             this.considerandos = considerandos;
             this.seAcuerda = seAcuerda;
             this.adjuntos = adjuntos;
+            this.comentarios = comentarios;
             this.votacion[0] = aFavor;
             this.votacion[1] = enContra;
             this.votacion[2] = blanco;
-            this.tipo = tipo;                        
-        }
-
-        public void setNombre(string nombre)
-        {
-            this.nombre = nombre;
-        }
-
-        public void setResultado(string resultado)
-        {
-            this.resultado = resultado;
-        }
-
-        public void setConsiderandos(string considerandos)
-        {
-            this.considerandos = considerandos;
-        }
-
-        public void setSeAcuerda(string seAcuerda)
-        {
-            this.seAcuerda = seAcuerda;
-        }
-
-        public void setAdjuntos(ArrayList adjuntos)
-        {
-            this.adjuntos = adjuntos;
-        }
-
-        public void setAFavor(int aFavor)
-        {
-            this.votacion[0] = aFavor;
-        }
-
-        public void setEnContra(int enContra)
-        {
-            this.votacion[1] = enContra;
-        }
-
-        public void setEnBlanco(int enBlanco)
-        {
-            this.votacion[2] = enBlanco;
-        }
-
-        public void setTipo(char tipo)
-        {
             this.tipo = tipo;
         }
 
-        public string getNombre()
+        private string nombre { get; set; }
+
+        public string Resultado
         {
-            return this.nombre;
+            get
+            {
+                return resultado;
+            }
+
+            set
+            {
+                resultado = value;
+            }
         }
 
-        public string getResultado()
+        public string Considerandos
         {
-            return this.resultado;
+            get
+            {
+                return considerandos;
+            }
+
+            set
+            {
+                considerandos = value;
+            }
         }
 
-        public string getConsiderandos()
+        public string SeAcuerda
         {
-            return this.considerandos;
+            get
+            {
+                return seAcuerda;
+            }
+
+            set
+            {
+                seAcuerda = value;
+            }
         }
 
-        public string getSeAcuerda()
+        public int[] Votacion
         {
-            return this.seAcuerda;
+            get
+            {
+                return votacion;
+            }
+
+            set
+            {
+                votacion = value;
+            }
         }
 
-        public ArrayList getAdjuntos()
+        public char Tipo
         {
-            return this.adjuntos;
+            get
+            {
+                return tipo;
+            }
+
+            set
+            {
+                tipo = value;
+            }
         }
 
-        public int getAFavor()
+        public Collection<string> Adjuntos
         {
-            return this.votacion[0];
+            get
+            {
+                return adjuntos;
+            }
+
+            set
+            {
+                adjuntos = value;
+            }
         }
 
-        public int getEnContra()
+        public Collection<Comentario> Comentarios
         {
-            return this.votacion[1];
-        }
+            get
+            {
+                return comentarios;
+            }
 
-        public int getEnBlanco()
-        {
-            return this.votacion[2];
+            set
+            {
+                comentarios = value;
+            }
         }
-
-        public char getTipo()
-        {
-            return this.tipo;
-        }
-
+        
         public string toString()
         {
             return "Nombre: " + this.nombre +

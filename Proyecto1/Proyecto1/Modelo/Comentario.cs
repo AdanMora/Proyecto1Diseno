@@ -17,24 +17,30 @@ namespace Proyecto1.Modelo
             this.miembro = miembro;
         }
 
-        public void setComentario(string coment)
+        public string Comentario
         {
-            this.comentario = coment;
+            get
+            {
+                return comentario;
+            }
+
+            set
+            {
+                comentario = value;
+            }
         }
 
-        public void setMiembro(Miembro miembro)
+        public Miembro Miembro
         {
-            this.miembro = miembro;
-        }
+            get
+            {
+                return miembro;
+            }
 
-        public string getComentario()
-        {
-            return comentario;
-        }
-
-        public Miembro getMiembro()
-        {
-            return this.miembro;
+            set
+            {
+                miembro = value;
+            }
         }
 
         public string toString()

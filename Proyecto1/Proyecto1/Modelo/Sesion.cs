@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Collections;
+using System.Collections.ObjectModel;
 
 namespace Proyecto1.Modelo
 {
@@ -14,8 +14,99 @@ namespace Proyecto1.Modelo
         private TimeSpan hora;
         private string lugar;
         private bool estado;
-        private ArrayList miembrosAsistencia = new ArrayList();
-        private ArrayList Agenda = new ArrayList();
+        private Collection<Miembro> miembrosAsistencia = new Collection<Miembro>();
+        private Collection<PuntoAgenda> Agenda = new Collection<PuntoAgenda>();
+
+        public int Numero
+        {
+            get
+            {
+                return numero;
+            }
+
+            set
+            {
+                numero = value;
+            }
+        }
+
+        public DateTime Fecha
+        {
+            get
+            {
+                return fecha;
+            }
+
+            set
+            {
+                fecha = value;
+            }
+        }
+
+        public TimeSpan Hora
+        {
+            get
+            {
+                return hora;
+            }
+
+            set
+            {
+                hora = value;
+            }
+        }
+
+        public string Lugar
+        {
+            get
+            {
+                return lugar;
+            }
+
+            set
+            {
+                lugar = value;
+            }
+        }
+
+        public bool Estado
+        {
+            get
+            {
+                return estado;
+            }
+
+            set
+            {
+                estado = value;
+            }
+        }
+
+        public Collection<Miembro> MiembrosAsistencia
+        {
+            get
+            {
+                return miembrosAsistencia;
+            }
+
+            set
+            {
+                miembrosAsistencia = value;
+            }
+        }
+
+        internal Collection<PuntoAgenda> Agenda1
+        {
+            get
+            {
+                return Agenda;
+            }
+
+            set
+            {
+                Agenda = value;
+            }
+        }
 
         public Sesion(){}
 
@@ -28,54 +119,7 @@ namespace Proyecto1.Modelo
             this.estado = estado;
         }
 
-        public void setNumero(int num)
-        {
-            this.numero = num;
-        }
-
-        public void setFecha(DateTime fecha)
-        {            
-            this.fecha = fecha;
-        }
-        public void setHora(TimeSpan hora)
-        {
-            this.hora = hora;
-        }
-
-        public void setLugar(string lugar)
-        { 
-            this.lugar = lugar;
-        }
-
-        public void setEstado(bool estado)
-        {
-            this.estado = estado;
-        }
-
-        public int getNumero()
-        {
-            return this.numero;
-        }
-
-        public DateTime getFecha()
-        {
-            return this.fecha;
-        }
-        public TimeSpan getHora()
-        {
-            return this.hora;
-        }
-
-        public string getLugar()
-        {
-            return this.lugar;
-        }
-
-        public bool getEstado()
-        {
-            return this.estado;
-        }
-
+        
         public string toString()
         {
             return "Numero: " + this.numero +

@@ -3,37 +3,76 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Collections;
+using System.Collections.ObjectModel;
 
 
 namespace Proyecto1.Modelo
 {
     class Consejo
     {
-        private ArrayList miembros = new ArrayList();
-        private ArrayList sesiones = new ArrayList();
-        private ArrayList solicitudes = new ArrayList();
-        
+        private Collection<Miembro> miembros = new Collection<Miembro>();
+        private Collection<Sesion> seciones = new Collection<Sesion>();
+        private Collection<PuntoAgenda> solicitudes = new Collection<PuntoAgenda>();                
 
         public Consejo() { }
 
-        public void agregarMiembro(string nombre,string correo1,string correo2,char tipo)
+        public Consejo(Collection<Miembro> miembros, Collection<Sesion> seciones, Collection<PuntoAgenda> solicitudes)
         {
-            Miembro nuevo = new Miembro(nombre, correo1, correo2, tipo);
-            this.miembros.Add(nuevo);
+            this.miembros = miembros;
+            this.seciones = seciones;
+            this.solicitudes = solicitudes;
         }
 
-        
-
-        public string miembrosToString()
+        public Collection<Miembro> Miembros
         {
-            string resultado = "";
-            for (int i = 0;i<this.miembros.Count;i++)
+            get
             {
-                Miembro m = (Miembro) this.miembros[i];
-                m.toString();
-            }            
-            return resultado;
+                return miembros;
+            }
+
+            set
+            {
+                miembros = value;
+            }
         }
+
+        public Collection<Miembro> Miembros1
+        {
+            get
+            {
+                return miembros;
+            }
+
+            set
+            {
+                miembros = value;
+            }
+        }
+
+        public Collection<Sesion> Seciones
+        {
+            get
+            {
+                return seciones;
+            }
+
+            set
+            {
+                seciones = value;
+            }
+        }
+
+        internal Collection<PuntoAgenda> Solicitudes
+        {
+            get
+            {
+                return solicitudes;
+            }
+
+            set
+            {
+                solicitudes = value;
+            }
+        }               
     }
 }

@@ -13,6 +13,45 @@ namespace Proyecto1.Modelo
         private string[] correo= new string[2];
         private char tipoMiembro;
 
+        public string Nombre
+        {
+            get
+            {
+                return nombre;
+            }
+
+            set
+            {
+                nombre = value;
+            }
+        }
+
+        public string[] Correo
+        {
+            get
+            {
+                return correo;
+            }
+
+            set
+            {
+                correo = value;
+            }
+        }
+
+        public char TipoMiembro
+        {
+            get
+            {
+                return tipoMiembro;
+            }
+
+            set
+            {
+                tipoMiembro = value;
+            }
+        }
+
         public Miembro() { }
 
         public Miembro(string nomb,string correo1,string correo2,char tipo)
@@ -23,45 +62,7 @@ namespace Proyecto1.Modelo
             this.tipoMiembro = tipo;
         }        
 
-        public void setNombre(string nomb)
-        {
-            this.nombre = nomb;
-        }
-
-        public void setCorreo1(string correo)
-        {
-            this.correo[1] = correo;
-        }
-
-        public void setCorreo2(string correo)
-        {
-            this.correo[2] = correo;
-        }
-
-        public void setTipoMiembro(char tipo)
-        {
-            this.tipoMiembro = tipo;
-        }
-
-        public string getNombre()
-        {
-            return this.nombre;
-        }
-
-        public string getCorreo1()
-        {
-            return this.correo[0];
-        }
-
-        public string getCorreo2()
-        {
-            return this.correo[1];
-        }
-
-        public char getTipoMiembro()
-        {
-            return this.tipoMiembro;
-        }
+       
 
         public string toString()
         {
