@@ -12,14 +12,14 @@ namespace Proyecto1
     using System;
     using System.Collections.Generic;
     
-    public partial class Miembros_Sesion
+    public partial class DocXSesionDB
     {
-        public decimal id_Miembros_Sesion { get; set; }
+        public decimal id_DocXSesion { get; set; }
         public string sesion { get; set; }
-        public string miembro { get; set; }
-        public string estadoAsistencia { get; set; }
+        public string nombreArchivo { get; set; }
+        public byte[] contenido { get; set; }
+        public string tipo { get; set; }
     
-        public virtual Miembro Miembro1 { get; set; }
-        public virtual Sesion Sesion1 { get; set; }
+        public virtual SesionDB SesionDB { get; set; }
     }
 }

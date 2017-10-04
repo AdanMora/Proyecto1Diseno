@@ -12,12 +12,12 @@ namespace Proyecto1
     using System;
     using System.Collections.Generic;
     
-    public partial class Comentario
+    public partial class ComentariosDB
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Comentario()
+        public ComentariosDB()
         {
-            this.ComentariosXPuntoes = new HashSet<ComentariosXPunto>();
+            this.ComentariosXPuntoDBs = new HashSet<ComentariosXPuntoDB>();
         }
     
         public decimal id_Comentario { get; set; }
@@ -25,7 +25,7 @@ namespace Proyecto1
         public string contenido { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ComentariosXPunto> ComentariosXPuntoes { get; set; }
-        public virtual Miembro Miembro1 { get; set; }
+        public virtual ICollection<ComentariosXPuntoDB> ComentariosXPuntoDBs { get; set; }
+        public virtual MiembrosDB MiembrosDB { get; set; }
     }
 }
