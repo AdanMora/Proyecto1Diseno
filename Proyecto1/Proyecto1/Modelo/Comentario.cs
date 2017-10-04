@@ -8,25 +8,28 @@ namespace Proyecto1.Modelo
 {
     public class Comentario
     {
-        private string comentario;
+        private string txtcomentario;
         private Miembro miembro;
+
         public Comentario() { }
 
-        public Comentario(string coment,Miembro miembro) {
-            this.comentario = coment;
+        public Comentario(string txtcomentario, Miembro miembro)
+        {
+            this.txtcomentario = txtcomentario;
             this.miembro = miembro;
         }
 
-        public string Comentario
+
+        public string Txtcomentario
         {
             get
             {
-                return comentario;
+                return txtcomentario;
             }
 
             set
             {
-                comentario = value;
+                txtcomentario = value;
             }
         }
 
@@ -45,7 +48,7 @@ namespace Proyecto1.Modelo
 
         public string toString()
         {
-            return "Comentario: " + this.comentario +
+            return "Comentario: " + this.txtcomentario +
                     "\nMiembro que realizo el comentario\n" +
                     this.miembro.toString()+
                 "\n----------------------------------";
