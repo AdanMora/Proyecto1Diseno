@@ -82,8 +82,17 @@
     <Compile Include="ConsejoDB.cs">
       <DependentUpon>BaseDatosModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Controlador\Controlador_Docs.cs" />
+    <Compile Include="Controlador\Controlador_Sesion.cs" />
+    <Compile Include="Controlador\Controlador_Solicitudes.cs" />
     <Compile Include="Controlador\DB_DAO.cs" />
     <Compile Include="Controlador\Gestor.cs" />
+    <Compile Include="Controlador\Prototype_Cache.cs" />
+    <Compile Include="Controlador\Prototype_Clonable.cs" />
+    <Compile Include="Controlador\Prototype_Miembros.cs" />
+    <Compile Include="Controlador\Strategy_Docs.cs" />
+    <Compile Include="Controlador\Strategy_DOCX.cs" />
+    <Compile Include="Controlador\Strategy_PDF.cs" />
     <Compile Include="DocXSesionDB.cs">
       <DependentUpon>BaseDatosModel.tt</DependentUpon>
     </Compile>
