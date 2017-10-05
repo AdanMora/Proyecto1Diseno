@@ -12,13 +12,13 @@ namespace Proyecto1
     using System;
     using System.Collections.Generic;
     
-    public partial class Solicitudes_Puntos
+    public partial class Miembros_ConsejoDB
     {
-        public decimal id_Solicitudes_Puntos { get; set; }
+        public decimal id_Miembros_Consejo { get; set; }
         public Nullable<decimal> id_Consejo { get; set; }
-        public Nullable<decimal> punto { get; set; }
+        public string miembro { get; set; }
     
-        public virtual Consejo Consejo { get; set; }
-        public virtual Punto_Agenda Punto_Agenda { get; set; }
+        public virtual ConsejoDB ConsejoDB { get; set; }
+        public virtual MiembrosDB MiembrosDB { get; set; }
     }
 }

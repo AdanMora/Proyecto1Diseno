@@ -41,6 +41,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.DirectoryServices" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
@@ -54,52 +55,52 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ActaXSesion.cs">
-      <DependentUpon>BaseDatosModelo.tt</DependentUpon>
+    <Compile Include="AdjuntosXPuntoDB.cs">
+      <DependentUpon>BaseDatosModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="AdjuntosXPunto.cs">
-      <DependentUpon>BaseDatosModelo.tt</DependentUpon>
-    </Compile>
-    <Compile Include="BaseDatosModelo.Context.cs">
+    <Compile Include="BaseDatosModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>BaseDatosModelo.Context.tt</DependentUpon>
+      <DependentUpon>BaseDatosModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="BaseDatosModelo.cs">
+    <Compile Include="BaseDatosModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>BaseDatosModelo.tt</DependentUpon>
+      <DependentUpon>BaseDatosModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="BaseDatosModelo.Designer.cs">
+    <Compile Include="BaseDatosModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>BaseDatosModelo.edmx</DependentUpon>
+      <DependentUpon>BaseDatosModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Comentario.cs">
-      <DependentUpon>BaseDatosModelo.tt</DependentUpon>
+    <Compile Include="ComentariosDB.cs">
+      <DependentUpon>BaseDatosModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="ComentariosXPunto.cs">
-      <DependentUpon>BaseDatosModelo.tt</DependentUpon>
+    <Compile Include="ComentariosXPuntoDB.cs">
+      <DependentUpon>BaseDatosModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Consejo.cs">
-      <DependentUpon>BaseDatosModelo.tt</DependentUpon>
+    <Compile Include="ConsejoDB.cs">
+      <DependentUpon>BaseDatosModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Controlador\DB_DAO.cs" />
     <Compile Include="Controlador\Gestor.cs" />
+    <Compile Include="DocXSesionDB.cs">
+      <DependentUpon>BaseDatosModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Miembro.cs">
-      <DependentUpon>BaseDatosModelo.tt</DependentUpon>
+    <Compile Include="MiembrosDB.cs">
+      <DependentUpon>BaseDatosModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Miembros_Consejo.cs">
-      <DependentUpon>BaseDatosModelo.tt</DependentUpon>
+    <Compile Include="Miembros_ConsejoDB.cs">
+      <DependentUpon>BaseDatosModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Miembros_Sesion.cs">
-      <DependentUpon>BaseDatosModelo.tt</DependentUpon>
+    <Compile Include="Miembros_SesionDB.cs">
+      <DependentUpon>BaseDatosModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelo\Comentario.cs" />
     <Compile Include="Modelo\Consejo.cs" />
@@ -108,18 +109,21 @@
     <Compile Include="Modelo\Sesion.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="PuntosXSesion.cs">
-      <DependentUpon>BaseDatosModelo.tt</DependentUpon>
+    <Compile Include="PuntosXSesionDB.cs">
+      <DependentUpon>BaseDatosModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Punto_Agenda.cs">
-      <DependentUpon>BaseDatosModelo.tt</DependentUpon>
+    <Compile Include="Punto_AgendaDB.cs">
+      <DependentUpon>BaseDatosModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Sesion.cs">
-      <DependentUpon>BaseDatosModelo.tt</DependentUpon>
+    <Compile Include="SesionDB.cs">
+      <DependentUpon>BaseDatosModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Solicitudes_Puntos.cs">
-      <DependentUpon>BaseDatosModelo.tt</DependentUpon>
+    <Compile Include="Solicitudes_PuntosDB.cs">
+      <DependentUpon>BaseDatosModel.tt</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -129,12 +133,12 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EntityDeploy Include="BaseDatosModelo.edmx">
+    <EntityDeploy Include="BaseDatosModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>BaseDatosModelo.Designer.cs</LastGenOutput>
+      <LastGenOutput>BaseDatosModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="BaseDatosModelo.edmx.diagram">
-      <DependentUpon>BaseDatosModelo.edmx</DependentUpon>
+    <None Include="BaseDatosModel.edmx.diagram">
+      <DependentUpon>BaseDatosModel.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -154,15 +158,15 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="BaseDatosModelo.Context.tt">
+    <Content Include="BaseDatosModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>BaseDatosModelo.Context.cs</LastGenOutput>
-      <DependentUpon>BaseDatosModelo.edmx</DependentUpon>
+      <DependentUpon>BaseDatosModel.edmx</DependentUpon>
+      <LastGenOutput>BaseDatosModel.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="BaseDatosModelo.tt">
+    <Content Include="BaseDatosModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>BaseDatosModelo.edmx</DependentUpon>
-      <LastGenOutput>BaseDatosModelo.cs</LastGenOutput>
+      <DependentUpon>BaseDatosModel.edmx</DependentUpon>
+      <LastGenOutput>BaseDatosModel.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
