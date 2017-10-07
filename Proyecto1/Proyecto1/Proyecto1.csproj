@@ -86,6 +86,7 @@
     </Compile>
     <Compile Include="Controlador\DB_DAO.cs" />
     <Compile Include="Controlador\Gestor.cs" />
+    <Compile Include="Controlador\Xls_DAO.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
