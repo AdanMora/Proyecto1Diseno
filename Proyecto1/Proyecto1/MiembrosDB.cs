@@ -12,26 +12,26 @@ namespace Proyecto1
     using System;
     using System.Collections.Generic;
     
-    public partial class Sesion
+    public partial class MiembrosDB
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Sesion()
+        public MiembrosDB()
         {
-            this.ActaXSesions = new HashSet<ActaXSesion>();
-            this.Miembros_Sesion = new HashSet<Miembros_Sesion>();
-            this.PuntosXSesions = new HashSet<PuntosXSesion>();
+            this.ComentariosDBs = new HashSet<ComentariosDB>();
+            this.Miembros_ConsejoDB = new HashSet<Miembros_ConsejoDB>();
+            this.Miembros_SesionDB = new HashSet<Miembros_SesionDB>();
         }
     
-        public string numero { get; set; }
-        public System.DateTime fecha { get; set; }
-        public string lugar { get; set; }
-        public bool estado { get; set; }
+        public string correo1 { get; set; }
+        public string correo2 { get; set; }
+        public string nombre { get; set; }
+        public string tipoMiembro { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ActaXSesion> ActaXSesions { get; set; }
+        public virtual ICollection<ComentariosDB> ComentariosDBs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Miembros_Sesion> Miembros_Sesion { get; set; }
+        public virtual ICollection<Miembros_ConsejoDB> Miembros_ConsejoDB { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PuntosXSesion> PuntosXSesions { get; set; }
+        public virtual ICollection<Miembros_SesionDB> Miembros_SesionDB { get; set; }
     }
 }

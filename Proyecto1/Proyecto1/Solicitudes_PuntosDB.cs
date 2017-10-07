@@ -12,13 +12,13 @@ namespace Proyecto1
     using System;
     using System.Collections.Generic;
     
-    public partial class ActaXSesion
+    public partial class Solicitudes_PuntosDB
     {
-        public decimal id_ActaXSesion { get; set; }
-        public string sesion { get; set; }
-        public string nombreArchivo { get; set; }
-        public byte[] contenido { get; set; }
+        public decimal id_Solicitudes_Puntos { get; set; }
+        public Nullable<decimal> id_Consejo { get; set; }
+        public Nullable<decimal> punto { get; set; }
     
-        public virtual Sesion Sesion1 { get; set; }
+        public virtual ConsejoDB ConsejoDB { get; set; }
+        public virtual Punto_AgendaDB Punto_AgendaDB { get; set; }
     }
 }
