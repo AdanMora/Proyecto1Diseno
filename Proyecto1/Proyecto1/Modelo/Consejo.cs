@@ -49,7 +49,7 @@ namespace Proyecto1.Modelo
             }
         }
 
-        public Collection<Sesion> Seciones
+        public Collection<Sesion> Sesiones
         {
             get
             {

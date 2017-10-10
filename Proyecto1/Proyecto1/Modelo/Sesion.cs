@@ -9,15 +9,14 @@ namespace Proyecto1.Modelo
 {
     public class Sesion
     {
-        private int numero;
-        private DateTime fecha;
-        private TimeSpan hora;
+        private String numero;
+        private DateTime fechaHora;
         private string lugar;
         private bool estado;
         private Collection<Miembro> miembrosAsistencia = new Collection<Miembro>();
-        private Collection<PuntoAgenda> Agenda = new Collection<PuntoAgenda>();
+        private Collection<PuntoAgenda> agenda = new Collection<PuntoAgenda>();
 
-        public int Numero
+        public String Numero
         {
             get
             {
@@ -34,25 +33,12 @@ namespace Proyecto1.Modelo
         {
             get
             {
-                return fecha;
+                return fechaHora;
             }
 
             set
             {
-                fecha = value;
-            }
-        }
-
-        public TimeSpan Hora
-        {
-            get
-            {
-                return hora;
-            }
-
-            set
-            {
-                hora = value;
+                fechaHora = value;
             }
         }
 
@@ -95,26 +81,25 @@ namespace Proyecto1.Modelo
             }
         }
 
-        internal Collection<PuntoAgenda> Agenda1
+        internal Collection<PuntoAgenda> Agenda
         {
             get
             {
-                return Agenda;
+                return agenda;
             }
 
             set
             {
-                Agenda = value;
+                agenda = value;
             }
         }
 
         public Sesion(){}
 
-        public Sesion(int num,DateTime fecha,TimeSpan hora,string lugar,bool estado)
+        public Sesion(String num,DateTime fecha,string lugar,bool estado)
         {
             this.numero = num;
-            this.fecha = fecha;
-            this.hora = hora;
+            this.fechaHora = fecha;
             this.lugar = lugar;
             this.estado = estado;
         }
@@ -123,8 +108,7 @@ namespace Proyecto1.Modelo
         public string toString()
         {
             return "Numero: " + this.numero +
-                "\nFecha: " + this.fecha +
-                "\nHora: " + this.hora +
+                "\nFecha: " + this.fechaHora +
                 "\nLugar: " + this.lugar +
                 "\nEstado: " + this.estado +
                 "\n#########################################";

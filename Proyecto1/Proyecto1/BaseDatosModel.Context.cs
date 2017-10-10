@@ -39,6 +39,7 @@ namespace Proyecto1
         public virtual DbSet<PuntosXSesionDB> PuntosXSesionDBs { get; set; }
         public virtual DbSet<SesionDB> SesionDBs { get; set; }
         public virtual DbSet<Solicitudes_PuntosDB> Solicitudes_PuntosDB { get; set; }
+        public virtual DbSet<SesionesXConsejoDB> SesionesXConsejoDBs { get; set; }
     
         public virtual int sp_AceptarSolicitud(Nullable<decimal> num_Consejo, string num_Sesion, Nullable<decimal> id_Punto)
         {
@@ -256,6 +257,24 @@ namespace Proyecto1
                 new ObjectParameter("Num_Consejo", typeof(decimal));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Solicitudes_Result>("sp_Solicitudes1", num_ConsejoParameter);
+        }
+    
+        public virtual ObjectResult<sp_SesionesxConsejo_Result> sp_SesionesxConsejo(Nullable<decimal> num_Consejo)
+        {
+            var num_ConsejoParameter = num_Consejo.HasValue ?
+                new ObjectParameter("Num_Consejo", num_Consejo) :
+                new ObjectParameter("Num_Consejo", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_SesionesxConsejo_Result>("sp_SesionesxConsejo", num_ConsejoParameter);
+        }
+    
+        public virtual ObjectResult<sp_Agenda1_Result> sp_Agenda1(string num_Sesion)
+        {
+            var num_SesionParameter = num_Sesion != null ?
+                new ObjectParameter("Num_Sesion", num_Sesion) :
+                new ObjectParameter("Num_Sesion", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Agenda1_Result>("sp_Agenda1", num_SesionParameter);
         }
     }
 }

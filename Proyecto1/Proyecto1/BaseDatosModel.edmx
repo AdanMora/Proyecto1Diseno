@@ -104,6 +104,14 @@
           <Property Name="lugar" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="estado" Type="bit" Nullable="false" />
         </EntityType>
+        <EntityType Name="SesionesXConsejoDB">
+          <Key>
+            <PropertyRef Name="id_SesionesXConsejo" />
+          </Key>
+          <Property Name="id_SesionesXConsejo" Type="numeric" Precision="5" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_Consejo" Type="numeric" Precision="5" Scale="0" />
+          <Property Name="sesion" Type="varchar" MaxLength="7" />
+        </EntityType>
         <EntityType Name="Solicitudes_PuntosDB">
           <Key>
             <PropertyRef Name="id_Solicitudes_Puntos" />
@@ -136,6 +144,20 @@
               <PropertyRef Name="id_Consejo" />
             </Principal>
             <Dependent Role="Miembros_ConsejoDB">
+              <PropertyRef Name="id_Consejo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_ConsejoSesiones">
+          <End Role="ConsejoDB" Type="Self.ConsejoDB" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="SesionesXConsejoDB" Type="Self.SesionesXConsejoDB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ConsejoDB">
+              <PropertyRef Name="id_Consejo" />
+            </Principal>
+            <Dependent Role="SesionesXConsejoDB">
               <PropertyRef Name="id_Consejo" />
             </Dependent>
           </ReferentialConstraint>
@@ -278,6 +300,20 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="fk_SesionesXConsejo">
+          <End Role="SesionDB" Type="Self.SesionDB" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="SesionesXConsejoDB" Type="Self.SesionesXConsejoDB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SesionDB">
+              <PropertyRef Name="numero" />
+            </Principal>
+            <Dependent Role="SesionesXConsejoDB">
+              <PropertyRef Name="sesion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="fk_SesionMiembros">
           <End Role="SesionDB" Type="Self.SesionDB" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
@@ -353,6 +389,9 @@
           <Parameter Name="owner_id" Type="int" Mode="In" />
           <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
         </Function>
+        <Function Name="sp_SesionesxConsejo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Num_Consejo" Type="numeric" Mode="In" />
+        </Function>
         <Function Name="sp_Solicitudes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Num_Consejo" Type="numeric" Mode="In" />
         </Function>
@@ -369,6 +408,7 @@
           <EntitySet Name="Punto_AgendaDB" EntityType="Self.Punto_AgendaDB" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PuntosXSesionDB" EntityType="Self.PuntosXSesionDB" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SesionDB" EntityType="Self.SesionDB" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SesionesXConsejoDB" EntityType="Self.SesionesXConsejoDB" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Solicitudes_PuntosDB" EntityType="Self.Solicitudes_PuntosDB" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="fk_ComentarioPunto" Association="Self.fk_ComentarioPunto">
             <End Role="ComentariosDB" EntitySet="ComentariosDB" />
@@ -377,6 +417,10 @@
           <AssociationSet Name="fk_ConsejoMiembros" Association="Self.fk_ConsejoMiembros">
             <End Role="ConsejoDB" EntitySet="ConsejoDB" />
             <End Role="Miembros_ConsejoDB" EntitySet="Miembros_ConsejoDB" />
+          </AssociationSet>
+          <AssociationSet Name="fk_ConsejoSesiones" Association="Self.fk_ConsejoSesiones">
+            <End Role="ConsejoDB" EntitySet="ConsejoDB" />
+            <End Role="SesionesXConsejoDB" EntitySet="SesionesXConsejoDB" />
           </AssociationSet>
           <AssociationSet Name="fk_ConsejoSolicitud" Association="Self.fk_ConsejoSolicitud">
             <End Role="ConsejoDB" EntitySet="ConsejoDB" />
@@ -417,6 +461,10 @@
           <AssociationSet Name="fk_SesionDoc" Association="Self.fk_SesionDoc">
             <End Role="SesionDB" EntitySet="SesionDB" />
             <End Role="DocXSesionDB" EntitySet="DocXSesionDB" />
+          </AssociationSet>
+          <AssociationSet Name="fk_SesionesXConsejo" Association="Self.fk_SesionesXConsejo">
+            <End Role="SesionDB" EntitySet="SesionDB" />
+            <End Role="SesionesXConsejoDB" EntitySet="SesionesXConsejoDB" />
           </AssociationSet>
           <AssociationSet Name="fk_SesionMiembros" Association="Self.fk_SesionMiembros">
             <End Role="SesionDB" EntitySet="SesionDB" />
@@ -465,6 +513,7 @@
           <Property Name="id_Consejo" Type="Decimal" Precision="5" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="Miembros_ConsejoDB" Relationship="Self.fk_ConsejoMiembros" FromRole="ConsejoDB" ToRole="Miembros_ConsejoDB" />
           <NavigationProperty Name="Solicitudes_PuntosDB" Relationship="Self.fk_ConsejoSolicitud" FromRole="ConsejoDB" ToRole="Solicitudes_PuntosDB" />
+          <NavigationProperty Name="SesionesXConsejoDBs" Relationship="Proyecto1Model.fk_ConsejoSesiones" FromRole="ConsejoDB" ToRole="SesionesXConsejoDB" />
         </EntityType>
         <EntityType Name="DocXSesionDB">
           <Key>
@@ -549,6 +598,7 @@
           <NavigationProperty Name="DocXSesionDBs" Relationship="Self.fk_SesionDoc" FromRole="SesionDB" ToRole="DocXSesionDB" />
           <NavigationProperty Name="Miembros_SesionDB" Relationship="Self.fk_SesionMiembros" FromRole="SesionDB" ToRole="Miembros_SesionDB" />
           <NavigationProperty Name="PuntosXSesionDBs" Relationship="Self.fk_SesionAgenda" FromRole="SesionDB" ToRole="PuntosXSesionDB" />
+          <NavigationProperty Name="SesionesXConsejoDBs" Relationship="Proyecto1Model.fk_SesionesXConsejo" FromRole="SesionDB" ToRole="SesionesXConsejoDB" />
         </EntityType>
         <EntityType Name="Solicitudes_PuntosDB">
           <Key>
@@ -870,7 +920,22 @@
           <Parameter Name="Num_Sesion" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_Solicitudes1" ReturnType="Collection(Proyecto1Model.sp_Solicitudes_Result)">
+          <Parameter Name="Num_Consejo" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <EntitySet Name="SesionesXConsejoDBs" EntityType="Proyecto1Model.SesionesXConsejoDB" />
+          <AssociationSet Name="fk_ConsejoSesiones" Association="Proyecto1Model.fk_ConsejoSesiones">
+            <End Role="ConsejoDB" EntitySet="ConsejoDBs" />
+            <End Role="SesionesXConsejoDB" EntitySet="SesionesXConsejoDBs" />
+          </AssociationSet>
+          <AssociationSet Name="fk_SesionesXConsejo" Association="Proyecto1Model.fk_SesionesXConsejo">
+            <End Role="SesionDB" EntitySet="SesionDBs" />
+            <End Role="SesionesXConsejoDB" EntitySet="SesionesXConsejoDBs" />
+          </AssociationSet>
+          <FunctionImport Name="sp_SesionesxConsejo" ReturnType="Collection(Proyecto1Model.sp_SesionesxConsejo_Result)">
             <Parameter Name="Num_Consejo" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Agenda1" ReturnType="Collection(Proyecto1Model.sp_Agenda1_Result)">
+            <Parameter Name="Num_Sesion" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="sp_Agenda_Result">
@@ -925,6 +990,61 @@
           <Property Type="String" Name="considerandos" Nullable="false" MaxLength="1000" />
           <Property Type="String" Name="resultandos" Nullable="false" MaxLength="1000" />
           <Property Type="String" Name="seAcuerda" Nullable="false" MaxLength="1000" />
+        </ComplexType>
+        <EntityType Name="SesionesXConsejoDB">
+          <Key>
+            <PropertyRef Name="id_SesionesXConsejo" />
+          </Key>
+          <Property Name="id_SesionesXConsejo" Type="Decimal" Nullable="false" Precision="5" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_Consejo" Type="Decimal" Precision="5" Scale="0" />
+          <Property Name="sesion" Type="String" MaxLength="7" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ConsejoDB" Relationship="Proyecto1Model.fk_ConsejoSesiones" FromRole="SesionesXConsejoDB" ToRole="ConsejoDB" />
+          <NavigationProperty Name="SesionDB" Relationship="Proyecto1Model.fk_SesionesXConsejo" FromRole="SesionesXConsejoDB" ToRole="SesionDB" />
+        </EntityType>
+        <Association Name="fk_ConsejoSesiones">
+          <End Type="Proyecto1Model.ConsejoDB" Role="ConsejoDB" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Proyecto1Model.SesionesXConsejoDB" Role="SesionesXConsejoDB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ConsejoDB">
+              <PropertyRef Name="id_Consejo" />
+            </Principal>
+            <Dependent Role="SesionesXConsejoDB">
+              <PropertyRef Name="id_Consejo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_SesionesXConsejo">
+          <End Type="Proyecto1Model.SesionDB" Role="SesionDB" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Proyecto1Model.SesionesXConsejoDB" Role="SesionesXConsejoDB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SesionDB">
+              <PropertyRef Name="numero" />
+            </Principal>
+            <Dependent Role="SesionesXConsejoDB">
+              <PropertyRef Name="sesion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="sp_SesionesxConsejo_Result">
+          <Property Type="String" Name="numero" Nullable="false" MaxLength="7" />
+          <Property Type="DateTime" Name="fecha" Nullable="false" Precision="23" />
+          <Property Type="String" Name="lugar" Nullable="false" MaxLength="50" />
+          <Property Type="Boolean" Name="estado" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="sp_Agenda1_Result">
+          <Property Type="Decimal" Name="id_Punto" Nullable="false" Precision="5" Scale="0" />
+          <Property Type="String" Name="nombre" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="considerandos" Nullable="false" MaxLength="1000" />
+          <Property Type="String" Name="resultandos" Nullable="false" MaxLength="1000" />
+          <Property Type="String" Name="seAcuerda" Nullable="false" MaxLength="1000" />
+          <Property Type="Int32" Name="votosAFavor" Nullable="true" />
+          <Property Type="Int32" Name="votosEnContra" Nullable="true" />
+          <Property Type="Int32" Name="votosAbstenciones" Nullable="true" />
+          <Property Type="String" Name="tipoPunto" Nullable="false" MaxLength="1" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1149,6 +1269,40 @@
                 <ScalarProperty Name="considerandos" ColumnName="considerandos" />
                 <ScalarProperty Name="resultandos" ColumnName="resultandos" />
                 <ScalarProperty Name="seAcuerda" ColumnName="seAcuerda" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="SesionesXConsejoDBs">
+            <EntityTypeMapping TypeName="Proyecto1Model.SesionesXConsejoDB">
+              <MappingFragment StoreEntitySet="SesionesXConsejoDB">
+                <ScalarProperty Name="sesion" ColumnName="sesion" />
+                <ScalarProperty Name="id_Consejo" ColumnName="id_Consejo" />
+                <ScalarProperty Name="id_SesionesXConsejo" ColumnName="id_SesionesXConsejo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_SesionesxConsejo" FunctionName="Proyecto1Model.Store.sp_SesionesxConsejo">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Proyecto1Model.sp_SesionesxConsejo_Result">
+                <ScalarProperty Name="numero" ColumnName="numero" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="lugar" ColumnName="lugar" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_Agenda1" FunctionName="Proyecto1Model.Store.sp_Agenda">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Proyecto1Model.sp_Agenda1_Result">
+                <ScalarProperty Name="id_Punto" ColumnName="id_Punto" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="considerandos" ColumnName="considerandos" />
+                <ScalarProperty Name="resultandos" ColumnName="resultandos" />
+                <ScalarProperty Name="seAcuerda" ColumnName="seAcuerda" />
+                <ScalarProperty Name="votosAFavor" ColumnName="votosAFavor" />
+                <ScalarProperty Name="votosEnContra" ColumnName="votosEnContra" />
+                <ScalarProperty Name="votosAbstenciones" ColumnName="votosAbstenciones" />
+                <ScalarProperty Name="tipoPunto" ColumnName="tipoPunto" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

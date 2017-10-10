@@ -85,10 +85,34 @@ namespace Proyecto1.Controlador
                 consejo.Solicitudes.Add(new PuntoAgenda(Decimal.ToInt32(solicitudBD.id_Punto), solicitudBD.nombre, solicitudBD.resultandos, solicitudBD.considerandos, solicitudBD.seAcuerda,0,0,0, 'A'));
             }
 
-            //foreach (sp_Agenda_Result solicitudBD in db.sp_Agenda(1).ToList())
-            //{
-            //    consejo.Solicitudes.Add(new PuntoAgenda(Decimal.ToInt32(solicitudBD.id_Punto), solicitudBD.nombre, solicitudBD.resultandos, solicitudBD.considerandos, solicitudBD.seAcuerda, 0, 0, 0, 'A'));
-            //}
+            foreach (sp_SesionesxConsejo_Result sesionesBD in db.sp_SesionesxConsejo(1).ToList())
+            {
+                consejo.Sesiones.Add(new Sesion(sesionesBD.numero, sesionesBD.fecha, sesionesBD.lugar, sesionesBD.estado));
+            }
+
+            foreach (Sesion s in consejo.Sesiones)
+            {
+                foreach (sp_Agenda1_Result agendaBD in db.sp_Agenda1(s.Numero).ToList())
+                {
+                    PuntoAgenda p = new PuntoAgenda(Decimal.ToInt32(agendaBD.id_Punto), agendaBD.nombre, agendaBD.resultandos, agendaBD.considerandos, agendaBD.seAcuerda, (int)agendaBD.votosAFavor, (int)agendaBD.votosEnContra, (int)agendaBD.votosAbstenciones, agendaBD.tipoPunto.First());
+                    
+                    foreach (sp_ComentariosXPunto_Result comentariosDB in db.sp_ComentariosXPunto(p.Id_punto)){
+                        //foreach (Miembro m in consejo.Sesiones)
+                        //{
+
+                        //}
+
+                        //p.Comentarios.Add(new Comentario(comentariosDB.contenido);
+                    }
+
+                    s.Agenda.Add(p);
+                }
+
+                //foreach (sp_MiembrosXSesion_Result mSesionDB in db.sp_MiembrosXSesion(s.Numero){
+                //    //s.MiembrosAsistencia
+                //}
+            }
+            
 
 
             return consejo;

@@ -20,6 +20,7 @@ namespace Proyecto1
             this.DocXSesionDBs = new HashSet<DocXSesionDB>();
             this.Miembros_SesionDB = new HashSet<Miembros_SesionDB>();
             this.PuntosXSesionDBs = new HashSet<PuntosXSesionDB>();
+            this.SesionesXConsejoDBs = new HashSet<SesionesXConsejoDB>();
         }
     
         public string numero { get; set; }
@@ -33,5 +34,7 @@ namespace Proyecto1
         public virtual ICollection<Miembros_SesionDB> Miembros_SesionDB { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PuntosXSesionDB> PuntosXSesionDBs { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SesionesXConsejoDB> SesionesXConsejoDBs { get; set; }
     }
 }

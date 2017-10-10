@@ -19,6 +19,7 @@ namespace Proyecto1
         {
             this.Miembros_ConsejoDB = new HashSet<Miembros_ConsejoDB>();
             this.Solicitudes_PuntosDB = new HashSet<Solicitudes_PuntosDB>();
+            this.SesionesXConsejoDBs = new HashSet<SesionesXConsejoDB>();
         }
     
         public decimal id_Consejo { get; set; }
@@ -27,5 +28,7 @@ namespace Proyecto1
         public virtual ICollection<Miembros_ConsejoDB> Miembros_ConsejoDB { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Solicitudes_PuntosDB> Solicitudes_PuntosDB { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SesionesXConsejoDB> SesionesXConsejoDBs { get; set; }
     }
 }
