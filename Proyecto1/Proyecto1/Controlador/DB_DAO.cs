@@ -38,6 +38,8 @@ namespace Proyecto1.Controlador
             //}
             
             //db.SaveChanges();
+
+            
         }
 
         public void guardarArchivo(byte[] archivo)

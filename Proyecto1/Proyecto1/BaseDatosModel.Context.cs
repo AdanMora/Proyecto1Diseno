@@ -12,6 +12,8 @@ namespace Proyecto1
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class Proyecto1DB : DbContext
     {
@@ -37,5 +39,214 @@ namespace Proyecto1
         public virtual DbSet<PuntosXSesionDB> PuntosXSesionDBs { get; set; }
         public virtual DbSet<SesionDB> SesionDBs { get; set; }
         public virtual DbSet<Solicitudes_PuntosDB> Solicitudes_PuntosDB { get; set; }
+    
+        public virtual int sp_AceptarSolicitud(Nullable<decimal> num_Consejo, string num_Sesion, Nullable<decimal> id_Punto)
+        {
+            var num_ConsejoParameter = num_Consejo.HasValue ?
+                new ObjectParameter("Num_Consejo", num_Consejo) :
+                new ObjectParameter("Num_Consejo", typeof(decimal));
+    
+            var num_SesionParameter = num_Sesion != null ?
+                new ObjectParameter("Num_Sesion", num_Sesion) :
+                new ObjectParameter("Num_Sesion", typeof(string));
+    
+            var id_PuntoParameter = id_Punto.HasValue ?
+                new ObjectParameter("id_Punto", id_Punto) :
+                new ObjectParameter("id_Punto", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_AceptarSolicitud", num_ConsejoParameter, num_SesionParameter, id_PuntoParameter);
+        }
+    
+        public virtual ObjectResult<sp_Agenda_Result> sp_Agenda(string num_Sesion)
+        {
+            var num_SesionParameter = num_Sesion != null ?
+                new ObjectParameter("Num_Sesion", num_Sesion) :
+                new ObjectParameter("Num_Sesion", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Agenda_Result>("sp_Agenda", num_SesionParameter);
+        }
+    
+        public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            var versionParameter = version.HasValue ?
+                new ObjectParameter("version", version) :
+                new ObjectParameter("version", typeof(int));
+    
+            var definitionParameter = definition != null ?
+                new ObjectParameter("definition", definition) :
+                new ObjectParameter("definition", typeof(byte[]));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_alterdiagram", diagramnameParameter, owner_idParameter, versionParameter, definitionParameter);
+        }
+    
+        public virtual ObjectResult<sp_ComentariosXPunto_Result> sp_ComentariosXPunto(Nullable<decimal> id_Punto)
+        {
+            var id_PuntoParameter = id_Punto.HasValue ?
+                new ObjectParameter("id_Punto", id_Punto) :
+                new ObjectParameter("id_Punto", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_ComentariosXPunto_Result>("sp_ComentariosXPunto", id_PuntoParameter);
+        }
+    
+        public virtual int sp_creatediagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            var versionParameter = version.HasValue ?
+                new ObjectParameter("version", version) :
+                new ObjectParameter("version", typeof(int));
+    
+            var definitionParameter = definition != null ?
+                new ObjectParameter("definition", definition) :
+                new ObjectParameter("definition", typeof(byte[]));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_creatediagram", diagramnameParameter, owner_idParameter, versionParameter, definitionParameter);
+        }
+    
+        public virtual int sp_dropdiagram(string diagramname, Nullable<int> owner_id)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_dropdiagram", diagramnameParameter, owner_idParameter);
+        }
+    
+        public virtual ObjectResult<sp_helpdiagramdefinition_Result> sp_helpdiagramdefinition(string diagramname, Nullable<int> owner_id)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_helpdiagramdefinition_Result>("sp_helpdiagramdefinition", diagramnameParameter, owner_idParameter);
+        }
+    
+        public virtual ObjectResult<sp_helpdiagrams_Result> sp_helpdiagrams(string diagramname, Nullable<int> owner_id)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_helpdiagrams_Result>("sp_helpdiagrams", diagramnameParameter, owner_idParameter);
+        }
+    
+        public virtual ObjectResult<sp_MiembrosXConsejo_Result> sp_MiembrosXConsejo(Nullable<decimal> num_Consejo)
+        {
+            var num_ConsejoParameter = num_Consejo.HasValue ?
+                new ObjectParameter("Num_Consejo", num_Consejo) :
+                new ObjectParameter("Num_Consejo", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_MiembrosXConsejo_Result>("sp_MiembrosXConsejo", num_ConsejoParameter);
+        }
+    
+        public virtual ObjectResult<sp_MiembrosXSesion_Result> sp_MiembrosXSesion(string num_Sesion)
+        {
+            var num_SesionParameter = num_Sesion != null ?
+                new ObjectParameter("Num_Sesion", num_Sesion) :
+                new ObjectParameter("Num_Sesion", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_MiembrosXSesion_Result>("sp_MiembrosXSesion", num_SesionParameter);
+        }
+    
+        public virtual int sp_MoverPuntoAgenda(string num_Sesion, Nullable<decimal> id_Punto, Nullable<decimal> nuevaPos)
+        {
+            var num_SesionParameter = num_Sesion != null ?
+                new ObjectParameter("Num_Sesion", num_Sesion) :
+                new ObjectParameter("Num_Sesion", typeof(string));
+    
+            var id_PuntoParameter = id_Punto.HasValue ?
+                new ObjectParameter("id_Punto", id_Punto) :
+                new ObjectParameter("id_Punto", typeof(decimal));
+    
+            var nuevaPosParameter = nuevaPos.HasValue ?
+                new ObjectParameter("nuevaPos", nuevaPos) :
+                new ObjectParameter("nuevaPos", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_MoverPuntoAgenda", num_SesionParameter, id_PuntoParameter, nuevaPosParameter);
+        }
+    
+        public virtual int sp_renamediagram(string diagramname, Nullable<int> owner_id, string new_diagramname)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            var new_diagramnameParameter = new_diagramname != null ?
+                new ObjectParameter("new_diagramname", new_diagramname) :
+                new ObjectParameter("new_diagramname", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_renamediagram", diagramnameParameter, owner_idParameter, new_diagramnameParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<decimal>> sp_Solicitudes(Nullable<decimal> num_Consejo)
+        {
+            var num_ConsejoParameter = num_Consejo.HasValue ?
+                new ObjectParameter("Num_Consejo", num_Consejo) :
+                new ObjectParameter("Num_Consejo", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<decimal>>("sp_Solicitudes", num_ConsejoParameter);
+        }
+    
+        public virtual int sp_upgraddiagrams()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_upgraddiagrams");
+        }
+    
+        public virtual ObjectResult<sp_ActaSesion_Result> sp_ActaSesion(string num_Sesion)
+        {
+            var num_SesionParameter = num_Sesion != null ?
+                new ObjectParameter("Num_Sesion", num_Sesion) :
+                new ObjectParameter("Num_Sesion", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_ActaSesion_Result>("sp_ActaSesion", num_SesionParameter);
+        }
+    
+        public virtual ObjectResult<sp_AdjuntosXPunto_Result> sp_AdjuntosXPunto(Nullable<decimal> id_Punto)
+        {
+            var id_PuntoParameter = id_Punto.HasValue ?
+                new ObjectParameter("id_Punto", id_Punto) :
+                new ObjectParameter("id_Punto", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_AdjuntosXPunto_Result>("sp_AdjuntosXPunto", id_PuntoParameter);
+        }
+    
+        public virtual ObjectResult<sp_AgendaSesion_Result> sp_AgendaSesion(string num_Sesion)
+        {
+            var num_SesionParameter = num_Sesion != null ?
+                new ObjectParameter("Num_Sesion", num_Sesion) :
+                new ObjectParameter("Num_Sesion", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_AgendaSesion_Result>("sp_AgendaSesion", num_SesionParameter);
+        }
     }
 }

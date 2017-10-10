@@ -121,6 +121,24 @@
     <Compile Include="Solicitudes_PuntosDB.cs">
       <DependentUpon>BaseDatosModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="sp_Agenda_Result.cs">
+      <DependentUpon>BaseDatosModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_ComentariosXPunto_Result.cs">
+      <DependentUpon>BaseDatosModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>BaseDatosModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_helpdiagrams_Result.cs">
+      <DependentUpon>BaseDatosModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_MiembrosXConsejo_Result.cs">
+      <DependentUpon>BaseDatosModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_MiembrosXSesion_Result.cs">
+      <DependentUpon>BaseDatosModel.tt</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
