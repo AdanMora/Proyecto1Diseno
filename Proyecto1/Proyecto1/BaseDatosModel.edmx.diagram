@@ -30,6 +30,9 @@
         <AssociationConnector Association="Proyecto1Model.fk_ConsejoSolicitudes" ManuallyRouted="false" />
         <AssociationConnector Association="Proyecto1Model.fk_PuntosAgenda" ManuallyRouted="false" />
         <AssociationConnector Association="Proyecto1Model.fk_SesionAgenda" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="Proyecto1Model.SesionesXConsejoDB" Width="1.5" PointX="6" PointY="9.875" />
+        <AssociationConnector Association="Proyecto1Model.fk_ConsejoSesiones" />
+        <AssociationConnector Association="Proyecto1Model.fk_SesionesXConsejo" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

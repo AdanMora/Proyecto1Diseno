@@ -131,6 +131,9 @@
     <Compile Include="SesionDB.cs">
       <DependentUpon>BaseDatosModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="SesionesXConsejoDB.cs">
+      <DependentUpon>BaseDatosModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Solicitudes_PuntosDB.cs">
       <DependentUpon>BaseDatosModel.tt</DependentUpon>
     </Compile>
@@ -138,6 +141,9 @@
       <DependentUpon>BaseDatosModel.tt</DependentUpon>
     </Compile>
     <Compile Include="sp_AdjuntosXPunto_Result.cs">
+      <DependentUpon>BaseDatosModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_Agenda1_Result.cs">
       <DependentUpon>BaseDatosModel.tt</DependentUpon>
     </Compile>
     <Compile Include="sp_AgendaSesion_Result.cs">
@@ -159,6 +165,9 @@
       <DependentUpon>BaseDatosModel.tt</DependentUpon>
     </Compile>
     <Compile Include="sp_MiembrosXSesion_Result.cs">
+      <DependentUpon>BaseDatosModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_SesionesxConsejo_Result.cs">
       <DependentUpon>BaseDatosModel.tt</DependentUpon>
     </Compile>
     <Compile Include="sp_Solicitudes_Result.cs">
