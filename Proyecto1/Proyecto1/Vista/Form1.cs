@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Proyecto1.Controlador;
+using Proyecto1.Vista;
 
 namespace Proyecto1
 {
@@ -39,6 +40,12 @@ namespace Proyecto1
             saveFileDialog1.DefaultExt = "pdf";
             saveFileDialog1.ShowDialog();
             System.IO.File.WriteAllBytes(saveFileDialog1.FileName, dao.cargarArchivo());
+        }
+
+        private void panel_Click(object sender, EventArgs e)
+        {
+            Vista.Panel p = new Vista.Panel();
+            p.Show();
         }
     }
 }
