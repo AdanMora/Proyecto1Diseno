@@ -85,10 +85,10 @@ namespace Proyecto1.Controlador
                 consejo.Solicitudes.Add(new PuntoAgenda(Decimal.ToInt32(solicitudBD.id_Punto), solicitudBD.nombre, solicitudBD.resultandos, solicitudBD.considerandos, solicitudBD.seAcuerda,0,0,0, 'A'));
             }
 
-            foreach (sp_Agenda_Result solicitudBD in db.sp_Agenda(1).ToList())
-            {
-                consejo.Solicitudes.Add(new PuntoAgenda(Decimal.ToInt32(solicitudBD.id_Punto), solicitudBD.nombre, solicitudBD.resultandos, solicitudBD.considerandos, solicitudBD.seAcuerda, 0, 0, 0, 'A'));
-            }
+            //foreach (sp_Agenda_Result solicitudBD in db.sp_Agenda(1).ToList())
+            //{
+            //    consejo.Solicitudes.Add(new PuntoAgenda(Decimal.ToInt32(solicitudBD.id_Punto), solicitudBD.nombre, solicitudBD.resultandos, solicitudBD.considerandos, solicitudBD.seAcuerda, 0, 0, 0, 'A'));
+            //}
 
 
             return consejo;
