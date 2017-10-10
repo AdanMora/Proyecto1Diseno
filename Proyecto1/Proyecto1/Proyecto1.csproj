@@ -121,6 +121,15 @@
     <Compile Include="Solicitudes_PuntosDB.cs">
       <DependentUpon>BaseDatosModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="sp_ActaSesion_Result.cs">
+      <DependentUpon>BaseDatosModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_AdjuntosXPunto_Result.cs">
+      <DependentUpon>BaseDatosModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_AgendaSesion_Result.cs">
+      <DependentUpon>BaseDatosModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="sp_Agenda_Result.cs">
       <DependentUpon>BaseDatosModel.tt</DependentUpon>
     </Compile>
