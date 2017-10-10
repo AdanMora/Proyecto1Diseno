@@ -10,6 +10,6 @@ namespace Proyecto1.Controlador
 {
     interface Prototype_Clonable
     {
-        Collection<Miembro> clonable();
+        Prototype_Clonable clonable();
     }
 }

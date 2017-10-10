@@ -11,22 +11,24 @@ namespace Proyecto1.Controlador
     class Prototype_Miembros : Prototype_Clonable
     {
         private Collection<Miembro> asistencia;
+        private char[] listaAsistencia;
 
         public Prototype_Miembros(Collection<Miembro> miembros)
         {
             this.asistencia = miembros;
+            int n = miembros.Count;
+            this.listaAsistencia = new char[n];
+            for(int i = 0; i < n; i++)
+            {
+                this.listaAsistencia[i] = 'A';
+            }
         }
 
-        public Prototype_Miembros(){}
+        // public Prototype_Miembros(){}
 
-        public Collection<Miembro> clonable()
+        public Prototype_Clonable clonable()
         {
-            Collection<Miembro> temp = new Collection<Miembro>();
-            foreach(Miembro m in this.asistencia)
-            {
-                temp.Add(new Miembro(m.Nombre, m.Correo[0], m.Correo[1], m.TipoMiembro));
-            }
-            return temp;
+            return (Prototype_Miembros)this.MemberwiseClone();
         }
 
         public void setAsistencia(Collection<Miembro> miembros)
