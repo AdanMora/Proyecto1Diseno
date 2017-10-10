@@ -9,25 +9,23 @@ namespace Proyecto1.Modelo
 {
     public class PuntoAgenda
     {
-        private string resultado;
+        private int id_punto;
+        private string resultando;
         private string considerandos;
         private string seAcuerda;
         private int[] votacion = new int[3];
         private char tipo;
-        private Collection<string> adjuntos = new Collection<string>();
         private Collection<Comentario> comentarios = new Collection<Comentario>();
 
 
         public PuntoAgenda() { }
-        public PuntoAgenda(string nombre, string resultado, string considerandos, string seAcuerda, Collection<Comentario> comentarios,
-            Collection<string> adjuntos, int aFavor, int enContra, int blanco, char tipo)
+        public PuntoAgenda(int id_punto, string nombre, string resultando, string considerandos, string seAcuerda, int aFavor, int enContra, int blanco, char tipo)
         {
+            this.id_punto = id_punto;
             this.nombre = nombre;
-            this.resultado = resultado;
+            this.resultando = resultando;
             this.considerandos = considerandos;
             this.seAcuerda = seAcuerda;
-            this.adjuntos = adjuntos;
-            this.comentarios = comentarios;
             this.votacion[0] = aFavor;
             this.votacion[1] = enContra;
             this.votacion[2] = blanco;
@@ -36,16 +34,29 @@ namespace Proyecto1.Modelo
 
         private string nombre { get; set; }
 
-        public string Resultado
+        public int Id_punto
         {
             get
             {
-                return resultado;
+                return id_punto;
             }
 
             set
             {
-                resultado = value;
+                id_punto = value;
+            }
+        }
+
+        public string Resultando
+        {
+            get
+            {
+                return resultando;
+            }
+
+            set
+            {
+                resultando = value;
             }
         }
 
@@ -101,19 +112,6 @@ namespace Proyecto1.Modelo
             }
         }
 
-        public Collection<string> Adjuntos
-        {
-            get
-            {
-                return adjuntos;
-            }
-
-            set
-            {
-                adjuntos = value;
-            }
-        }
-
         public Collection<Comentario> Comentarios
         {
             get
@@ -130,10 +128,9 @@ namespace Proyecto1.Modelo
         public string toString()
         {
             return "Nombre: " + this.nombre +
-                    "\nResultado: " + this.resultado +
+                    "\nResultado: " + this.resultando +
                     "\nConsiderandos: " + this.considerandos +
                     "\nSeAcuerda: " + this.seAcuerda +
-                    "\nAdjuntos: "+ this.adjuntos +
                     "\nVotos a favor: "+ this.votacion[0] +
                     "\nVotos en contra: " + this.votacion[1] +
                     "\nVotos en blanco: " + this.votacion[2] +

@@ -158,6 +158,9 @@
     <Compile Include="sp_MiembrosXSesion_Result.cs">
       <DependentUpon>BaseDatosModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="sp_Solicitudes_Result.cs">
+      <DependentUpon>BaseDatosModel.tt</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

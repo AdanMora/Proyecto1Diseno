@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Collections.ObjectModel;
+using System.Data.Entity.Core.Objects;
 
 namespace Proyecto1.Controlador
 {
@@ -62,7 +63,7 @@ namespace Proyecto1.Controlador
                 if (d.sesion == "1")
                 {
                     return d.contenido;
-                    
+
                 }
             }
             return null;
@@ -71,7 +72,25 @@ namespace Proyecto1.Controlador
         public Consejo cargarDatos()
         {
             Consejo consejo = new Consejo();
+
+            if (db.sp_MiembrosXConsejo(1).ToList().Count != 0) {
+                foreach (sp_MiembrosXConsejo_Result mBD in db.sp_MiembrosXConsejo(1).ToList())
+                {
+                    consejo.Miembros.Add(new Miembro(mBD.nombre, mBD.correo1, mBD.correo2, mBD.tipoMiembro.First()));
+                }
+            }
             
+            foreach (sp_Solicitudes_Result solicitudBD in db.sp_Solicitudes1(1).ToList())
+            {
+                consejo.Solicitudes.Add(new PuntoAgenda(Decimal.ToInt32(solicitudBD.id_Punto), solicitudBD.nombre, solicitudBD.resultandos, solicitudBD.considerandos, solicitudBD.seAcuerda,0,0,0, 'A'));
+            }
+
+            foreach (sp_Agenda_Result solicitudBD in db.sp_Agenda(1).ToList())
+            {
+                consejo.Solicitudes.Add(new PuntoAgenda(Decimal.ToInt32(solicitudBD.id_Punto), solicitudBD.nombre, solicitudBD.resultandos, solicitudBD.considerandos, solicitudBD.seAcuerda, 0, 0, 0, 'A'));
+            }
+
+
             return consejo;
         }
 

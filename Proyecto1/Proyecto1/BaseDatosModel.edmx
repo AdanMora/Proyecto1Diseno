@@ -869,6 +869,9 @@
           <FunctionImport Name="sp_AgendaSesion" ReturnType="Collection(Proyecto1Model.sp_AgendaSesion_Result)">
           <Parameter Name="Num_Sesion" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="sp_Solicitudes1" ReturnType="Collection(Proyecto1Model.sp_Solicitudes_Result)">
+            <Parameter Name="Num_Consejo" Mode="In" Type="Decimal" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="sp_Agenda_Result">
           <Property Type="Decimal" Name="id_PuntosXSesion" Nullable="false" Precision="5" Scale="0" />
@@ -915,6 +918,13 @@
         <ComplexType Name="sp_AgendaSesion_Result">
           <Property Type="String" Name="nombreArchivo" Nullable="false" MaxLength="100" />
           <Property Type="Binary" Name="contenido" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="sp_Solicitudes_Result">
+          <Property Type="Decimal" Name="id_Punto" Nullable="false" Precision="5" Scale="0" />
+          <Property Type="String" Name="nombre" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="considerandos" Nullable="false" MaxLength="1000" />
+          <Property Type="String" Name="resultandos" Nullable="false" MaxLength="1000" />
+          <Property Type="String" Name="seAcuerda" Nullable="false" MaxLength="1000" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1128,6 +1138,17 @@
               <ComplexTypeMapping TypeName="Proyecto1Model.sp_AgendaSesion_Result">
                 <ScalarProperty Name="nombreArchivo" ColumnName="nombreArchivo" />
                 <ScalarProperty Name="contenido" ColumnName="contenido" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_Solicitudes1" FunctionName="Proyecto1Model.Store.sp_Solicitudes">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Proyecto1Model.sp_Solicitudes_Result">
+                <ScalarProperty Name="id_Punto" ColumnName="id_Punto" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="considerandos" ColumnName="considerandos" />
+                <ScalarProperty Name="resultandos" ColumnName="resultandos" />
+                <ScalarProperty Name="seAcuerda" ColumnName="seAcuerda" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
