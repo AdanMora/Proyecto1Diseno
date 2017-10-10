@@ -67,10 +67,10 @@ namespace Proyecto1.Modelo
         public string toString()
         {
             return "Nombre: " + this.nombre +
-                "\nCorreo 1: " + this.correo[0] +
-                "\nCorreo 2: " + this.correo[1] +
-                "\nTipo de miembro: " + this.tipoMiembro +
-                "\n#########################################";
+                " \n Correo 1: " + this.correo[0] +
+                " \n Correo 2: " + this.correo[1] +
+                " \n Tipo de miembro: " + this.tipoMiembro +
+                " \n #########################################";
         }
     }
 }

@@ -47,5 +47,10 @@ namespace Proyecto1
             Vista.Panel p = new Vista.Panel();
             p.Show();
         }
+
+        private void openFileDialog2_FileOk(object sender, CancelEventArgs e)
+        {
+
+        }
     }
 }
