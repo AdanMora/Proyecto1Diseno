@@ -17,7 +17,7 @@ namespace Proyecto1.Controlador
             prototype = new Prototype_Miembros(miembros);
         }
 
-        public Prototype_Cache() { }
+        // public Prototype_Cache() { }
 
         public void cargarPrototipo()
         {
@@ -27,7 +27,7 @@ namespace Proyecto1.Controlador
         
         public Prototype_Clonable getPrototipo()
         {
-            return this.prototype;
+            return (Prototype_Miembros) this.prototype.clonable(); ;
         }
         
     }
