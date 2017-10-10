@@ -7,7 +7,7 @@ using System.Collections.ObjectModel;
 
 namespace Proyecto1.Modelo
 {
-    class PuntoAgenda
+    public class PuntoAgenda
     {
         private string resultado;
         private string considerandos;

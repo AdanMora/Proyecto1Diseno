@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Proyecto1.Controlador
 {
-    class Gestor
+    public class Gestor
     {
     }
 }

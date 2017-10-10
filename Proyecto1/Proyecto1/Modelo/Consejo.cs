@@ -8,10 +8,10 @@ using System.Collections.ObjectModel;
 
 namespace Proyecto1.Modelo
 {
-    class Consejo
+    public class Consejo
     {
         private Collection<Miembro> miembros = new Collection<Miembro>();
-        private Collection<Sesion> seciones = new Collection<Sesion>();
+        private Collection<Sesion> sesiones = new Collection<Sesion>();
         private Collection<PuntoAgenda> solicitudes = new Collection<PuntoAgenda>();                
 
         public Consejo() { }
@@ -19,7 +19,7 @@ namespace Proyecto1.Modelo
         public Consejo(Collection<Miembro> miembros, Collection<Sesion> seciones, Collection<PuntoAgenda> solicitudes)
         {
             this.miembros = miembros;
-            this.seciones = seciones;
+            this.sesiones = seciones;
             this.solicitudes = solicitudes;
         }
 
@@ -53,12 +53,12 @@ namespace Proyecto1.Modelo
         {
             get
             {
-                return seciones;
+                return sesiones;
             }
 
             set
             {
-                seciones = value;
+                sesiones = value;
             }
         }
 

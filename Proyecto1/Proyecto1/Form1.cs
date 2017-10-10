@@ -13,7 +13,7 @@ namespace Proyecto1
 {
     public partial class Form1 : Form
     {
-        DB_DAO dao = new DB_DAO();
+        Azure_DAO dao = new Azure_DAO();
         public Form1()
         {
             InitializeComponent();
