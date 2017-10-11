@@ -14,6 +14,11 @@ namespace Proyecto1.Controlador
 
         public Controlador_Sesion() { }
 
+        public Controlador_Sesion(Sesion sesion)
+        {
+            this.sesionActual = sesion;
+        }
+
         public void cargarListaMiembros()
         {
 
