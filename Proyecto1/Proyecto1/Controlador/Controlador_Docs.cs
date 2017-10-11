@@ -15,7 +15,17 @@ namespace Proyecto1.Controlador
 
         public Controlador_Docs() { }
 
-        public void crearDoc(Sesion sesion,int tipo)
+        public void crearActa(Sesion sesion)
+        {
+            strategy.crearActa(sesion);
+        }
+
+        public void crearAgenda(object puntos, int tipo)
+        {
+            strategy.crearAgenda(puntos);
+        }
+
+        public void setDocumento(int tipo)
         {
             strategy = null;
             switch (tipo)
@@ -27,9 +37,7 @@ namespace Proyecto1.Controlador
                 case word:
                     strategy = new Strategy_DOCX();
                     break;
-
             }
-            strategy.crear(sesion);
         }
     }
 }
