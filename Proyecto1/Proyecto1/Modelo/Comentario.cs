@@ -8,13 +8,15 @@ namespace Proyecto1.Modelo
 {
     public class Comentario
     {
+        private int id_Comentario;
         private string txtcomentario;
         private Miembro miembro;
 
         public Comentario() { }
 
-        public Comentario(string txtcomentario, Miembro miembro)
+        public Comentario(int id_Comentario, string txtcomentario, Miembro miembro)
         {
+            this.id_Comentario = id_Comentario;
             this.txtcomentario = txtcomentario;
             this.miembro = miembro;
         }
@@ -45,6 +47,8 @@ namespace Proyecto1.Modelo
                 miembro = value;
             }
         }
+
+        public int Id_Comentario { get => id_Comentario; set => id_Comentario = value; }
 
         public string toString()
         {

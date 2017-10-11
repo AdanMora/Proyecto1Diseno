@@ -276,5 +276,14 @@ namespace Proyecto1
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Agenda1_Result>("sp_Agenda1", num_SesionParameter);
         }
+    
+        public virtual ObjectResult<sp_ComentariosXPunto1_Result> sp_ComentariosXPunto1(Nullable<decimal> id_Punto)
+        {
+            var id_PuntoParameter = id_Punto.HasValue ?
+                new ObjectParameter("id_Punto", id_Punto) :
+                new ObjectParameter("id_Punto", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_ComentariosXPunto1_Result>("sp_ComentariosXPunto1", id_PuntoParameter);
+        }
     }
 }

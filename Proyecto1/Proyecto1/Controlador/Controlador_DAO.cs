@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Proyecto1.Modelo;
+using Proyecto1.Controlador;
 using System.Collections.ObjectModel;
 
 namespace Proyecto1.Controlador
@@ -21,8 +22,6 @@ namespace Proyecto1.Controlador
         void guardarDoc(int numeroSesion, String nombre, byte[] contenido, char tipo);
 
         void agregarSolicitud(PuntoAgenda p);
-
-        void agregarPuntoToAgenda(PuntoAgenda p);
 
         void eliminarSolicitud(PuntoAgenda p);
 

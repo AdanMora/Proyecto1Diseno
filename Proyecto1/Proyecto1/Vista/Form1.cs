@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Proyecto1.Controlador;
 using Proyecto1.Vista;
+using Proyecto1.Modelo;
 
 namespace Proyecto1
 {
@@ -22,15 +23,40 @@ namespace Proyecto1
 
         private void button1_Click(object sender, EventArgs e)
         {
-            
-            if (openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
-                System.IO.StreamReader sr = new
-                System.IO.StreamReader(openFileDialog1.FileName);
-                dao.guardarArchivo(System.IO.File.ReadAllBytes(openFileDialog1.FileName));
-                
-                sr.Close();
 
+            //if (openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            //{
+            //    System.IO.StreamReader sr = new
+            //    System.IO.StreamReader(openFileDialog1.FileName);
+            //    dao.guardarArchivo(System.IO.File.ReadAllBytes(openFileDialog1.FileName));
+
+            //    sr.Close();
+
+            //}
+
+            Consejo c = dao.cargarDatos();
+            foreach (Sesion s in c.Sesiones)
+            {
+                Console.WriteLine(s.toString());
+                foreach (Miembro m in s.MiembrosAsistencia.Asistencia)
+                {
+                    Console.WriteLine(m.toString());
+                }
+                Console.WriteLine(s.MiembrosAsistencia.ListaAsistencia.ToString());
+
+                foreach (PuntoAgenda p in s.Agenda)
+                {
+                    Console.WriteLine(p.toString());
+                    foreach (Comentario co in p.Comentarios)
+                    {
+                        Console.WriteLine(co.toString());
+
+                    }
+                }
+            }
+            foreach (PuntoAgenda s in c.Solicitudes)
+            {
+                Console.WriteLine(s.toString());
             }
         }
 
