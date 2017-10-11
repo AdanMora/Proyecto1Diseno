@@ -38,23 +38,34 @@ namespace Proyecto1.Controlador
                     string correo1 = tab.Rows[j][1].ToString();
                     string correo2 = tab.Rows[j][2].ToString();
                     char tipo = tab.Rows[j][3].ToString().First();
-                    if (nombre=="" || (correo1=="" && correo2=="") || tipo==' ')
-                    {
-                        band = true;
-                    }else
+                    if (nombre != "" && tipo != ' ')
                     {
                         if (correo1 == "")
                         {
                             correo1 = "Nulo";
+                            Miembro nuevo = new Miembro(nombre, correo1, correo2, tipo);
+                            listaMiembro.Add(nuevo);
                         }
                         else
                         {
-                            correo2 = "Nulo";
+                            if (correo2 == "")
+                            {
+                                correo2 = "Nulo";
+                                Miembro nuevo = new Miembro(nombre, correo1, correo2, tipo);
+                                listaMiembro.Add(nuevo);
+                            }
+                            else
+                            {
+                                Miembro nuevo = new Miembro(nombre, correo1, correo2, tipo);
+                                listaMiembro.Add(nuevo);
+                            }
                         }
                     }
-                    Miembro nuevo = new Miembro();
-                    listaMiembro.Add(nuevo);
-                 }
+                    else
+                    {
+                        band = true;
+                    }                    
+                }
                 if (band == true)
                 {
                     listaMiembro.Clear();
