@@ -932,10 +932,13 @@
             <End Role="SesionesXConsejoDB" EntitySet="SesionesXConsejoDBs" />
           </AssociationSet>
           <FunctionImport Name="sp_SesionesxConsejo" ReturnType="Collection(Proyecto1Model.sp_SesionesxConsejo_Result)">
-            <Parameter Name="Num_Consejo" Mode="In" Type="Decimal" />
+          <Parameter Name="Num_Consejo" Mode="In" Type="Decimal" />
           </FunctionImport>
           <FunctionImport Name="sp_Agenda1" ReturnType="Collection(Proyecto1Model.sp_Agenda1_Result)">
-            <Parameter Name="Num_Sesion" Mode="In" Type="String" />
+          <Parameter Name="Num_Sesion" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_ComentariosXPunto1" ReturnType="Collection(Proyecto1Model.sp_ComentariosXPunto1_Result)">
+            <Parameter Name="id_Punto" Mode="In" Type="Decimal" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="sp_Agenda_Result">
@@ -1045,6 +1048,11 @@
           <Property Type="Int32" Name="votosEnContra" Nullable="true" />
           <Property Type="Int32" Name="votosAbstenciones" Nullable="true" />
           <Property Type="String" Name="tipoPunto" Nullable="false" MaxLength="1" />
+        </ComplexType>
+        <ComplexType Name="sp_ComentariosXPunto1_Result">
+          <Property Type="String" Name="correo1" Nullable="false" MaxLength="50" />
+          <Property Type="Decimal" Name="id_Comentario" Nullable="false" Precision="5" Scale="0" />
+          <Property Type="String" Name="contenido" Nullable="false" MaxLength="1000" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1303,6 +1311,15 @@
                 <ScalarProperty Name="votosEnContra" ColumnName="votosEnContra" />
                 <ScalarProperty Name="votosAbstenciones" ColumnName="votosAbstenciones" />
                 <ScalarProperty Name="tipoPunto" ColumnName="tipoPunto" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_ComentariosXPunto1" FunctionName="Proyecto1Model.Store.sp_ComentariosXPunto">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Proyecto1Model.sp_ComentariosXPunto1_Result">
+                <ScalarProperty Name="correo1" ColumnName="correo1" />
+                <ScalarProperty Name="id_Comentario" ColumnName="id_Comentario" />
+                <ScalarProperty Name="contenido" ColumnName="contenido" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

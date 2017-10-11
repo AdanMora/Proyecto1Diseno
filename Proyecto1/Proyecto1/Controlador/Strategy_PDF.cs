@@ -9,7 +9,12 @@ namespace Proyecto1.Controlador
 {
     class Strategy_PDF : Strategy_Docs
     {
-        public void crear(Sesion sesion)
+        public void crearActa(Sesion puntos)
+        {
+            // throw new NotImplementedException();
+        }
+
+        public void crearAgenda(object sesion)
         {
             // Crea el con la sesion
         }

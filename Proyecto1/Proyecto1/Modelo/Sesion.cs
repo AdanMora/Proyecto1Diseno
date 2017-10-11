@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Collections.ObjectModel;
+using Proyecto1.Controlador;
 
 namespace Proyecto1.Modelo
 {
@@ -13,7 +14,7 @@ namespace Proyecto1.Modelo
         private DateTime fechaHora;
         private string lugar;
         private bool estado;
-        private Collection<Miembro> miembrosAsistencia = new Collection<Miembro>();
+        private Prototype_Miembros miembrosAsistencia;
         private Collection<PuntoAgenda> agenda = new Collection<PuntoAgenda>();
 
         public String Numero
@@ -68,19 +69,6 @@ namespace Proyecto1.Modelo
             }
         }
 
-        public Collection<Miembro> MiembrosAsistencia
-        {
-            get
-            {
-                return miembrosAsistencia;
-            }
-
-            set
-            {
-                miembrosAsistencia = value;
-            }
-        }
-
         internal Collection<PuntoAgenda> Agenda
         {
             get
@@ -93,6 +81,8 @@ namespace Proyecto1.Modelo
                 agenda = value;
             }
         }
+
+        internal Prototype_Miembros MiembrosAsistencia { get => miembrosAsistencia; set => miembrosAsistencia = value; }
 
         public Sesion(){}
 

@@ -36,19 +36,6 @@ namespace Proyecto1.Modelo
             }
         }
 
-        public Collection<Miembro> Miembros1
-        {
-            get
-            {
-                return miembros;
-            }
-
-            set
-            {
-                miembros = value;
-            }
-        }
-
         public Collection<Sesion> Sesiones
         {
             get
