@@ -31,5 +31,6 @@ namespace Proyecto1.Controlador
             }
             strategy.crear(sesion);
         }
+        
     }
 }

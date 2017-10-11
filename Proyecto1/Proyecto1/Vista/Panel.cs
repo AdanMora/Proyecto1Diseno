@@ -12,6 +12,7 @@ using Excel;
 using Proyecto1.Controlador;
 using Proyecto1.Modelo;
 using System.Collections.ObjectModel;
+//using GoEmail;
 
 namespace Proyecto1.Vista
 {
@@ -40,6 +41,21 @@ namespace Proyecto1.Vista
                     textBox1.Text = res;
                 }
             }                                       
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            /*
+            EnviarEmail m = new EnviarEmail();            
+            bool exito = m.EnviarMail("destinatario", "Encabezado", "mensj","", "grupoadfafe@gmail.com", "Grupoadfafe.");
+            if (exito == true)
+            {
+                MessageBox.Show("Correo Enviado");
+            }
+            else
+            {
+                MessageBox.Show("El correo no fue enviado");
+            }*/
         }
     }
 }
