@@ -46,7 +46,7 @@ namespace Proyecto1.Vista
         {
 
             EnviarEmail m = new EnviarEmail();
-            bool exito = m.EnviarMail("destinatario", "Encabezado", "mensj", "", "grupoadfafe@gmail.com", "Grupoadfafe.");
+            bool exito = m.EnviarMail("fauriciocr@gmail.com", "Encabezado", "mensj", "", "grupoadfafe@gmail.com", "Grupoadfafe.");
             if (exito == true)
             {
                 MessageBox.Show("Correo Enviado");
