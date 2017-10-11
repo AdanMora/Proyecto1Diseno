@@ -37,26 +37,26 @@ namespace Proyecto1
             Consejo c = dao.cargarDatos();
             foreach (Sesion s in c.Sesiones)
             {
-                Console.WriteLine(s.toString());
+                listBox1.Items.Add(s.toString());
                 foreach (Miembro m in s.MiembrosAsistencia.Asistencia)
                 {
-                    Console.WriteLine(m.toString());
+                    listBox1.Items.Add(m.toString());
                 }
-                Console.WriteLine(s.MiembrosAsistencia.ListaAsistencia.ToString());
+                listBox1.Items.Add(s.MiembrosAsistencia.ListaAsistencia.ToString());
 
                 foreach (PuntoAgenda p in s.Agenda)
                 {
-                    Console.WriteLine(p.toString());
+                    listBox1.Items.Add(p.toString());
                     foreach (Comentario co in p.Comentarios)
                     {
-                        Console.WriteLine(co.toString());
+                        listBox1.Items.Add(co.toString());
 
                     }
                 }
             }
             foreach (PuntoAgenda s in c.Solicitudes)
             {
-                Console.WriteLine(s.toString());
+                listBox1.Items.Add(s.toString());
             }
         }
 
@@ -75,6 +75,11 @@ namespace Proyecto1
         }
 
         private void openFileDialog2_FileOk(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }

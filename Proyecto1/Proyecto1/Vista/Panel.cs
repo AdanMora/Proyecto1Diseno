@@ -12,7 +12,7 @@ using Excel;
 using Proyecto1.Controlador;
 using Proyecto1.Modelo;
 using System.Collections.ObjectModel;
-//using GoEmail;
+using GoEmail;
 
 namespace Proyecto1.Vista
 {
@@ -44,9 +44,9 @@ namespace Proyecto1.Vista
 
         private void button2_Click(object sender, EventArgs e)
         {
-            /*
-            EnviarEmail m = new EnviarEmail();            
-            bool exito = m.EnviarMail("destinatario", "Encabezado", "mensj","", "grupoadfafe@gmail.com", "Grupoadfafe.");
+
+            EnviarEmail m = new EnviarEmail();
+            bool exito = m.EnviarMail("destinatario", "Encabezado", "mensj", "", "grupoadfafe@gmail.com", "Grupoadfafe.");
             if (exito == true)
             {
                 MessageBox.Show("Correo Enviado");
@@ -54,7 +54,7 @@ namespace Proyecto1.Vista
             else
             {
                 MessageBox.Show("El correo no fue enviado");
-            }*/
+            }
         }
     }
 }

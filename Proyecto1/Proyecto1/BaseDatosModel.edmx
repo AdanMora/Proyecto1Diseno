@@ -1044,9 +1044,9 @@
           <Property Type="String" Name="considerandos" Nullable="false" MaxLength="1000" />
           <Property Type="String" Name="resultandos" Nullable="false" MaxLength="1000" />
           <Property Type="String" Name="seAcuerda" Nullable="false" MaxLength="1000" />
-          <Property Type="Int32" Name="votosAFavor" Nullable="true" />
-          <Property Type="Int32" Name="votosEnContra" Nullable="true" />
-          <Property Type="Int32" Name="votosAbstenciones" Nullable="true" />
+          <Property Type="Decimal" Name="votosAFavor" Nullable="false" />
+          <Property Type="Decimal" Name="votosEnContra" Nullable="false" />
+          <Property Type="Decimal" Name="votosAbstenciones" Nullable="false" />
           <Property Type="String" Name="tipoPunto" Nullable="false" MaxLength="1" />
         </ComplexType>
         <ComplexType Name="sp_ComentariosXPunto1_Result">

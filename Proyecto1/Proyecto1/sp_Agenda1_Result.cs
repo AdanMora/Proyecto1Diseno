@@ -18,9 +18,9 @@ namespace Proyecto1
         public string considerandos { get; set; }
         public string resultandos { get; set; }
         public string seAcuerda { get; set; }
-        public Nullable<int> votosAFavor { get; set; }
-        public Nullable<int> votosEnContra { get; set; }
-        public Nullable<int> votosAbstenciones { get; set; }
+        public decimal votosAFavor { get; set; }
+        public decimal votosEnContra { get; set; }
+        public decimal votosAbstenciones { get; set; }
         public string tipoPunto { get; set; }
     }
 }

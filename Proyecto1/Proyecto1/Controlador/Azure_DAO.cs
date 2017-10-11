@@ -73,14 +73,14 @@ namespace Proyecto1.Controlador
         {
             Consejo consejo = new Consejo();
 
-            if (db.sp_MiembrosXConsejo(1).ToList().Count != 0) {
+            if (db.sp_MiembrosXConsejo(1).ToList().Any()) {
                 foreach (sp_MiembrosXConsejo_Result mBD in db.sp_MiembrosXConsejo(1).ToList())
                 {
                     consejo.Miembros.Add(new Miembro(mBD.nombre, mBD.correo1, mBD.correo2, mBD.tipoMiembro.First()));
                 }
             }
 
-            if (db.sp_Solicitudes1(1).ToList().Count != 0)
+            if (db.sp_Solicitudes1(1).ToList().Any())
             {
                 foreach (sp_Solicitudes_Result solicitudBD in db.sp_Solicitudes1(1).ToList())
                 {
@@ -88,7 +88,7 @@ namespace Proyecto1.Controlador
                 }
             }
 
-            if (db.sp_SesionesxConsejo(1).ToList().Count != 0)
+            if (db.sp_SesionesxConsejo(1).ToList().Any())
             {
                 foreach (sp_SesionesxConsejo_Result sesionesBD in db.sp_SesionesxConsejo(1).ToList())
                 {
@@ -97,13 +97,13 @@ namespace Proyecto1.Controlador
 
                 foreach (Sesion s in consejo.Sesiones)
                 {
-                    if (db.sp_Agenda1(s.Numero).ToList().Count != 0)
+                    if (db.sp_Agenda1(s.Numero).ToList().Any())
                     {
                         foreach (sp_Agenda1_Result agendaBD in db.sp_Agenda1(s.Numero).ToList())
                         {
-                            PuntoAgenda p = new PuntoAgenda(Decimal.ToInt32(agendaBD.id_Punto), agendaBD.nombre, agendaBD.resultandos, agendaBD.considerandos, agendaBD.seAcuerda, (int)agendaBD.votosAFavor, (int)agendaBD.votosEnContra, (int)agendaBD.votosAbstenciones, agendaBD.tipoPunto.First());
+                            PuntoAgenda p = new PuntoAgenda(Decimal.ToInt32(agendaBD.id_Punto), agendaBD.nombre, agendaBD.resultandos, agendaBD.considerandos, agendaBD.seAcuerda, Decimal.ToInt32(agendaBD.votosAFavor), Decimal.ToInt32(agendaBD.votosEnContra), Decimal.ToInt32(agendaBD.votosAbstenciones), agendaBD.tipoPunto.First());
 
-                            if (db.sp_ComentariosXPunto1(p.Id_punto).ToList().Count != 0)
+                            if (db.sp_ComentariosXPunto1(p.Id_punto).ToList().Any())
                             {
                                 foreach (sp_ComentariosXPunto1_Result comentariosDB in db.sp_ComentariosXPunto1(p.Id_punto))
                                 {
@@ -119,7 +119,7 @@ namespace Proyecto1.Controlador
                             s.Agenda.Add(p);
                         }
                     }
-                    if (db.sp_MiembrosXSesion(s.Numero).ToList().Count != 0)
+                    if (db.sp_MiembrosXSesion(s.Numero).ToList().Any())
                     {
                         Collection<Miembro> miembros = new Collection<Miembro>();
                         foreach (sp_MiembrosXSesion_Result mSesionDB in db.sp_MiembrosXSesion(s.Numero)) {
