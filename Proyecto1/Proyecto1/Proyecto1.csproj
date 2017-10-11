@@ -152,6 +152,9 @@
     <Compile Include="sp_Agenda_Result.cs">
       <DependentUpon>BaseDatosModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="sp_ComentariosXPunto1_Result.cs">
+      <DependentUpon>BaseDatosModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="sp_ComentariosXPunto_Result.cs">
       <DependentUpon>BaseDatosModel.tt</DependentUpon>
     </Compile>

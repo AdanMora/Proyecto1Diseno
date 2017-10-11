@@ -24,6 +24,9 @@ namespace Proyecto1.Controlador
             }
         }
 
+        public Collection<Miembro> Asistencia { get => asistencia; set => asistencia = value; }
+        public char[] ListaAsistencia { get => listaAsistencia; set => listaAsistencia = value; }
+
         // public Prototype_Miembros(){}
 
         public Prototype_Clonable clonable()
@@ -31,9 +34,5 @@ namespace Proyecto1.Controlador
             return (Prototype_Miembros)this.MemberwiseClone();
         }
 
-        public void setAsistencia(Collection<Miembro> miembros)
-        {
-            this.asistencia = miembros;
-        }
     }
 }
