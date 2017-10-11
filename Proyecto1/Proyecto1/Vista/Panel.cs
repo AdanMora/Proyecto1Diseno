@@ -33,7 +33,6 @@ namespace Proyecto1.Vista
                 if (opf.ShowDialog() == DialogResult.OK)
                 {
                     listaMiembros = xls.cargaXls(opf.FileName);
-
                     foreach (Miembro m in listaMiembros)
                     {
                         res = res + m.toString();
