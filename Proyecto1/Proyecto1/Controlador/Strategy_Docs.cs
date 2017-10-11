@@ -9,6 +9,7 @@ namespace Proyecto1.Controlador
 {
     interface Strategy_Docs
     {
-        void crear(Sesion sesion);
+        void crearAgenda(Sesion sesion);
+        void crearActa(Object puntos);
     }
 }
