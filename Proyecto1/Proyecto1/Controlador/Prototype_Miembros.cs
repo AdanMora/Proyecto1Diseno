@@ -24,8 +24,33 @@ namespace Proyecto1.Controlador
             }
         }
 
-        public Collection<Miembro> Asistencia { get => asistencia; set => asistencia = value; }
-        public char[] ListaAsistencia { get => listaAsistencia; set => listaAsistencia = value; }
+        public Collection<Miembro> Asistencia
+        {
+            get
+            {
+                return asistencia;
+            }
+
+            set
+            {
+                asistencia = value;
+            }
+        }
+
+        public char[] ListaAsistencia
+        {
+            get
+            {
+                return listaAsistencia;
+            }
+
+            set
+            {
+                listaAsistencia = value;
+            }
+        }
+
+
 
         // public Prototype_Miembros(){}
 

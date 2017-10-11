@@ -48,7 +48,18 @@ namespace Proyecto1.Modelo
             }
         }
 
-        public int Id_Comentario { get => id_Comentario; set => id_Comentario = value; }
+        public int Id_Comentario
+        {
+            get
+            {
+                return id_Comentario;
+            }
+
+            set
+            {
+                id_Comentario = value;
+            }
+        }
 
         public string toString()
         {

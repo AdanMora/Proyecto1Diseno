@@ -82,7 +82,18 @@ namespace Proyecto1.Modelo
             }
         }
 
-        internal Prototype_Miembros MiembrosAsistencia { get => miembrosAsistencia; set => miembrosAsistencia = value; }
+        internal Prototype_Miembros MiembrosAsistencia
+        {
+            get
+            {
+                return miembrosAsistencia;
+            }
+
+            set
+            {
+                miembrosAsistencia = value;
+            }
+        }
 
         public Sesion(){}
 
