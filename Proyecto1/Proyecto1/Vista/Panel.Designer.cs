@@ -33,8 +33,11 @@
             this.button1 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.notificacion = new System.Windows.Forms.Button();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tabControl1.SuspendLayout();
             this.CargaXls.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -49,7 +52,7 @@
             // 
             // CargaXls
             // 
-            this.CargaXls.Controls.Add(this.button1);
+            this.CargaXls.Controls.Add(this.tableLayoutPanel1);
             this.CargaXls.Controls.Add(this.textBox1);
             this.CargaXls.Location = new System.Drawing.Point(4, 22);
             this.CargaXls.Name = "CargaXls";
@@ -61,20 +64,20 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(49, 43);
+            this.button1.Location = new System.Drawing.Point(3, 3);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.Size = new System.Drawing.Size(113, 39);
             this.button1.TabIndex = 1;
-            this.button1.Text = "button1";
+            this.button1.Text = "Cargar lista miembros";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(49, 110);
+            this.textBox1.Location = new System.Drawing.Point(36, 46);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(389, 179);
+            this.textBox1.Size = new System.Drawing.Size(459, 179);
             this.textBox1.TabIndex = 0;
             // 
             // tabPage2
@@ -87,6 +90,30 @@
             this.tabPage2.Text = "consejo";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // notificacion
+            // 
+            this.notificacion.Location = new System.Drawing.Point(3, 75);
+            this.notificacion.Name = "notificacion";
+            this.notificacion.Size = new System.Drawing.Size(113, 39);
+            this.notificacion.TabIndex = 2;
+            this.notificacion.Text = "Enviar notificaciones";
+            this.notificacion.UseVisualStyleBackColor = true;
+            this.notificacion.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 1;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Controls.Add(this.notificacion, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.button1, 0, 0);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(567, 46);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 2;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(119, 144);
+            this.tableLayoutPanel1.TabIndex = 3;
+            // 
             // Panel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -98,6 +125,7 @@
             this.tabControl1.ResumeLayout(false);
             this.CargaXls.ResumeLayout(false);
             this.CargaXls.PerformLayout();
+            this.tableLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -109,5 +137,7 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.Button notificacion;
     }
 }
