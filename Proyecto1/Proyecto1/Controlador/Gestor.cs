@@ -12,7 +12,7 @@ namespace Proyecto1.Controlador
         private Consejo consejo;
         private Controlador_Sesion controlador_sesion;
         private Controlador_Solicitudes controlador_solicitudes;
-        
+        private Controlador_DAO controlador_dao;
 
         public Gestor(Consejo consejo)
         {
@@ -20,15 +20,16 @@ namespace Proyecto1.Controlador
             this.setControladores();
         }
 
-        public Gestor()
-        {
-            // this.consejo = load();
-            this.setControladores();
-        }
+        public Gestor(){}
 
         private void setControladores()
         {
             // Acá creamos/instanciamos los controladores
+        }
+
+        private void cargarDatos()
+        {
+            this.consejo = this.controlador_dao.cargarDatos();
         }
 
 

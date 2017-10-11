@@ -14,7 +14,7 @@ namespace Proyecto1.Controlador
 
         public Controlador_Sesion() { }
 
-        public Controlador_Sesion(Sesion sesion)
+        public void setSesion(Sesion sesion)
         {
             this.sesionActual = sesion;
         }
