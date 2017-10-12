@@ -81,10 +81,22 @@ namespace Proyecto1.Controlador
             this.controlador_dao.aceptarSolicitud(punto);
         }
 
-        public void agregarComentario(int idMiembro, string txtcomentario)
+        public void agregarComentario(int idPunto, string correoMiembro, string txtcomentario)
         {
-            Miembro m = this.controlador_sesion.getMiembro(idMiembro);
-            // Estamos agregando un comentario
+            Miembro m = this.controlador_sesion.getMiembro(correoMiembro);
+            int idComentario = this.controlador_dao.getUltimoIDComentario();
+            Comentario comentario = new Comentario(idComentario, txtcomentario, m);
+
+            // Agregamos el comentario al punto
+            this.controlador_sesion.agregarComentario(idPunto, comentario);
+
+            // Escribimos en la BD
+            // this.controlador_dao.agregarComentario(idPunto, correoMiembro, comentario);
+        }
+
+        public void modificarAsistencia(string correoMiembro, char estado)
+        {
+            this.controlador_sesion.modificarAsistencia(correoMiembro, estado);
         }
     }
 }

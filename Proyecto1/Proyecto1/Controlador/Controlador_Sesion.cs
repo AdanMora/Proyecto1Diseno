@@ -64,6 +64,45 @@ namespace Proyecto1.Controlador
             return temp;
         }
 
+        public Miembro getMiembro(string correo)
+        {
+            Miembro miembro = null;
+            foreach(Miembro m in this.sesionActual.MiembrosAsistencia.Asistencia)
+            {
+                if((m.Correo[0] == correo) || (m.Correo[1] == correo))
+                {
+                    miembro = m;
+                    break;
+                }
+            }
+            return miembro;
+        }
+
+        public void agregarComentario(int idPunto, Comentario comentario)
+        {
+            foreach(PuntoAgenda punto in this.sesionActual.Agenda)
+            {
+                if(punto.Id_punto == idPunto)
+                {
+                    punto.Comentarios.Add(comentario);
+                    break;
+                }
+            }
+        }
+
+        public void modificarAsistencia(string correoMiembro, char estado)
+        {
+            int n = this.sesionActual.MiembrosAsistencia.Asistencia.Count;
+            for(int i = 0; i < n; i++)
+            {
+                if(this.sesionActual.MiembrosAsistencia.Asistencia.ElementAt(i).Correo[0] == correoMiembro)
+                {
+                    this.sesionActual.MiembrosAsistencia.ListaAsistencia[i] = estado;
+                    break;
+                }
+            }
+        }
+
         public void cargarListaMiembros()
         {
 
