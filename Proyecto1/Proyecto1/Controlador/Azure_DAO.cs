@@ -201,5 +201,16 @@ namespace Proyecto1.Controlador
         {
             throw new NotImplementedException();
         }
+
+        public int getUltimoIDPunto()
+        {
+            return Decimal.ToInt32(db.Punto_AgendaDB.ToList().Last().id_Punto);
+
+        }
+
+        public int getUltimoIDComentario()
+        {
+            return Decimal.ToInt32(db.ComentariosDBs.ToList().Last().id_Comentario);
+        }
     }
 }
