@@ -58,8 +58,7 @@ namespace Proyecto1
             //{
             //    listBox1.Items.Add(s.toString());
             //}
-
-            listBox1.Items.Add(dao.getUltimoIDPunto());
+            
         }
 
         private void button2_Click(object sender, EventArgs e)
