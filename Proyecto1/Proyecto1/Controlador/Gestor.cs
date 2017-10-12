@@ -13,6 +13,7 @@ namespace Proyecto1.Controlador
         private Controlador_Sesion controlador_sesion;
         private Controlador_Solicitudes controlador_solicitudes;
         private Azure_DAO controlador_dao;
+        private Xls_DAO xls;
 
         public Gestor(Consejo consejo)
         {
@@ -27,19 +28,21 @@ namespace Proyecto1.Controlador
             this.controlador_solicitudes = new Controlador_Solicitudes();
         }
 
-        private void nuevaSesion(String num, DateTime fecha, string lugar)
+        public void nuevaSesion(String num, DateTime fecha, string lugar)
         {
             this.controlador_sesion.nuevaSesion(num,fecha,lugar);
             this.controlador_sesion.setMiembros(this.consejo.Miembros);
             this.controlador_solicitudes.setSolicitudes(this.consejo.Solicitudes);
-            // Acá creamos/instanciamos los controladores
-            // Controlador de sesion:
-
         }
 
-        private void cargarDatos()
+        public void cargarDatos()
         {
             this.consejo = this.controlador_dao.cargarDatos();
+        }
+
+        public void actualizarMiembros()
+        {
+
         }
 
 

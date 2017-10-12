@@ -45,7 +45,7 @@ namespace Proyecto1.Vista
         private void button2_Click(object sender, EventArgs e)
         {
 
-            EnviarEmail m = new EnviarEmail();
+            /*EnviarEmail m = new EnviarEmail();
             bool exito = m.EnviarMail("fauriciocr@gmail.com", "Encabezado", "mensj", "", "grupoadfafe@gmail.com", "Grupoadfafe.");
             if (exito == true)
             {
@@ -54,7 +54,7 @@ namespace Proyecto1.Vista
             else
             {
                 MessageBox.Show("El correo no fue enviado");
-            }
+            }*/
         }
     }
 }
