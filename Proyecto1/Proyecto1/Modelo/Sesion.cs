@@ -17,12 +17,12 @@ namespace Proyecto1.Modelo
         private Prototype_Miembros miembrosAsistencia;
         private Collection<PuntoAgenda> agenda = new Collection<PuntoAgenda>();
 
-        public Sesion(String num, DateTime fecha, string lugar)
+        public Sesion(String num, DateTime fecha, string lugar, bool estado)
         {
             this.numero = num;
             this.fechaHora = fecha;
             this.lugar = lugar;
-            this.estado = false; // False -> Abierto , !False -> Cerrado
+            this.estado = estado; // False -> Abierto , !False -> Cerrado
         }
 
 

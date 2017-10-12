@@ -20,7 +20,7 @@ namespace Proyecto1.Controlador
 
         public void nuevaSesion(String num, DateTime fecha, string lugar)
         {
-            this.sesionActual = new Sesion(num, fecha, lugar);
+            this.sesionActual = new Sesion(num, fecha, lugar, false);
         }
 
         public void setMiembros(Collection<Miembro> miembros)
