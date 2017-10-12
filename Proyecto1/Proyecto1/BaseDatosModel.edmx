@@ -337,6 +337,12 @@
         <Function Name="sp_ActaSesion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Num_Sesion" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="sp_ActualizarMiembro" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="correo1" Type="varchar" Mode="In" />
+          <Parameter Name="correo2" Type="varchar" Mode="In" />
+          <Parameter Name="nombre" Type="varchar" Mode="In" />
+          <Parameter Name="tipoMiembro" Type="char" Mode="In" />
+        </Function>
         <Function Name="sp_AdjuntosXPunto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id_Punto" Type="numeric" Mode="In" />
         </Function>
@@ -384,6 +390,7 @@
           <Parameter Name="id_Punto" Type="numeric" Mode="In" />
           <Parameter Name="nuevaPos" Type="numeric" Mode="In" />
         </Function>
+        <Function Name="sp_nuevaActualizacion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
           <Parameter Name="owner_id" Type="int" Mode="In" />
@@ -938,8 +945,15 @@
           <Parameter Name="Num_Sesion" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_ComentariosXPunto1" ReturnType="Collection(Proyecto1Model.sp_ComentariosXPunto1_Result)">
-            <Parameter Name="id_Punto" Mode="In" Type="Decimal" />
+          <Parameter Name="id_Punto" Mode="In" Type="Decimal" />
           </FunctionImport>
+          <FunctionImport Name="sp_ActualizarMiembro">
+            <Parameter Name="correo1" Mode="In" Type="String" />
+            <Parameter Name="correo2" Mode="In" Type="String" />
+            <Parameter Name="nombre" Mode="In" Type="String" />
+            <Parameter Name="tipoMiembro" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_nuevaActualizacion" />
         </EntityContainer>
         <ComplexType Name="sp_Agenda_Result">
           <Property Type="Decimal" Name="id_PuntosXSesion" Nullable="false" Precision="5" Scale="0" />
@@ -1323,6 +1337,8 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_ActualizarMiembro" FunctionName="Proyecto1Model.Store.sp_ActualizarMiembro" />
+          <FunctionImportMapping FunctionImportName="sp_nuevaActualizacion" FunctionName="Proyecto1Model.Store.sp_nuevaActualizacion" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

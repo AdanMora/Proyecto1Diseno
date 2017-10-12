@@ -285,5 +285,31 @@ namespace Proyecto1
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_ComentariosXPunto1_Result>("sp_ComentariosXPunto1", id_PuntoParameter);
         }
+    
+        public virtual int sp_ActualizarMiembro(string correo1, string correo2, string nombre, string tipoMiembro)
+        {
+            var correo1Parameter = correo1 != null ?
+                new ObjectParameter("correo1", correo1) :
+                new ObjectParameter("correo1", typeof(string));
+    
+            var correo2Parameter = correo2 != null ?
+                new ObjectParameter("correo2", correo2) :
+                new ObjectParameter("correo2", typeof(string));
+    
+            var nombreParameter = nombre != null ?
+                new ObjectParameter("nombre", nombre) :
+                new ObjectParameter("nombre", typeof(string));
+    
+            var tipoMiembroParameter = tipoMiembro != null ?
+                new ObjectParameter("tipoMiembro", tipoMiembro) :
+                new ObjectParameter("tipoMiembro", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_ActualizarMiembro", correo1Parameter, correo2Parameter, nombreParameter, tipoMiembroParameter);
+        }
+    
+        public virtual int sp_nuevaActualizacion()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_nuevaActualizacion");
+        }
     }
 }
