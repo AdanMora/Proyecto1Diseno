@@ -13,5 +13,10 @@ namespace Proyecto1.Controlador
         private Collection<PuntoAgenda> solicitudes;
 
         public Controlador_Solicitudes() { }
+
+        public void setSolicitudes(Collection<PuntoAgenda> solicitudes)
+        {
+            this.solicitudes = solicitudes;
+        }
     }
 }
