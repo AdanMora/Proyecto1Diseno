@@ -12,19 +12,13 @@ namespace Proyecto1.Controlador
     {
         Prototype_Clonable prototype;
 
-        public Prototype_Cache(Collection<Miembro> miembros)
+        public Prototype_Cache() { }
+
+        public void cargarPrototipo(Collection<Miembro> miembros)
         {
             prototype = new Prototype_Miembros(miembros);
         }
 
-        // public Prototype_Cache() { }
-
-        public void cargarPrototipo()
-        {
-            // aquí en teoría se carga el prototipo, pero se está cargando en Controlador_Sesion
-            //prototype.setAsistencia(DAO.getMiembros());
-        }
-        
         public Prototype_Clonable getPrototipo()
         {
             return (Prototype_Miembros) this.prototype.clonable(); ;

@@ -17,6 +17,16 @@ namespace Proyecto1.Modelo
         private Prototype_Miembros miembrosAsistencia;
         private Collection<PuntoAgenda> agenda = new Collection<PuntoAgenda>();
 
+        public Sesion(String num, DateTime fecha, string lugar)
+        {
+            this.numero = num;
+            this.fechaHora = fecha;
+            this.lugar = lugar;
+            this.estado = false; // False -> Abierto , !False -> Cerrado
+        }
+
+
+
         public String Numero
         {
             get
@@ -97,15 +107,6 @@ namespace Proyecto1.Modelo
 
         public Sesion(){}
 
-        public Sesion(String num,DateTime fecha,string lugar,bool estado)
-        {
-            this.numero = num;
-            this.fechaHora = fecha;
-            this.lugar = lugar;
-            this.estado = estado;
-        }
-
-        
         public string toString()
         {
             return "Numero: " + this.numero +

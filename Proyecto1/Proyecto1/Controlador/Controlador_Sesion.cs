@@ -11,12 +11,22 @@ namespace Proyecto1.Controlador
     class Controlador_Sesion
     {
         private Sesion sesionActual;
+        private Prototype_Cache prototype;
 
-        public Controlador_Sesion() { }
-
-        public void setSesion(Sesion sesion)
+        public Controlador_Sesion()
         {
-            this.sesionActual = sesion;
+            this.prototype = new Prototype_Cache();
+        }
+
+        public void nuevaSesion(String num, DateTime fecha, string lugar)
+        {
+            this.sesionActual = new Sesion(num, fecha, lugar);
+        }
+
+        public void setMiembros(Collection<Miembro> miembros)
+        {
+            this.prototype.cargarPrototipo(miembros);
+            this.sesionActual.MiembrosAsistencia = (Prototype_Miembros)this.prototype.getPrototipo();
         }
 
         public void cargarListaMiembros()
@@ -24,17 +34,17 @@ namespace Proyecto1.Controlador
 
         }
 
-        public void registrarAsistencia(Collection<Miembro> m, Sesion s)
+        public void registrarAsistencia()
         {
 
         }
 
-        public void registrarSolicitud(PuntoAgenda p)
+        public void registrarSolicitud()
         {
 
         }
 
-        public void registrarPuntoAgenda(PuntoAgenda p)
+        public void registrarPuntoAgenda()
         {
 
         }
