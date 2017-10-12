@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+/*
 using System.Net;       // No olvidar.
 using System.Net.Mail;
 using System.Net.Mime;
@@ -11,7 +12,7 @@ using System.Windows.Forms;
 using System.IO;
 using System.Collections.ObjectModel;
 using iTextSharp.text;
-using iTextSharp.text.pdf;
+using iTextSharp.text.pdf;*/
 
 namespace Proyecto1.Controlador
 {
@@ -40,7 +41,7 @@ namespace Proyecto1.Controlador
         }
 
         public void enviarNotificacion(DateTime fecha,string numeroSesion)
-        {
+        {/*
             string encabezado = "Sesión Ordinaria <#>-<Anno>";
             string cuerpo = "A solicitud de la Dirección, me permito informarles que el próximo lunes <FECHA> se realizará la Sesión Ordinaria <#>-<Anno>, se solicita que si tienen \nalgún punto que consideren que debe ser valorado por la Dirección para incluirse en la agenda, lo hagan llegar a más tardar el < FECHA > durante la mañana.\nAdjunto formulario de solicitud de puntos para consejos, el formulario para justificación de ausencia al Consejo y el formulario de mociones de fondo.";
             string memo = @"C:\Users\Fauricio\Desktop\MEMO_JUSTIFICACION_DE_AUSENCIAS_AL_CONSEJO.doc";
@@ -71,11 +72,12 @@ namespace Proyecto1.Controlador
             catch (Exception ex)
             {
                 MessageBox.Show("Error al enviar correo");
-            }
+            }*/
         }
 
         public void crearActa(string ruta,string puntosAgenda)
         {            
+            /*
             string path = @"C:\Users\Fauricio\Desktop\"+ruta+".doc";
             try
             {
@@ -93,11 +95,12 @@ namespace Proyecto1.Controlador
             catch (Exception ex)
             {
                 MessageBox.Show("Doc no creado");
-            }
+            }*/
         }
 
         public void crearAgenda(string ruta, string puntosAgenda)
         {
+            /*
             try
             {
                 FileStream fs = new FileStream(@"C:\Users\Fauricio\Desktop\Chapter1_Example1.pdf", FileMode.Create, FileAccess.Write, FileShare.None);
@@ -111,7 +114,7 @@ namespace Proyecto1.Controlador
             catch (Exception ex)
             {
                 MessageBox.Show("Pdf no creado");
-            }            
+            } */           
         }
     }
 }

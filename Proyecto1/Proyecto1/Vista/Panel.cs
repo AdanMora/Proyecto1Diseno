@@ -12,9 +12,10 @@ using Excel;
 using Proyecto1.Controlador;
 using Proyecto1.Modelo;
 using System.Collections.ObjectModel;
+/*
 using System.Net;      
 using System.Net.Mail;
-using System.Net.Mime;
+using System.Net.Mime;*/
 
 namespace Proyecto1.Vista
 {
