@@ -143,9 +143,13 @@ namespace Proyecto1.Controlador
             return consejo;
         }
 
-        public void actualizarMiembros(Collection<Miembro> m)
+        public void actualizarMiembros(Collection<Miembro> miembros)
         {
-            throw new NotImplementedException();
+            foreach (Miembro m in miembros)
+            {
+                db.sp_nuevaActualizacion();
+                db.sp_ActualizarMiembro(m.Correo[0], m.Correo[1], m.Nombre, m.TipoMiembro.ToString());
+            }
         }
 
         public void nuevaSesion(Sesion s)
