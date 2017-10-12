@@ -91,12 +91,18 @@ namespace Proyecto1.Controlador
         public void enviarNotificacion(DateTime fecha,string numeroSesion)
         {
             string encabezado = "Sesión Ordinaria <#>-<Anno>";
-            string cuerpo = "A solicitud de la Dirección, me permito informarles que el próximo lunes <FECHA> se realizará la Sesión Ordinaria <#>-<Anno>, se solicita que si tienen \nalgún punto que consideren que debe ser valorado por la Dirección para incluirse en la agenda, lo hagan llegar a más tardar el < FECHA > durante la mañana.\nAdjunto formulario de solicitud de puntos para consejos, el formulario para justificación de ausencia al Consejo y el formulario de mociones de fondo.";
+            string cuerpo = "Buenas días:\n\n"+
+                "Estimados (as) Profesores (as):\n\n" +
+                "A solicitud de la Dirección, me permito informarles que el próximo lunes 25 de setiembre se realizará la Sesión Ordinaria 21-2017, se solicita que si\n"+
+                "tienen algún punto que consideren que debe ser valorado por la Dirección para incluirse en la agenda, lo hagan llegar a más tardar el miércoles 20\n" +
+                "de setiembre durante la mañana.\n\n" +
+                "Adjunto formulario de solicitud de puntos para consejos, el formulario para justificación de ausencia al Consejo y el formulario de mociones de \nfondo.\n\n" +
+                "Cualquier consulta con mucho gusto.\n\n"+
+                "Saludos;";
             string memo = @"C:\Users\Fauricio\Desktop\MEMO_JUSTIFICACION_DE_AUSENCIAS_AL_CONSEJO.doc";
             string punto = @"C:\Users\Fauricio\Desktop\MACHOTE_OFICIO_SOLICITUD_DE_PUNTOS_de_propuesta_base.docx";
             try
-            {
-                string filename = @"C:\Users\Fauricio\Desktop\MEMO_JUSTIFICACION_DE_AUSENCIAS_AL_CONSEJO.doc";
+            {                
                 Attachment data = new Attachment(punto, MediaTypeNames.Application.Octet);                
                 Attachment data1 = new Attachment(memo, MediaTypeNames.Application.Octet);
                                 

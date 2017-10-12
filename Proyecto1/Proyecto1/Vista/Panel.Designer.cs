@@ -31,12 +31,12 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.CargaXls = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.generaAgenda = new System.Windows.Forms.Button();
             this.notificacion = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.generaActa = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.generaActa = new System.Windows.Forms.Button();
-            this.generaAgenda = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.CargaXls.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -82,6 +82,16 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(119, 179);
             this.tableLayoutPanel1.TabIndex = 3;
             // 
+            // generaAgenda
+            // 
+            this.generaAgenda.Location = new System.Drawing.Point(3, 95);
+            this.generaAgenda.Name = "generaAgenda";
+            this.generaAgenda.Size = new System.Drawing.Size(113, 34);
+            this.generaAgenda.TabIndex = 4;
+            this.generaAgenda.Text = "Generar Agenda";
+            this.generaAgenda.UseVisualStyleBackColor = true;
+            this.generaAgenda.Click += new System.EventHandler(this.generaAgenda_Click);
+            // 
             // notificacion
             // 
             this.notificacion.Location = new System.Drawing.Point(3, 49);
@@ -102,6 +112,16 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // generaActa
+            // 
+            this.generaActa.Location = new System.Drawing.Point(3, 135);
+            this.generaActa.Name = "generaActa";
+            this.generaActa.Size = new System.Drawing.Size(113, 39);
+            this.generaActa.TabIndex = 3;
+            this.generaActa.Text = "Generar Acta";
+            this.generaActa.UseVisualStyleBackColor = true;
+            this.generaActa.Click += new System.EventHandler(this.button2_Click_1);
+            // 
             // textBox1
             // 
             this.textBox1.Location = new System.Drawing.Point(36, 46);
@@ -120,26 +140,6 @@
             this.tabPage2.Text = "consejo";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // generaActa
-            // 
-            this.generaActa.Location = new System.Drawing.Point(3, 135);
-            this.generaActa.Name = "generaActa";
-            this.generaActa.Size = new System.Drawing.Size(113, 39);
-            this.generaActa.TabIndex = 3;
-            this.generaActa.Text = "Generar Acta";
-            this.generaActa.UseVisualStyleBackColor = true;
-            this.generaActa.Click += new System.EventHandler(this.button2_Click_1);
-            // 
-            // generaAgenda
-            // 
-            this.generaAgenda.Location = new System.Drawing.Point(3, 95);
-            this.generaAgenda.Name = "generaAgenda";
-            this.generaAgenda.Size = new System.Drawing.Size(113, 34);
-            this.generaAgenda.TabIndex = 4;
-            this.generaAgenda.Text = "Generar Agenda";
-            this.generaAgenda.UseVisualStyleBackColor = true;
-            this.generaAgenda.Click += new System.EventHandler(this.generaAgenda_Click);
-            // 
             // Panel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -147,7 +147,7 @@
             this.ClientSize = new System.Drawing.Size(791, 479);
             this.Controls.Add(this.tabControl1);
             this.Name = "Panel";
-            this.Text = "Administració consejo";
+            this.Text = "Administración consejo";
             this.tabControl1.ResumeLayout(false);
             this.CargaXls.ResumeLayout(false);
             this.CargaXls.PerformLayout();
