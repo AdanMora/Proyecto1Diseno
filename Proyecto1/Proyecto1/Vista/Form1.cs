@@ -34,30 +34,32 @@ namespace Proyecto1
 
             //}
 
-            Consejo c = dao.cargarDatos();
-            foreach (Sesion s in c.Sesiones)
-            {
-                listBox1.Items.Add(s.toString());
-                foreach (Miembro m in s.MiembrosAsistencia.Asistencia)
-                {
-                    listBox1.Items.Add(m.toString());
-                }
-                listBox1.Items.Add(s.MiembrosAsistencia.ListaAsistencia.ToString());
+            //Consejo c = dao.cargarDatos();
+            //foreach (Sesion s in c.Sesiones)
+            //{
+            //    listBox1.Items.Add(s.toString());
+            //    foreach (Miembro m in s.MiembrosAsistencia.Asistencia)
+            //    {
+            //        listBox1.Items.Add(m.toString());
+            //    }
+            //    listBox1.Items.Add(s.MiembrosAsistencia.ListaAsistencia.ToString());
 
-                foreach (PuntoAgenda p in s.Agenda)
-                {
-                    listBox1.Items.Add(p.toString());
-                    foreach (Comentario co in p.Comentarios)
-                    {
-                        listBox1.Items.Add(co.toString());
+            //    foreach (PuntoAgenda p in s.Agenda)
+            //    {
+            //        listBox1.Items.Add(p.toString());
+            //        foreach (Comentario co in p.Comentarios)
+            //        {
+            //            listBox1.Items.Add(co.toString());
 
-                    }
-                }
-            }
-            foreach (PuntoAgenda s in c.Solicitudes)
-            {
-                listBox1.Items.Add(s.toString());
-            }
+            //        }
+            //    }
+            //}
+            //foreach (PuntoAgenda s in c.Solicitudes)
+            //{
+            //    listBox1.Items.Add(s.toString());
+            //}
+
+            listBox1.Items.Add(dao.getUltimoIDPunto());
         }
 
         private void button2_Click(object sender, EventArgs e)

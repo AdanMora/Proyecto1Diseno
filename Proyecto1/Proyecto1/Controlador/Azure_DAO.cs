@@ -143,9 +143,13 @@ namespace Proyecto1.Controlador
             return consejo;
         }
 
-        public void actualizarMiembros(Collection<Miembro> m)
+        public void actualizarMiembros(Collection<Miembro> miembros)
         {
-            throw new NotImplementedException();
+            foreach (Miembro m in miembros)
+            {
+                db.sp_nuevaActualizacion();
+                db.sp_ActualizarMiembro(m.Correo[0], m.Correo[1], m.Nombre, m.TipoMiembro.ToString());
+            }
         }
 
         public void nuevaSesion(Sesion s)
@@ -196,6 +200,17 @@ namespace Proyecto1.Controlador
         public void modificarAsistencia(Miembro m, char estado)
         {
             throw new NotImplementedException();
+        }
+
+        public int getUltimoIDPunto()
+        {
+            return Decimal.ToInt32(db.Punto_AgendaDB.ToList().Last().id_Punto);
+
+        }
+
+        public int getUltimoIDComentario()
+        {
+            return Decimal.ToInt32(db.ComentariosDBs.ToList().Last().id_Comentario);
         }
     }
 }

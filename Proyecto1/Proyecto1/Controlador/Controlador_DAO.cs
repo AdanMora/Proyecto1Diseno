@@ -32,6 +32,10 @@ namespace Proyecto1.Controlador
         void agregarComentario(Comentario c, PuntoAgenda p);
 
         void modificarAsistencia(Miembro m, char estado);
-        
+
+        int getUltimoIDPunto();
+
+        int getUltimoIDComentario();
+
     }
 }
