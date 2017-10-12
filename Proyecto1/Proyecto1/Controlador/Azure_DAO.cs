@@ -162,17 +162,28 @@ namespace Proyecto1.Controlador
             throw new NotImplementedException();
         }
 
-        public void guardarDoc(int numeroSesion, string nombre, byte[] contenido, char tipo)
+        public void guardarDocSesion(string numeroSesion, string nombre, byte[] contenido, char tipo)
         {
-            throw new NotImplementedException();
+            db.DocXSesionDBs.Add(new DocXSesionDB
+            {
+                contenido = contenido,
+                nombreArchivo = nombre,
+                sesion = numeroSesion,
+                tipo = tipo.ToString()
+            });
+        }
+
+        public void guardarAdjunto(int id_Punto, string nombre, string extension, byte[] contenido)
+        {
+            db.AdjuntosXPuntoDBs.Add(new AdjuntosXPuntoDB
+            { contenido = contenido,
+              nombreArchivo = nombre,
+              extension = extension,
+              punto = id_Punto
+            });
         }
 
         public void agregarSolicitud(PuntoAgenda p)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void agregarPuntoToAgenda(PuntoAgenda p)
         {
             throw new NotImplementedException();
         }

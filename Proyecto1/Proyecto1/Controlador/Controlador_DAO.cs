@@ -19,7 +19,9 @@ namespace Proyecto1.Controlador
 
         void cerrarSesion(int numeroSesion);
 
-        void guardarDoc(int numeroSesion, String nombre, byte[] contenido, char tipo);
+        void guardarDocSesion(string numeroSesion, String nombre, byte[] contenido, char tipo);
+
+        void guardarAdjunto(int id_Punto, string nombre, string extension, byte[] contenido);
 
         void agregarSolicitud(PuntoAgenda p);
 
