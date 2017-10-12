@@ -10,6 +10,8 @@ using System.Net.Mime;
 using System.Windows.Forms;
 using System.IO;
 using System.Collections.ObjectModel;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
 
 namespace Proyecto1.Controlador
 {
@@ -72,9 +74,9 @@ namespace Proyecto1.Controlador
             }
         }
 
-        public void crearActa(string nombre,string puntosAgenda)
+        public void crearActa(string ruta,string puntosAgenda)
         {            
-            string path = @"C:\Users\Fauricio\Desktop\"+nombre+".doc";
+            string path = @"C:\Users\Fauricio\Desktop\"+ruta+".doc";
             try
             {
                 if (File.Exists(path))
@@ -86,32 +88,30 @@ namespace Proyecto1.Controlador
                     Byte[] info = new UTF8Encoding(true).GetBytes(puntosAgenda);
                     fs.Write(info, 0, info.Length);
                 }
+                MessageBox.Show("Doc creado");
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.ToString());
+                MessageBox.Show("Doc no creado");
             }
         }
 
-        public void crearAgenda(string nombre, string puntosAgenda)
+        public void crearAgenda(string ruta, string puntosAgenda)
         {
-            string path = @"C:\Users\Fauricio\Desktop\" + nombre + ".pdf";
             try
             {
-                if (File.Exists(path))
-                {
-                    File.Delete(path);
-                }
-                using (FileStream fs = File.Create(path))
-                {
-                    Byte[] info = new UTF8Encoding(true).GetBytes(puntosAgenda);
-                    fs.Write(info, 0, info.Length);
-                }
+                FileStream fs = new FileStream(@"C:\Users\Fauricio\Desktop\Chapter1_Example1.pdf", FileMode.Create, FileAccess.Write, FileShare.None);
+                Document doc = new Document();
+                PdfWriter writer = PdfWriter.GetInstance(doc, fs);
+                doc.Open();
+                doc.Add(new Paragraph(puntosAgenda));
+                doc.Close();
+                MessageBox.Show("Pdf creado");
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.ToString());
-            }
+                MessageBox.Show("Pdf no creado");
+            }            
         }
     }
 }
