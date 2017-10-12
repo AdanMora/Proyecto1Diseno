@@ -30,11 +30,13 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.CargaXls = new System.Windows.Forms.TabPage();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.notificacion = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.notificacion = new System.Windows.Forms.Button();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.generaActa = new System.Windows.Forms.Button();
+            this.generaAgenda = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.CargaXls.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -61,6 +63,34 @@
             this.CargaXls.TabIndex = 0;
             this.CargaXls.Text = "Previo";
             this.CargaXls.UseVisualStyleBackColor = true;
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 1;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Controls.Add(this.generaAgenda, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.notificacion, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.button1, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.generaActa, 0, 3);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(567, 46);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 4;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 46F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(119, 179);
+            this.tableLayoutPanel1.TabIndex = 3;
+            // 
+            // notificacion
+            // 
+            this.notificacion.Location = new System.Drawing.Point(3, 49);
+            this.notificacion.Name = "notificacion";
+            this.notificacion.Size = new System.Drawing.Size(113, 39);
+            this.notificacion.TabIndex = 2;
+            this.notificacion.Text = "Enviar notificaciones";
+            this.notificacion.UseVisualStyleBackColor = true;
+            this.notificacion.Click += new System.EventHandler(this.button2_Click);
             // 
             // button1
             // 
@@ -90,29 +120,25 @@
             this.tabPage2.Text = "consejo";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // notificacion
+            // generaActa
             // 
-            this.notificacion.Location = new System.Drawing.Point(3, 75);
-            this.notificacion.Name = "notificacion";
-            this.notificacion.Size = new System.Drawing.Size(113, 39);
-            this.notificacion.TabIndex = 2;
-            this.notificacion.Text = "Enviar notificaciones";
-            this.notificacion.UseVisualStyleBackColor = true;
-            this.notificacion.Click += new System.EventHandler(this.button2_Click);
+            this.generaActa.Location = new System.Drawing.Point(3, 135);
+            this.generaActa.Name = "generaActa";
+            this.generaActa.Size = new System.Drawing.Size(113, 39);
+            this.generaActa.TabIndex = 3;
+            this.generaActa.Text = "Generar Acta";
+            this.generaActa.UseVisualStyleBackColor = true;
+            this.generaActa.Click += new System.EventHandler(this.button2_Click_1);
             // 
-            // tableLayoutPanel1
+            // generaAgenda
             // 
-            this.tableLayoutPanel1.ColumnCount = 1;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Controls.Add(this.notificacion, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.button1, 0, 0);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(567, 46);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 2;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(119, 144);
-            this.tableLayoutPanel1.TabIndex = 3;
+            this.generaAgenda.Location = new System.Drawing.Point(3, 95);
+            this.generaAgenda.Name = "generaAgenda";
+            this.generaAgenda.Size = new System.Drawing.Size(113, 34);
+            this.generaAgenda.TabIndex = 4;
+            this.generaAgenda.Text = "Generar Agenda";
+            this.generaAgenda.UseVisualStyleBackColor = true;
+            this.generaAgenda.Click += new System.EventHandler(this.generaAgenda_Click);
             // 
             // Panel
             // 
@@ -139,5 +165,7 @@
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Button notificacion;
+        private System.Windows.Forms.Button generaActa;
+        private System.Windows.Forms.Button generaAgenda;
     }
 }
