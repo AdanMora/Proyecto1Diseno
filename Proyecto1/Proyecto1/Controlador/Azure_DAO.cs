@@ -301,17 +301,18 @@ namespace Proyecto1.Controlador
             return null;
         }
 
-        public Collection<byte[]> getAdjuntosPunto(int id_Punto)
+        public Collection<Object[]> getAdjuntosPunto(int id_Punto)
         {
-            //Collection < byte[] >
-            //foreach (AdjuntosXPuntoDB d in db.AdjuntosXPuntoDBs.ToList())
-            //{
-            //    if (d.punto == id_Punto)
-            //    {
-            //        return d.contenido;
-            //    }
-            //}
-            return null;
+            Collection<Object[]> tuplaAdjunto = new Collection<object[]>();
+
+            foreach (AdjuntosXPuntoDB d in db.AdjuntosXPuntoDBs.ToList())
+            {
+                if (d.punto == id_Punto)
+                {
+                    tuplaAdjunto.Add(new object[] { d.nombreArchivo, d.extension, d.contenido });
+                }
+            }
+            return tuplaAdjunto;
         }
     }
 }

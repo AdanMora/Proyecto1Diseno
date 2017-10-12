@@ -41,7 +41,7 @@ namespace Proyecto1.Controlador
 
         byte[] getDocSesion(string sesion, char tipo); // Falta
 
-        Collection<byte[]> getAdjuntosPunto(int id_Punto); // Falta
+        Collection<Object[]> getAdjuntosPunto(int id_Punto); // Falta
 
     }
 }
