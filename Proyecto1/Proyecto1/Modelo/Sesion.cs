@@ -105,6 +105,11 @@ namespace Proyecto1.Modelo
             }
         }
 
+        public void agregarPuntoAgenda(PuntoAgenda punto)
+        {
+            this.agenda.Add(punto);
+        }
+
         public Sesion(){}
 
         public string toString()

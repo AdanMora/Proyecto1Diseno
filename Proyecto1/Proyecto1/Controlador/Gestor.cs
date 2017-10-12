@@ -1,6 +1,7 @@
 ﻿using Proyecto1.Modelo;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,6 +27,7 @@ namespace Proyecto1.Controlador
             this.controlador_dao = new Azure_DAO();
             this.controlador_sesion = new Controlador_Sesion();
             this.controlador_solicitudes = new Controlador_Solicitudes();
+            this.xls = new Xls_DAO();
         }
 
         public void nuevaSesion(String num, DateTime fecha, string lugar)
@@ -40,11 +42,61 @@ namespace Proyecto1.Controlador
             this.consejo = this.controlador_dao.cargarDatos();
         }
 
-        public void actualizarMiembros()
+        public void actualizarMiembros(String path)
         {
-
+            Collection<Miembro> miembros = this.xls.cargaXls(path);
+            this.consejo.Miembros = miembros;
+            this.controlador_sesion.setMiembros(miembros);
+            this.controlador_dao.actualizarMiembros(miembros);
         }
 
 
+        public void agregarSolicitud(string nombre, string resultando, string considerandos, string seAcuerda, int aFavor, int enContra, int blanco, char tipo)
+        {
+            PuntoAgenda punto = new PuntoAgenda(this.controlador_dao.getUltimoIDPunto(), nombre, resultando, considerandos, seAcuerda, 0, 0, 0, tipo);
+            this.controlador_solicitudes.agregarSolicitud(punto);
+            this.controlador_dao.agregarSolicitud(punto); 
+        }
+
+        public void eliminarSolicitud(int id)
+        {
+            PuntoAgenda punto = this.controlador_solicitudes.getSolicitud(id);
+            if(punto != null)
+            {
+                punto = this.controlador_sesion.getPuntoAgenda(id);
+            }
+            this.controlador_dao.eliminarSolicitud(punto);
+        }
+
+        public void aceptarSolicitud(int id)
+        {
+            PuntoAgenda solicitud = this.controlador_solicitudes.getSolicitud(id);
+            this.controlador_solicitudes.removerSolicitud(solicitud);
+            this.controlador_sesion.agregarPuntoAgenda(solicitud);
+        }
+
+        public void agregarVotacion(int id, int aFavor, int enContra, int blanco)
+        {
+            PuntoAgenda punto = this.controlador_sesion.agregarVotacion(id, aFavor, enContra, blanco);
+            this.controlador_dao.aceptarSolicitud(punto);
+        }
+
+        public void agregarComentario(int idPunto, string correoMiembro, string txtcomentario)
+        {
+            Miembro m = this.controlador_sesion.getMiembro(correoMiembro);
+            int idComentario = this.controlador_dao.getUltimoIDComentario();
+            Comentario comentario = new Comentario(idComentario, txtcomentario, m);
+
+            // Agregamos el comentario al punto
+            this.controlador_sesion.agregarComentario(idPunto, comentario);
+
+            // Escribimos en la BD
+            // this.controlador_dao.agregarComentario(idPunto, correoMiembro, comentario);
+        }
+
+        public void modificarAsistencia(string correoMiembro, char estado)
+        {
+            this.controlador_sesion.modificarAsistencia(correoMiembro, estado);
+        }
     }
 }
