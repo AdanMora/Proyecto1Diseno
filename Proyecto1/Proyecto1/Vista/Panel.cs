@@ -12,21 +12,17 @@ using Excel;
 using Proyecto1.Controlador;
 using Proyecto1.Modelo;
 using System.Collections.ObjectModel;
-/*
-using System.Net;      
-using System.Net.Mail;
-using System.Net.Mime;*/
 
 namespace Proyecto1.Vista
 {
     public partial class Panel : Form
     {
-        Gestor g = new Gestor();
+        Gestor d = new Gestor();
         
         public Panel()
         {
             InitializeComponent();
-            //g.nuevaSesion("1", DateTime.Now, "CIC");                                            
+            d.nuevaSesion("1", DateTime.Now, "CIC");                                            
         }
         
         
@@ -35,12 +31,12 @@ namespace Proyecto1.Vista
             string res = "";
             Xls_DAO xls = new Xls_DAO();
             Collection<Miembro> listaMiembros = new Collection<Miembro>();
-            using (OpenFileDialog opf = new OpenFileDialog() { Filter = "Excel Workbook|*.xlsx|Excel Workbook|*.xls", ValidateNames = true })
+            using (OpenFileDialog opf1 = new OpenFileDialog() { Filter = "Excel Workbook|*.xlsx|Excel Workbook|*.xls", ValidateNames = true })
             {
-                if (opf.ShowDialog() == DialogResult.OK)
+                if (opf1.ShowDialog() == DialogResult.OK)
                 {
-                    g.actualizarMiembros(opf.FileName);
-                    listaMiembros = g.Consejo.Miembros;
+                    //g.actualizarMiembros(opf1.FileName);
+                    //listaMiembros = g.Consejo.Miembros;
                     foreach (Miembro m in listaMiembros)
                     {
                         res = res + m.toString();
@@ -53,17 +49,17 @@ namespace Proyecto1.Vista
         
         private void button2_Click(object sender, EventArgs e)
         {                        
-            g.enviarNotificacion(DateTime.Now, "1");
+            d.enviarNotificacion(DateTime.Now, "1");
         }
 
         private void button2_Click_1(object sender, EventArgs e)
         {
-            g.crearActa("Prueba2","Otra prueba de la\ncreación de docs");
+            d.crearActa("Prueba2","Otra prueba de la\ncreación de docs");
         }
 
         private void generaAgenda_Click(object sender, EventArgs e)
         {
-            g.crearAgenda("p1", "Agenda de prueba\npara la funcionalidad de generar la agenda");
+            d.crearAgenda("p1", "Agenda de prueba\npara la funcionalidad de generar la agenda");
         }
     }
 }
