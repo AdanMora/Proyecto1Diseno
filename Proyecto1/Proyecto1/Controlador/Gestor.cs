@@ -41,15 +41,27 @@ namespace Proyecto1.Controlador
 
         public void nuevaSesion(String num, DateTime fecha, string lugar)
         {
-            this.controlador_sesion.nuevaSesion(num,fecha,lugar);
-            this.controlador_sesion.setMiembros(this.consejo.Miembros);
-            this.controlador_solicitudes.setSolicitudes(this.consejo.Solicitudes);
-            this.controlador_dao.nuevaSesion(num, fecha, lugar, false);
+            if (this.controlador_sesion.getSesion() != null)
+            {
+                this.controlador_sesion.nuevaSesion(num, fecha, lugar);
+                this.controlador_sesion.setMiembros(this.consejo.Miembros);
+                this.controlador_solicitudes.setSolicitudes(this.consejo.Solicitudes);
+                this.controlador_dao.nuevaSesion(num, fecha, lugar, false);
+            }
         }
 
         public void cargarDatos()
         {
             this.consejo = this.controlador_dao.cargarDatos();
+            foreach(Sesion sesion in this.consejo.Sesiones)
+            {
+                if (!sesion.Estado)
+                {
+                    this.controlador_sesion.setSesion(sesion);
+                    this.controlador_sesion.setMiembros(this.consejo.Miembros);
+                    break;
+                }
+            }
         }
 
         public void actualizarMiembros(String path)
@@ -209,6 +221,8 @@ namespace Proyecto1.Controlador
         {
             return this.controlador_sesion.getComentarios(idPunto);
         }
+
+        //public void getSesionActual
 
 
     }

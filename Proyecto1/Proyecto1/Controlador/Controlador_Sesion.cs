@@ -120,6 +120,11 @@ namespace Proyecto1.Controlador
             return this.sesionActual;
         }
 
+        public void setSesion(Sesion sesion)
+        {
+            this.sesionActual = sesion ;
+        }
+
         public void cargarListaMiembros()
         {
 
