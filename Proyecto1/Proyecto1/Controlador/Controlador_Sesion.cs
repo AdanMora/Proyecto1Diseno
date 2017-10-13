@@ -103,6 +103,11 @@ namespace Proyecto1.Controlador
             }
         }
 
+        public Sesion getSesion()
+        {
+            return this.sesionActual;
+        }
+
         public void cargarListaMiembros()
         {
 

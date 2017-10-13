@@ -13,6 +13,7 @@ namespace Proyecto1.Controlador
         private Consejo consejo;
         private Controlador_Sesion controlador_sesion;
         private Controlador_Solicitudes controlador_solicitudes;
+        private Controlador_Docs controlador_docs;
         private Azure_DAO controlador_dao;
         private Xls_DAO xls;
 
@@ -27,6 +28,7 @@ namespace Proyecto1.Controlador
             this.controlador_dao = new Azure_DAO();
             this.controlador_sesion = new Controlador_Sesion();
             this.controlador_solicitudes = new Controlador_Solicitudes();
+            this.controlador_docs = new Controlador_Docs();
             this.xls = new Xls_DAO();
         }
 
@@ -97,6 +99,20 @@ namespace Proyecto1.Controlador
         public void modificarAsistencia(string correoMiembro, char estado)
         {
             this.controlador_sesion.modificarAsistencia(correoMiembro, estado);
+        }
+
+        public void crearActa(int tipo)
+        {
+            this.controlador_docs.setDocumento(tipo);
+            //Object o = this.controlador_docs.crearActa(this.controlador_sesion.getSesion());
+            //this.controlador_dao.escribirActa(o);
+        }
+
+        public void crearAgenda(int tipo)
+        {
+            this.controlador_docs.setDocumento(tipo);
+            //Object o = this.controlador_docs.crearAgenda(this.controlador_sesion.getSesion());
+            //this.controlador_dao.escribirAgenda(o);
         }
     }
 }
