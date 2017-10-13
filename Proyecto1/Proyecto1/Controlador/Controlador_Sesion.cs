@@ -103,6 +103,18 @@ namespace Proyecto1.Controlador
             }
         }
 
+        public Collection<Comentario> getComentarios(int idPunto)
+        {
+            foreach(PuntoAgenda punto in this.sesionActual.Agenda)
+            {
+                if(punto.Id_punto == idPunto)
+                {
+                    return punto.Comentarios;
+                }
+            }
+            return null;
+        }
+
         public Sesion getSesion()
         {
             return this.sesionActual;
