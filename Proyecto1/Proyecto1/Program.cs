@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Proyecto1.Vista;
 
 namespace Proyecto1
 {
@@ -17,7 +18,7 @@ namespace Proyecto1
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new GUI());
         }
     }
 }
