@@ -20,6 +20,7 @@ namespace Proyecto1.Controlador
         private Consejo consejo;
         private Controlador_Sesion controlador_sesion;
         private Controlador_Solicitudes controlador_solicitudes;
+        private Controlador_Docs controlador_docs;
         private Azure_DAO controlador_dao;
         private Xls_DAO xls;
         private Controlador_Correo controlador_correos;
@@ -29,6 +30,7 @@ namespace Proyecto1.Controlador
             this.consejo = new Consejo();
             this.controlador_sesion = new Controlador_Sesion();
             this.controlador_solicitudes = new Controlador_Solicitudes();
+            this.controlador_docs = new Controlador_Docs();
             this.xls = new Xls_DAO();
             this.controlador_correos = new Controlador_Correo();
         }
@@ -199,6 +201,20 @@ namespace Proyecto1.Controlador
             {
                 MessageBox.Show("Pdf no creado");
             }          
+        }
+
+        public void crearActa(int tipo)
+        {
+            this.controlador_docs.setDocumento(tipo);
+            //Object o = this.controlador_docs.crearActa(this.controlador_sesion.getSesion());
+            //this.controlador_dao.escribirActa(o);
+        }
+
+        public void crearAgenda(int tipo)
+        {
+            this.controlador_docs.setDocumento(tipo);
+            //Object o = this.controlador_docs.crearAgenda(this.controlador_sesion.getSesion());
+            //this.controlador_dao.escribirAgenda(o);
         }
     }
 }

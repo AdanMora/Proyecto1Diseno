@@ -330,7 +330,6 @@
         </Association>
         <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
         <Function Name="sp_AceptarSolicitud" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="Num_Consejo" Type="numeric" Mode="In" />
           <Parameter Name="Num_Sesion" Type="varchar" Mode="In" />
           <Parameter Name="id_Punto" Type="numeric" Mode="In" />
         </Function>
@@ -390,7 +389,15 @@
           <Parameter Name="id_Punto" Type="numeric" Mode="In" />
           <Parameter Name="nuevaPos" Type="numeric" Mode="In" />
         </Function>
+        <Function Name="sp_NextIDComentario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_NextIDPunto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="sp_nuevaActualizacion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_NuevaSesion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="numero" Type="varchar" Mode="In" />
+          <Parameter Name="fecha" Type="datetime" Mode="In" />
+          <Parameter Name="lugar" Type="varchar" Mode="In" />
+          <Parameter Name="estado" Type="bit" Mode="In" />
+        </Function>
         <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
           <Parameter Name="owner_id" Type="int" Mode="In" />
@@ -863,7 +870,6 @@
             <End Role="PuntosXSesionDB" EntitySet="PuntosXSesionDBs" />
           </AssociationSet>
           <FunctionImport Name="sp_AceptarSolicitud">
-            <Parameter Name="Num_Consejo" Mode="In" Type="Decimal" />
             <Parameter Name="Num_Sesion" Mode="In" Type="String" />
             <Parameter Name="id_Punto" Mode="In" Type="Decimal" />
           </FunctionImport>
@@ -954,6 +960,14 @@
             <Parameter Name="tipoMiembro" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_nuevaActualizacion" />
+          <FunctionImport Name="sp_NuevaSesion">
+            <Parameter Name="numero" Mode="In" Type="String" />
+            <Parameter Name="fecha" Mode="In" Type="DateTime" />
+            <Parameter Name="lugar" Mode="In" Type="String" />
+            <Parameter Name="estado" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="sp_NextIDComentario" ReturnType="Collection(Decimal)" />
+          <FunctionImport Name="sp_NextIDPunto" ReturnType="Collection(Decimal)" />
         </EntityContainer>
         <ComplexType Name="sp_Agenda_Result">
           <Property Type="Decimal" Name="id_PuntosXSesion" Nullable="false" Precision="5" Scale="0" />
@@ -1339,6 +1353,9 @@
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_ActualizarMiembro" FunctionName="Proyecto1Model.Store.sp_ActualizarMiembro" />
           <FunctionImportMapping FunctionImportName="sp_nuevaActualizacion" FunctionName="Proyecto1Model.Store.sp_nuevaActualizacion" />
+          <FunctionImportMapping FunctionImportName="sp_NuevaSesion" FunctionName="Proyecto1Model.Store.sp_NuevaSesion" />
+          <FunctionImportMapping FunctionImportName="sp_NextIDComentario" FunctionName="Proyecto1Model.Store.sp_NextIDComentario" />
+          <FunctionImportMapping FunctionImportName="sp_NextIDPunto" FunctionName="Proyecto1Model.Store.sp_NextIDPunto" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

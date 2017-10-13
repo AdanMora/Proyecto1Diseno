@@ -11,33 +11,37 @@ namespace Proyecto1.Controlador
 {
     public interface Controlador_DAO
     {
-        Consejo cargarDatos();
+        Consejo cargarDatos(); // Listo a medias
 
-        void actualizarMiembros(Collection<Miembro> m);
+        void actualizarMiembros(Collection<Miembro> m); // Falta
 
-        void nuevaSesion(Sesion s);
+        void nuevaSesion(string numero, DateTime fecha, string lugar, bool estado); // Listo
 
-        void cerrarSesion(int numeroSesion);
+        void cerrarSesion(String numeroSesion); // Listo
 
-        void guardarDocSesion(string numeroSesion, String nombre, byte[] contenido, char tipo);
+        void guardarDocSesion(string numeroSesion, String nombre, byte[] contenido, char tipo); // Falta
 
-        void guardarAdjunto(int id_Punto, string nombre, string extension, byte[] contenido);
+        void guardarAdjunto(int id_Punto, string nombre, string extension, byte[] contenido); // Falta
 
-        void agregarSolicitud(PuntoAgenda p);
+        void agregarSolicitud(PuntoAgenda p); // Listo
 
-        void eliminarSolicitud(PuntoAgenda p);
+        void eliminarSolicitud(int id_Punto); // Listo
 
-        void aceptarSolicitud(PuntoAgenda p);
+        void aceptarSolicitud(string sesion, int id_Punto); // Listo
 
-        void agregarVotacion(int aFavor, int enContra, int abstenciones);
+        void agregarVotacion(int id_Punto, int aFavor, int enContra, int abstenciones); // Listo
 
-        void agregarComentario(Comentario c, PuntoAgenda p);
+        void agregarComentario(int id_Punto, Comentario c); // Listo
 
-        void modificarAsistencia(Miembro m, char estado);
+        void modificarAsistencia(String numeroSesion, String miembro, char estado); // Listo
 
-        int getUltimoIDPunto();
+        int getNextIDPunto(); // Listo
 
-        int getUltimoIDComentario();
+        int getNextIDComentario(); //Listo
+
+        byte[] getDocSesion(string sesion, char tipo); // Falta
+
+        Collection<Object[]> getAdjuntosPunto(int id_Punto); // Falta
 
     }
 }

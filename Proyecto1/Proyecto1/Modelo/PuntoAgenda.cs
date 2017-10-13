@@ -9,6 +9,7 @@ namespace Proyecto1.Modelo
 {
     public class PuntoAgenda
     {
+        private string nombre;
         private int id_punto;
         private string resultando;
         private string considerandos;
@@ -31,8 +32,6 @@ namespace Proyecto1.Modelo
             this.votacion[2] = blanco;
             this.tipo = tipo;
         }
-
-        private string nombre { get; set; }
 
         public int Id_punto
         {
@@ -124,7 +123,20 @@ namespace Proyecto1.Modelo
                 comentarios = value;
             }
         }
-        
+
+        public string Nombre
+        {
+            get
+            {
+                return nombre;
+            }
+
+            set
+            {
+                nombre = value;
+            }
+        }
+
         public string toString()
         {
             return "Nombre: " + this.nombre +

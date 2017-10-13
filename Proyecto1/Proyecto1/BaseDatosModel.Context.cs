@@ -41,12 +41,8 @@ namespace Proyecto1
         public virtual DbSet<Solicitudes_PuntosDB> Solicitudes_PuntosDB { get; set; }
         public virtual DbSet<SesionesXConsejoDB> SesionesXConsejoDBs { get; set; }
     
-        public virtual int sp_AceptarSolicitud(Nullable<decimal> num_Consejo, string num_Sesion, Nullable<decimal> id_Punto)
+        public virtual int sp_AceptarSolicitud(string num_Sesion, Nullable<decimal> id_Punto)
         {
-            var num_ConsejoParameter = num_Consejo.HasValue ?
-                new ObjectParameter("Num_Consejo", num_Consejo) :
-                new ObjectParameter("Num_Consejo", typeof(decimal));
-    
             var num_SesionParameter = num_Sesion != null ?
                 new ObjectParameter("Num_Sesion", num_Sesion) :
                 new ObjectParameter("Num_Sesion", typeof(string));
@@ -55,7 +51,7 @@ namespace Proyecto1
                 new ObjectParameter("id_Punto", id_Punto) :
                 new ObjectParameter("id_Punto", typeof(decimal));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_AceptarSolicitud", num_ConsejoParameter, num_SesionParameter, id_PuntoParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_AceptarSolicitud", num_SesionParameter, id_PuntoParameter);
         }
     
         public virtual ObjectResult<sp_Agenda_Result> sp_Agenda(string num_Sesion)
@@ -310,6 +306,37 @@ namespace Proyecto1
         public virtual int sp_nuevaActualizacion()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_nuevaActualizacion");
+        }
+    
+        public virtual int sp_NuevaSesion(string numero, Nullable<System.DateTime> fecha, string lugar, Nullable<bool> estado)
+        {
+            var numeroParameter = numero != null ?
+                new ObjectParameter("numero", numero) :
+                new ObjectParameter("numero", typeof(string));
+    
+            var fechaParameter = fecha.HasValue ?
+                new ObjectParameter("fecha", fecha) :
+                new ObjectParameter("fecha", typeof(System.DateTime));
+    
+            var lugarParameter = lugar != null ?
+                new ObjectParameter("lugar", lugar) :
+                new ObjectParameter("lugar", typeof(string));
+    
+            var estadoParameter = estado.HasValue ?
+                new ObjectParameter("estado", estado) :
+                new ObjectParameter("estado", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_NuevaSesion", numeroParameter, fechaParameter, lugarParameter, estadoParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<decimal>> sp_NextIDComentario()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<decimal>>("sp_NextIDComentario");
+        }
+    
+        public virtual ObjectResult<Nullable<decimal>> sp_NextIDPunto()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<decimal>>("sp_NextIDPunto");
         }
     }
 }
