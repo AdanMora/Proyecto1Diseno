@@ -44,6 +44,7 @@ namespace Proyecto1.Controlador
             this.controlador_sesion.nuevaSesion(num,fecha,lugar);
             this.controlador_sesion.setMiembros(this.consejo.Miembros);
             this.controlador_solicitudes.setSolicitudes(this.consejo.Solicitudes);
+            this.controlador_dao.nuevaSesion(num, fecha, lugar, false);
         }
 
         public void cargarDatos()
@@ -62,7 +63,7 @@ namespace Proyecto1.Controlador
 
         public void agregarSolicitud(string nombre, string resultando, string considerandos, string seAcuerda, int aFavor, int enContra, int blanco, char tipo)
         {
-            PuntoAgenda punto = new PuntoAgenda(this.controlador_dao.getUltimoIDPunto(), nombre, resultando, considerandos, seAcuerda, 0, 0, 0, tipo);
+            PuntoAgenda punto = new PuntoAgenda(this.controlador_dao.getNextIDPunto(), nombre, resultando, considerandos, seAcuerda, 0, 0, 0, tipo);
             this.controlador_solicitudes.agregarSolicitud(punto);
             this.controlador_dao.agregarSolicitud(punto); 
         }
@@ -74,7 +75,7 @@ namespace Proyecto1.Controlador
             {
                 punto = this.controlador_sesion.getPuntoAgenda(id);
             }
-            this.controlador_dao.eliminarSolicitud(punto);
+            this.controlador_dao.eliminarSolicitud(punto.Id_punto);
         }
 
         public void aceptarSolicitud(int id)
@@ -87,7 +88,7 @@ namespace Proyecto1.Controlador
         public void agregarVotacion(int id, int aFavor, int enContra, int blanco)
         {
             PuntoAgenda punto = this.controlador_sesion.agregarVotacion(id, aFavor, enContra, blanco);
-            this.controlador_dao.aceptarSolicitud(punto);
+            this.controlador_dao.aceptarSolicitud(this.controlador_sesion.getSesion().Numero,punto.Id_punto);
         }
 
         public void enviarNotificacion(DateTime fecha,string numeroSesion)
@@ -178,5 +179,37 @@ namespace Proyecto1.Controlador
             //Object o = this.controlador_docs.crearAgenda(this.controlador_sesion.getSesion());
             //this.controlador_dao.escribirAgenda(o);
         }
+
+        public Collection<PuntoAgenda> getSolicitudes()
+        {
+            return this.consejo.Solicitudes;
+        }
+
+        public Consejo getConsejo()
+        {
+            return this.consejo;
+        }
+
+        public Collection<PuntoAgenda> getPuntosAgenda()
+        {
+            return this.controlador_sesion.getSesion().Agenda;
+        }
+
+        public Prototype_Miembros getAsistencia()
+        {
+            return this.controlador_sesion.getSesion().MiembrosAsistencia;
+        }
+
+        public Collection<Miembro> getMiembrosConsejo()
+        {
+            return this.consejo.Miembros;
+        }
+
+        public Collection<Comentario> getComentarios(int idPunto)
+        {
+            return this.controlador_sesion.getComentarios(idPunto);
+        }
+
+
     }
 }

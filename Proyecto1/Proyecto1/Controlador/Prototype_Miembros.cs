@@ -8,7 +8,7 @@ using Proyecto1.Modelo;
 
 namespace Proyecto1.Controlador
 {
-    class Prototype_Miembros : Prototype_Clonable
+    public class Prototype_Miembros : Prototype_Clonable
     {
         private Collection<Miembro> asistencia;
         private char[] listaAsistencia;
