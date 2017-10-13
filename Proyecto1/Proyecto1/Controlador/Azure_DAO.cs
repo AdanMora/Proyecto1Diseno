@@ -150,16 +150,25 @@ namespace Proyecto1.Controlador
                 db.sp_nuevaActualizacion();
                 db.sp_ActualizarMiembro(m.Correo[0], m.Correo[1], m.Nombre, m.TipoMiembro.ToString());
             }
+            db.SaveChanges();
         }
 
-        public void nuevaSesion(Sesion s)
+        public void nuevaSesion(string numero, DateTime fecha, string lugar, bool estado)
         {
-            throw new NotImplementedException();
+            db.sp_NuevaSesion(numero, fecha, lugar, estado);
+            db.SaveChanges();
         }
 
-        public void cerrarSesion(int numeroSesion)
+        public void cerrarSesion(String numeroSesion)
         {
-            throw new NotImplementedException();
+            foreach (SesionDB s in db.SesionDBs.ToList())
+            {
+                if (s.numero == numeroSesion)
+                {
+                    s.estado = true;
+                }
+            }
+            db.SaveChanges();
         }
 
         public void guardarDocSesion(string numeroSesion, string nombre, byte[] contenido, char tipo)
@@ -171,6 +180,8 @@ namespace Proyecto1.Controlador
                 sesion = numeroSesion,
                 tipo = tipo.ToString()
             });
+
+            db.SaveChanges();
         }
 
         public void guardarAdjunto(int id_Punto, string nombre, string extension, byte[] contenido)
@@ -181,47 +192,127 @@ namespace Proyecto1.Controlador
               extension = extension,
               punto = id_Punto
             });
+
+            db.SaveChanges();
         }
 
         public void agregarSolicitud(PuntoAgenda p)
         {
-            throw new NotImplementedException();
+            db.Punto_AgendaDB.Add(new Punto_AgendaDB
+            {
+                nombre = p.Nombre,
+                considerandos = p.Considerandos,
+                resultandos = p.Resultando,
+                seAcuerda = p.SeAcuerda,
+                votosAFavor = 0,
+                votosEnContra = 0,
+                votosAbstenciones = 0,
+                tipoPunto = p.Tipo.ToString()
+            });
+
+            db.Solicitudes_PuntosDB.Add(new Solicitudes_PuntosDB
+            {
+                id_Consejo = 1,
+                punto = p.Id_punto
+            });
+
+            db.SaveChanges();
         }
 
-        public void eliminarSolicitud(PuntoAgenda p)
+        public void eliminarSolicitud(int id_Punto)
         {
-            throw new NotImplementedException();
+            foreach (Punto_AgendaDB p in db.Punto_AgendaDB.ToList())
+            {
+                if (p.id_Punto == id_Punto)
+                {
+                    db.Punto_AgendaDB.Remove(p);
+                }
+            }
+            db.SaveChanges();
         }
 
-        public void aceptarSolicitud(PuntoAgenda p)
+        public void aceptarSolicitud(string sesion, int id_Punto)
         {
-            throw new NotImplementedException();
+            db.sp_AceptarSolicitud(sesion, id_Punto);
+            db.SaveChanges();
         }
 
-        public void agregarVotacion(int aFavor, int enContra, int abstenciones)
+        public void agregarVotacion(int id_Punto, int aFavor, int enContra, int abstenciones)
         {
-            throw new NotImplementedException();
+            foreach (Punto_AgendaDB p in db.Punto_AgendaDB.ToList())
+            {
+                if (p.id_Punto == id_Punto){
+                    p.votosAFavor = aFavor;
+                    p.votosEnContra = enContra;
+                    p.votosAbstenciones = abstenciones;
+                }
+            }
+            db.SaveChanges();
         }
 
-        public void agregarComentario(Comentario c, PuntoAgenda p)
+        public void agregarComentario(int id_Punto, Comentario c)
         {
-            throw new NotImplementedException();
+            db.ComentariosDBs.Add(new ComentariosDB
+            {
+                miembro = c.Miembro.Correo[0],
+                contenido = c.Txtcomentario
+            });
+
+            db.ComentariosXPuntoDBs.Add(new ComentariosXPuntoDB
+            {
+                punto = id_Punto,
+                comentario = c.Id_Comentario
+            });
+            db.SaveChanges();
         }
 
-        public void modificarAsistencia(Miembro m, char estado)
+        public void modificarAsistencia(String numeroSesion, String miembro, char estado)
         {
-            throw new NotImplementedException();
+            foreach (Miembros_SesionDB m in db.Miembros_SesionDB.ToList())
+            {
+                if ((m.miembro == miembro) && (m.sesion == numeroSesion))
+                {
+                    m.estadoAsistencia = estado.ToString();
+                }
+            }
+            db.SaveChanges();
         }
 
-        public int getUltimoIDPunto()
+        public int getNextIDPunto()
         {
-            return Decimal.ToInt32(db.Punto_AgendaDB.ToList().Last().id_Punto);
+            return Decimal.ToInt32(db.sp_NextIDPunto().First().Value);
 
         }
 
-        public int getUltimoIDComentario()
+        public int getNextIDComentario()
         {
-            return Decimal.ToInt32(db.ComentariosDBs.ToList().Last().id_Comentario);
+            return Decimal.ToInt32(db.sp_NextIDComentario().First().Value);
+        }        
+
+        public byte[] getDocSesion(string sesion, char tipo)
+        {
+            foreach (DocXSesionDB d in db.DocXSesionDBs.ToList())
+            {
+                if ((d.sesion == sesion) && (d.tipo[0] == tipo))
+                {
+                    return d.contenido;
+                }
+            }
+            return null;
+        }
+
+        public Collection<Object[]> getAdjuntosPunto(int id_Punto)
+        {
+            Collection<Object[]> tuplaAdjunto = new Collection<object[]>();
+
+            foreach (AdjuntosXPuntoDB d in db.AdjuntosXPuntoDBs.ToList())
+            {
+                if (d.punto == id_Punto)
+                {
+                    tuplaAdjunto.Add(new object[] { d.nombreArchivo, d.extension, d.contenido });
+                }
+            }
+            return tuplaAdjunto;
         }
     }
 }
