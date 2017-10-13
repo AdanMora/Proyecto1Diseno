@@ -96,6 +96,7 @@
     <Compile Include="ConsejoDB.cs">
       <DependentUpon>BaseDatosModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Controlador\Controlador_Correo.cs" />
     <Compile Include="Controlador\Controlador_DAO.cs" />
     <Compile Include="Controlador\Controlador_Docs.cs" />
     <Compile Include="Controlador\Controlador_Sesion.cs" />

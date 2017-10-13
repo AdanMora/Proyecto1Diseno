@@ -5,7 +5,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Net;       // No olvidar.
+using System.Net;      
 using System.Net.Mail;
 using System.Net.Mime;
 using System.Windows.Forms;
@@ -22,6 +22,81 @@ namespace Proyecto1.Controlador
         private Controlador_Solicitudes controlador_solicitudes;
         private Azure_DAO controlador_dao;
         private Xls_DAO xls;
+        private Controlador_Correo controlador_correos;
+
+        public Gestor()
+        {
+            this.consejo = new Consejo();
+            this.controlador_sesion = new Controlador_Sesion();
+            this.controlador_solicitudes = new Controlador_Solicitudes();
+            this.xls = new Xls_DAO();
+            this.controlador_correos = new Controlador_Correo();
+        }
+
+        public Consejo Consejo
+        {
+            get
+            {
+                return consejo;
+            }
+
+            set
+            {
+                consejo = value;
+            }
+        }
+
+        internal Controlador_Sesion Controlador_sesion
+        {
+            get
+            {
+                return controlador_sesion;
+            }
+
+            set
+            {
+                controlador_sesion = value;
+            }
+        }
+
+        internal Controlador_Solicitudes Controlador_solicitudes
+        {
+            get
+            {
+                return controlador_solicitudes;
+            }
+
+            set
+            {
+                controlador_solicitudes = value;
+            }
+        }
+
+        public Azure_DAO Controlador_dao
+        {
+            get
+            {
+                return controlador_dao;
+            }
+
+            set
+            {
+                controlador_dao = value;
+            }
+        }
+
+        internal Xls_DAO Xls
+        {
+            get
+            {
+                return xls;
+            }
+
+            set
+            {
+                xls = value;
+            }
+        }
 
         public Gestor(Consejo consejo)
         {
@@ -29,14 +104,7 @@ namespace Proyecto1.Controlador
             //this.setControladores();
         }
 
-        public Gestor()
-        {
-            this.controlador_dao = new Azure_DAO();
-            this.controlador_sesion = new Controlador_Sesion();
-            this.controlador_solicitudes = new Controlador_Solicitudes();
-            this.xls = new Xls_DAO();
-        }
-
+        
         public void nuevaSesion(String num, DateTime fecha, string lugar)
         {
             this.controlador_sesion.nuevaSesion(num,fecha,lugar);
@@ -54,7 +122,7 @@ namespace Proyecto1.Controlador
             Collection<Miembro> miembros = this.xls.cargaXls(path);
             this.consejo.Miembros = miembros;
             this.controlador_sesion.setMiembros(miembros);
-            this.controlador_dao.actualizarMiembros(miembros);
+            //this.controlador_dao.actualizarMiembros(miembros);
         }
 
 
@@ -90,43 +158,7 @@ namespace Proyecto1.Controlador
 
         public void enviarNotificacion(DateTime fecha,string numeroSesion)
         {
-            string encabezado = "Sesión Ordinaria <#>-<Anno>";
-            string cuerpo = "Buenas días:\n\n"+
-                "Estimados (as) Profesores (as):\n\n" +
-                "A solicitud de la Dirección, me permito informarles que el próximo lunes 25 de setiembre se realizará la Sesión Ordinaria 21-2017, se solicita que si\n"+
-                "tienen algún punto que consideren que debe ser valorado por la Dirección para incluirse en la agenda, lo hagan llegar a más tardar el miércoles 20\n" +
-                "de setiembre durante la mañana.\n\n" +
-                "Adjunto formulario de solicitud de puntos para consejos, el formulario para justificación de ausencia al Consejo y el formulario de mociones de \nfondo.\n\n" +
-                "Cualquier consulta con mucho gusto.\n\n"+
-                "Saludos;";
-            string memo = @"C:\Users\Fauricio\Desktop\MEMO_JUSTIFICACION_DE_AUSENCIAS_AL_CONSEJO.doc";
-            string punto = @"C:\Users\Fauricio\Desktop\MACHOTE_OFICIO_SOLICITUD_DE_PUNTOS_de_propuesta_base.docx";
-            try
-            {                
-                Attachment data = new Attachment(punto, MediaTypeNames.Application.Octet);                
-                Attachment data1 = new Attachment(memo, MediaTypeNames.Application.Octet);
-                                
-                SmtpClient client = new SmtpClient();
-                client.Port = 587;
-                client.Host = "smtp.gmail.com";
-                client.EnableSsl = true;
-                client.Timeout = 10000;
-                client.DeliveryMethod = SmtpDeliveryMethod.Network;
-                client.UseDefaultCredentials = false;
-                client.Credentials = new NetworkCredential("grupoadfafe@gmail.com", "Grupoadfafe.");
-
-                MailMessage mail = new MailMessage("grupoadfafe@gmail.com", "fauriciocr@gmail.com", encabezado,cuerpo);
-                mail.BodyEncoding = UTF8Encoding.UTF8;
-                mail.DeliveryNotificationOptions = DeliveryNotificationOptions.OnFailure;
-                mail.Attachments.Add(data);
-                mail.Attachments.Add(data1);
-                client.Send(mail);
-                MessageBox.Show("Correo Enviado");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error al enviar correo");
-            }
+            
         }
 
         public void crearActa(string ruta,string puntosAgenda)

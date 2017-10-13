@@ -21,7 +21,7 @@ namespace Proyecto1.Controlador
 
         public Prototype_Clonable getPrototipo()
         {
-            return (Prototype_Miembros) this.prototype.clonable(); ;
+            return (Prototype_Miembros) this.prototype.clonable(); 
         }
         
     }

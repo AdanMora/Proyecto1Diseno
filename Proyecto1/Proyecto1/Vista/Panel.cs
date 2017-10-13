@@ -21,11 +21,15 @@ namespace Proyecto1.Vista
 {
     public partial class Panel : Form
     {
+        Gestor g = new Gestor();
+        
         public Panel()
         {
             InitializeComponent();
+            g.nuevaSesion("1", DateTime.Now, "CIC");                                
         }
-
+        
+        
         private void button1_Click(object sender, EventArgs e)
         {
             string res = "";
@@ -35,7 +39,8 @@ namespace Proyecto1.Vista
             {
                 if (opf.ShowDialog() == DialogResult.OK)
                 {
-                    listaMiembros = xls.cargaXls(opf.FileName);
+                    g.actualizarMiembros(opf.FileName);
+                    listaMiembros = g.Consejo.Miembros;
                     foreach (Miembro m in listaMiembros)
                     {
                         res = res + m.toString();
@@ -45,7 +50,7 @@ namespace Proyecto1.Vista
             }                                       
         }
 
-        Gestor g = new Gestor();
+        
         private void button2_Click(object sender, EventArgs e)
         {                        
             g.enviarNotificacion(DateTime.Now, "1");
