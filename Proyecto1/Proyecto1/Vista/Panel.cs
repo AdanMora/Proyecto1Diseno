@@ -26,7 +26,7 @@ namespace Proyecto1.Vista
         public Panel()
         {
             InitializeComponent();
-            g.nuevaSesion("1", DateTime.Now, "CIC");                                
+            //g.nuevaSesion("1", DateTime.Now, "CIC");                                            
         }
         
         
@@ -35,7 +35,7 @@ namespace Proyecto1.Vista
             string res = "";
             Xls_DAO xls = new Xls_DAO();
             Collection<Miembro> listaMiembros = new Collection<Miembro>();
-            using (OpenFileDialog opf = new OpenFileDialog() { Filter = "Excel Workbook|*.xls|Excel Workbook|*.xlsx", ValidateNames = true })
+            using (OpenFileDialog opf = new OpenFileDialog() { Filter = "Excel Workbook|*.xlsx|Excel Workbook|*.xls", ValidateNames = true })
             {
                 if (opf.ShowDialog() == DialogResult.OK)
                 {

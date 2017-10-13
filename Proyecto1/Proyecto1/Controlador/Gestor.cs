@@ -21,7 +21,7 @@ namespace Proyecto1.Controlador
         private Controlador_Sesion controlador_sesion;
         private Controlador_Solicitudes controlador_solicitudes;
         private Controlador_Docs controlador_docs;
-        private Azure_DAO controlador_dao;
+        //private Azure_DAO controlador_dao;
         private Xls_DAO xls;
         private Controlador_Correo controlador_correos;
 
@@ -29,8 +29,7 @@ namespace Proyecto1.Controlador
         {
             this.consejo = new Consejo();
             this.controlador_sesion = new Controlador_Sesion();
-            this.controlador_solicitudes = new Controlador_Solicitudes();
-            this.controlador_docs = new Controlador_Docs();
+            this.controlador_solicitudes = new Controlador_Solicitudes();            
             this.xls = new Xls_DAO();
             this.controlador_correos = new Controlador_Correo();
         }
@@ -73,7 +72,7 @@ namespace Proyecto1.Controlador
                 controlador_solicitudes = value;
             }
         }
-
+        /*
         public Azure_DAO Controlador_dao
         {
             get
@@ -85,7 +84,7 @@ namespace Proyecto1.Controlador
             {
                 controlador_dao = value;
             }
-        }
+        }*/
 
         internal Xls_DAO Xls
         {
@@ -116,7 +115,7 @@ namespace Proyecto1.Controlador
 
         public void cargarDatos()
         {
-            this.consejo = this.controlador_dao.cargarDatos();
+            //this.consejo = this.controlador_dao.cargarDatos();
         }
 
         public void actualizarMiembros(String path)
@@ -130,9 +129,9 @@ namespace Proyecto1.Controlador
 
         public void agregarSolicitud(string nombre, string resultando, string considerandos, string seAcuerda, int aFavor, int enContra, int blanco, char tipo)
         {
-            PuntoAgenda punto = new PuntoAgenda(this.controlador_dao.getUltimoIDPunto(), nombre, resultando, considerandos, seAcuerda, 0, 0, 0, tipo);
+            PuntoAgenda punto = new PuntoAgenda(1, nombre, resultando, considerandos, seAcuerda, 0, 0, 0, tipo);
             this.controlador_solicitudes.agregarSolicitud(punto);
-            this.controlador_dao.agregarSolicitud(punto); 
+            //this.controlador_dao.agregarSolicitud(punto); 
         }
 
         public void eliminarSolicitud(int id)
@@ -142,7 +141,7 @@ namespace Proyecto1.Controlador
             {
                 punto = this.controlador_sesion.getPuntoAgenda(id);
             }
-            this.controlador_dao.eliminarSolicitud(punto);
+            //this.controlador_dao.eliminarSolicitud(punto);
         }
 
         public void aceptarSolicitud(int id)
@@ -155,7 +154,7 @@ namespace Proyecto1.Controlador
         public void agregarVotacion(int id, int aFavor, int enContra, int blanco)
         {
             PuntoAgenda punto = this.controlador_sesion.agregarVotacion(id, aFavor, enContra, blanco);
-            this.controlador_dao.aceptarSolicitud(punto);
+            //this.controlador_dao.aceptarSolicitud(punto);
         }
 
         public void enviarNotificacion(DateTime fecha,string numeroSesion)
