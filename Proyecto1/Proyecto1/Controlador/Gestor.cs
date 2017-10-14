@@ -58,6 +58,9 @@ namespace Proyecto1.Controlador
         public void cerrarSesion()
         {
             Sesion sesionActual = this.controlador_sesion.getSesion();
+            this.consejo.Sesiones.Add(sesionActual);
+
+            // ahora hagan lo que quieran con sesionActual
             
         }
 
