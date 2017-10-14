@@ -163,12 +163,11 @@ namespace Proyecto1.Controlador
             int n = this.sesionActual.Agenda.Count;
             posicionActual -= 1;
             posicionNueva -= 1;
-            if ((posicionActual < n) && (posicionNueva < n))
-            {
-                PuntoAgenda punto1 = this.sesionActual.Agenda.ElementAt(posicionActual);
-                this.sesionActual.Agenda.RemoveAt(posicionActual);
-                this.sesionActual.Agenda.Insert(posicionNueva, punto1);
-            }
+
+            PuntoAgenda punto1 = this.sesionActual.Agenda.ElementAt(posicionActual);
+            this.sesionActual.Agenda.RemoveAt(posicionActual);
+            this.sesionActual.Agenda.Insert(posicionNueva, punto1);
+
         }
 
     }
