@@ -8,18 +8,20 @@ using Proyecto1.Modelo;
 
 namespace Proyecto1.Controlador
 {
-    class Prototype_Miembros : Prototype_Clonable
+    public class Prototype_Miembros : Prototype_Clonable
     {
         private Collection<Miembro> asistencia;
         private char[] listaAsistencia;
 
         public Prototype_Miembros(Collection<Miembro> miembros)
         {
-            this.asistencia = miembros;
+            this.asistencia = new Collection<Miembro>();
             int n = miembros.Count;
             this.listaAsistencia = new char[n];
             for(int i = 0; i < n; i++)
             {
+                Miembro m = miembros.ElementAt(0);
+                this.asistencia.Add(new Miembro(m.Nombre, m.Correo[0], m.Correo[1], m.TipoMiembro));
                 this.listaAsistencia[i] = 'A';
             }
         }

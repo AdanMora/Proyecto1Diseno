@@ -10,7 +10,7 @@ namespace Proyecto1.Controlador
 {
     class Controlador_Sesion
     {
-        private Sesion sesionActual;
+        private Sesion sesionActual = null;
         private Prototype_Cache prototype;
 
         public Controlador_Sesion()
@@ -21,6 +21,11 @@ namespace Proyecto1.Controlador
         public void nuevaSesion(String num, DateTime fecha, string lugar)
         {
             this.sesionActual = new Sesion(num, fecha, lugar, false);
+        }
+
+        public void cerrarSesion()
+        {
+            this.sesionActual = null;
         }
 
         public void setMiembros(Collection<Miembro> miembros)
@@ -55,9 +60,9 @@ namespace Proyecto1.Controlador
             {
                 if(punto.Id_punto == id)
                 {
-                    punto.Votacion[0] = punto.Votacion[0] + aFavor;
-                    punto.Votacion[1] = punto.Votacion[1] + enContra;
-                    punto.Votacion[2] = punto.Votacion[2] + blanco;
+                    punto.Votacion[0] = aFavor;
+                    punto.Votacion[1] = enContra;
+                    punto.Votacion[2] = blanco;
                     temp = punto;
                 }
             }
@@ -78,8 +83,18 @@ namespace Proyecto1.Controlador
             return miembro;
         }
 
-        public void agregarComentario(int idPunto, Comentario comentario)
+        public void agregarComentario(int idPunto, string correoMiembro, int idComentario, string txt)
         {
+            Comentario comentario = null;
+            foreach(Miembro m in this.sesionActual.MiembrosAsistencia.Asistencia)
+            {
+                if(m.Correo[0] == correoMiembro)
+                {
+                    comentario = new Comentario(idComentario, txt, m);
+                    break;
+                }
+            }
+
             foreach(PuntoAgenda punto in this.sesionActual.Agenda)
             {
                 if(punto.Id_punto == idPunto)
@@ -103,31 +118,57 @@ namespace Proyecto1.Controlador
             }
         }
 
+        public Collection<Comentario> getComentarios(int idPunto)
+        {
+            foreach(PuntoAgenda punto in this.sesionActual.Agenda)
+            {
+                if(punto.Id_punto == idPunto)
+                {
+                    return punto.Comentarios;
+                }
+            }
+            return null;
+        }
+
         public Sesion getSesion()
         {
             return this.sesionActual;
         }
 
-        public void cargarListaMiembros()
+        public void setSesion(Sesion sesion)
         {
+            this.sesionActual = sesion ;
+        }
+
+        public bool haySesion()
+        {
+            bool hay = true;
+            if (this.sesionActual == null)
+                hay = false;
+            return hay;
+        }
+
+        public Collection<PuntoAgenda> getPuntosAgenda()
+        {
+            return this.sesionActual.Agenda;
+        }
+
+        public Prototype_Miembros getAsistencia()
+        {
+            return this.sesionActual.MiembrosAsistencia;
+        }
+
+        public void cambiarPosicionPunto(int posicionActual, int posicionNueva)
+        {
+            int n = this.sesionActual.Agenda.Count;
+            posicionActual -= 1;
+            posicionNueva -= 1;
+
+            PuntoAgenda punto1 = this.sesionActual.Agenda.ElementAt(posicionActual);
+            this.sesionActual.Agenda.RemoveAt(posicionActual);
+            this.sesionActual.Agenda.Insert(posicionNueva, punto1);
 
         }
 
-        public void registrarAsistencia()
-        {
-
-        }
-
-        public void registrarSolicitud()
-        {
-
-        }
-
-        
-
-        public void cerrarSesion()
-        {
-
-        }
     }
 }

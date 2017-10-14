@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Proyecto1.Controlador
 {
-    interface Prototype_Clonable
+    public interface Prototype_Clonable
     {
         Prototype_Clonable clonable();
     }
