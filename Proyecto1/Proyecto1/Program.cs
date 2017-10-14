@@ -25,20 +25,10 @@ namespace Proyecto1
                 Application.Run(new Form1());
             }else
             {
-                Gestor m = new Gestor();
-                m.nuevaSesion("2", DateTime.Now, "CIC");
-                Xls_DAO xls = new Xls_DAO();
-                Collection<Miembro> listaMiembros = new Collection<Miembro>();
-                listaMiembros= m.Xls.cargaXls(@"C:\\Users\\Fauricio\\Desktop\\Miembros.xlsx");
-                //m.actualizarMiembros();
-                Console.WriteLine("Administración de consejos.\n\n Lista de miembros");
-                
-                foreach (Miembro nuevo in listaMiembros)
-                {                    
-                    Console.WriteLine(nuevo.Nombre);
-                }                
-                Console.ReadKey();
-
+                DTO_consola terminal = new DTO_consola();
+                terminal.actualizarMiembros();
+                terminal.envioNotificacion();
+                Console.ReadKey();               
             }
                      
 

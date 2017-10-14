@@ -99,6 +99,19 @@ namespace Proyecto1.Controlador
             }
         }
 
+        internal Controlador_Correo Controlador_correos
+        {
+            get
+            {
+                return controlador_correos;
+            }
+
+            set
+            {
+                controlador_correos = value;
+            }
+        }
+
         public Gestor(Consejo consejo)
         {
             this.consejo = consejo;

@@ -15,14 +15,15 @@ namespace Proyecto1.Controlador
 {
     class Controlador_Correo
     {
-        public void enviarNotificaciones()
+        public void enviarNotificaciones(string numeroSesion,DateTime diaConsejo,string destinatario)
         {
-            string encabezado = "Sesión Ordinaria <#>-<Anno>";
+            
+            string encabezado = "Sesión Ordinaria "+numeroSesion+" - "+ diaConsejo.Year;
             string cuerpo = "Buenas días:\n\n" +
                 "Estimados (as) Profesores (as):\n\n" +
-                "A solicitud de la Dirección, me permito informarles que el próximo lunes 25 de setiembre se realizará la Sesión Ordinaria 21-2017, se solicita que si\n" +
-                "tienen algún punto que consideren que debe ser valorado por la Dirección para incluirse en la agenda, lo hagan llegar a más tardar el miércoles 20\n" +
-                "de setiembre durante la mañana.\n\n" +
+                "A solicitud de la Dirección, me permito informarles que el próximo "+ diaConsejo +" se realizará la "+encabezado+", se solicita que si\n" +
+                "tienen algún punto que consideren que debe ser valorado por la Dirección para incluirse en la agenda, lo hagan llegar a más tardar el "+ diaConsejo.AddDays(-5) + "\n" +
+                "durante la mañana.\n\n" +
                 "Adjunto formulario de solicitud de puntos para consejos, el formulario para justificación de ausencia al Consejo y el formulario de mociones de \nfondo.\n\n" +
                 "Cualquier consulta con mucho gusto.\n\n" +
                 "Saludos;";
@@ -42,17 +43,17 @@ namespace Proyecto1.Controlador
                 client.UseDefaultCredentials = false;
                 client.Credentials = new NetworkCredential("grupoadfafe@gmail.com", "Grupoadfafe.");
 
-                MailMessage mail = new MailMessage("grupoadfafe@gmail.com", "fauriciocr@gmail.com", encabezado, cuerpo);
+                MailMessage mail = new MailMessage("grupoadfafe@gmail.com", destinatario, encabezado, cuerpo);
                 mail.BodyEncoding = UTF8Encoding.UTF8;
                 mail.DeliveryNotificationOptions = DeliveryNotificationOptions.OnFailure;
                 mail.Attachments.Add(data);
                 mail.Attachments.Add(data1);
                 client.Send(mail);
-                MessageBox.Show("Correo Enviado");
+                Console.WriteLine("Correo Enviado");
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al enviar correo");
+                Console.WriteLine("Error al enviar correo");
             }
         }
 
