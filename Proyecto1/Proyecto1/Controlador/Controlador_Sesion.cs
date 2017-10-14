@@ -10,7 +10,7 @@ namespace Proyecto1.Controlador
 {
     class Controlador_Sesion
     {
-        private Sesion sesionActual;
+        private Sesion sesionActual = null;
         private Prototype_Cache prototype;
 
         public Controlador_Sesion()
@@ -21,6 +21,11 @@ namespace Proyecto1.Controlador
         public void nuevaSesion(String num, DateTime fecha, string lugar)
         {
             this.sesionActual = new Sesion(num, fecha, lugar, false);
+        }
+
+        public void cerrarSesion()
+        {
+            this.sesionActual = null;
         }
 
         public void setMiembros(Collection<Miembro> miembros)
@@ -78,8 +83,18 @@ namespace Proyecto1.Controlador
             return miembro;
         }
 
-        public void agregarComentario(int idPunto, string correoMiembro, Comentario comentario)
+        public void agregarComentario(int idPunto, string correoMiembro, int idComentario, string txt)
         {
+            Comentario comentario = null;
+            foreach(Miembro m in this.sesionActual.MiembrosAsistencia.Asistencia)
+            {
+                if(m.Correo[0] == correoMiembro)
+                {
+                    comentario = new Comentario(idComentario, txt, m);
+                    break;
+                }
+            }
+
             foreach(PuntoAgenda punto in this.sesionActual.Agenda)
             {
                 if(punto.Id_punto == idPunto)
@@ -140,11 +155,5 @@ namespace Proyecto1.Controlador
 
         }
 
-        
-
-        public void cerrarSesion()
-        {
-
-        }
     }
 }
