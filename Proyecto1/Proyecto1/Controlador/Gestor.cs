@@ -187,6 +187,11 @@ namespace Proyecto1.Controlador
             this.controlador_sesion.cambiarPosicionPunto(idPunto, idPosicion);
         }
 
+        public bool hayQuorum()
+        {
+            return this.controlador_sesion.hayQuorum();
+        }
+
 
     }
 }
