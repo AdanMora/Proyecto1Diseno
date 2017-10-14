@@ -78,7 +78,7 @@ namespace Proyecto1.Controlador
             return miembro;
         }
 
-        public void agregarComentario(int idPunto, Comentario comentario)
+        public void agregarComentario(int idPunto, string correoMiembro, Comentario comentario)
         {
             foreach(PuntoAgenda punto in this.sesionActual.Agenda)
             {
