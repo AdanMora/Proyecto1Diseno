@@ -60,9 +60,9 @@ namespace Proyecto1.Controlador
             {
                 if(punto.Id_punto == id)
                 {
-                    punto.Votacion[0] = punto.Votacion[0] + aFavor;
-                    punto.Votacion[1] = punto.Votacion[1] + enContra;
-                    punto.Votacion[2] = punto.Votacion[2] + blanco;
+                    punto.Votacion[0] = aFavor;
+                    punto.Votacion[1] = enContra;
+                    punto.Votacion[2] = blanco;
                     temp = punto;
                 }
             }
@@ -140,19 +140,35 @@ namespace Proyecto1.Controlador
             this.sesionActual = sesion ;
         }
 
-        public void cargarListaMiembros()
+        public bool haySesion()
         {
-
+            bool hay = true;
+            if (this.sesionActual == null)
+                hay = false;
+            return hay;
         }
 
-        public void registrarAsistencia()
+        public Collection<PuntoAgenda> getPuntosAgenda()
         {
-
+            return this.sesionActual.Agenda;
         }
 
-        public void registrarSolicitud()
+        public Prototype_Miembros getAsistencia()
         {
+            return this.sesionActual.MiembrosAsistencia;
+        }
 
+        public void cambiarPosicionPunto(int posicionActual, int posicionNueva)
+        {
+            int n = this.sesionActual.Agenda.Count;
+            posicionActual -= 1;
+            posicionNueva -= 1;
+            if ((posicionActual < n) && (posicionNueva < n))
+            {
+                PuntoAgenda punto1 = this.sesionActual.Agenda.ElementAt(posicionActual);
+                this.sesionActual.Agenda.RemoveAt(posicionActual);
+                this.sesionActual.Agenda.Insert(posicionNueva, punto1);
+            }
         }
 
     }

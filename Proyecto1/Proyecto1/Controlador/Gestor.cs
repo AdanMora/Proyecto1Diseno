@@ -46,7 +46,7 @@ namespace Proyecto1.Controlador
 
         public void nuevaSesion(String num, DateTime fecha, string lugar)
         {
-            if (this.controlador_sesion.getSesion() == null)
+            if (!this.haySesion())
             {
                 this.controlador_sesion.nuevaSesion(num, fecha, lugar);
                 this.controlador_sesion.setMiembros(this.consejo.Miembros);
@@ -58,17 +58,19 @@ namespace Proyecto1.Controlador
         public void cerrarSesion()
         {
             Sesion sesionActual = this.controlador_sesion.getSesion();
+            
         }
 
         public void cargarDatos()
         {
-            this.consejo = this.controlador_dao.cargarDatos();
+            //this.consejo = this.controlador_dao.cargarDatos();
             foreach(Sesion sesion in this.consejo.Sesiones)
             {
                 if (!sesion.Estado)
                 {
                     this.controlador_sesion.setSesion(sesion);
                     this.controlador_sesion.setMiembros(this.consejo.Miembros);
+                    this.controlador_solicitudes.setSolicitudes(this.consejo.Solicitudes);
                     break;
                 }
             }
@@ -83,9 +85,16 @@ namespace Proyecto1.Controlador
         }
 
 
-        public void agregarSolicitud(string nombre, string resultando, string considerandos, string seAcuerda, int aFavor, int enContra, int blanco, char tipo)
+        public void agregarSolicitud(string nombre, string resultando, string considerandos, string seAcuerda, char tipo)
         {
-            PuntoAgenda punto = new PuntoAgenda(this.controlador_dao.getNextIDPunto(), nombre, resultando, considerandos, seAcuerda, 0, 0, 0, tipo);
+            PuntoAgenda punto = new PuntoAgenda(this.controlador_dao.getNextIDPunto() , nombre, resultando, considerandos, seAcuerda, 0, 0, 0, tipo);
+            this.controlador_solicitudes.agregarSolicitud(punto);
+            //this.controlador_dao.agregarSolicitud(punto); 
+        }
+
+        public void agregarSolicitud(int id, string nombre, string resultando, string considerandos, string seAcuerda, char tipo)
+        {
+            PuntoAgenda punto = new PuntoAgenda(id, nombre, resultando, considerandos, seAcuerda, 0, 0, 0, tipo);
             this.controlador_solicitudes.agregarSolicitud(punto);
             //this.controlador_dao.agregarSolicitud(punto); 
         }
@@ -95,13 +104,14 @@ namespace Proyecto1.Controlador
             this.controlador_sesion.agregarComentario(idPunto, correoMiembro, idComentario, txt);
         }
 
+        public void agregarComentario(int idPunto, string correoMiembro, string txt)
+        {
+            this.controlador_sesion.agregarComentario(idPunto, correoMiembro, this.controlador_dao.getNextIDComentario(), txt);
+        }
+
         public void eliminarSolicitud(int id)
         {
-            PuntoAgenda punto = this.controlador_solicitudes.getSolicitud(id);
-            if(punto != null)
-            {
-                punto = this.controlador_sesion.getPuntoAgenda(id);
-            }
+            PuntoAgenda punto = this.controlador_solicitudes.eliminarSolicitud(id);
             //this.controlador_dao.eliminarSolicitud(punto.Id_punto);
         }
 
@@ -116,81 +126,6 @@ namespace Proyecto1.Controlador
         {
             PuntoAgenda punto = this.controlador_sesion.agregarVotacion(id, aFavor, enContra, blanco);
             //this.controlador_dao.aceptarSolicitud(this.controlador_sesion.getSesion().Numero,punto.Id_punto);
-        }
-
-        public void enviarNotificacion(DateTime fecha,string numeroSesion)
-        {
-            string encabezado = "Sesión Ordinaria <#>-<Anno>";
-            string cuerpo = "A solicitud de la Dirección, me permito informarles que el próximo lunes <FECHA> se realizará la Sesión Ordinaria <#>-<Anno>, se solicita que si tienen \nalgún punto que consideren que debe ser valorado por la Dirección para incluirse en la agenda, lo hagan llegar a más tardar el < FECHA > durante la mañana.\nAdjunto formulario de solicitud de puntos para consejos, el formulario para justificación de ausencia al Consejo y el formulario de mociones de fondo.";
-            string memo = @"C:\Users\Fauricio\Desktop\MEMO_JUSTIFICACION_DE_AUSENCIAS_AL_CONSEJO.doc";
-            string punto = @"C:\Users\Fauricio\Desktop\MACHOTE_OFICIO_SOLICITUD_DE_PUNTOS_de_propuesta_base.docx";
-            try
-            {
-                string filename = @"C:\Users\Fauricio\Desktop\MEMO_JUSTIFICACION_DE_AUSENCIAS_AL_CONSEJO.doc";
-                Attachment data = new Attachment(punto, MediaTypeNames.Application.Octet);                
-                Attachment data1 = new Attachment(memo, MediaTypeNames.Application.Octet);
-                                
-                SmtpClient client = new SmtpClient();
-                client.Port = 587;
-                client.Host = "smtp.gmail.com";
-                client.EnableSsl = true;
-                client.Timeout = 10000;
-                client.DeliveryMethod = SmtpDeliveryMethod.Network;
-                client.UseDefaultCredentials = false;
-                client.Credentials = new NetworkCredential("grupoadfafe@gmail.com", "Grupoadfafe.");
-
-                MailMessage mail = new MailMessage("grupoadfafe@gmail.com", "fauriciocr@gmail.com", encabezado,cuerpo);
-                mail.BodyEncoding = UTF8Encoding.UTF8;
-                mail.DeliveryNotificationOptions = DeliveryNotificationOptions.OnFailure;
-                mail.Attachments.Add(data);
-                mail.Attachments.Add(data1);
-                client.Send(mail);
-                MessageBox.Show("Correo Enviado");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error al enviar correo");
-            }
-        }
-
-        public void crearActa(string ruta,string puntosAgenda)
-        {                        
-            string path = @"C:\Users\Fauricio\Desktop\"+ruta+".doc";
-            try
-            {
-                if (File.Exists(path))
-                {
-                    File.Delete(path);
-                }
-                using (FileStream fs = File.Create(path))
-                {
-                    Byte[] info = new UTF8Encoding(true).GetBytes(puntosAgenda);
-                    fs.Write(info, 0, info.Length);
-                }
-                MessageBox.Show("Doc creado");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Doc no creado");
-            }
-        }
-
-        public void crearAgenda(string ruta, string puntosAgenda)
-        {            
-            try
-            {
-                FileStream fs = new FileStream(@"C:\Users\Fauricio\Desktop\Chapter1_Example1.pdf", FileMode.Create, FileAccess.Write, FileShare.None);
-                Document doc = new Document();
-                PdfWriter writer = PdfWriter.GetInstance(doc, fs);
-                doc.Open();
-                doc.Add(new Paragraph(puntosAgenda));
-                doc.Close();
-                MessageBox.Show("Pdf creado");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Pdf no creado");
-            }          
         }
 
         public void crearActa(int tipo)
@@ -214,7 +149,7 @@ namespace Proyecto1.Controlador
 
         public Collection<PuntoAgenda> getSolicitudes()
         {
-            return this.consejo.Solicitudes;
+            return this.controlador_solicitudes.getSolicitudes();
         }
 
         public Consejo getConsejo()
@@ -224,12 +159,12 @@ namespace Proyecto1.Controlador
 
         public Collection<PuntoAgenda> getPuntosAgenda()
         {
-            return this.controlador_sesion.getSesion().Agenda;
+            return this.controlador_sesion.getPuntosAgenda();
         }
 
         public Prototype_Miembros getAsistencia()
         {
-            return this.controlador_sesion.getSesion().MiembrosAsistencia;
+            return this.controlador_sesion.getAsistencia();
         }
 
         public Collection<Miembro> getMiembrosConsejo()
@@ -242,7 +177,15 @@ namespace Proyecto1.Controlador
             return this.controlador_sesion.getComentarios(idPunto);
         }
 
-        //public void getSesionActual
+        public bool haySesion()
+        {
+            return this.controlador_sesion.haySesion();
+        }
+
+        public void cambiarPosicionPunto(int idPunto, int idPosicion)
+        {
+            this.controlador_sesion.cambiarPosicionPunto(idPunto, idPosicion);
+        }
 
 
     }

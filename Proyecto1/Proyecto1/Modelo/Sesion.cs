@@ -14,7 +14,7 @@ namespace Proyecto1.Modelo
         private DateTime fechaHora;
         private string lugar;
         private bool estado;
-        private Prototype_Miembros miembrosAsistencia;
+        private Prototype_Miembros miembrosAsistencia = null;
         private Collection<PuntoAgenda> agenda = new Collection<PuntoAgenda>();
 
         public Sesion(String num, DateTime fecha, string lugar, bool estado)

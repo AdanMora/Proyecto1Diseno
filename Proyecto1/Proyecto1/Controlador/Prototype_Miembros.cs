@@ -15,11 +15,13 @@ namespace Proyecto1.Controlador
 
         public Prototype_Miembros(Collection<Miembro> miembros)
         {
-            this.asistencia = miembros;
+            this.asistencia = new Collection<Miembro>();
             int n = miembros.Count;
             this.listaAsistencia = new char[n];
             for(int i = 0; i < n; i++)
             {
+                Miembro m = miembros.ElementAt(0);
+                this.asistencia.Add(new Miembro(m.Nombre, m.Correo[0], m.Correo[1], m.TipoMiembro));
                 this.listaAsistencia[i] = 'A';
             }
         }
