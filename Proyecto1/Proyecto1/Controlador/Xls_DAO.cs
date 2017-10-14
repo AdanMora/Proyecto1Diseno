@@ -73,8 +73,11 @@ namespace Proyecto1.Controlador
                     else
                     {
                         band = true;
-                    }                    
+                    }
+                    m = new Miembro(nombre, correo1, correo2, tipo);
+                    listaMiembro.Add(m);
                 }
+                
                 if (band == true)
                 {
                     listaMiembro.Clear();

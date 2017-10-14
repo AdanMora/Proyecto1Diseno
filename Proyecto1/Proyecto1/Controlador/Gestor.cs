@@ -120,7 +120,7 @@ namespace Proyecto1.Controlador
 
         public void actualizarMiembros(String path)
         {
-            Collection<Miembro> miembros = this.xls.cargaXls(path);
+            Collection<Miembro> miembros = this.xls.cargaXls(path);            
             this.consejo.Miembros = miembros;
             this.controlador_sesion.setMiembros(miembros);
             //this.controlador_dao.actualizarMiembros(miembros);

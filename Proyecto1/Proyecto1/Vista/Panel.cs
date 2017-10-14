@@ -31,7 +31,7 @@ namespace Proyecto1.Vista
             string res = "";
             Xls_DAO xls = new Xls_DAO();
             Collection<Miembro> listaMiembros = new Collection<Miembro>();
-            using (OpenFileDialog opf1 = new OpenFileDialog() { Filter = "Excel Workbook|*.xlsx|Excel Workbook|*.xls", ValidateNames = true })
+            using (OpenFileDialog opf1 = new OpenFileDialog() { Filter = "Excel Workbook|*.xls|Excel Workbook|*.xlsx", ValidateNames = true })
             {
                 if (opf1.ShowDialog() == DialogResult.OK)
                 {
