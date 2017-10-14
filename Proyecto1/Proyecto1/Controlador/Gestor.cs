@@ -32,7 +32,6 @@ namespace Proyecto1.Controlador
             this.controlador_solicitudes = new Controlador_Solicitudes();
             this.controlador_docs = new Controlador_Docs();
             this.xls = new Xls_DAO();
-            //this.setControladores();
         }
 
         public Gestor()
@@ -58,8 +57,10 @@ namespace Proyecto1.Controlador
         public void cerrarSesion()
         {
             Sesion sesionActual = this.controlador_sesion.getSesion();
+            sesionActual.Estado = true;
             this.consejo.Sesiones.Add(sesionActual);
 
+            this.controlador_sesion.cerrarSesion();
             // ahora hagan lo que quieran con sesionActual
             
         }
@@ -195,6 +196,25 @@ namespace Proyecto1.Controlador
             return this.controlador_sesion.hayQuorum();
         }
 
+        public Collection<PuntoAgenda> getAllPuntosAgenda()
+        {
+            Collection<PuntoAgenda> puntos = new Collection<PuntoAgenda>();
+
+            foreach (Sesion sesion in this.consejo.Sesiones)
+                foreach (PuntoAgenda punto in sesion.Agenda)
+                    puntos.Add(punto);
+            return puntos;
+        }
+
+        public Collection<string> getAllNumeroSesiones()
+        {
+            Collection<string> numeros = new Collection<string>();
+
+            foreach (Sesion sesion in this.consejo.Sesiones)
+                numeros.Add(sesion.Numero);
+
+            return numeros;
+        }
 
     }
 }
