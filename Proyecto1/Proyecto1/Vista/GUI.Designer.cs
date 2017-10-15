@@ -49,41 +49,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.dg_Solicitudes = new System.Windows.Forms.DataGridView();
             this.tab_PrevioPC = new System.Windows.Forms.TabPage();
-            this.tab_DuranteSec = new System.Windows.Forms.TabPage();
-            this.label9 = new System.Windows.Forms.Label();
-            this.clb_Asistencia = new System.Windows.Forms.CheckedListBox();
-            this.btn_ComprobarQuorum = new System.Windows.Forms.Button();
-            this.dg_AgendaDurante = new System.Windows.Forms.DataGridView();
-            this.label10 = new System.Windows.Forms.Label();
-            this.s_aFavor = new System.Windows.Forms.NumericUpDown();
-            this.s_enContra = new System.Windows.Forms.NumericUpDown();
-            this.s_abstenciones = new System.Windows.Forms.NumericUpDown();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.btn_RegVotacion = new System.Windows.Forms.Button();
-            this.tb_Comentario = new System.Windows.Forms.TextBox();
-            this.btn_RegComentario = new System.Windows.Forms.Button();
-            this.cb_miembros = new System.Windows.Forms.ComboBox();
-            this.label14 = new System.Windows.Forms.Label();
-            this.tab_DurantePC = new System.Windows.Forms.TabPage();
-            this.btn_CerrarSesion = new System.Windows.Forms.Button();
-            this.label15 = new System.Windows.Forms.Label();
-            this.dg_AgendaPC = new System.Windows.Forms.DataGridView();
-            this.btn_MoverPuntoDurante = new System.Windows.Forms.Button();
-            this.label16 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
-            this.s_PosActualDurante = new System.Windows.Forms.NumericUpDown();
-            this.PosFinalDurante = new System.Windows.Forms.NumericUpDown();
-            this.label18 = new System.Windows.Forms.Label();
-            this.label19 = new System.Windows.Forms.Label();
-            this.label20 = new System.Windows.Forms.Label();
-            this.label21 = new System.Windows.Forms.Label();
-            this.tb_nombreDurante = new System.Windows.Forms.TextBox();
-            this.rtb_ConsiderandosDurante = new System.Windows.Forms.RichTextBox();
-            this.rtb_resultandosDurante = new System.Windows.Forms.RichTextBox();
-            this.rtb_SeAcuerdaDurante = new System.Windows.Forms.RichTextBox();
-            this.btn_AgregarPuntoDurante = new System.Windows.Forms.Button();
+            this.btn_EliminarPunto = new System.Windows.Forms.Button();
             this.btn_AgregarPuntoPrevio = new System.Windows.Forms.Button();
             this.rtb_seAcuerdaPrevio = new System.Windows.Forms.RichTextBox();
             this.rtb_ResultandosPrevio = new System.Windows.Forms.RichTextBox();
@@ -100,17 +66,51 @@
             this.btn_MoverPuntoPrevio = new System.Windows.Forms.Button();
             this.label25 = new System.Windows.Forms.Label();
             this.dg_AgendaPrevio = new System.Windows.Forms.DataGridView();
-            this.btn_EliminarPunto = new System.Windows.Forms.Button();
+            this.tab_DuranteSec = new System.Windows.Forms.TabPage();
+            this.btn_CerrarSesion = new System.Windows.Forms.Button();
+            this.label14 = new System.Windows.Forms.Label();
+            this.cb_miembros = new System.Windows.Forms.ComboBox();
+            this.btn_RegComentario = new System.Windows.Forms.Button();
+            this.tb_Comentario = new System.Windows.Forms.TextBox();
+            this.btn_RegVotacion = new System.Windows.Forms.Button();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.s_abstenciones = new System.Windows.Forms.NumericUpDown();
+            this.s_enContra = new System.Windows.Forms.NumericUpDown();
+            this.s_aFavor = new System.Windows.Forms.NumericUpDown();
+            this.label10 = new System.Windows.Forms.Label();
+            this.dg_AgendaDurante = new System.Windows.Forms.DataGridView();
+            this.btn_ComprobarQuorum = new System.Windows.Forms.Button();
+            this.label9 = new System.Windows.Forms.Label();
+            this.clb_Asistencia = new System.Windows.Forms.CheckedListBox();
+            this.tab_DurantePC = new System.Windows.Forms.TabPage();
+            this.btn_AgregarPuntoDurante = new System.Windows.Forms.Button();
+            this.rtb_SeAcuerdaDurante = new System.Windows.Forms.RichTextBox();
+            this.rtb_resultandosDurante = new System.Windows.Forms.RichTextBox();
+            this.rtb_ConsiderandosDurante = new System.Windows.Forms.RichTextBox();
+            this.tb_nombreDurante = new System.Windows.Forms.TextBox();
+            this.label21 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.s_PosActualDurante = new System.Windows.Forms.NumericUpDown();
+            this.PosFinalDurante = new System.Windows.Forms.NumericUpDown();
+            this.btn_MoverPuntoDurante = new System.Windows.Forms.Button();
+            this.label15 = new System.Windows.Forms.Label();
+            this.dg_AgendaPC = new System.Windows.Forms.DataGridView();
             this.tab_SesionTerminada = new System.Windows.Forms.TabPage();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.label28 = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.btn_GenAcuerdo = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label27 = new System.Windows.Forms.Label();
             this.label26 = new System.Windows.Forms.Label();
             this.dg_PuntosAgendaFinal = new System.Windows.Forms.DataGridView();
-            this.label27 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.btn_GenAcuerdo = new System.Windows.Forms.Button();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.label28 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             this.Tab.SuspendLayout();
             this.tab_PrevioSec.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.s_numeroSesion)).BeginInit();
@@ -118,18 +118,18 @@
             this.tab_Solicitudes.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dg_Solicitudes)).BeginInit();
             this.tab_PrevioPC.SuspendLayout();
-            this.tab_DuranteSec.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dg_AgendaDurante)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.s_aFavor)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.s_enContra)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.s_abstenciones)).BeginInit();
-            this.tab_DurantePC.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dg_AgendaPC)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.s_PosActualDurante)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PosFinalDurante)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.s_PosActualPrevio)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.s_PosFinalPrevio)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dg_AgendaPrevio)).BeginInit();
+            this.tab_DuranteSec.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.s_abstenciones)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.s_enContra)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.s_aFavor)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dg_AgendaDurante)).BeginInit();
+            this.tab_DurantePC.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.s_PosActualDurante)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PosFinalDurante)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dg_AgendaPC)).BeginInit();
             this.tab_SesionTerminada.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dg_PuntosAgendaFinal)).BeginInit();
             this.SuspendLayout();
@@ -256,11 +256,15 @@
             // 
             this.dg_ListaMiembros.AllowUserToAddRows = false;
             this.dg_ListaMiembros.AllowUserToDeleteRows = false;
+            this.dg_ListaMiembros.AllowUserToResizeColumns = false;
+            this.dg_ListaMiembros.AllowUserToResizeRows = false;
             this.dg_ListaMiembros.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dg_ListaMiembros.Location = new System.Drawing.Point(505, 88);
+            this.dg_ListaMiembros.MultiSelect = false;
             this.dg_ListaMiembros.Name = "dg_ListaMiembros";
             this.dg_ListaMiembros.ReadOnly = true;
             this.dg_ListaMiembros.RowTemplate.Height = 24;
+            this.dg_ListaMiembros.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dg_ListaMiembros.Size = new System.Drawing.Size(583, 410);
             this.dg_ListaMiembros.TabIndex = 3;
             // 
@@ -272,6 +276,7 @@
             this.btn_CrearSesion.TabIndex = 2;
             this.btn_CrearSesion.Text = "Crear sesion";
             this.btn_CrearSesion.UseVisualStyleBackColor = true;
+            this.btn_CrearSesion.Click += new System.EventHandler(this.btn_CrearSesion_Click);
             // 
             // btn_Solicitudes
             // 
@@ -385,351 +390,14 @@
             this.tab_PrevioPC.Text = "Gestión de la Agenda (Previo)";
             this.tab_PrevioPC.UseVisualStyleBackColor = true;
             // 
-            // tab_DuranteSec
-            // 
-            this.tab_DuranteSec.Controls.Add(this.btn_CerrarSesion);
-            this.tab_DuranteSec.Controls.Add(this.label14);
-            this.tab_DuranteSec.Controls.Add(this.cb_miembros);
-            this.tab_DuranteSec.Controls.Add(this.btn_RegComentario);
-            this.tab_DuranteSec.Controls.Add(this.tb_Comentario);
-            this.tab_DuranteSec.Controls.Add(this.btn_RegVotacion);
-            this.tab_DuranteSec.Controls.Add(this.label13);
-            this.tab_DuranteSec.Controls.Add(this.label12);
-            this.tab_DuranteSec.Controls.Add(this.label11);
-            this.tab_DuranteSec.Controls.Add(this.s_abstenciones);
-            this.tab_DuranteSec.Controls.Add(this.s_enContra);
-            this.tab_DuranteSec.Controls.Add(this.s_aFavor);
-            this.tab_DuranteSec.Controls.Add(this.label10);
-            this.tab_DuranteSec.Controls.Add(this.dg_AgendaDurante);
-            this.tab_DuranteSec.Controls.Add(this.btn_ComprobarQuorum);
-            this.tab_DuranteSec.Controls.Add(this.label9);
-            this.tab_DuranteSec.Controls.Add(this.clb_Asistencia);
-            this.tab_DuranteSec.Location = new System.Drawing.Point(4, 29);
-            this.tab_DuranteSec.Name = "tab_DuranteSec";
-            this.tab_DuranteSec.Padding = new System.Windows.Forms.Padding(3);
-            this.tab_DuranteSec.Size = new System.Drawing.Size(1121, 526);
-            this.tab_DuranteSec.TabIndex = 3;
-            this.tab_DuranteSec.Text = "Durante Sesión (Secretaria)";
-            this.tab_DuranteSec.UseVisualStyleBackColor = true;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(22, 21);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(152, 20);
-            this.label9.TabIndex = 1;
-            this.label9.Text = "Lista de Asistencia";
-            // 
-            // clb_Asistencia
-            // 
-            this.clb_Asistencia.FormattingEnabled = true;
-            this.clb_Asistencia.Location = new System.Drawing.Point(26, 55);
-            this.clb_Asistencia.Name = "clb_Asistencia";
-            this.clb_Asistencia.Size = new System.Drawing.Size(254, 400);
-            this.clb_Asistencia.TabIndex = 0;
-            this.clb_Asistencia.SelectedIndexChanged += new System.EventHandler(this.clb_Asistencia_SelectedIndexChanged);
-            // 
-            // btn_ComprobarQuorum
-            // 
-            this.btn_ComprobarQuorum.Location = new System.Drawing.Point(51, 470);
-            this.btn_ComprobarQuorum.Name = "btn_ComprobarQuorum";
-            this.btn_ComprobarQuorum.Size = new System.Drawing.Size(184, 39);
-            this.btn_ComprobarQuorum.TabIndex = 2;
-            this.btn_ComprobarQuorum.Text = "Comprobar quorum";
-            this.btn_ComprobarQuorum.UseVisualStyleBackColor = true;
-            this.btn_ComprobarQuorum.Click += new System.EventHandler(this.btn_IniciarSesion_Click);
-            // 
-            // dg_AgendaDurante
-            // 
-            this.dg_AgendaDurante.AllowUserToAddRows = false;
-            this.dg_AgendaDurante.AllowUserToDeleteRows = false;
-            this.dg_AgendaDurante.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dg_AgendaDurante.Location = new System.Drawing.Point(608, 55);
-            this.dg_AgendaDurante.MultiSelect = false;
-            this.dg_AgendaDurante.Name = "dg_AgendaDurante";
-            this.dg_AgendaDurante.ReadOnly = true;
-            this.dg_AgendaDurante.RowTemplate.Height = 24;
-            this.dg_AgendaDurante.Size = new System.Drawing.Size(489, 400);
-            this.dg_AgendaDurante.TabIndex = 5;
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(604, 21);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(65, 20);
-            this.label10.TabIndex = 6;
-            this.label10.Text = "Agenda";
-            // 
-            // s_aFavor
-            // 
-            this.s_aFavor.Location = new System.Drawing.Point(478, 55);
-            this.s_aFavor.Name = "s_aFavor";
-            this.s_aFavor.Size = new System.Drawing.Size(77, 27);
-            this.s_aFavor.TabIndex = 7;
-            // 
-            // s_enContra
-            // 
-            this.s_enContra.Location = new System.Drawing.Point(478, 102);
-            this.s_enContra.Name = "s_enContra";
-            this.s_enContra.Size = new System.Drawing.Size(77, 27);
-            this.s_enContra.TabIndex = 8;
-            // 
-            // s_abstenciones
-            // 
-            this.s_abstenciones.Location = new System.Drawing.Point(478, 150);
-            this.s_abstenciones.Name = "s_abstenciones";
-            this.s_abstenciones.Size = new System.Drawing.Size(77, 27);
-            this.s_abstenciones.TabIndex = 9;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(336, 57);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(113, 20);
-            this.label11.TabIndex = 10;
-            this.label11.Text = "Votos a favor:";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(317, 104);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(132, 20);
-            this.label12.TabIndex = 11;
-            this.label12.Text = "Votos en contra:";
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(334, 152);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(115, 20);
-            this.label13.TabIndex = 12;
-            this.label13.Text = "Abstenciones:";
-            // 
-            // btn_RegVotacion
-            // 
-            this.btn_RegVotacion.Location = new System.Drawing.Point(353, 203);
-            this.btn_RegVotacion.Name = "btn_RegVotacion";
-            this.btn_RegVotacion.Size = new System.Drawing.Size(184, 39);
-            this.btn_RegVotacion.TabIndex = 13;
-            this.btn_RegVotacion.Text = "Registrar votación";
-            this.btn_RegVotacion.UseVisualStyleBackColor = true;
-            this.btn_RegVotacion.Click += new System.EventHandler(this.button1_Click_2);
-            // 
-            // tb_Comentario
-            // 
-            this.tb_Comentario.Location = new System.Drawing.Point(321, 321);
-            this.tb_Comentario.Multiline = true;
-            this.tb_Comentario.Name = "tb_Comentario";
-            this.tb_Comentario.Size = new System.Drawing.Size(242, 134);
-            this.tb_Comentario.TabIndex = 14;
-            // 
-            // btn_RegComentario
-            // 
-            this.btn_RegComentario.Location = new System.Drawing.Point(338, 470);
-            this.btn_RegComentario.Name = "btn_RegComentario";
-            this.btn_RegComentario.Size = new System.Drawing.Size(210, 39);
-            this.btn_RegComentario.TabIndex = 15;
-            this.btn_RegComentario.Text = "Registra Comentario";
-            this.btn_RegComentario.UseVisualStyleBackColor = true;
-            // 
-            // cb_miembros
-            // 
-            this.cb_miembros.FormattingEnabled = true;
-            this.cb_miembros.Location = new System.Drawing.Point(320, 277);
-            this.cb_miembros.Name = "cb_miembros";
-            this.cb_miembros.Size = new System.Drawing.Size(243, 28);
-            this.cb_miembros.TabIndex = 16;
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(308, 248);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(255, 20);
-            this.label14.TabIndex = 17;
-            this.label14.Text = "-----------------------------------------";
-            this.label14.Click += new System.EventHandler(this.label14_Click);
-            // 
-            // tab_DurantePC
-            // 
-            this.tab_DurantePC.Controls.Add(this.btn_AgregarPuntoDurante);
-            this.tab_DurantePC.Controls.Add(this.rtb_SeAcuerdaDurante);
-            this.tab_DurantePC.Controls.Add(this.rtb_resultandosDurante);
-            this.tab_DurantePC.Controls.Add(this.rtb_ConsiderandosDurante);
-            this.tab_DurantePC.Controls.Add(this.tb_nombreDurante);
-            this.tab_DurantePC.Controls.Add(this.label21);
-            this.tab_DurantePC.Controls.Add(this.label20);
-            this.tab_DurantePC.Controls.Add(this.label19);
-            this.tab_DurantePC.Controls.Add(this.label18);
-            this.tab_DurantePC.Controls.Add(this.label16);
-            this.tab_DurantePC.Controls.Add(this.label17);
-            this.tab_DurantePC.Controls.Add(this.s_PosActualDurante);
-            this.tab_DurantePC.Controls.Add(this.PosFinalDurante);
-            this.tab_DurantePC.Controls.Add(this.btn_MoverPuntoDurante);
-            this.tab_DurantePC.Controls.Add(this.label15);
-            this.tab_DurantePC.Controls.Add(this.dg_AgendaPC);
-            this.tab_DurantePC.Location = new System.Drawing.Point(4, 29);
-            this.tab_DurantePC.Name = "tab_DurantePC";
-            this.tab_DurantePC.Padding = new System.Windows.Forms.Padding(3);
-            this.tab_DurantePC.Size = new System.Drawing.Size(1121, 526);
-            this.tab_DurantePC.TabIndex = 4;
-            this.tab_DurantePC.Text = "Durante Sesión (PC)";
-            this.tab_DurantePC.UseVisualStyleBackColor = true;
-            // 
-            // btn_CerrarSesion
-            // 
-            this.btn_CerrarSesion.Location = new System.Drawing.Point(913, 470);
-            this.btn_CerrarSesion.Name = "btn_CerrarSesion";
-            this.btn_CerrarSesion.Size = new System.Drawing.Size(184, 39);
-            this.btn_CerrarSesion.TabIndex = 18;
-            this.btn_CerrarSesion.Text = "Cerrar sesión";
-            this.btn_CerrarSesion.UseVisualStyleBackColor = true;
-            this.btn_CerrarSesion.Click += new System.EventHandler(this.button4_Click);
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(16, 21);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(65, 20);
-            this.label15.TabIndex = 8;
-            this.label15.Text = "Agenda";
-            // 
-            // dg_AgendaPC
-            // 
-            this.dg_AgendaPC.AllowUserToAddRows = false;
-            this.dg_AgendaPC.AllowUserToDeleteRows = false;
-            this.dg_AgendaPC.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dg_AgendaPC.Location = new System.Drawing.Point(20, 54);
-            this.dg_AgendaPC.MultiSelect = false;
-            this.dg_AgendaPC.Name = "dg_AgendaPC";
-            this.dg_AgendaPC.ReadOnly = true;
-            this.dg_AgendaPC.RowTemplate.Height = 24;
-            this.dg_AgendaPC.Size = new System.Drawing.Size(628, 456);
-            this.dg_AgendaPC.TabIndex = 7;
-            // 
-            // btn_MoverPuntoDurante
-            // 
-            this.btn_MoverPuntoDurante.Location = new System.Drawing.Point(696, 54);
-            this.btn_MoverPuntoDurante.Name = "btn_MoverPuntoDurante";
-            this.btn_MoverPuntoDurante.Size = new System.Drawing.Size(184, 39);
-            this.btn_MoverPuntoDurante.TabIndex = 15;
-            this.btn_MoverPuntoDurante.Text = "Mover Punto";
-            this.btn_MoverPuntoDurante.UseVisualStyleBackColor = true;
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(792, 147);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(124, 20);
-            this.label16.TabIndex = 20;
-            this.label16.Text = "Posición Final: ";
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(792, 112);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(130, 20);
-            this.label17.TabIndex = 19;
-            this.label17.Text = "Posición Actual:";
-            // 
-            // s_PosActualDurante
-            // 
-            this.s_PosActualDurante.Location = new System.Drawing.Point(951, 110);
-            this.s_PosActualDurante.Name = "s_PosActualDurante";
-            this.s_PosActualDurante.Size = new System.Drawing.Size(120, 27);
-            this.s_PosActualDurante.TabIndex = 18;
-            // 
-            // PosFinalDurante
-            // 
-            this.PosFinalDurante.Location = new System.Drawing.Point(951, 145);
-            this.PosFinalDurante.Name = "PosFinalDurante";
-            this.PosFinalDurante.Size = new System.Drawing.Size(120, 27);
-            this.PosFinalDurante.TabIndex = 17;
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(673, 265);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(126, 20);
-            this.label18.TabIndex = 21;
-            this.label18.Text = "Considerandos:";
-            this.label18.Click += new System.EventHandler(this.label18_Click);
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(692, 353);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(107, 20);
-            this.label19.TabIndex = 22;
-            this.label19.Text = "Resultandos:";
-            // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(668, 444);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(131, 20);
-            this.label20.TabIndex = 23;
-            this.label20.Text = "Se acuerda que:";
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(726, 198);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(73, 20);
-            this.label21.TabIndex = 24;
-            this.label21.Text = "Nombre:";
-            // 
-            // tb_nombreDurante
-            // 
-            this.tb_nombreDurante.Location = new System.Drawing.Point(814, 195);
-            this.tb_nombreDurante.Name = "tb_nombreDurante";
-            this.tb_nombreDurante.Size = new System.Drawing.Size(282, 27);
-            this.tb_nombreDurante.TabIndex = 25;
-            // 
-            // rtb_ConsiderandosDurante
-            // 
-            this.rtb_ConsiderandosDurante.Location = new System.Drawing.Point(814, 265);
-            this.rtb_ConsiderandosDurante.Name = "rtb_ConsiderandosDurante";
-            this.rtb_ConsiderandosDurante.Size = new System.Drawing.Size(282, 75);
-            this.rtb_ConsiderandosDurante.TabIndex = 27;
-            this.rtb_ConsiderandosDurante.Text = "";
-            // 
-            // rtb_resultandosDurante
-            // 
-            this.rtb_resultandosDurante.Location = new System.Drawing.Point(814, 353);
-            this.rtb_resultandosDurante.Name = "rtb_resultandosDurante";
-            this.rtb_resultandosDurante.Size = new System.Drawing.Size(282, 75);
-            this.rtb_resultandosDurante.TabIndex = 28;
-            this.rtb_resultandosDurante.Text = "";
-            // 
-            // rtb_SeAcuerdaDurante
-            // 
-            this.rtb_SeAcuerdaDurante.Location = new System.Drawing.Point(814, 444);
-            this.rtb_SeAcuerdaDurante.Name = "rtb_SeAcuerdaDurante";
-            this.rtb_SeAcuerdaDurante.Size = new System.Drawing.Size(282, 75);
-            this.rtb_SeAcuerdaDurante.TabIndex = 29;
-            this.rtb_SeAcuerdaDurante.Text = "";
-            // 
-            // btn_AgregarPuntoDurante
-            // 
-            this.btn_AgregarPuntoDurante.Location = new System.Drawing.Point(912, 54);
-            this.btn_AgregarPuntoDurante.Name = "btn_AgregarPuntoDurante";
-            this.btn_AgregarPuntoDurante.Size = new System.Drawing.Size(184, 39);
-            this.btn_AgregarPuntoDurante.TabIndex = 30;
-            this.btn_AgregarPuntoDurante.Text = "Agregar Punto";
-            this.btn_AgregarPuntoDurante.UseVisualStyleBackColor = true;
+            // btn_EliminarPunto
+            // 
+            this.btn_EliminarPunto.Location = new System.Drawing.Point(971, 47);
+            this.btn_EliminarPunto.Name = "btn_EliminarPunto";
+            this.btn_EliminarPunto.Size = new System.Drawing.Size(129, 39);
+            this.btn_EliminarPunto.TabIndex = 47;
+            this.btn_EliminarPunto.Text = "Eliminar Punto";
+            this.btn_EliminarPunto.UseVisualStyleBackColor = true;
             // 
             // btn_AgregarPuntoPrevio
             // 
@@ -870,14 +538,351 @@
             this.dg_AgendaPrevio.Size = new System.Drawing.Size(628, 456);
             this.dg_AgendaPrevio.TabIndex = 31;
             // 
-            // btn_EliminarPunto
+            // tab_DuranteSec
             // 
-            this.btn_EliminarPunto.Location = new System.Drawing.Point(971, 47);
-            this.btn_EliminarPunto.Name = "btn_EliminarPunto";
-            this.btn_EliminarPunto.Size = new System.Drawing.Size(129, 39);
-            this.btn_EliminarPunto.TabIndex = 47;
-            this.btn_EliminarPunto.Text = "Eliminar Punto";
-            this.btn_EliminarPunto.UseVisualStyleBackColor = true;
+            this.tab_DuranteSec.Controls.Add(this.btn_CerrarSesion);
+            this.tab_DuranteSec.Controls.Add(this.label14);
+            this.tab_DuranteSec.Controls.Add(this.cb_miembros);
+            this.tab_DuranteSec.Controls.Add(this.btn_RegComentario);
+            this.tab_DuranteSec.Controls.Add(this.tb_Comentario);
+            this.tab_DuranteSec.Controls.Add(this.btn_RegVotacion);
+            this.tab_DuranteSec.Controls.Add(this.label13);
+            this.tab_DuranteSec.Controls.Add(this.label12);
+            this.tab_DuranteSec.Controls.Add(this.label11);
+            this.tab_DuranteSec.Controls.Add(this.s_abstenciones);
+            this.tab_DuranteSec.Controls.Add(this.s_enContra);
+            this.tab_DuranteSec.Controls.Add(this.s_aFavor);
+            this.tab_DuranteSec.Controls.Add(this.label10);
+            this.tab_DuranteSec.Controls.Add(this.dg_AgendaDurante);
+            this.tab_DuranteSec.Controls.Add(this.btn_ComprobarQuorum);
+            this.tab_DuranteSec.Controls.Add(this.label9);
+            this.tab_DuranteSec.Controls.Add(this.clb_Asistencia);
+            this.tab_DuranteSec.Location = new System.Drawing.Point(4, 29);
+            this.tab_DuranteSec.Name = "tab_DuranteSec";
+            this.tab_DuranteSec.Padding = new System.Windows.Forms.Padding(3);
+            this.tab_DuranteSec.Size = new System.Drawing.Size(1121, 526);
+            this.tab_DuranteSec.TabIndex = 3;
+            this.tab_DuranteSec.Text = "Durante Sesión (Secretaria)";
+            this.tab_DuranteSec.UseVisualStyleBackColor = true;
+            // 
+            // btn_CerrarSesion
+            // 
+            this.btn_CerrarSesion.Location = new System.Drawing.Point(913, 470);
+            this.btn_CerrarSesion.Name = "btn_CerrarSesion";
+            this.btn_CerrarSesion.Size = new System.Drawing.Size(184, 39);
+            this.btn_CerrarSesion.TabIndex = 18;
+            this.btn_CerrarSesion.Text = "Cerrar sesión";
+            this.btn_CerrarSesion.UseVisualStyleBackColor = true;
+            this.btn_CerrarSesion.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(308, 248);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(255, 20);
+            this.label14.TabIndex = 17;
+            this.label14.Text = "-----------------------------------------";
+            this.label14.Click += new System.EventHandler(this.label14_Click);
+            // 
+            // cb_miembros
+            // 
+            this.cb_miembros.FormattingEnabled = true;
+            this.cb_miembros.Location = new System.Drawing.Point(320, 277);
+            this.cb_miembros.Name = "cb_miembros";
+            this.cb_miembros.Size = new System.Drawing.Size(243, 28);
+            this.cb_miembros.TabIndex = 16;
+            // 
+            // btn_RegComentario
+            // 
+            this.btn_RegComentario.Location = new System.Drawing.Point(338, 470);
+            this.btn_RegComentario.Name = "btn_RegComentario";
+            this.btn_RegComentario.Size = new System.Drawing.Size(210, 39);
+            this.btn_RegComentario.TabIndex = 15;
+            this.btn_RegComentario.Text = "Registra Comentario";
+            this.btn_RegComentario.UseVisualStyleBackColor = true;
+            // 
+            // tb_Comentario
+            // 
+            this.tb_Comentario.Location = new System.Drawing.Point(321, 321);
+            this.tb_Comentario.Multiline = true;
+            this.tb_Comentario.Name = "tb_Comentario";
+            this.tb_Comentario.Size = new System.Drawing.Size(242, 134);
+            this.tb_Comentario.TabIndex = 14;
+            // 
+            // btn_RegVotacion
+            // 
+            this.btn_RegVotacion.Location = new System.Drawing.Point(353, 203);
+            this.btn_RegVotacion.Name = "btn_RegVotacion";
+            this.btn_RegVotacion.Size = new System.Drawing.Size(184, 39);
+            this.btn_RegVotacion.TabIndex = 13;
+            this.btn_RegVotacion.Text = "Registrar votación";
+            this.btn_RegVotacion.UseVisualStyleBackColor = true;
+            this.btn_RegVotacion.Click += new System.EventHandler(this.button1_Click_2);
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(334, 152);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(115, 20);
+            this.label13.TabIndex = 12;
+            this.label13.Text = "Abstenciones:";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(317, 104);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(132, 20);
+            this.label12.TabIndex = 11;
+            this.label12.Text = "Votos en contra:";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(336, 57);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(113, 20);
+            this.label11.TabIndex = 10;
+            this.label11.Text = "Votos a favor:";
+            // 
+            // s_abstenciones
+            // 
+            this.s_abstenciones.Location = new System.Drawing.Point(478, 150);
+            this.s_abstenciones.Name = "s_abstenciones";
+            this.s_abstenciones.Size = new System.Drawing.Size(77, 27);
+            this.s_abstenciones.TabIndex = 9;
+            // 
+            // s_enContra
+            // 
+            this.s_enContra.Location = new System.Drawing.Point(478, 102);
+            this.s_enContra.Name = "s_enContra";
+            this.s_enContra.Size = new System.Drawing.Size(77, 27);
+            this.s_enContra.TabIndex = 8;
+            // 
+            // s_aFavor
+            // 
+            this.s_aFavor.Location = new System.Drawing.Point(478, 55);
+            this.s_aFavor.Name = "s_aFavor";
+            this.s_aFavor.Size = new System.Drawing.Size(77, 27);
+            this.s_aFavor.TabIndex = 7;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(604, 21);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(65, 20);
+            this.label10.TabIndex = 6;
+            this.label10.Text = "Agenda";
+            // 
+            // dg_AgendaDurante
+            // 
+            this.dg_AgendaDurante.AllowUserToAddRows = false;
+            this.dg_AgendaDurante.AllowUserToDeleteRows = false;
+            this.dg_AgendaDurante.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dg_AgendaDurante.Location = new System.Drawing.Point(608, 55);
+            this.dg_AgendaDurante.MultiSelect = false;
+            this.dg_AgendaDurante.Name = "dg_AgendaDurante";
+            this.dg_AgendaDurante.ReadOnly = true;
+            this.dg_AgendaDurante.RowTemplate.Height = 24;
+            this.dg_AgendaDurante.Size = new System.Drawing.Size(489, 400);
+            this.dg_AgendaDurante.TabIndex = 5;
+            // 
+            // btn_ComprobarQuorum
+            // 
+            this.btn_ComprobarQuorum.Location = new System.Drawing.Point(51, 470);
+            this.btn_ComprobarQuorum.Name = "btn_ComprobarQuorum";
+            this.btn_ComprobarQuorum.Size = new System.Drawing.Size(184, 39);
+            this.btn_ComprobarQuorum.TabIndex = 2;
+            this.btn_ComprobarQuorum.Text = "Comprobar quorum";
+            this.btn_ComprobarQuorum.UseVisualStyleBackColor = true;
+            this.btn_ComprobarQuorum.Click += new System.EventHandler(this.btn_IniciarSesion_Click);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(22, 21);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(152, 20);
+            this.label9.TabIndex = 1;
+            this.label9.Text = "Lista de Asistencia";
+            // 
+            // clb_Asistencia
+            // 
+            this.clb_Asistencia.FormattingEnabled = true;
+            this.clb_Asistencia.Location = new System.Drawing.Point(26, 55);
+            this.clb_Asistencia.Name = "clb_Asistencia";
+            this.clb_Asistencia.Size = new System.Drawing.Size(254, 400);
+            this.clb_Asistencia.TabIndex = 0;
+            this.clb_Asistencia.SelectedIndexChanged += new System.EventHandler(this.clb_Asistencia_SelectedIndexChanged);
+            // 
+            // tab_DurantePC
+            // 
+            this.tab_DurantePC.Controls.Add(this.btn_AgregarPuntoDurante);
+            this.tab_DurantePC.Controls.Add(this.rtb_SeAcuerdaDurante);
+            this.tab_DurantePC.Controls.Add(this.rtb_resultandosDurante);
+            this.tab_DurantePC.Controls.Add(this.rtb_ConsiderandosDurante);
+            this.tab_DurantePC.Controls.Add(this.tb_nombreDurante);
+            this.tab_DurantePC.Controls.Add(this.label21);
+            this.tab_DurantePC.Controls.Add(this.label20);
+            this.tab_DurantePC.Controls.Add(this.label19);
+            this.tab_DurantePC.Controls.Add(this.label18);
+            this.tab_DurantePC.Controls.Add(this.label16);
+            this.tab_DurantePC.Controls.Add(this.label17);
+            this.tab_DurantePC.Controls.Add(this.s_PosActualDurante);
+            this.tab_DurantePC.Controls.Add(this.PosFinalDurante);
+            this.tab_DurantePC.Controls.Add(this.btn_MoverPuntoDurante);
+            this.tab_DurantePC.Controls.Add(this.label15);
+            this.tab_DurantePC.Controls.Add(this.dg_AgendaPC);
+            this.tab_DurantePC.Location = new System.Drawing.Point(4, 29);
+            this.tab_DurantePC.Name = "tab_DurantePC";
+            this.tab_DurantePC.Padding = new System.Windows.Forms.Padding(3);
+            this.tab_DurantePC.Size = new System.Drawing.Size(1121, 526);
+            this.tab_DurantePC.TabIndex = 4;
+            this.tab_DurantePC.Text = "Durante Sesión (PC)";
+            this.tab_DurantePC.UseVisualStyleBackColor = true;
+            // 
+            // btn_AgregarPuntoDurante
+            // 
+            this.btn_AgregarPuntoDurante.Location = new System.Drawing.Point(912, 54);
+            this.btn_AgregarPuntoDurante.Name = "btn_AgregarPuntoDurante";
+            this.btn_AgregarPuntoDurante.Size = new System.Drawing.Size(184, 39);
+            this.btn_AgregarPuntoDurante.TabIndex = 30;
+            this.btn_AgregarPuntoDurante.Text = "Agregar Punto";
+            this.btn_AgregarPuntoDurante.UseVisualStyleBackColor = true;
+            // 
+            // rtb_SeAcuerdaDurante
+            // 
+            this.rtb_SeAcuerdaDurante.Location = new System.Drawing.Point(814, 444);
+            this.rtb_SeAcuerdaDurante.Name = "rtb_SeAcuerdaDurante";
+            this.rtb_SeAcuerdaDurante.Size = new System.Drawing.Size(282, 75);
+            this.rtb_SeAcuerdaDurante.TabIndex = 29;
+            this.rtb_SeAcuerdaDurante.Text = "";
+            // 
+            // rtb_resultandosDurante
+            // 
+            this.rtb_resultandosDurante.Location = new System.Drawing.Point(814, 353);
+            this.rtb_resultandosDurante.Name = "rtb_resultandosDurante";
+            this.rtb_resultandosDurante.Size = new System.Drawing.Size(282, 75);
+            this.rtb_resultandosDurante.TabIndex = 28;
+            this.rtb_resultandosDurante.Text = "";
+            // 
+            // rtb_ConsiderandosDurante
+            // 
+            this.rtb_ConsiderandosDurante.Location = new System.Drawing.Point(814, 265);
+            this.rtb_ConsiderandosDurante.Name = "rtb_ConsiderandosDurante";
+            this.rtb_ConsiderandosDurante.Size = new System.Drawing.Size(282, 75);
+            this.rtb_ConsiderandosDurante.TabIndex = 27;
+            this.rtb_ConsiderandosDurante.Text = "";
+            // 
+            // tb_nombreDurante
+            // 
+            this.tb_nombreDurante.Location = new System.Drawing.Point(814, 195);
+            this.tb_nombreDurante.Name = "tb_nombreDurante";
+            this.tb_nombreDurante.Size = new System.Drawing.Size(282, 27);
+            this.tb_nombreDurante.TabIndex = 25;
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(726, 198);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(73, 20);
+            this.label21.TabIndex = 24;
+            this.label21.Text = "Nombre:";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(668, 444);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(131, 20);
+            this.label20.TabIndex = 23;
+            this.label20.Text = "Se acuerda que:";
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(692, 353);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(107, 20);
+            this.label19.TabIndex = 22;
+            this.label19.Text = "Resultandos:";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(673, 265);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(126, 20);
+            this.label18.TabIndex = 21;
+            this.label18.Text = "Considerandos:";
+            this.label18.Click += new System.EventHandler(this.label18_Click);
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(792, 147);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(124, 20);
+            this.label16.TabIndex = 20;
+            this.label16.Text = "Posición Final: ";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(792, 112);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(130, 20);
+            this.label17.TabIndex = 19;
+            this.label17.Text = "Posición Actual:";
+            // 
+            // s_PosActualDurante
+            // 
+            this.s_PosActualDurante.Location = new System.Drawing.Point(951, 110);
+            this.s_PosActualDurante.Name = "s_PosActualDurante";
+            this.s_PosActualDurante.Size = new System.Drawing.Size(120, 27);
+            this.s_PosActualDurante.TabIndex = 18;
+            // 
+            // PosFinalDurante
+            // 
+            this.PosFinalDurante.Location = new System.Drawing.Point(951, 145);
+            this.PosFinalDurante.Name = "PosFinalDurante";
+            this.PosFinalDurante.Size = new System.Drawing.Size(120, 27);
+            this.PosFinalDurante.TabIndex = 17;
+            // 
+            // btn_MoverPuntoDurante
+            // 
+            this.btn_MoverPuntoDurante.Location = new System.Drawing.Point(696, 54);
+            this.btn_MoverPuntoDurante.Name = "btn_MoverPuntoDurante";
+            this.btn_MoverPuntoDurante.Size = new System.Drawing.Size(184, 39);
+            this.btn_MoverPuntoDurante.TabIndex = 15;
+            this.btn_MoverPuntoDurante.Text = "Mover Punto";
+            this.btn_MoverPuntoDurante.UseVisualStyleBackColor = true;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(16, 21);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(65, 20);
+            this.label15.TabIndex = 8;
+            this.label15.Text = "Agenda";
+            // 
+            // dg_AgendaPC
+            // 
+            this.dg_AgendaPC.AllowUserToAddRows = false;
+            this.dg_AgendaPC.AllowUserToDeleteRows = false;
+            this.dg_AgendaPC.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dg_AgendaPC.Location = new System.Drawing.Point(20, 54);
+            this.dg_AgendaPC.MultiSelect = false;
+            this.dg_AgendaPC.Name = "dg_AgendaPC";
+            this.dg_AgendaPC.ReadOnly = true;
+            this.dg_AgendaPC.RowTemplate.Height = 24;
+            this.dg_AgendaPC.Size = new System.Drawing.Size(628, 456);
+            this.dg_AgendaPC.TabIndex = 7;
             // 
             // tab_SesionTerminada
             // 
@@ -897,6 +902,67 @@
             this.tab_SesionTerminada.TabIndex = 5;
             this.tab_SesionTerminada.Text = "Sesión Terminada";
             this.tab_SesionTerminada.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(674, 322);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(184, 39);
+            this.button2.TabIndex = 20;
+            this.button2.Text = "Generar acuerdo";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(674, 264);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(184, 39);
+            this.button1.TabIndex = 19;
+            this.button1.Text = "Generar acuerdo";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Location = new System.Drawing.Point(588, 202);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(65, 20);
+            this.label28.TabIndex = 18;
+            this.label28.Text = "Sesión:";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(674, 199);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(213, 28);
+            this.comboBox1.TabIndex = 17;
+            // 
+            // btn_GenAcuerdo
+            // 
+            this.btn_GenAcuerdo.Location = new System.Drawing.Point(674, 121);
+            this.btn_GenAcuerdo.Name = "btn_GenAcuerdo";
+            this.btn_GenAcuerdo.Size = new System.Drawing.Size(184, 39);
+            this.btn_GenAcuerdo.TabIndex = 16;
+            this.btn_GenAcuerdo.Text = "Generar acuerdo";
+            this.btn_GenAcuerdo.UseVisualStyleBackColor = true;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(674, 59);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(420, 27);
+            this.textBox1.TabIndex = 12;
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Location = new System.Drawing.Point(543, 62);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(110, 20);
+            this.label27.TabIndex = 11;
+            this.label27.Text = "Destinatario: ";
+            this.label27.Click += new System.EventHandler(this.label27_Click);
             // 
             // label26
             // 
@@ -920,67 +986,6 @@
             this.dg_PuntosAgendaFinal.Size = new System.Drawing.Size(485, 456);
             this.dg_PuntosAgendaFinal.TabIndex = 9;
             // 
-            // label27
-            // 
-            this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(543, 62);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(110, 20);
-            this.label27.TabIndex = 11;
-            this.label27.Text = "Destinatario: ";
-            this.label27.Click += new System.EventHandler(this.label27_Click);
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(674, 59);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(420, 27);
-            this.textBox1.TabIndex = 12;
-            // 
-            // btn_GenAcuerdo
-            // 
-            this.btn_GenAcuerdo.Location = new System.Drawing.Point(674, 121);
-            this.btn_GenAcuerdo.Name = "btn_GenAcuerdo";
-            this.btn_GenAcuerdo.Size = new System.Drawing.Size(184, 39);
-            this.btn_GenAcuerdo.TabIndex = 16;
-            this.btn_GenAcuerdo.Text = "Generar acuerdo";
-            this.btn_GenAcuerdo.UseVisualStyleBackColor = true;
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(674, 199);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(213, 28);
-            this.comboBox1.TabIndex = 17;
-            // 
-            // label28
-            // 
-            this.label28.AutoSize = true;
-            this.label28.Location = new System.Drawing.Point(588, 202);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(65, 20);
-            this.label28.TabIndex = 18;
-            this.label28.Text = "Sesión:";
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(674, 264);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(184, 39);
-            this.button1.TabIndex = 19;
-            this.button1.Text = "Generar acuerdo";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(674, 322);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(184, 39);
-            this.button2.TabIndex = 20;
-            this.button2.Text = "Generar acuerdo";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
             // GUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -999,20 +1004,20 @@
             ((System.ComponentModel.ISupportInitialize)(this.dg_Solicitudes)).EndInit();
             this.tab_PrevioPC.ResumeLayout(false);
             this.tab_PrevioPC.PerformLayout();
-            this.tab_DuranteSec.ResumeLayout(false);
-            this.tab_DuranteSec.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dg_AgendaDurante)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.s_aFavor)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.s_enContra)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.s_abstenciones)).EndInit();
-            this.tab_DurantePC.ResumeLayout(false);
-            this.tab_DurantePC.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dg_AgendaPC)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.s_PosActualDurante)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PosFinalDurante)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.s_PosActualPrevio)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.s_PosFinalPrevio)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dg_AgendaPrevio)).EndInit();
+            this.tab_DuranteSec.ResumeLayout(false);
+            this.tab_DuranteSec.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.s_abstenciones)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.s_enContra)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.s_aFavor)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dg_AgendaDurante)).EndInit();
+            this.tab_DurantePC.ResumeLayout(false);
+            this.tab_DurantePC.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.s_PosActualDurante)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PosFinalDurante)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dg_AgendaPC)).EndInit();
             this.tab_SesionTerminada.ResumeLayout(false);
             this.tab_SesionTerminada.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dg_PuntosAgendaFinal)).EndInit();

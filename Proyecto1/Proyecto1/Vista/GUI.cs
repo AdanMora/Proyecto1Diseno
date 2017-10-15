@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
@@ -15,6 +16,38 @@ namespace Proyecto1.Vista
         public GUI()
         {
             InitializeComponent();
+        }
+
+        public String s_NumeroSesionGet
+        {
+            get { return s_numeroSesion.Value + "-" + DateTime.Today.Year; }
+        }
+
+        public int s_NumeroSesionSet
+        {
+            set { s_numeroSesion.Value = value; }
+        }
+
+        public String tb_LugarSesion
+        {
+            get { return tb_lugarSesion.Text; }
+            set { tb_lugarSesion.Text = value; }
+        }
+
+        public DateTime dt_fechaHora
+        {
+            get { return dt_FechaHora.Value; }
+            set { dt_FechaHora.Value = value; }
+        }
+
+        public Collection<string[]> dg_listaMiembrosSetValues
+        {
+            set { dg_ListaMiembros.DataSource = value; }
+        }
+
+        public int dg_listaMiembrosGetSelected
+        {
+            get { return dg_ListaMiembros.CurrentRow.Index; }
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -108,6 +141,11 @@ namespace Proyecto1.Vista
         }
 
         private void label27_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_CrearSesion_Click(object sender, EventArgs e)
         {
 
         }
