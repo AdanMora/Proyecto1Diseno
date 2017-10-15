@@ -34,38 +34,50 @@ namespace Proyecto1.Controlador
                 int lim = tab.Rows.Count;
                 for (int j = 0; j < lim; j++)
                 {
-                    string nombre = tab.Rows[j][0].ToString();
-                    string correo1 = tab.Rows[j][1].ToString();
-                    string correo2 = tab.Rows[j][2].ToString();
-                    char tipo = tab.Rows[j][3].ToString().First();
-                    if (nombre != "" && tipo != ' ')
+                    string nombre = "";
+                    string correo1 = "";
+                    string correo2 = "";
+                    char tipo = ' ';
+                    Miembro m;
+                    if (tab.Rows[j][0].ToString()!="" )
                     {
-                        if (correo1 == "")
+                        nombre = tab.Rows[j][0].ToString();
+                        tipo = tab.Rows[j][3].ToString().First();
+                        if (tab.Rows[j][1].ToString()!="" || tab.Rows[j][2].ToString()!="")
                         {
-                            correo1 = "Nulo";
-                            Miembro nuevo = new Miembro(nombre, correo1, correo2, tipo);
-                            listaMiembro.Add(nuevo);
-                        }
-                        else
-                        {
-                            if (correo2 == "")
+                            if (tab.Rows[j][1].ToString() == "")
                             {
-                                correo2 = "Nulo";
-                                Miembro nuevo = new Miembro(nombre, correo1, correo2, tipo);
-                                listaMiembro.Add(nuevo);
+                                correo1 = "nulo";
+                                correo2 = tab.Rows[j][2].ToString();
                             }
                             else
                             {
-                                Miembro nuevo = new Miembro(nombre, correo1, correo2, tipo);
-                                listaMiembro.Add(nuevo);
+                                if (tab.Rows[j][2].ToString() == "")
+                                {
+                                    correo1 = tab.Rows[j][1].ToString();
+                                    correo2 = "nulo";
+                                }
+                                else
+                                {
+                                    correo1 = tab.Rows[j][1].ToString();
+                                    correo2 = tab.Rows[j][2].ToString();
+                                }
+                                
                             }
                         }
-                    }
+                        else
+                        {
+                            band = true;
+                        }
+                    }                                        
                     else
                     {
                         band = true;
-                    }                    
+                    }
+                    m = new Miembro(nombre, correo1, correo2, tipo);
+                    listaMiembro.Add(m);
                 }
+                
                 if (band == true)
                 {
                     listaMiembro.Clear();

@@ -11,6 +11,21 @@
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -98,13 +113,13 @@
     <Compile Include="ConsejoDB.cs">
       <DependentUpon>BaseDatosModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Controlador\Controlador_Correo.cs" />
     <Compile Include="Controlador\Controlador_DAO.cs" />
     <Compile Include="Controlador\Controlador_Docs.cs" />
     <Compile Include="Controlador\Controlador_Sesion.cs" />
     <Compile Include="Controlador\Controlador_Solicitudes.cs" />
     <Compile Include="Controlador\Azure_DAO.cs" />
-    <Compile Include="Controlador\DTO_Consola.cs" />
-    <Compile Include="Controlador\DTO_GUI.cs" />
+    <Compile Include="Controlador\DTO_consola.cs" />
     <Compile Include="Controlador\Gestor.cs" />
     <Compile Include="Controlador\Prototype_Cache.cs" />
     <Compile Include="Controlador\Prototype_Clonable.cs" />
@@ -186,6 +201,12 @@
     <Compile Include="sp_Solicitudes_Result.cs">
       <DependentUpon>BaseDatosModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Vista\Consola.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vista\Consola.Designer.cs">
+      <DependentUpon>Consola.cs</DependentUpon>
+    </Compile>
     <Compile Include="Vista\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -213,6 +234,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Vista\Consola.resx">
+      <DependentUpon>Consola.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Vista\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -257,6 +281,18 @@
       <DependentUpon>BaseDatosModel.edmx</DependentUpon>
       <LastGenOutput>BaseDatosModel.cs</LastGenOutput>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5.2 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

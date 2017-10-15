@@ -9,12 +9,12 @@ namespace Proyecto1.Controlador
 {
     class Strategy_DOCX : Strategy_Docs
     {
-        public void crearActa(Sesion puntos)
+        public void crearActa(Sesion puntos, string path)
         {
             // throw new NotImplementedException();
         }
 
-        public void crearAgenda(object sesion)
+        public void crearAgenda(object sesion, string path)
         {
             // Crea el DOCX
         }

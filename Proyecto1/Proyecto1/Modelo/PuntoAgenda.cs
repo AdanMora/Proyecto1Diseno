@@ -139,14 +139,15 @@ namespace Proyecto1.Modelo
 
         public string toString()
         {
-            return "Nombre: " + this.nombre +
+            return "ID: " + this.id_punto + 
+                    "\nNombre: " + this.nombre +
                     "\nResultado: " + this.resultando +
                     "\nConsiderandos: " + this.considerandos +
                     "\nSeAcuerda: " + this.seAcuerda +
                     "\nVotos a favor: "+ this.votacion[0] +
                     "\nVotos en contra: " + this.votacion[1] +
                     "\nVotos en blanco: " + this.votacion[2] +
-                    "\nTipo" + this.tipo + 
+                    "\nTipo: " + this.tipo + 
                     "\n#########################################";
         }
 
