@@ -31,85 +31,6 @@ namespace Proyecto1.Controlador
             this.controlador_sesion = new Controlador_Sesion();
             this.controlador_solicitudes = new Controlador_Solicitudes();            
             this.xls = new Xls_DAO();
-            this.controlador_correos = new Controlador_Correo();
-        }
-
-        public Consejo Consejo
-        {
-            get
-            {
-                return consejo;
-            }
-
-            set
-            {
-                consejo = value;
-            }
-        }
-
-        internal Controlador_Sesion Controlador_sesion
-        {
-            get
-            {
-                return controlador_sesion;
-            }
-
-            set
-            {
-                controlador_sesion = value;
-            }
-        }
-
-        internal Controlador_Solicitudes Controlador_solicitudes
-        {
-            get
-            {
-                return controlador_solicitudes;
-            }
-
-            set
-            {
-                controlador_solicitudes = value;
-            }
-        }
-        /*
-        public Azure_DAO Controlador_dao
-        {
-            get
-            {
-                return controlador_dao;
-            }
-
-            set
-            {
-                controlador_dao = value;
-            }
-        }*/
-
-        internal Xls_DAO Xls
-        {
-            get
-            {
-                return xls;
-            }
-
-            set
-            {
-                xls = value;
-            }
-        }
-
-        internal Controlador_Correo Controlador_correos
-        {
-            get
-            {
-                return controlador_correos;
-            }
-
-            set
-            {
-                controlador_correos = value;
-            }
         }
 
         public Gestor(Consejo consejo)
@@ -138,6 +59,11 @@ namespace Proyecto1.Controlador
         public void cerrarSesion()
         {
             Sesion sesionActual = this.controlador_sesion.getSesion();
+            sesionActual.Estado = true;
+            this.consejo.Sesiones.Add(sesionActual);
+
+            this.controlador_sesion.cerrarSesion();
+            // ahora hagan lo que quieran con sesionActual
             
         }
 
@@ -267,6 +193,30 @@ namespace Proyecto1.Controlador
             this.controlador_sesion.cambiarPosicionPunto(idPunto, idPosicion);
         }
 
+        public bool hayQuorum()
+        {
+            return this.controlador_sesion.hayQuorum();
+        }
+
+        public Collection<PuntoAgenda> getAllPuntosAgenda()
+        {
+            Collection<PuntoAgenda> puntos = new Collection<PuntoAgenda>();
+
+            foreach (Sesion sesion in this.consejo.Sesiones)
+                foreach (PuntoAgenda punto in sesion.Agenda)
+                    puntos.Add(punto);
+            return puntos;
+        }
+
+        public Collection<string> getAllNumeroSesiones()
+        {
+            Collection<string> numeros = new Collection<string>();
+
+            foreach (Sesion sesion in this.consejo.Sesiones)
+                numeros.Add(sesion.Numero);
+
+            return numeros;
+        }
 
     }
 }

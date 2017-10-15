@@ -170,5 +170,20 @@ namespace Proyecto1.Controlador
 
         }
 
+        public bool hayQuorum()
+        {
+            char[] asistencia = this.sesionActual.MiembrosAsistencia.ListaAsistencia;
+            int n = asistencia.Count();
+            int cont = 0;
+            for(int i = 0; i < n; i++)
+            {
+                if(asistencia[i] == 'P')
+                {
+                    cont++;
+                }
+            }
+            return(cont >= 26);
+        }
+
     }
 }
