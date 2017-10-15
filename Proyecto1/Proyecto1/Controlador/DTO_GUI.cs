@@ -51,12 +51,12 @@ namespace Proyecto1.Controlador
 
         public void cerrarSesion()
         {
-            //Sesion sesionActual = this.controlador_sesion.getSesion();
-            //sesionActual.Estado = true;
-            //this.consejo.Sesiones.Add(sesionActual);
+            ////Sesion sesionActual = this.controlador_sesion.getSesion();
+            ////sesionActual.Estado = true;
+            ////this.consejo.Sesiones.Add(sesionActual);
 
-            //this.controlador_sesion.cerrarSesion();
-            // ahora hagan lo que quieran con sesionActual
+            ////this.controlador_sesion.cerrarSesion();
+            // //ahora hagan lo que quieran con sesionActual
 
         }
 
