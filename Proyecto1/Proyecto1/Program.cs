@@ -120,6 +120,7 @@ namespace Proyecto1
             //temp.eliminaSolicitud();
             //temp.verSolicitudes();
             temp.verPuntosAgenda();
+            temp.generarAgenda();
             Console.ReadKey();
         }
         

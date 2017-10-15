@@ -25,7 +25,7 @@ namespace Proyecto1.Controlador
             m.actualizarMiembros(@"C:\\Users\\Fauricio\\Desktop\\Miembros.xlsx");
             Console.WriteLine("Administración de consejos.\n\n Lista de miembros\n");
 
-            foreach (Miembro nuevo in m.Consejo.Miembros)
+            foreach (Miembro nuevo in m.getMiembrosConsejo())
             {
                 Console.WriteLine(nuevo.Nombre);
             }
@@ -35,9 +35,10 @@ namespace Proyecto1.Controlador
         {
             Console.WriteLine(linea);
             Console.WriteLine("\nEnvío de notificaciones\n\n");
-            foreach (Miembro temp in m.Consejo.Miembros)
+            foreach (Miembro temp in m.getMiembrosConsejo())
             {                
-                m.Controlador_correos.enviarNotificaciones("1", DateTime.Now,temp.Correo[0]);
+                m.enviarNotificacion("1", DateTime.Now,temp.Correo[0]);
+                
             }
         }
 
@@ -64,7 +65,7 @@ namespace Proyecto1.Controlador
         {
             Console.WriteLine(linea);
             Console.WriteLine("\nListado con la solicitud de puntos para la agenda:\n");            
-            foreach (PuntoAgenda p in m.Controlador_solicitudes.getSolicitudes())
+            foreach (PuntoAgenda p in m.getSolicitudes())
             {
                 Console.WriteLine(p.toString());
             }
@@ -87,7 +88,7 @@ namespace Proyecto1.Controlador
             for(int i = 1; i <= 10; i++)
             {
                 m.aceptarSolicitud(i);                
-                m.agregarComentario(i, m.Consejo.Miembros.ElementAt(i).Correo[0],i, "");
+                m.agregarComentario(i, m.getMiembrosConsejo().ElementAt(i).Correo[0],i, "");
                 Console.WriteLine("Solicitud aceptada para agrearse a la agenda");
             }
         }
@@ -104,7 +105,7 @@ namespace Proyecto1.Controlador
 
         public void generarAgenda()
         {
-
+            m.crearAgenda(0);
         }
     }
 }

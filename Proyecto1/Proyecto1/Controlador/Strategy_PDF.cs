@@ -20,19 +20,18 @@ namespace Proyecto1.Controlador
 
         public void crearAgenda(object sesion)
         {
-            /* Crea el con la sesion
-            FileStream fs = new FileStream("Chapter1_Example1.pdf", FileMode.Create, FileAccess.Write, FileShare.None);            
+            //Crea el con la sesion
+            Sesion n = (Sesion)sesion;
+            FileStream fs = new FileStream(@"C:\\Users\\Fauricio\\Desktop\\Agenda Sesión Ordinaria-"+n.Numero.ToString()+".pdf", FileMode.Create, FileAccess.Write, FileShare.None);            
             Document doc = new Document();
             PdfWriter writer = PdfWriter.GetInstance(doc, fs);
-            doc.Open();
-            doc.Add(new Paragraph("Hello World"));
-            doc.Close();*/
-            Collection<PuntoAgenda> puntos = new Collection<PuntoAgenda>();
-            puntos = 
-            foreach (PuntoAgenda p)
-            {
-
+            
+            doc.Open();            
+            foreach (PuntoAgenda p in n.Agenda)
+            {                
+                doc.Add(new Paragraph(p.toString()));
             }
+            doc.Close();                        
         }
     }
 }

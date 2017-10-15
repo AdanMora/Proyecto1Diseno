@@ -20,7 +20,7 @@ namespace Proyecto1.Controlador
         private Consejo consejo;
         private Controlador_Sesion controlador_sesion;
         private Controlador_Solicitudes controlador_solicitudes;
-        //private Controlador_Docs controlador_docs;
+        private Controlador_Docs controlador_docs;
         //private Azure_DAO controlador_dao;
         private Xls_DAO xls;
         private Controlador_Correo controlador_correos;
@@ -29,8 +29,10 @@ namespace Proyecto1.Controlador
         {
             this.consejo = new Consejo();
             this.controlador_sesion = new Controlador_Sesion();
-            this.controlador_solicitudes = new Controlador_Solicitudes();            
+            this.controlador_solicitudes = new Controlador_Solicitudes();
+            this.controlador_docs = new Controlador_Docs();
             this.xls = new Xls_DAO();
+            this.controlador_correos = new Controlador_Correo();
         }
 
         public Gestor(Consejo consejo)
@@ -143,8 +145,9 @@ namespace Proyecto1.Controlador
 
         public void crearAgenda(int tipo)
         {
-            //this.controlador_docs.setDocumento(tipo);
-            //Object o = this.controlador_docs.crearAgenda(this.controlador_sesion.getSesion());
+            this.controlador_docs.setDocumento(tipo);
+            Object o = this.controlador_sesion.getSesion();
+            this.controlador_docs.crearAgenda(o,tipo);
             //this.controlador_dao.escribirAgenda(o);
         }
 
@@ -216,6 +219,11 @@ namespace Proyecto1.Controlador
                 numeros.Add(sesion.Numero);
 
             return numeros;
+        }
+
+        public void enviarNotificacion(string numeroSesion, DateTime diaConsejo, string destinatario)
+        {
+            controlador_correos.enviarNotificaciones(numeroSesion,diaConsejo,destinatario);
         }
 
     }
