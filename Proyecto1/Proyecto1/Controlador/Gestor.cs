@@ -5,7 +5,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Net;      
+using System.Net;       // No olvidar.
 using System.Net.Mail;
 using System.Net.Mime;
 using System.Windows.Forms;
@@ -21,41 +21,34 @@ namespace Proyecto1.Controlador
         private Controlador_Sesion controlador_sesion;
         private Controlador_Solicitudes controlador_solicitudes;
         private Controlador_Docs controlador_docs;
-        //private Azure_DAO controlador_dao;
+        private Azure_DAO controlador_dao;
         private Xls_DAO xls;
-        private Controlador_Correo controlador_correos;
-
-        public Gestor()
-        {
-            this.consejo = new Consejo();
-            this.controlador_sesion = new Controlador_Sesion();
-            this.controlador_solicitudes = new Controlador_Solicitudes();
-            this.controlador_docs = new Controlador_Docs();
-            this.xls = new Xls_DAO();
-            this.controlador_correos = new Controlador_Correo();
-        }
 
         public Gestor(Consejo consejo)
         {
             this.consejo = consejo;
-            //this.controlador_dao = new Azure_DAO();
+            this.controlador_dao = new Azure_DAO();
             this.controlador_sesion = new Controlador_Sesion();
             this.controlador_solicitudes = new Controlador_Solicitudes();
-            //this.controlador_docs = new Controlador_Docs();
+            this.controlador_docs = new Controlador_Docs();
             this.xls = new Xls_DAO();
-            //this.setControladores();
         }
 
-        
+        public Gestor()
+        {
+            this.controlador_dao = new Azure_DAO();
+            this.controlador_sesion = new Controlador_Sesion();
+            this.controlador_solicitudes = new Controlador_Solicitudes();
+            this.controlador_docs = new Controlador_Docs();
+            this.xls = new Xls_DAO();
+        }
+
         public void nuevaSesion(String num, DateTime fecha, string lugar)
         {
-            if (!this.haySesion())
-            {
-                this.controlador_sesion.nuevaSesion(num, fecha, lugar);
-                this.controlador_sesion.setMiembros(this.consejo.Miembros);
-                this.controlador_solicitudes.setSolicitudes(this.consejo.Solicitudes);
-                //this.controlador_dao.nuevaSesion(num, fecha, lugar, false);
-            }
+            this.controlador_sesion.nuevaSesion(num, fecha, lugar);
+            this.controlador_sesion.setMiembros(this.consejo.Miembros);
+            this.controlador_solicitudes.setSolicitudes(this.consejo.Solicitudes);
+            this.controlador_dao.nuevaSesion(num, fecha, lugar, false);
         }
 
         public void cerrarSesion()
@@ -71,10 +64,10 @@ namespace Proyecto1.Controlador
 
         public void cargarDatos()
         {
-            //this.consejo = this.controlador_dao.cargarDatos();
+            this.consejo = this.controlador_dao.cargarDatos();
             foreach(Sesion sesion in this.consejo.Sesiones)
             {
-                if (!sesion.Estado)
+                if (sesion.Estado == false)
                 {
                     this.controlador_sesion.setSesion(sesion);
                     this.controlador_sesion.setMiembros(this.consejo.Miembros);
@@ -86,17 +79,17 @@ namespace Proyecto1.Controlador
 
         public void actualizarMiembros(String path)
         {
-            Collection<Miembro> miembros = this.xls.cargaXls(path);            
+            Collection<Miembro> miembros = this.xls.cargaXls(path);
             this.consejo.Miembros = miembros;
             this.controlador_sesion.setMiembros(miembros);
-            //this.controlador_dao.actualizarMiembros(miembros);
+            this.controlador_dao.actualizarMiembros(miembros);
         }
 
 
         public void agregarSolicitud(string nombre, string resultando, string considerandos, string seAcuerda, char tipo)
         {
-            //PuntoAgenda punto = new PuntoAgenda(this.controlador_dao.getNextIDPunto() , nombre, resultando, considerandos, seAcuerda, 0, 0, 0, tipo);
-            //this.controlador_solicitudes.agregarSolicitud(punto);
+            PuntoAgenda punto = new PuntoAgenda(this.controlador_dao.getNextIDPunto() , nombre, resultando, considerandos, seAcuerda, 0, 0, 0, tipo);
+            this.controlador_solicitudes.agregarSolicitud(punto);
             //this.controlador_dao.agregarSolicitud(punto); 
         }
 
@@ -114,7 +107,7 @@ namespace Proyecto1.Controlador
 
         public void agregarComentario(int idPunto, string correoMiembro, string txt)
         {
-            //this.controlador_sesion.agregarComentario(idPunto, correoMiembro, this.controlador_dao.getNextIDComentario(), txt);
+            this.controlador_sesion.agregarComentario(idPunto, correoMiembro, this.controlador_dao.getNextIDComentario(), txt);
         }
 
         public void eliminarSolicitud(int id)
@@ -138,16 +131,15 @@ namespace Proyecto1.Controlador
 
         public void crearActa(int tipo)
         {
-            //this.controlador_docs.setDocumento(tipo);
+            this.controlador_docs.setDocumento(tipo);
             //Object o = this.controlador_docs.crearActa(this.controlador_sesion.getSesion());
             //this.controlador_dao.escribirActa(o);
         }
 
-        public void crearAgenda(int tipo,string path)
+        public void crearAgenda(int tipo)
         {
             this.controlador_docs.setDocumento(tipo);
-            Object o = this.controlador_sesion.getSesion();
-            this.controlador_docs.crearAgenda(o,tipo,path);
+            //Object o = this.controlador_docs.crearAgenda(this.controlador_sesion.getSesion());
             //this.controlador_dao.escribirAgenda(o);
         }
 
@@ -218,18 +210,11 @@ namespace Proyecto1.Controlador
             foreach (Sesion sesion in this.consejo.Sesiones)
                 numeros.Add(sesion.Numero);
 
+            if (this.controlador_sesion.getSesion() != null)
+                numeros.Add(this.controlador_sesion.getSesion().Numero);
+
             return numeros;
         }
-
-        public void enviarNotificacion(string numeroSesion, DateTime diaConsejo, string destinatario)
-        {
-            controlador_correos.enviarNotificaciones(numeroSesion,diaConsejo,destinatario);
-        }
-
-        public void enviarAgenda(string destinatario,string path)
-        {
-            controlador_correos.enviarAgenda(controlador_sesion.getSesion().Numero, controlador_sesion.getSesion().Fecha,destinatario,path);
-        }
-
+        
     }
 }

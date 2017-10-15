@@ -4,27 +4,25 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Proyecto1.Vista;
-using Proyecto1.Controlador;
-using Proyecto1.Modelo;
-using System.Collections.ObjectModel;
 
 namespace Proyecto1
 {
-
-    static class Program 
+    static class Program
     {
-        
+        /// <summary>
+        /// The main entry point for the application.
+        /// </summary>
+        [STAThread]
         static void Main()
         {
-            
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
-            
+            Application.Run(new GUI());
+
             /*Collection<Miembro> miembros = new Collection<Miembro>();
 
             String miembro = "miembro";
@@ -112,20 +110,6 @@ namespace Proyecto1
             //Console.WriteLine(gestor.getMiembrosConsejo().ElementAt(0).Nombre);
             //Console.WriteLine(gestor.getAsistencia().Asistencia.ElementAt(0).Nombre);
             Console.ReadKey();*/
-            DTO_consola temp = new DTO_consola();
-            temp.actualizarMiembros();
-            //temp.envioNotificacion();
-            temp.agregarSolicitud();
-            temp.aceptarSolicitud();
-            //temp.verSolicitudes();
-            //temp.eliminaSolicitud();
-            //temp.verSolicitudes();
-            temp.verPuntosAgenda();
-            temp.generarAgenda();
-            temp.enviarAgenda();
-            Console.ReadKey();
         }
-        
     }
 }
-
