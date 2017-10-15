@@ -43,5 +43,7 @@ namespace Proyecto1.Controlador
 
         Collection<Object[]> getAdjuntosPunto(int id_Punto); // Falta
 
+        void moverPuntoAgenda(string numeroSesion, int id_Punto, int nuevaPos);
+
     }
 }
