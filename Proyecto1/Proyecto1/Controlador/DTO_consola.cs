@@ -12,6 +12,7 @@ namespace Proyecto1.Controlador
 {
     class DTO_consola
     {
+        string linea = "\n===================================================\n";
         Gestor m = new Gestor();
         public DTO_consola()
         {            
@@ -32,12 +33,78 @@ namespace Proyecto1.Controlador
 
         public void envioNotificacion()
         {
-            Console.WriteLine("\n\n Envío de notificaciones\n\n");
+            Console.WriteLine(linea);
+            Console.WriteLine("\nEnvío de notificaciones\n\n");
             foreach (Miembro temp in m.Consejo.Miembros)
             {                
                 m.Controlador_correos.enviarNotificaciones("1", DateTime.Now,temp.Correo[0]);
             }
         }
+
+        public void agregarSolicitud()
+        {            
+            string punto = "";
+            char tipo = ' ';
+            for(int cont=1;cont<21;cont++)
+            {
+                if (cont % 2 == 1)
+                {
+                    punto = "Solicitud de punto Informativo";
+                    tipo = 'I';
+                }else
+                {
+                    punto = "Solicitud de punto que requiere votación";
+                    tipo = 'V';
+                }
+                m.agregarSolicitud(cont,punto,"","","",tipo);                
+            }
+        }
+
+        public void verSolicitudes()
+        {
+            Console.WriteLine(linea);
+            Console.WriteLine("\nListado con la solicitud de puntos para la agenda:\n");            
+            foreach (PuntoAgenda p in m.Controlador_solicitudes.getSolicitudes())
+            {
+                Console.WriteLine(p.toString());
+            }
+        }
+
+        public void verPuntosAgenda()
+        {
+            Console.WriteLine(linea);
+            Console.WriteLine("\nListado con los puntos a incluir en este consejo:\n");
+
+            foreach (PuntoAgenda p in m.getPuntosAgenda())
+            {
+                Console.WriteLine(p.toString());
+            }
+        }
+
+        public void aceptarSolicitud()
+        {
+            Console.WriteLine(linea);
+            for(int i = 1; i <= 10; i++)
+            {
+                m.aceptarSolicitud(i);                
+                m.agregarComentario(i, m.Consejo.Miembros.ElementAt(i).Correo[0],i, "");
+                Console.WriteLine("Solicitud aceptada para agrearse a la agenda");
+            }
+        }
        
+        public void eliminaSolicitud()
+        {
+            Console.WriteLine("");
+            for(int i = 11; i < 21; i++)
+            {
+                m.eliminarSolicitud(i);
+                Console.WriteLine("Solicitud eliminada");
+            }
+        }
+
+        public void generarAgenda()
+        {
+
+        }
     }
 }

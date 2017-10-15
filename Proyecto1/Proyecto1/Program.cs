@@ -20,11 +20,11 @@ namespace Proyecto1
         
         static void Main()
         {
-
+            /*
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
-
+            */
             /*Collection<Miembro> miembros = new Collection<Miembro>();
 
             String miembro = "miembro";
@@ -112,6 +112,15 @@ namespace Proyecto1
             //Console.WriteLine(gestor.getMiembrosConsejo().ElementAt(0).Nombre);
             //Console.WriteLine(gestor.getAsistencia().Asistencia.ElementAt(0).Nombre);
             Console.ReadKey();*/
+            DTO_consola temp = new DTO_consola();
+            temp.actualizarMiembros();
+            temp.agregarSolicitud();
+            temp.aceptarSolicitud();
+            //temp.verSolicitudes();
+            //temp.eliminaSolicitud();
+            //temp.verSolicitudes();
+            temp.verPuntosAgenda();
+            Console.ReadKey();
         }
         
     }

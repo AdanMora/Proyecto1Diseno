@@ -49,17 +49,17 @@ namespace Proyecto1.Vista
         
         private void button2_Click(object sender, EventArgs e)
         {                        
-            d.enviarNotificacion(DateTime.Now, "1");
+            //d.enviarNotificacion(DateTime.Now, "1");
         }
 
         private void button2_Click_1(object sender, EventArgs e)
         {
-            d.crearActa("Prueba2","Otra prueba de la\ncreación de docs");
+            //d.crearActa("Prueba2","Otra prueba de la\ncreación de docs");
         }
 
         private void generaAgenda_Click(object sender, EventArgs e)
         {
-            d.crearAgenda("p1", "Agenda de prueba\npara la funcionalidad de generar la agenda");
+            //d.crearAgenda("p1", "Agenda de prueba\npara la funcionalidad de generar la agenda");
         }
     }
 }
