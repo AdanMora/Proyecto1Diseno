@@ -120,5 +120,6 @@ namespace Proyecto1.Modelo
                 "\nEstado: " + this.estado +
                 "\n#########################################";
         }
+
     }
 }

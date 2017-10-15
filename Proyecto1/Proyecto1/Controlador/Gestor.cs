@@ -143,11 +143,11 @@ namespace Proyecto1.Controlador
             //this.controlador_dao.escribirActa(o);
         }
 
-        public void crearAgenda(int tipo)
+        public void crearAgenda(int tipo,string path)
         {
             this.controlador_docs.setDocumento(tipo);
             Object o = this.controlador_sesion.getSesion();
-            this.controlador_docs.crearAgenda(o,tipo);
+            this.controlador_docs.crearAgenda(o,tipo,path);
             //this.controlador_dao.escribirAgenda(o);
         }
 

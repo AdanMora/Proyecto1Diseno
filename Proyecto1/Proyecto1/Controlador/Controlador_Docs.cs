@@ -15,14 +15,14 @@ namespace Proyecto1.Controlador
 
         public Controlador_Docs() { }
 
-        public void crearActa(Sesion sesion)
+        public void crearActa(Sesion sesion,string path)
         {
-            strategy.crearActa(sesion);
+            strategy.crearActa(sesion,path);
         }
 
-        public void crearAgenda(object puntos, int tipo)
+        public void crearAgenda(object puntos, int tipo, string path)
         {
-            strategy.crearAgenda(puntos);
+            strategy.crearAgenda(puntos,path);
         }
 
         public void setDocumento(int tipo)

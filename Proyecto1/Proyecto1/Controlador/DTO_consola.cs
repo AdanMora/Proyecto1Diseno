@@ -57,7 +57,7 @@ namespace Proyecto1.Controlador
                     punto = "Solicitud de punto que requiere votación";
                     tipo = 'V';
                 }
-                m.agregarSolicitud(cont,punto,"","","",tipo);                
+                m.agregarSolicitud(cont,m.getMiembrosConsejo().ElementAt(cont).Nombre,"",punto,"",tipo);                
             }
         }
 
@@ -105,7 +105,7 @@ namespace Proyecto1.Controlador
 
         public void generarAgenda()
         {
-            m.crearAgenda(0);
+            m.crearAgenda(0,@"C:\\Users\\Fauricio\\Desktop\\");
         }
     }
 }
