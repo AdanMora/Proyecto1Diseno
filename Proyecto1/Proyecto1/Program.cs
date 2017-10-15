@@ -20,11 +20,11 @@ namespace Proyecto1
         
         static void Main()
         {
-            
+            /*
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
-            
+            */
             /*Collection<Miembro> miembros = new Collection<Miembro>();
 
             String miembro = "miembro";
@@ -121,8 +121,11 @@ namespace Proyecto1
             //temp.eliminaSolicitud();
             //temp.verSolicitudes();
             temp.verPuntosAgenda();
-            temp.generarAgenda();
-            temp.enviarAgenda();
+            //temp.generarAgenda();
+            //temp.enviarAgenda();
+            Console.WriteLine("Ejecución del consejo");
+            temp.controlAsistencia();
+            temp.verAsistencia();
             Console.ReadKey();
         }
         

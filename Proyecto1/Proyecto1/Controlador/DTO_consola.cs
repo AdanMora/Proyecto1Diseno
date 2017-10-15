@@ -13,19 +13,19 @@ namespace Proyecto1.Controlador
     class DTO_consola
     {
         string linea = "\n===================================================\n";
-        Gestor m = new Gestor();
+        Gestor g = new Gestor();
         public DTO_consola()
         {            
-            m.nuevaSesion("2", DateTime.Now, "CIC");           
+            g.nuevaSesion("2", DateTime.Now, "CIC");           
         }
         
 
         public void actualizarMiembros()
         {            
-            m.actualizarMiembros(@"C:\\Users\\Fauricio\\Desktop\\Miembros.xlsx");
+            g.actualizarMiembros(@"C:\\Users\\Fauricio\\Desktop\\Miembros.xlsx");
             Console.WriteLine("Administración de consejos.\n\n Lista de miembros\n");
 
-            foreach (Miembro nuevo in m.getMiembrosConsejo())
+            foreach (Miembro nuevo in g.getMiembrosConsejo())
             {
                 Console.WriteLine(nuevo.Nombre);
             }
@@ -35,9 +35,9 @@ namespace Proyecto1.Controlador
         {
             Console.WriteLine(linea);
             Console.WriteLine("\nEnvío de notificaciones\n\n");
-            foreach (Miembro temp in m.getMiembrosConsejo())
+            foreach (Miembro temp in g.getMiembrosConsejo())
             {                
-                m.enviarNotificacion("1", DateTime.Now,temp.Correo[0]);
+                g.enviarNotificacion("1", DateTime.Now,temp.Correo[0]);
                 
             }
         }
@@ -57,7 +57,7 @@ namespace Proyecto1.Controlador
                     punto = "Solicitud de punto que requiere votación";
                     tipo = 'V';
                 }
-                m.agregarSolicitud(cont,m.getMiembrosConsejo().ElementAt(cont).Nombre,"",punto,"",tipo);                
+                g.agregarSolicitud(cont,g.getMiembrosConsejo().ElementAt(cont).Nombre,"",punto,"",tipo);                
             }
         }
 
@@ -65,7 +65,7 @@ namespace Proyecto1.Controlador
         {
             Console.WriteLine(linea);
             Console.WriteLine("\nListado con la solicitud de puntos para la agenda:\n");            
-            foreach (PuntoAgenda p in m.getSolicitudes())
+            foreach (PuntoAgenda p in g.getSolicitudes())
             {
                 Console.WriteLine(p.toString());
             }
@@ -76,7 +76,7 @@ namespace Proyecto1.Controlador
             Console.WriteLine(linea);
             Console.WriteLine("\nListado con los puntos a incluir en este consejo:\n");
 
-            foreach (PuntoAgenda p in m.getPuntosAgenda())
+            foreach (PuntoAgenda p in g.getPuntosAgenda())
             {
                 Console.WriteLine(p.toString());
             }
@@ -87,8 +87,8 @@ namespace Proyecto1.Controlador
             Console.WriteLine(linea);
             for(int i = 1; i <= 10; i++)
             {
-                m.aceptarSolicitud(i);                
-                m.agregarComentario(i, m.getMiembrosConsejo().ElementAt(i).Correo[0],i, "");
+                g.aceptarSolicitud(i);                
+                g.agregarComentario(i, g.getMiembrosConsejo().ElementAt(i).Correo[0],i, "");
                 Console.WriteLine("Solicitud aceptada para agrearse a la agenda");
             }
         }
@@ -98,27 +98,43 @@ namespace Proyecto1.Controlador
             Console.WriteLine("");
             for(int i = 11; i < 21; i++)
             {
-                m.eliminarSolicitud(i);
+                g.eliminarSolicitud(i);
                 Console.WriteLine("Solicitud eliminada");
             }
         }
 
         public void generarAgenda()
         {
-            m.crearAgenda(0,@"C:\\Users\\Fauricio\\Desktop\\");
+            g.crearAgenda(0,@"C:\\Users\\Fauricio\\Desktop\\");
         }
 
         public void enviarAgenda()
         {
-            foreach(Miembro n in m.getMiembrosConsejo())
+            foreach(Miembro n in g.getMiembrosConsejo())
             {
-                m.enviarAgenda(n.Correo[0], @"C:\\Users\\Fauricio\\Desktop\\Agenda Sesión Ordinaria-2.pdf");
+                g.enviarAgenda(n.Correo[0], @"C:\\Users\\Fauricio\\Desktop\\Agenda Sesión Ordinaria-2.pdf");
             }
         }
 
-        public void registroAsistencia()
+        public void controlAsistencia()
         {
+            Console.WriteLine("Control de asistencia");
+            //char[] listaAsist = g.getAsistencia().ListaAsistencia;
+            //int lim = listaAsist.Count();
+            foreach (Miembro m in g.getMiembrosConsejo())
+            {
+                g.modificarAsistencia(m.Correo[0], 'P');
+                Console.WriteLine(m.Nombre);
+            }
+        }
 
+        public void verAsistencia()
+        {
+            Console.WriteLine("Lista de asistencia");
+            foreach (Miembro m in g.getAsistencia().Asistencia)
+            {
+                Console.WriteLine(m.Nombre);
+            }
         }
     }
 }
