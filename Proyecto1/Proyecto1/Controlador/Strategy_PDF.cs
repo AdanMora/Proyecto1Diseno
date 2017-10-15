@@ -32,8 +32,7 @@ namespace Proyecto1.Controlador
             doc.Add(new Paragraph("\n\t\t\tAgenda"));
             doc.Add(new Paragraph("\n0.Aprobación de la agenda."));
             foreach (PuntoAgenda p in n.Agenda)
-            {
-                Collection<Comentario> c = p.Comentarios;
+            {              
                 if (p.Tipo == 'V')
                 {
                     doc.Add(new Paragraph(p.Id_punto+ "." + p.Considerandos+",asunto de tramite,solicitante: "+p.Nombre));

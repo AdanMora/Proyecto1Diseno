@@ -226,5 +226,10 @@ namespace Proyecto1.Controlador
             controlador_correos.enviarNotificaciones(numeroSesion,diaConsejo,destinatario);
         }
 
+        public void enviarAgenda(string destinatario,string path)
+        {
+            controlador_correos.enviarAgenda(controlador_sesion.getSesion().Numero, controlador_sesion.getSesion().Fecha,destinatario,path);
+        }
+
     }
 }

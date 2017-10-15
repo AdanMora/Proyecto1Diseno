@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.IO;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
+using Proyecto1.Modelo;
 
 namespace Proyecto1.Controlador
 {
@@ -57,9 +58,35 @@ namespace Proyecto1.Controlador
             }
         }
 
-        public void enviarAgenda()
+        public void enviarAgenda(string numeroSesion, DateTime diaConsejo,string destinatario,string pathAgenda)
         {
+            string encabezado = "Agenda Sesión Ordinaria " + numeroSesion + " - " + diaConsejo.Year;
+            string cuerpo = encabezado +
+                "\nFecha: " + diaConsejo +
+                "\nAgenda\n";            
+            try
+            {
+                Attachment data = new Attachment(pathAgenda, MediaTypeNames.Application.Octet);
+                SmtpClient client = new SmtpClient();
+                client.Port = 587;
+                client.Host = "smtp.gmail.com";
+                client.EnableSsl = true;
+                client.Timeout = 10000;
+                client.DeliveryMethod = SmtpDeliveryMethod.Network;
+                client.UseDefaultCredentials = false;
+                client.Credentials = new NetworkCredential("grupoadfafe@gmail.com", "Grupoadfafe.");
 
+                MailMessage mail = new MailMessage("grupoadfafe@gmail.com", destinatario, encabezado, cuerpo);
+                mail.BodyEncoding = UTF8Encoding.UTF8;
+                mail.DeliveryNotificationOptions = DeliveryNotificationOptions.OnFailure;
+                mail.Attachments.Add(data);
+                client.Send(mail);
+                Console.WriteLine("Correo Enviado");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error al enviar correo");
+            }
         }
     }
 }

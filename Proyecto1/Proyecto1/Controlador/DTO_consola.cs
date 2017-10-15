@@ -107,5 +107,18 @@ namespace Proyecto1.Controlador
         {
             m.crearAgenda(0,@"C:\\Users\\Fauricio\\Desktop\\");
         }
+
+        public void enviarAgenda()
+        {
+            foreach(Miembro n in m.getMiembrosConsejo())
+            {
+                m.enviarAgenda(n.Correo[0], @"C:\\Users\\Fauricio\\Desktop\\Agenda Sesión Ordinaria-2.pdf");
+            }
+        }
+
+        public void registroAsistencia()
+        {
+
+        }
     }
 }

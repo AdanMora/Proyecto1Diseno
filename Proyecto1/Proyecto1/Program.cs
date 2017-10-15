@@ -114,6 +114,7 @@ namespace Proyecto1
             Console.ReadKey();*/
             DTO_consola temp = new DTO_consola();
             temp.actualizarMiembros();
+            //temp.envioNotificacion();
             temp.agregarSolicitud();
             temp.aceptarSolicitud();
             //temp.verSolicitudes();
@@ -121,6 +122,7 @@ namespace Proyecto1
             //temp.verSolicitudes();
             temp.verPuntosAgenda();
             temp.generarAgenda();
+            temp.enviarAgenda();
             Console.ReadKey();
         }
         
