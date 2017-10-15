@@ -111,6 +111,7 @@
             this.label27 = new System.Windows.Forms.Label();
             this.label26 = new System.Windows.Forms.Label();
             this.dg_PuntosAgendaFinal = new System.Windows.Forms.DataGridView();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.Tab.SuspendLayout();
             this.tab_PrevioSec.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.s_numeroSesion)).BeginInit();
@@ -171,6 +172,7 @@
             this.tab_PrevioSec.TabIndex = 0;
             this.tab_PrevioSec.Text = "Previo Secretaria";
             this.tab_PrevioSec.UseVisualStyleBackColor = true;
+            this.tab_PrevioSec.Click += new System.EventHandler(this.tab_PrevioSec_Click);
             // 
             // btn_Notificar
             // 
@@ -312,6 +314,7 @@
             this.tab_Solicitudes.TabIndex = 1;
             this.tab_Solicitudes.Text = "Gestion de solicitudes";
             this.tab_Solicitudes.UseVisualStyleBackColor = true;
+            this.tab_Solicitudes.Click += new System.EventHandler(this.tab_Solicitudes_Click);
             // 
             // button3
             // 
@@ -986,6 +989,10 @@
             this.dg_PuntosAgendaFinal.Size = new System.Drawing.Size(485, 456);
             this.dg_PuntosAgendaFinal.TabIndex = 9;
             // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            // 
             // GUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1110,5 +1117,6 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label28;
         private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }

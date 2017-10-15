@@ -4,16 +4,49 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Proyecto1.Vista;
+using Proyecto1.Modelo;
+using System.Collections.ObjectModel;
 
 namespace Proyecto1.Controlador
 {
     public class DTO_GUI
     {
         Gestor gestor = new Gestor();
+        GUI gui;
 
-        public void nuevaSesion(GUI gui)
+        public DTO_GUI(GUI gui)
         {
-            gestor.nuevaSesion(gui.NumeroSesionNueva,null, null);
+            this.gui = gui;
+            gestor.cargarDatos();
+        }
+
+        public bool nuevaSesion()
+        {
+            if (gestor.getAllNumeroSesiones().Contains(gui.s_NumeroSesionGet))
+            {
+                return false;
+            } else
+            {
+                gestor.nuevaSesion(gui.s_NumeroSesionGet, gui.dt_fechaHora, gui.tb_LugarSesion);
+            return true;
+            }
+            
+        }
+
+        public void setMiembros()
+        {
+            foreach (Miembro m in gestor.getMiembrosConsejo())
+            {
+                gui.dg_listaMiembrosGet.Rows.Add(m.Nombre, m.Correo[0], m.Correo[1], m.TipoMiembro.ToString());
+            }
+        }
+
+        public void setElementos()
+        {
+            foreach (String m in gestor.getAllNumeroSesiones())
+            {
+                gui.dg_listaMiembrosGet.Rows.Add(m,"","","");
+            }
         }
 
         public void cerrarSesion()
@@ -44,10 +77,7 @@ namespace Proyecto1.Controlador
 
         public void actualizarMiembros(String path)
         {
-            //Collection<Miembro> miembros = this.xls.cargaXls(path);
-            //this.consejo.Miembros = miembros;
-            //this.controlador_sesion.setMiembros(miembros);
-            //this.controlador_dao.actualizarMiembros(miembros);
+            gestor.actualizarMiembros(path);
         }
 
 
@@ -113,39 +143,39 @@ namespace Proyecto1.Controlador
             //this.controlador_sesion.modificarAsistencia(correoMiembro, estado);
         }
 
-        public Collection<PuntoAgenda> getSolicitudes()
+        public void getSolicitudes()
         {
             //return this.controlador_solicitudes.getSolicitudes();
         }
 
-        public Consejo getConsejo()
+        public void getConsejo()
         {
             //return this.consejo;
         }
 
-        public Collection<PuntoAgenda> getPuntosAgenda()
+        public void getPuntosAgenda()
         {
             //return this.controlador_sesion.getPuntosAgenda();
         }
 
-        public Prototype_Miembros getAsistencia()
+        public void getAsistencia()
         {
             //return this.controlador_sesion.getAsistencia();
         }
 
-        public Collection<Miembro> getMiembrosConsejo()
+        public void getMiembrosConsejo()
         {
             //return this.consejo.Miembros;
         }
 
-        public Collection<Comentario> getComentarios(int idPunto)
+        public void getComentarios(int idPunto)
         {
             //return this.controlador_sesion.getComentarios(idPunto);
         }
 
         public bool haySesion()
         {
-            //return this.controlador_sesion.haySesion();
+            return gestor.haySesion();
         }
 
         public void cambiarPosicionPunto(int idPunto, int idPosicion)
@@ -153,12 +183,12 @@ namespace Proyecto1.Controlador
             //this.controlador_sesion.cambiarPosicionPunto(idPunto, idPosicion);
         }
 
-        public bool hayQuorum()
+        public void hayQuorum()
         {
             //return this.controlador_sesion.hayQuorum();
         }
 
-        public Collection<PuntoAgenda> getAllPuntosAgenda()
+        public void getAllPuntosAgenda()
         {
             //Collection<PuntoAgenda> puntos = new Collection<PuntoAgenda>();
 
@@ -168,7 +198,7 @@ namespace Proyecto1.Controlador
             //return puntos;
         }
 
-        public Collection<string> getAllNumeroSesiones()
+        public void getAllNumeroSesiones()
         {
             //Collection<string> numeros = new Collection<string>();
 

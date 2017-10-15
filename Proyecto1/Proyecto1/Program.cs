@@ -6,6 +6,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Proyecto1.Vista;
 
 namespace Proyecto1
 {
@@ -20,7 +21,7 @@ namespace Proyecto1
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new GUI());
 
             /*Collection<Miembro> miembros = new Collection<Miembro>();
 

@@ -45,13 +45,10 @@ namespace Proyecto1.Controlador
 
         public void nuevaSesion(String num, DateTime fecha, string lugar)
         {
-            if (!this.haySesion())
-            {
-                this.controlador_sesion.nuevaSesion(num, fecha, lugar);
-                this.controlador_sesion.setMiembros(this.consejo.Miembros);
-                this.controlador_solicitudes.setSolicitudes(this.consejo.Solicitudes);
-                //this.controlador_dao.nuevaSesion(num, fecha, lugar, false);
-            }
+            this.controlador_sesion.nuevaSesion(num, fecha, lugar);
+            this.controlador_sesion.setMiembros(this.consejo.Miembros);
+            this.controlador_solicitudes.setSolicitudes(this.consejo.Solicitudes);
+            this.controlador_dao.nuevaSesion(num, fecha, lugar, false);
         }
 
         public void cerrarSesion()
@@ -67,10 +64,10 @@ namespace Proyecto1.Controlador
 
         public void cargarDatos()
         {
-            //this.consejo = this.controlador_dao.cargarDatos();
+            this.consejo = this.controlador_dao.cargarDatos();
             foreach(Sesion sesion in this.consejo.Sesiones)
             {
-                if (!sesion.Estado)
+                if (sesion.Estado == false)
                 {
                     this.controlador_sesion.setSesion(sesion);
                     this.controlador_sesion.setMiembros(this.consejo.Miembros);
@@ -85,7 +82,7 @@ namespace Proyecto1.Controlador
             Collection<Miembro> miembros = this.xls.cargaXls(path);
             this.consejo.Miembros = miembros;
             this.controlador_sesion.setMiembros(miembros);
-            //this.controlador_dao.actualizarMiembros(miembros);
+            this.controlador_dao.actualizarMiembros(miembros);
         }
 
 
@@ -213,8 +210,11 @@ namespace Proyecto1.Controlador
             foreach (Sesion sesion in this.consejo.Sesiones)
                 numeros.Add(sesion.Numero);
 
+            if (this.controlador_sesion.getSesion() != null)
+                numeros.Add(this.controlador_sesion.getSesion().Numero);
+
             return numeros;
         }
-
+        
     }
 }

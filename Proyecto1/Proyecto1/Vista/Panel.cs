@@ -48,17 +48,17 @@ namespace Proyecto1.Vista
         Gestor g = new Gestor();
         private void button2_Click(object sender, EventArgs e)
         {                        
-            g.enviarNotificacion(DateTime.Now, "1");
+            //g.enviarNotificacion(DateTime.Now, "1");
         }
 
         private void button2_Click_1(object sender, EventArgs e)
         {
-            g.crearActa("Prueba2","Otra prueba de la\ncreación de docs");
+            //g.crearActa("Prueba2","Otra prueba de la\ncreación de docs");
         }
 
         private void generaAgenda_Click(object sender, EventArgs e)
         {
-            g.crearAgenda("p1", "Agenda de prueba\npara la funcionalidad de generar la agenda");
+            //g.crearAgenda("p1", "Agenda de prueba\npara la funcionalidad de generar la agenda");
         }
     }
 }

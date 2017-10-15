@@ -15,31 +15,6 @@ namespace Proyecto1.Controlador
 
         public Azure_DAO() {
             this.db = new Proyecto1DB();
-            //MiembrosDB m = new MiembrosDB
-            //{
-            //    nombre = "Adan",
-            //    correo1 = "correo1Adan",
-            //    correo2 = null,
-            //    tipoMiembro = "A"
-            //};
-            //db.MiembrosDBs.Add(m);
-            //SesionDB s = new SesionDB
-            //{
-            //    numero = "2",
-            //    fecha = DateTime.Today,
-            //    lugar = "CIC",
-            //    estado = true
-            //};
-            //db.SesionDBs.Add(s);
-            //foreach (MiembrosDB x in db.MiembrosDBs.ToList())
-            //{
-            //    Console.WriteLine(x.ToString());
-            //    Console.Read();
-            //    db.MiembrosDBs.Remove(x);
-            //}
-
-            //db.SaveChanges();
-
 
         }
 

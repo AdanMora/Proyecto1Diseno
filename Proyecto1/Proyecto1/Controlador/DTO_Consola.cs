@@ -114,37 +114,37 @@ namespace Proyecto1.Controlador
             //this.controlador_sesion.modificarAsistencia(correoMiembro, estado);
         }
 
-        public Collection<PuntoAgenda> getSolicitudes()
+        public void getSolicitudes()
         {
             //return this.controlador_solicitudes.getSolicitudes();
         }
 
-        public Consejo getConsejo()
+        public void getConsejo()
         {
             //return this.consejo;
         }
 
-        public Collection<PuntoAgenda> getPuntosAgenda()
+        public void getPuntosAgenda()
         {
             //return this.controlador_sesion.getPuntosAgenda();
         }
 
-        public Prototype_Miembros getAsistencia()
+        public void getAsistencia()
         {
             //return this.controlador_sesion.getAsistencia();
         }
 
-        public Collection<Miembro> getMiembrosConsejo()
+        public void getMiembrosConsejo()
         {
             //return this.consejo.Miembros;
         }
 
-        public Collection<Comentario> getComentarios(int idPunto)
+        public void getComentarios(int idPunto)
         {
             //return this.controlador_sesion.getComentarios(idPunto);
         }
 
-        public bool haySesion()
+        public void haySesion()
         {
             //return this.controlador_sesion.haySesion();
         }
@@ -154,12 +154,12 @@ namespace Proyecto1.Controlador
             //this.controlador_sesion.cambiarPosicionPunto(idPunto, idPosicion);
         }
 
-        public bool hayQuorum()
+        public void hayQuorum()
         {
             //return this.controlador_sesion.hayQuorum();
         }
 
-        public Collection<PuntoAgenda> getAllPuntosAgenda()
+        public void getAllPuntosAgenda()
         {
             //Collection<PuntoAgenda> puntos = new Collection<PuntoAgenda>();
 
@@ -169,7 +169,7 @@ namespace Proyecto1.Controlador
             //return puntos;
         }
 
-        public Collection<string> getAllNumeroSesiones()
+        public void getAllNumeroSesiones()
         {
             //Collection<string> numeros = new Collection<string>();
 
