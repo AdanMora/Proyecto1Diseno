@@ -15,10 +15,13 @@ namespace Proyecto1.Controlador
         string linea = "\n===================================================\n";
         Gestor g = new Gestor();
         public DTO_consola()
-        {            
-            g.nuevaSesion("2", DateTime.Now, "CIC");           
+        {                                   
         }
         
+        public void nuevaSesion()
+        {
+            g.nuevaSesion("1", DateTime.Now, "CIC");
+        }
 
         public void actualizarMiembros()
         {            
@@ -135,6 +138,11 @@ namespace Proyecto1.Controlador
             {
                 Console.WriteLine(m.Nombre);
             }
+        }
+
+        public void crearActa()
+        {
+            g.crearActa(1, "C:\\Users\\Fauricio\\Desktop\\Acta Sesión ordinaria.doc");
         }
     }
 }

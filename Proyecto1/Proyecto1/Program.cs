@@ -7,6 +7,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Proyecto1.Vista;
+using System.IO;
 
 namespace Proyecto1
 {
@@ -18,11 +19,11 @@ namespace Proyecto1
         [STAThread]
         static void Main()
         {
-
+            /*
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new GUI());
-
+            */
             /*Collection<Miembro> miembros = new Collection<Miembro>();
 
             String miembro = "miembro";
@@ -111,7 +112,9 @@ namespace Proyecto1
             //Console.WriteLine(gestor.getAsistencia().Asistencia.ElementAt(0).Nombre);
             Console.ReadKey();*/
             DTO_consola temp = new DTO_consola();
+            temp.nuevaSesion();
             temp.actualizarMiembros();
+            
             //temp.envioNotificacion();
             temp.agregarSolicitud();
             temp.aceptarSolicitud();
@@ -119,12 +122,13 @@ namespace Proyecto1
             //temp.eliminaSolicitud();
             //temp.verSolicitudes();
             temp.verPuntosAgenda();
-            //temp.generarAgenda();
+            temp.generarAgenda();
             //temp.enviarAgenda();
             Console.WriteLine("Ejecución del consejo");
-            temp.controlAsistencia();
-            temp.verAsistencia();
-            Console.ReadKey();
+            //temp.controlAsistencia();
+            //temp.verAsistencia();
+            temp.crearActa();            
+            Console.ReadKey();            
         }
     }
 }

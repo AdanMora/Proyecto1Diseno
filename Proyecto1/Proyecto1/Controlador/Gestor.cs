@@ -38,11 +38,13 @@ namespace Proyecto1.Controlador
 
         public Gestor()
         {
-            this.controlador_dao = new Azure_DAO();
+            //this.controlador_dao = new Azure_DAO();
+            this.consejo = new Consejo();
             this.controlador_sesion = new Controlador_Sesion();
             this.controlador_solicitudes = new Controlador_Solicitudes();
             this.controlador_docs = new Controlador_Docs();
             this.xls = new Xls_DAO();
+            this.controlador_correos = new Controlador_Correo();
         }
 
         public void nuevaSesion(String num, DateTime fecha, string lugar)
@@ -50,7 +52,7 @@ namespace Proyecto1.Controlador
             this.controlador_sesion.nuevaSesion(num, fecha, lugar);
             this.controlador_sesion.setMiembros(this.consejo.Miembros);
             this.controlador_solicitudes.setSolicitudes(this.consejo.Solicitudes);
-            this.controlador_dao.nuevaSesion(num, fecha, lugar, false);
+            //this.controlador_dao.nuevaSesion(num, fecha, lugar, false);
         }
 
         public void cerrarSesion()
@@ -82,9 +84,10 @@ namespace Proyecto1.Controlador
         public void actualizarMiembros(String path)
         {
             Collection<Miembro> miembros = this.xls.cargaXls(path);
+            Console.WriteLine(miembros.Count);
             this.consejo.Miembros = miembros;
             this.controlador_sesion.setMiembros(miembros);
-            this.controlador_dao.actualizarMiembros(miembros);
+            //this.controlador_dao.actualizarMiembros(miembros);
         }
 
 
@@ -136,6 +139,13 @@ namespace Proyecto1.Controlador
             this.controlador_docs.setDocumento(tipo);
             //Object o = this.controlador_docs.crearActa(this.controlador_sesion.getSesion());
             //this.controlador_dao.escribirActa(o);
+        }
+        public void crearActa(int tipo, string path)
+        {
+            this.controlador_docs.setDocumento(tipo);
+            //Object o = this.controlador_sesion.getSesion();
+            this.controlador_docs.crearActa(this.controlador_sesion.getSesion(), path);
+            //this.controlador_dao.escribirAgenda(o);
         }
 
         public void crearAgenda(int tipo)

@@ -31,7 +31,7 @@ namespace Proyecto1.Controlador
         public void setMiembros(Collection<Miembro> miembros)
         {
             this.prototype.cargarPrototipo(miembros);
-            //this.sesionActual.MiembrosAsistencia = (Prototype_Miembros)this.prototype.getPrototipo();
+            this.sesionActual.MiembrosAsistencia = (Prototype_Miembros)this.prototype.getPrototipo();
         }
 
         public PuntoAgenda getPuntoAgenda(int id)
