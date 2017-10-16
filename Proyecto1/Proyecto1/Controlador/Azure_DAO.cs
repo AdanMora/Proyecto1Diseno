@@ -225,18 +225,18 @@ namespace Proyecto1.Controlador
             db.SaveChanges();
         }
 
-        public void agregarComentario(int id_Punto, Comentario c)
+        public void agregarComentario(int id_Punto, string correoMiembro, int idComentario, string txt)
         {
             db.ComentariosDBs.Add(new ComentariosDB
             {
-                miembro = c.Miembro.Correo[0],
-                contenido = c.Txtcomentario
+                miembro = correoMiembro,
+                contenido = txt
             });
 
             db.ComentariosXPuntoDBs.Add(new ComentariosXPuntoDB
             {
                 punto = id_Punto,
-                comentario = c.Id_Comentario
+                comentario = idComentario
             });
             db.SaveChanges();
         }

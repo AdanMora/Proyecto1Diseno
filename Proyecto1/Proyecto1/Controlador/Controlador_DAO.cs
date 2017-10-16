@@ -31,7 +31,7 @@ namespace Proyecto1.Controlador
 
         void agregarVotacion(int id_Punto, int aFavor, int enContra, int abstenciones); // Listo
 
-        void agregarComentario(int id_Punto, Comentario c); // Listo
+        void agregarComentario(int id_Punto, string correoMiembro, int idComentario, string txt); // Listo
 
         void modificarAsistencia(String numeroSesion, String miembro, char estado); // Listo
 
