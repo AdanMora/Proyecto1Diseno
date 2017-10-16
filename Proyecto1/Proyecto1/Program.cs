@@ -104,7 +104,7 @@ namespace Proyecto1
             temp.crearActa();  
             temp.controlAsistencia();
             temp.realizarVotacion();        
-            Console.ReadKey();  */
+            Console.ReadKey();  
         }
     }
 }
