@@ -21,6 +21,7 @@ namespace Proyecto1.Controlador
         private Controlador_Sesion controlador_sesion;
         private Controlador_Solicitudes controlador_solicitudes;
         private Controlador_Docs controlador_docs;
+        private Controlador_Correo controlador_correos;
         private Azure_DAO controlador_dao;
         private Xls_DAO xls;
 
@@ -32,6 +33,7 @@ namespace Proyecto1.Controlador
             this.controlador_solicitudes = new Controlador_Solicitudes();
             this.controlador_docs = new Controlador_Docs();
             this.xls = new Xls_DAO();
+            this.controlador_correos = new Controlador_Correo();
         }
 
         public Gestor()
@@ -143,6 +145,14 @@ namespace Proyecto1.Controlador
             //this.controlador_dao.escribirAgenda(o);
         }
 
+        public void crearAgenda(int tipo, string path)
+        {
+            this.controlador_docs.setDocumento(tipo);
+            Object o = this.controlador_sesion.getSesion();
+            this.controlador_docs.crearAgenda(o, tipo, path);
+            //this.controlador_dao.escribirAgenda(o);
+        }
+
         public void modificarAsistencia(string correoMiembro, char estado)
         {
             this.controlador_sesion.modificarAsistencia(correoMiembro, estado);
@@ -215,6 +225,16 @@ namespace Proyecto1.Controlador
 
             return numeros;
         }
-        
+
+        public void enviarNotificacion(string numeroSesion, DateTime diaConsejo, string destinatario)
+        {
+            controlador_correos.enviarNotificaciones(numeroSesion, diaConsejo, destinatario);
+        }
+
+        public void enviarAgenda(string destinatario, string path)
+        {
+            controlador_correos.enviarAgenda(controlador_sesion.getSesion().Numero, controlador_sesion.getSesion().Fecha, destinatario, path);
+        }
+
     }
 }
