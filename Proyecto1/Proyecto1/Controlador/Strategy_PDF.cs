@@ -59,7 +59,7 @@ namespace Proyecto1.Controlador
             doc.Add(new Paragraph("\nNombre: " + punto.Nombre));
             doc.Add(new Paragraph("\nConsiderandos: " + punto.Considerandos));
             doc.Add(new Paragraph("\nSe acuerda: " + punto.SeAcuerda));
-            doc.Add(new Paragraph("\nVotacion: " + "\n+A favor:" + punto.Votacion[0] + "\n+En contra:" + punto.Votacion[1] + "\n+En blanco:" + punto.Votacion[2]));
+            doc.Add(new Paragraph("\nVotación: " + "\n+A favor:" + punto.Votacion[0] + "\n+En contra:" + punto.Votacion[1] + "\n+En blanco:" + punto.Votacion[2]));
             doc.Add(new Paragraph("\nComentarios\n"));
             foreach (Comentario c in punto.Comentarios)
             {
