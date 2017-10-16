@@ -19,11 +19,11 @@ namespace Proyecto1
         static void Main()
         {
 
-            Application.EnableVisualStyles();
+            /*Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new GUI());
+            Application.Run(new GUI());*/
 
-            /*Collection<Miembro> miembros = new Collection<Miembro>();
+            Collection<Miembro> miembros = new Collection<Miembro>();
 
             String miembro = "miembro";
             int cont = 0;
@@ -35,16 +35,18 @@ namespace Proyecto1
                 cont++;
             }
 
+
             Collection<Sesion> sesiones = new Collection<Sesion>();
             Collection<PuntoAgenda> solicitudes = new Collection<PuntoAgenda>();
 
             String p = "solicitud/punto";
-            String a = "a";
+            String a = "asd";
             cont = 0;
-
+            String b;
             while(cont < 20)
             {
-                solicitudes.Add(new PuntoAgenda(cont, p+cont.ToString(), a, a, a, 0, 0, 0, 'A'));
+                b = a + cont.ToString();
+                solicitudes.Add(new PuntoAgenda(cont, p+cont.ToString(), b, b, b, 0, 0, 0, 'A'));
                 cont++;
             }
 
@@ -54,19 +56,24 @@ namespace Proyecto1
             proto.cargarPrototipo(miembros);
             sesion.MiembrosAsistencia = (Prototype_Miembros)proto.getPrototipo();
 
-            
-
-            
-
-            sesiones.Add(new Sesion("1", DateTime.Now, "ñacas", true));
-            //sesiones.Add(sesion);
+            sesiones.Add(new Sesion("0", DateTime.Now, "ñacas", true));
+            sesiones.Add(sesion);
             Consejo consejo = new Consejo(miembros, sesiones, solicitudes);
-            Gestor gestor = new Gestor(consejo);
-            gestor.cargarDatos();
+            //Gestor gestor = new Gestor(consejo);
+
+            GUI gui = new GUI(consejo);
+            //gui.setConsejo(consejo);
+
+            gui.ShowDialog();
+            /*Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(gui);*/
+
+            //gestor.cargarDatos();
 
             //Console.WriteLine(gestor.haySesion());
-            
-            gestor.nuevaSesion("2", DateTime.Now, "CHANTE");
+
+            /*gestor.nuevaSesion("2", DateTime.Now, "CHANTE");
             
 
             while (cont < 20)

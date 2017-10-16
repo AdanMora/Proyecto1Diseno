@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Proyecto1.Controlador;
 using System.Globalization;
+using Proyecto1.Modelo;
 
 namespace Proyecto1.Vista
 {
@@ -17,9 +18,10 @@ namespace Proyecto1.Vista
     {
         DTO_GUI controladorDTO;
 
-        public GUI()
+        public GUI(Consejo c)
         {
             controladorDTO = new DTO_GUI(this);
+            controladorDTO.setConsejo(c);
             InitializeComponent();
             //***//
             dg_ListaMiembros.Columns.Add("NombreMiembro", "Nombre");
@@ -27,6 +29,7 @@ namespace Proyecto1.Vista
             dg_ListaMiembros.Columns.Add("Correo2Miembro", "Correo 2");
             dg_ListaMiembros.Columns.Add("TipoMiembro", "Tipo de Miembro");
             //***//
+            dg_Solicitudes.Columns.Add("IDSol", "ID");
             dg_Solicitudes.Columns.Add("NombreSol", "Nombre");
             dg_Solicitudes.Columns.Add("ConsiderandosSol", "Considerandos");
             dg_Solicitudes.Columns.Add("ResultandosSol", "Resultandos");
@@ -34,36 +37,35 @@ namespace Proyecto1.Vista
             dg_Solicitudes.Columns.Add("TipoSol", "Tipo");
             //***//
             //***//
+            dg_AgendaDurante.Columns.Add("IDPunto", "ID");
             dg_AgendaDurante.Columns.Add("NombreSol", "Nombre");
             dg_AgendaDurante.Columns.Add("ConsiderandosSol", "Considerandos");
             dg_AgendaDurante.Columns.Add("ResultandosSol", "Resultandos");
             dg_AgendaDurante.Columns.Add("SeAcuerda", "Se acuerda que");
             dg_AgendaDurante.Columns.Add("TipoSol", "Tipo");
             //***//
+            dg_AgendaPC.Columns.Add("IDSol", "ID");
             dg_AgendaPC.Columns.Add("NombreSol", "Nombre");
             dg_AgendaPC.Columns.Add("ConsiderandosSol", "Considerandos");
             dg_AgendaPC.Columns.Add("ResultandosSol", "Resultandos");
             dg_AgendaPC.Columns.Add("SeAcuerda", "Se acuerda que");
             dg_AgendaPC.Columns.Add("TipoSol", "Tipo");
             //***//
+            dg_AgendaPrevio.Columns.Add("IDPunto", "ID");
             dg_AgendaPrevio.Columns.Add("NombreSol", "Nombre");
             dg_AgendaPrevio.Columns.Add("ConsiderandosSol", "Considerandos");
             dg_AgendaPrevio.Columns.Add("ResultandosSol", "Resultandos");
             dg_AgendaPrevio.Columns.Add("SeAcuerda", "Se acuerda que");
             dg_AgendaPrevio.Columns.Add("TipoSol", "Tipo");
             //***//
+            dg_PuntosAgendaFinal.Columns.Add("IDPunto", "ID");
             dg_PuntosAgendaFinal.Columns.Add("NombreSol", "Nombre");
             dg_PuntosAgendaFinal.Columns.Add("ConsiderandosSol", "Considerandos");
             dg_PuntosAgendaFinal.Columns.Add("ResultandosSol", "Resultandos");
             dg_PuntosAgendaFinal.Columns.Add("SeAcuerda", "Se acuerda que");
             dg_PuntosAgendaFinal.Columns.Add("TipoSol", "Tipo");
             //***//
-
-            if (controladorDTO.haySesion())
-            {
-                btn_CrearSesion.Enabled = false;
-            }
-            
+            this.cargarDatosPrevioSecretaria();            
         }
 
         public String s_NumeroSesionGet
@@ -82,6 +84,7 @@ namespace Proyecto1.Vista
             set { tb_lugarSesion.Text = value; }
         }
 
+
         public DateTime dt_fechaHora
         {
             get { return dt_FechaHora.Value; }
@@ -93,7 +96,31 @@ namespace Proyecto1.Vista
             get { return dg_ListaMiembros; }
         }
 
+        public DataGridView dg_SolicitudesGet
+        {
+            get { return dg_Solicitudes; }
+        }
 
+        public DataGridView dg_AgendaDuranteGet
+        {
+            get { return dg_AgendaDurante; }
+        }
+
+        public DataGridView dg_AgendaPrevioGet
+        {
+            get { return dg_AgendaPrevio; }
+        }
+
+        public DataGridView dg_AgendaPCGet
+        {
+            get { return dg_AgendaPC; }
+        }
+
+        //dg_PuntosAgendaFinal
+        public DataGridView dg_PuntosAgendaFinalGet
+        {
+            get { return dg_PuntosAgendaFinal; }
+        }
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -111,7 +138,8 @@ namespace Proyecto1.Vista
 
         private void btn__Click(object sender, EventArgs e)
         {
-
+            this.controladorDTO.simularSolicitudes();
+            MessageBox.Show("Se ha simulado las solicitudes");
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -178,16 +206,28 @@ namespace Proyecto1.Vista
 
         private void btn_IniciarSesion_Click(object sender, EventArgs e)
         {
-
+            bool q = this.controladorDTO.hayQuorum();
+            if (q)
+                MessageBox.Show("Si hay quorum");
+            else MessageBox.Show("No hay quorum");
         }
 
         private void button1_Click_2(object sender, EventArgs e)
         {
+            bool msg = this.controladorDTO.agregarVotacion();
+            if (msg)
+                MessageBox.Show("Se modificó la votación correctamente");
+            else MessageBox.Show("Hubo un error, pudo ser la falta de quorum o la cantidad de votos no coincide o no seleccionó ningun punto");
 
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
+            
+            bool msg = this.controladorDTO.cerrarSesion();
+            if (msg)
+                MessageBox.Show("Se cerro la sesión correctamente");
+            else MessageBox.Show("Hubo un error, quizás no había ninguna sesión por cerrar");
 
         }
 
@@ -224,16 +264,19 @@ namespace Proyecto1.Vista
             }
 
             controladorDTO.setElementos();
-
+            controladorDTO.cargarMiembrosPrevioSecretaria();
         }
 
         private void tab_Solicitudes_Click(object sender, EventArgs e)
         {
-
+            // Gestion Solicitudes
+            this.controladorDTO.cargarSolicitudesPrevias();
         }
 
         private void tab_PrevioSec_Click(object sender, EventArgs e)
         {
+            Console.WriteLine("cambio");
+            // Previo Secretaria 
             if (controladorDTO.haySesion())
             {
                 btn_CrearSesion.Enabled = false;
@@ -241,6 +284,162 @@ namespace Proyecto1.Vista
             {
                 btn_CrearSesion.Enabled = true;
             }
+        }
+
+        private void tab_DuranteSec_Click(object sender, EventArgs e)
+        {
+            // Durante sesion(secretaria)
+            this.controladorDTO.cargarDuranteSesion();
+        }
+
+        private void tab_PrevioPC_Click(object sender, EventArgs e)
+        {
+            // Gestion de la agenda(previo)
+            this.controladorDTO.cargarPuntosPrevios();
+        }
+
+        private void tab_DurantePC_Click(object sender, EventArgs e)
+        {
+            // Durante sesion(PC)
+            this.controladorDTO.cargarDuranteSesionPC();
+        }
+
+        private void tab_SesionTerminada_Click(object sender, EventArgs e)
+        {
+            // Sesion terminada
+            this.controladorDTO.cargarSesionFinalizada();
+        }
+
+        private void cargarDatosPrevioSecretaria()
+        {
+            this.controladorDTO.cargarMiembrosPrevioSecretaria();
+        }
+
+        private void btn_RechazarSolicitud_Click(object sender, EventArgs e)
+        {
+            bool msg = this.controladorDTO.eliminarSolicitud();
+            if (msg)
+                MessageBox.Show("Se eliminó correctamente");
+            else
+                MessageBox.Show("Seleccione una solicitud para eliminar");
+        }
+
+        private void btn_AgregarAgenda_Click(object sender, EventArgs e)
+        {
+            bool msg = this.controladorDTO.aceptarSolicitud();
+            if (msg)
+                MessageBox.Show("Se agregó a la agenda correctamente");
+            else
+                MessageBox.Show("Seleccione una solicitud para agregar");
+        }
+
+        private void btn_MoverPuntoPrevio_Click(object sender, EventArgs e)
+        {
+            int posActual = int.Parse(this.s_PosActualPrevio.Value.ToString());
+            int posNueva = int.Parse(this.s_PosFinalPrevio.Value.ToString());
+            bool msg = this.controladorDTO.cambiarPosicionPunto(posActual, posNueva);
+            if (msg)
+            {
+                MessageBox.Show("Se cambió correctamente");
+                this.controladorDTO.cargarPuntosPrevios();
+            }
+            else
+                MessageBox.Show("Seleccione un punto o error en la cantidad de puntos");
+        }
+
+        private void btn_AgregarPuntoPrevio_Click(object sender, EventArgs e)
+        {
+            string nombre = this.tb_NombrePrevio.Text;
+            string cons = this.rtb_ConsiderandosPrevio.Text;
+            string res = this.rtb_ResultandosPrevio.Text;
+            string acu = this.rtb_seAcuerdaPrevio.Text;
+            bool msg = this.controladorDTO.agregarPuntoAgenda(nombre, cons, res, acu);
+            if (msg)
+            {
+                MessageBox.Show("Se agregó correctamente");
+                this.tb_NombrePrevio.Text = "";
+                this.rtb_ConsiderandosPrevio.Text = "";
+                this.rtb_ResultandosPrevio.Text = "";
+                this.rtb_seAcuerdaPrevio.Text = "";
+                this.controladorDTO.cargarPuntosPrevios();
+            }
+            else
+                MessageBox.Show("Campos incompletos");
+        }
+
+        private void btn_EliminarPunto_Click(object sender, EventArgs e)
+        {
+            bool msg = this.controladorDTO.eliminarPuntoAgenda();
+            if (msg)
+                MessageBox.Show("Se eliminó correctamente");
+            else
+                MessageBox.Show("Seleccione un punto para eliminar");
+        }
+
+        private void button3_Click_1(object sender, EventArgs e)
+        {
+            this.controladorDTO.modificarAsistencia();
+        }
+
+        private void btn_RegComentario_Click(object sender, EventArgs e)
+        {
+            bool msg = this.controladorDTO.agregarComentario();
+            if (msg)
+                MessageBox.Show("Se agregó el comentario correctamente");
+            else
+                MessageBox.Show("Hubo un error, campos incompletos o no seleccionó el punto");
+        }
+
+        private void btn_MoverPuntoDurante_Click(object sender, EventArgs e)
+        {
+            int posActual = int.Parse(this.s_PosActualDurante.Value.ToString());
+            int posNueva = int.Parse(this.PosFinalDurante.Value.ToString());
+            if (this.controladorDTO.cambiarPosicionPunto(posActual, posNueva))
+            {
+                MessageBox.Show("Se cambió correctamente");
+                this.controladorDTO.cargarDuranteSesionPC();
+            }
+            else MessageBox.Show("Hubo un error en el cambio, quizás no seleccionó un punto");
+            
+        }
+
+        private void btn_AgregarPuntoDurante_Click(object sender, EventArgs e)
+        {
+            string nombre = this.tb_nombreDurante.Text;
+            string cons = this.rtb_ConsiderandosDurante.Text;
+            string res = this.rtb_resultandosDurante.Text;
+            string acu = this.rtb_SeAcuerdaDurante.Text;
+            bool msg = this.controladorDTO.agregarPuntoAgenda(nombre, cons, res, acu);
+            if (msg)
+            {
+                MessageBox.Show("Se agregó correctamente");
+                this.tb_NombrePrevio.Text = "";
+                this.rtb_ConsiderandosDurante.Text = "";
+                this.rtb_resultandosDurante.Text = "";
+                this.rtb_SeAcuerdaDurante.Text = "";
+                this.controladorDTO.cargarDuranteSesionPC();
+            }
+            else
+                MessageBox.Show("Campos incompletos");
+        }
+
+        private void button1_Click_3(object sender, EventArgs e)
+        {
+
+        }
+
+        private void GUI_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            bool msg = this.controladorDTO.generarAcuerdo();
+            if (msg)
+                MessageBox.Show("Se agregó el comentario correctamente");
+            else
+                MessageBox.Show("Hubo un error, campos incompletos o no seleccionó el punto");
         }
     }
 }

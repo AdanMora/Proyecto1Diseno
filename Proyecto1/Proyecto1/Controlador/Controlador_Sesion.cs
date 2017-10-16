@@ -23,15 +23,34 @@ namespace Proyecto1.Controlador
             this.sesionActual = new Sesion(num, fecha, lugar, false);
         }
 
-        public void cerrarSesion()
+        public bool cerrarSesion()
         {
-            this.sesionActual = null;
+            if(this.sesionActual != null)
+            {
+                this.sesionActual.Estado = true;
+                this.sesionActual = null;
+                return true;
+            }
+            return false;
+            
+        }
+
+        public void eliminarPuntoAgenda(int id)
+        {
+            foreach(PuntoAgenda punto in this.sesionActual.Agenda)
+            {
+                if(punto.Id_punto == id)
+                {
+                    this.sesionActual.Agenda.Remove(punto);
+                    break;
+                }
+            }
         }
 
         public void setMiembros(Collection<Miembro> miembros)
         {
             this.prototype.cargarPrototipo(miembros);
-            //this.sesionActual.MiembrosAsistencia = (Prototype_Miembros)this.prototype.getPrototipo();
+            this.sesionActual.MiembrosAsistencia = (Prototype_Miembros)this.prototype.getPrototipo();
         }
 
         public PuntoAgenda getPuntoAgenda(int id)
@@ -105,16 +124,20 @@ namespace Proyecto1.Controlador
             }
         }
 
-        public void modificarAsistencia(string correoMiembro, char estado)
+        public void modificarAsistencia(string correoMiembro, bool estado)
         {
             int n = this.sesionActual.MiembrosAsistencia.Asistencia.Count;
+            char e = ' ';
             for(int i = 0; i < n; i++)
             {
-                if(this.sesionActual.MiembrosAsistencia.Asistencia.ElementAt(i).Correo[0] == correoMiembro)
+                if (this.sesionActual.MiembrosAsistencia.Asistencia.ElementAt(i).Correo[0] == correoMiembro)
                 {
-                    this.sesionActual.MiembrosAsistencia.ListaAsistencia[i] = estado;
+                    if (estado)
+                        e = 'P';
+                    else e = 'A';
+                    this.sesionActual.MiembrosAsistencia.ListaAsistencia[i] = e;
                     break;
-                }
+                }        
             }
         }
 
