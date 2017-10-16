@@ -64,6 +64,13 @@ namespace Proyecto1.Controlador
             }
         }
 
+        public void agregarSolicitudPresidente()
+        {
+            g.agregarSolicitud(21, g.getMiembrosConsejo().ElementAt(21).Nombre, "", "Aprovación de la Agenda", "", 'V');
+            g.aceptarSolicitud(21);
+            Console.WriteLine("\nEl presidente agregó un nuevo punto en la agenda.\n");
+        }
+
         public void verSolicitudes()
         {
             Console.WriteLine(linea);
@@ -124,10 +131,9 @@ namespace Proyecto1.Controlador
             Console.WriteLine("Control de asistencia");
             //char[] listaAsist = g.getAsistencia().ListaAsistencia;
             //int lim = listaAsist.Count();
-            foreach (Miembro m in g.getMiembrosConsejo())
+            foreach (Miembro m in g.getAsistencia().Asistencia)
             {
-                g.modificarAsistencia(m.Correo[0], 'P');
-                Console.WriteLine(m.Nombre);
+                g.modificarAsistencia(m.Correo[0], 'P');                
             }
         }
 
@@ -139,10 +145,36 @@ namespace Proyecto1.Controlador
                 Console.WriteLine(m.Nombre);
             }
         }
-
+        
+        
         public void crearActa()
         {
             g.crearActa(1, "C:\\Users\\Fauricio\\Desktop\\Acta Sesión ordinaria.doc");
+        }
+
+        public void realizarVotacion()
+        {            
+            foreach(PuntoAgenda p in g.getPuntosAgenda())
+            {
+                if (g.hayQuorum())
+                {
+                    Console.WriteLine("Hay quorum");
+                }
+                else
+                {
+                    Console.WriteLine("No hay quorum");
+                }
+                foreach(Miembro m in g.getAsistencia().Asistencia)
+                {
+                    g.agregarVotacion()
+                }
+            }
+        }
+
+        public void moficarAgenda()
+        {
+            g.cambiarPosicionPunto(11,1);
+            Console.WriteLine("\nEl presidente reorganiza los puntos dentro de la agenda.\n");
         }
     }
 }

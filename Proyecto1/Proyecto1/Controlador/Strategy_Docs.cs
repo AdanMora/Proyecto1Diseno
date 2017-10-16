@@ -11,5 +11,6 @@ namespace Proyecto1.Controlador
     {
         void crearAgenda(object sesion,string path);
         void crearActa(Sesion puntos, string path);
+        void crearAcuerdo(PuntoAgenda punto, string destinatario, string path);
     }
 }
