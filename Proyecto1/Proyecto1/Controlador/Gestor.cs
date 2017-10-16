@@ -55,20 +55,33 @@ namespace Proyecto1.Controlador
             //this.controlador_dao.nuevaSesion(num, fecha, lugar, false);
         }
 
-        public void cerrarSesion()
+        public bool cerrarSesion()
         {
             Sesion sesionActual = this.controlador_sesion.getSesion();
-            sesionActual.Estado = true;
-            this.consejo.Sesiones.Add(sesionActual);
+            bool existe = false;
 
-            this.controlador_sesion.cerrarSesion();
+            foreach(Sesion s in this.consejo.Sesiones)
+            {
+                if(s.Numero == sesionActual.Numero)
+                {
+                    existe = true;
+                    break;
+                }
+            }
+
+            if((sesionActual != null) && !existe)
+            {
+                this.consejo.Sesiones.Add(sesionActual);
+                //return true;
+            }
+            return this.controlador_sesion.cerrarSesion();
             // ahora hagan lo que quieran con sesionActual
             
         }
 
         public void cargarDatos()
         {
-            this.consejo = this.controlador_dao.cargarDatos();
+            //this.consejo = this.controlador_dao.cargarDatos();
             foreach(Sesion sesion in this.consejo.Sesiones)
             {
                 if (sesion.Estado == false)
@@ -86,7 +99,7 @@ namespace Proyecto1.Controlador
             Collection<Miembro> miembros = this.xls.cargaXls(path);
             Console.WriteLine(miembros.Count);
             this.consejo.Miembros = miembros;
-            this.controlador_sesion.setMiembros(miembros);
+            //this.controlador_sesion.setMiembros(miembros);
             //this.controlador_dao.actualizarMiembros(miembros);
         }
 
@@ -105,6 +118,14 @@ namespace Proyecto1.Controlador
             //this.controlador_dao.agregarSolicitud(punto); 
         }
 
+        public void agregarPuntoAgenda(string nombre, string resultando, string considerandos, string seAcuerda, char tipo)
+        {
+            int id = 999; // this.controlador_dao.getNextIDPunto();
+            PuntoAgenda punto = new PuntoAgenda(id, nombre, resultando, considerandos, seAcuerda, 0, 0, 0, tipo);
+            this.controlador_sesion.agregarPuntoAgenda(punto);
+            //this.controlador_dao.agregarSolicitud(punto); 
+        }
+
         public void agregarComentario(int idPunto, string correoMiembro, int idComentario, string txt)
         {
             this.controlador_sesion.agregarComentario(idPunto, correoMiembro, idComentario, txt);
@@ -119,6 +140,11 @@ namespace Proyecto1.Controlador
         {
             PuntoAgenda punto = this.controlador_solicitudes.eliminarSolicitud(id);
             //this.controlador_dao.eliminarSolicitud(punto.Id_punto);
+        }
+
+        public void eliminarPuntoAgenda(int id)
+        {
+            this.controlador_sesion.eliminarPuntoAgenda(id);
         }
 
         public void aceptarSolicitud(int id)
@@ -155,15 +181,7 @@ namespace Proyecto1.Controlador
             //this.controlador_dao.escribirAgenda(o);
         }
 
-        public void crearAgenda(int tipo, string path)
-        {
-            this.controlador_docs.setDocumento(tipo);
-            Object o = this.controlador_sesion.getSesion();
-            this.controlador_docs.crearAgenda(o, tipo, path);
-            //this.controlador_dao.escribirAgenda(o);
-        }
-
-        public void modificarAsistencia(string correoMiembro, char estado)
+        public void modificarAsistencia(string correoMiembro, bool estado)
         {
             this.controlador_sesion.modificarAsistencia(correoMiembro, estado);
         }
@@ -236,15 +254,19 @@ namespace Proyecto1.Controlador
             return numeros;
         }
 
-        public void enviarNotificacion(string numeroSesion, DateTime diaConsejo, string destinatario)
+        public void enviarNotificacion(string numeroSesion, DateTime fecha, string correo)
         {
-            controlador_correos.enviarNotificaciones(numeroSesion, diaConsejo, destinatario);
+
+        }
+        
+        public void crearAgenda(int tipo, string path)
+        {
+
         }
 
-        public void enviarAgenda(string destinatario, string path)
+        public void enviarAgenda(string correo, string path)
         {
-            controlador_correos.enviarAgenda(controlador_sesion.getSesion().Numero, controlador_sesion.getSesion().Fecha, destinatario, path);
-        }
 
+        }
     }
 }
