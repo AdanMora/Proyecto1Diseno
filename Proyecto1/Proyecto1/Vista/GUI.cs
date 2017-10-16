@@ -18,10 +18,11 @@ namespace Proyecto1.Vista
     {
         DTO_GUI controladorDTO;
 
-        public GUI(Consejo c)
+        public GUI()
         {
             controladorDTO = new DTO_GUI(this);
-            controladorDTO.setConsejo(c);
+            //controladorDTO.setConsejo(c);
+            controladorDTO.cargarDatos();
             InitializeComponent();
             //***//
             dg_ListaMiembros.Columns.Add("NombreMiembro", "Nombre");

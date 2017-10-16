@@ -51,7 +51,7 @@ namespace Proyecto1.Controlador
             this.controlador_sesion.nuevaSesion(num, fecha, lugar);
             this.controlador_sesion.setMiembros(this.consejo.Miembros);
             this.controlador_solicitudes.setSolicitudes(this.consejo.Solicitudes);
-            //this.controlador_dao.nuevaSesion(num, fecha, lugar, false);
+            this.controlador_dao.nuevaSesion(num, fecha, lugar, false);
         }
 
         public bool cerrarSesion()
@@ -80,7 +80,7 @@ namespace Proyecto1.Controlador
 
         public void cargarDatos()
         {
-            //this.consejo = this.controlador_dao.cargarDatos();
+            this.consejo = this.controlador_dao.cargarDatos();
             foreach(Sesion sesion in this.consejo.Sesiones)
             {
                 if (sesion.Estado == false)
@@ -98,7 +98,7 @@ namespace Proyecto1.Controlador
             Collection<Miembro> miembros = this.xls.cargaXls(path);
             this.consejo.Miembros = miembros;
             //this.controlador_sesion.setMiembros(miembros);
-            //this.controlador_dao.actualizarMiembros(miembros);
+            this.controlador_dao.actualizarMiembros(miembros);
         }
 
 
@@ -106,22 +106,22 @@ namespace Proyecto1.Controlador
         {
             PuntoAgenda punto = new PuntoAgenda(this.controlador_dao.getNextIDPunto() , nombre, resultando, considerandos, seAcuerda, 0, 0, 0, tipo);
             this.controlador_solicitudes.agregarSolicitud(punto);
-            //this.controlador_dao.agregarSolicitud(punto); 
+            this.controlador_dao.agregarSolicitud(punto); 
         }
 
         public void agregarSolicitud(int id, string nombre, string resultando, string considerandos, string seAcuerda, char tipo)
         {
             PuntoAgenda punto = new PuntoAgenda(id, nombre, resultando, considerandos, seAcuerda, 0, 0, 0, tipo);
             this.controlador_solicitudes.agregarSolicitud(punto);
-            //this.controlador_dao.agregarSolicitud(punto); 
+            this.controlador_dao.agregarSolicitud(punto); 
         }
 
         public void agregarPuntoAgenda(string nombre, string resultando, string considerandos, string seAcuerda, char tipo)
         {
-            int id = 999; // this.controlador_dao.getNextIDPunto();
+            int id = this.controlador_dao.getNextIDPunto();
             PuntoAgenda punto = new PuntoAgenda(id, nombre, resultando, considerandos, seAcuerda, 0, 0, 0, tipo);
             this.controlador_sesion.agregarPuntoAgenda(punto);
-            //this.controlador_dao.agregarSolicitud(punto); 
+            this.controlador_dao.agregarSolicitud(punto); 
         }
 
         public void agregarComentario(int idPunto, string correoMiembro, int idComentario, string txt)
@@ -137,7 +137,7 @@ namespace Proyecto1.Controlador
         public void eliminarSolicitud(int id)
         {
             PuntoAgenda punto = this.controlador_solicitudes.eliminarSolicitud(id);
-            //this.controlador_dao.eliminarSolicitud(punto.Id_punto);
+            this.controlador_dao.eliminarSolicitud(punto.Id_punto);
         }
 
         public void eliminarPuntoAgenda(int id)
@@ -155,7 +155,7 @@ namespace Proyecto1.Controlador
         public void agregarVotacion(int id, int aFavor, int enContra, int blanco)
         {
             PuntoAgenda punto = this.controlador_sesion.agregarVotacion(id, aFavor, enContra, blanco);
-            //this.controlador_dao.aceptarSolicitud(this.controlador_sesion.getSesion().Numero,punto.Id_punto);
+            this.controlador_dao.aceptarSolicitud(this.controlador_sesion.getSesion().Numero,punto.Id_punto);
         }
 
         public Sesion getSesion()

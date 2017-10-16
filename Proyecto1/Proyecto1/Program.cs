@@ -19,11 +19,11 @@ namespace Proyecto1
         static void Main()
         {
 
-            /*Application.EnableVisualStyles();
+            Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new GUI());*/
+            Application.Run(new GUI());
 
-            Collection<Miembro> miembros = new Collection<Miembro>();
+            /*Collection<Miembro> miembros = new Collection<Miembro>();
 
             String miembro = "miembro";
             int cont = 0;
@@ -64,59 +64,8 @@ namespace Proyecto1
             GUI gui = new GUI(consejo);
             //gui.setConsejo(consejo);
 
-            gui.ShowDialog();
-            /*Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(gui);*/
+            gui.ShowDialog();*/
 
-            //gestor.cargarDatos();
-
-            //Console.WriteLine(gestor.haySesion());
-
-            /*gestor.nuevaSesion("2", DateTime.Now, "CHANTE");
-            
-
-            while (cont < 20)
-            {
-                gestor.agregarSolicitud(cont, p + cont.ToString(), a, a, a, 'A');
-                cont++;
-            }
-
-            cont = 0;
-            while (cont < 8)
-            {
-                gestor.aceptarSolicitud(cont);
-                gestor.agregarComentario(cont, miembro + cont.ToString() + correo, cont, a);
-                cont++;
-            }
-            while(cont < 20)
-            {
-                gestor.eliminarSolicitud(cont);
-                cont++;
-            }
-
-            Console.WriteLine(gestor.getPuntosAgenda().ElementAt(0).Nombre);
-            gestor.cambiarPosicionPunto(1,5);
-            Console.WriteLine(gestor.getPuntosAgenda().ElementAt(0).Nombre);
-            Console.WriteLine(gestor.getPuntosAgenda().ElementAt(4).Nombre);
-
-            //gestor.agregarSolicitud("solicitud999",a,a,a,'S');
-            //gestor.eliminarSolicitud(999);
-            //gestor.aceptarSolicitud(999);
-            //Console.WriteLine(gestor.getPuntosAgenda().Count);
-            //Console.WriteLine(gestor.getConsejo().Solicitudes.Count);
-
-            //gestor.agregarVotacion(0,30,25,5);
-            //Console.WriteLine(gestor.getPuntosAgenda()[0].Votacion[0]);
-            //gestor.agregarComentario(0,"miembro0@gmail.com",450,"Comentario by ivan");
-
-            //gestor.modificarAsistencia("miembro0@gmail.com", 'Z');
-
-            //Console.WriteLine(gestor.getAsistencia().ListaAsistencia[0]);
-            //gestor.getConsejo().Miembros.ElementAt(0).Nombre = "ivan";
-            //Console.WriteLine(gestor.getMiembrosConsejo().ElementAt(0).Nombre);
-            //Console.WriteLine(gestor.getAsistencia().Asistencia.ElementAt(0).Nombre);
-            Console.ReadKey();*/
         }
     }
 }
