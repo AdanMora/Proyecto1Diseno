@@ -435,11 +435,11 @@ namespace Proyecto1.Vista
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            bool msg = this.controladorDTO.generarAcuerdo();
+            /*bool msg = this.controladorDTO.generarAcuerdo();
             if (msg)
                 MessageBox.Show("Se agregó el comentario correctamente");
             else
-                MessageBox.Show("Hubo un error, campos incompletos o no seleccionó el punto");
+                MessageBox.Show("Hubo un error, campos incompletos o no seleccionó el punto");*/
         }
     }
 }

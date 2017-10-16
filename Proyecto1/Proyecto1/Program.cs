@@ -22,7 +22,7 @@ namespace Proyecto1
 
             /*Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new GUI());*/
+            Application.Run(new GUI());
 
             Collection<Miembro> miembros = new Collection<Miembro>();
 
@@ -121,24 +121,23 @@ namespace Proyecto1
             DTO_consola temp = new DTO_consola();
             temp.nuevaSesion();
             temp.actualizarMiembros();
-            
-            //temp.envioNotificacion();
+            temp.envioNotificacion();
             temp.agregarSolicitud();            
             temp.aceptarSolicitud();
             temp.agregarSolicitudPresidente();
             temp.moficarAgenda();
-            //temp.verSolicitudes();
+            temp.verSolicitudes();
             temp.eliminaSolicitud();
-            //temp.verSolicitudes();
+            temp.verSolicitudes();
             temp.verPuntosAgenda();
-            //temp.generarAgenda();
-            //temp.enviarAgenda();
+            temp.generarAgenda();
+            temp.enviarAgenda();
             Console.WriteLine("Ejecución del consejo");
-            //temp.controlAsistencia();
-            //temp.verAsistencia();
-            //temp.crearActa();  
             temp.controlAsistencia();
-            temp.realizarVotacion();          
+            temp.verAsistencia();
+            temp.crearActa();  
+            temp.controlAsistencia();
+            temp.realizarVotacion();        
             Console.ReadKey();            
         }
     }

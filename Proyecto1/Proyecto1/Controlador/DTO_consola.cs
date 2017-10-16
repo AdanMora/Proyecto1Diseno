@@ -133,7 +133,7 @@ namespace Proyecto1.Controlador
             //int lim = listaAsist.Count();
             foreach (Miembro m in g.getAsistencia().Asistencia)
             {
-                g.modificarAsistencia(m.Correo[0], 'P');                
+                g.modificarAsistencia(m.Correo[0],true);                
             }
         }
 
@@ -153,9 +153,12 @@ namespace Proyecto1.Controlador
         }
 
         public void realizarVotacion()
-        {            
+        {
+            Console.WriteLine(linea);
+            Console.WriteLine("Simulación de proceso de votación");
             foreach(PuntoAgenda p in g.getPuntosAgenda())
             {
+                /*
                 if (g.hayQuorum())
                 {
                     Console.WriteLine("Hay quorum");
@@ -163,11 +166,8 @@ namespace Proyecto1.Controlador
                 else
                 {
                     Console.WriteLine("No hay quorum");
-                }
-                foreach(Miembro m in g.getAsistencia().Asistencia)
-                {
-                    g.agregarVotacion()
-                }
+                }*/
+                g.agregarVotacion(p.Id_punto, 40, 5, 0);
             }
         }
 
