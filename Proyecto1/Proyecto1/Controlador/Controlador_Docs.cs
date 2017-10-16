@@ -25,6 +25,11 @@ namespace Proyecto1.Controlador
             strategy.crearAgenda(puntos,path);
         }
 
+        public void creaAcurdo(PuntoAgenda punto, string destinatario, string path)
+        {
+            strategy.crearAcuerdo(punto, destinatario, path);
+        }
+
         public void setDocumento(int tipo)
         {
             strategy = null;

@@ -56,5 +56,10 @@ namespace Proyecto1.Controlador
         {
             // Crea el DOCX
         }
+
+        public void crearAcuerdo(PuntoAgenda punto, string destinatario, string path)
+        {
+
+        }
     }
 }

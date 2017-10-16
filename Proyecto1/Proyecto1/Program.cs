@@ -116,18 +116,22 @@ namespace Proyecto1
             temp.actualizarMiembros();
             
             //temp.envioNotificacion();
-            temp.agregarSolicitud();
+            temp.agregarSolicitud();            
             temp.aceptarSolicitud();
+            temp.agregarSolicitudPresidente();
+            temp.moficarAgenda();
             //temp.verSolicitudes();
-            //temp.eliminaSolicitud();
+            temp.eliminaSolicitud();
             //temp.verSolicitudes();
             temp.verPuntosAgenda();
-            temp.generarAgenda();
+            //temp.generarAgenda();
             //temp.enviarAgenda();
             Console.WriteLine("Ejecución del consejo");
             //temp.controlAsistencia();
             //temp.verAsistencia();
-            temp.crearActa();            
+            //temp.crearActa();  
+            temp.controlAsistencia();
+            temp.realizarVotacion();          
             Console.ReadKey();            
         }
     }

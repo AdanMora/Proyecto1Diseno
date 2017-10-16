@@ -45,6 +45,28 @@ namespace Proyecto1.Controlador
             }
             doc.Close();                        
         }
+                
+
+        public void crearAcuerdo(PuntoAgenda punto, string destinatario, string path)
+        {
+            //Crea el con la sesion            
+            FileStream fs = new FileStream(path + "Acuerdo" + ".pdf", FileMode.Create, FileAccess.Write, FileShare.None);
+            Document doc = new Document();
+            PdfWriter writer = PdfWriter.GetInstance(doc, fs);
+            doc.Open();
+            doc.Add(new Paragraph("\n\t\t\tAcuerdo"));
+            doc.Add(new Paragraph("\nDestinatario: " + destinatario));
+            doc.Add(new Paragraph("\nNombre: " + punto.Nombre));
+            doc.Add(new Paragraph("\nConsiderandos: " + punto.Considerandos));
+            doc.Add(new Paragraph("\nSe acuerda: " + punto.SeAcuerda));
+            doc.Add(new Paragraph("\nVotacion: " + "\n+A favor:" + punto.Votacion[0] + "\n+En contra:" + punto.Votacion[1] + "\n+En blanco:" + punto.Votacion[2]));
+            doc.Add(new Paragraph("\nComentarios\n"));
+            foreach (Comentario c in punto.Comentarios)
+            {
+                doc.Add(new Paragraph("\nMiembro: " + c.Miembro.Nombre+"\nComentario:"+c.Txtcomentario));
+            }
+            doc.Close();
+        }
     }
 }
 

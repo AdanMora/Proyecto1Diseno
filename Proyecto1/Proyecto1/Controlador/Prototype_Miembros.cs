@@ -22,7 +22,7 @@ namespace Proyecto1.Controlador
             {
                 Miembro m = miembros.ElementAt(0);
                 this.asistencia.Add(new Miembro(m.Nombre, m.Correo[0], m.Correo[1], m.TipoMiembro));
-                this.listaAsistencia[i] = 'A';
+                this.listaAsistencia[i] = 'P';
             }
         }
 
