@@ -30,7 +30,6 @@ namespace Proyecto1.Controlador
             doc.Add(new Paragraph("\nFecha: "+n.Fecha.ToString()));
             doc.Add(new Paragraph("\nLugar: " + n.Lugar.ToString()));
             doc.Add(new Paragraph("\n\t\t\tAgenda"));
-            doc.Add(new Paragraph("\n0.Aprobación de la agenda."));
             foreach (PuntoAgenda p in n.Agenda)
             {              
                 if (p.Tipo == 'V')
