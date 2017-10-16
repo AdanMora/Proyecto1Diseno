@@ -34,7 +34,7 @@ namespace Proyecto1.Controlador
             this.controlador_docs = new Controlador_Docs();
             this.controlador_correo = new Controlador_Correo();
             this.xls = new Xls_DAO();
-            this.controlador_correos = new Controlador_Correo();
+            this.controlador_correo = new Controlador_Correo();
         }
 
         public Gestor()
@@ -46,7 +46,7 @@ namespace Proyecto1.Controlador
             this.controlador_docs = new Controlador_Docs();
             this.controlador_correo = new Controlador_Correo();
             this.xls = new Xls_DAO();
-            this.controlador_correos = new Controlador_Correo();
+            this.controlador_correo = new Controlador_Correo();
         }
 
         public void nuevaSesion(String num, DateTime fecha, string lugar)
