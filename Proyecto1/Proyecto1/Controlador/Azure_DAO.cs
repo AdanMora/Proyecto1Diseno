@@ -290,9 +290,9 @@ namespace Proyecto1.Controlador
             return tuplaAdjunto;
         }
 
-        public void moverPuntoAgenda(string numeroSesion, int id_Punto, int nuevaPos)
+        public void moverPuntoAgenda(string numeroSesion, int id_PuntoViejaPOs, int id_PuntoNuevaPos)
         {
-            db.sp_MoverPuntoAgenda(numeroSesion, id_Punto, nuevaPos);
+            db.sp_MoverPuntoAgenda(numeroSesion, id_PuntoViejaPOs, id_PuntoNuevaPos);
             db.SaveChanges();
         }
     }
