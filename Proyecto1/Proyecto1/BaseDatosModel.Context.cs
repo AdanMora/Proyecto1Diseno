@@ -171,21 +171,21 @@ namespace Proyecto1
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_MiembrosXSesion_Result>("sp_MiembrosXSesion", num_SesionParameter);
         }
     
-        public virtual int sp_MoverPuntoAgenda(string num_Sesion, Nullable<decimal> id_Punto, Nullable<decimal> nuevaPos)
+        public virtual int sp_MoverPuntoAgenda(string num_Sesion, Nullable<decimal> id_PuntoPosVieja, Nullable<decimal> id_PuntoPosNueva)
         {
             var num_SesionParameter = num_Sesion != null ?
                 new ObjectParameter("Num_Sesion", num_Sesion) :
                 new ObjectParameter("Num_Sesion", typeof(string));
     
-            var id_PuntoParameter = id_Punto.HasValue ?
-                new ObjectParameter("id_Punto", id_Punto) :
-                new ObjectParameter("id_Punto", typeof(decimal));
+            var id_PuntoPosViejaParameter = id_PuntoPosVieja.HasValue ?
+                new ObjectParameter("id_PuntoPosVieja", id_PuntoPosVieja) :
+                new ObjectParameter("id_PuntoPosVieja", typeof(decimal));
     
-            var nuevaPosParameter = nuevaPos.HasValue ?
-                new ObjectParameter("nuevaPos", nuevaPos) :
-                new ObjectParameter("nuevaPos", typeof(decimal));
+            var id_PuntoPosNuevaParameter = id_PuntoPosNueva.HasValue ?
+                new ObjectParameter("id_PuntoPosNueva", id_PuntoPosNueva) :
+                new ObjectParameter("id_PuntoPosNueva", typeof(decimal));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_MoverPuntoAgenda", num_SesionParameter, id_PuntoParameter, nuevaPosParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_MoverPuntoAgenda", num_SesionParameter, id_PuntoPosViejaParameter, id_PuntoPosNuevaParameter);
         }
     
         public virtual int sp_renamediagram(string diagramname, Nullable<int> owner_id, string new_diagramname)

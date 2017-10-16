@@ -386,8 +386,8 @@
         </Function>
         <Function Name="sp_MoverPuntoAgenda" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Num_Sesion" Type="varchar" Mode="In" />
-          <Parameter Name="id_Punto" Type="numeric" Mode="In" />
-          <Parameter Name="nuevaPos" Type="numeric" Mode="In" />
+          <Parameter Name="id_PuntoPosVieja" Type="numeric" Mode="In" />
+          <Parameter Name="id_PuntoPosNueva" Type="numeric" Mode="In" />
         </Function>
         <Function Name="sp_NextIDComentario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="sp_NextIDPunto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
@@ -911,8 +911,8 @@
           </FunctionImport>
           <FunctionImport Name="sp_MoverPuntoAgenda">
             <Parameter Name="Num_Sesion" Mode="In" Type="String" />
-            <Parameter Name="id_Punto" Mode="In" Type="Decimal" />
-            <Parameter Name="nuevaPos" Mode="In" Type="Decimal" />
+            <Parameter Name="id_PuntoPosVieja" Mode="In" Type="Decimal" />
+            <Parameter Name="id_PuntoPosNueva" Mode="In" Type="Decimal" />
           </FunctionImport>
           <FunctionImport Name="sp_renamediagram">
             <Parameter Name="diagramname" Mode="In" Type="String" />
