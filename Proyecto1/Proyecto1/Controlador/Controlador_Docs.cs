@@ -20,7 +20,7 @@ namespace Proyecto1.Controlador
             strategy.crearActa(sesion,path);
         }
 
-        public void crearAgenda(object puntos, int tipo, string path)
+        public void crearAgenda(object puntos, string path)
         {
             strategy.crearAgenda(puntos,path);
         }

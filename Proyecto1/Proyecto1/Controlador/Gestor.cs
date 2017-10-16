@@ -21,6 +21,7 @@ namespace Proyecto1.Controlador
         private Controlador_Sesion controlador_sesion;
         private Controlador_Solicitudes controlador_solicitudes;
         private Controlador_Docs controlador_docs;
+        private Controlador_Correo controlador_correo;
         private Azure_DAO controlador_dao;
         private Xls_DAO xls;
 
@@ -31,6 +32,7 @@ namespace Proyecto1.Controlador
             this.controlador_sesion = new Controlador_Sesion();
             this.controlador_solicitudes = new Controlador_Solicitudes();
             this.controlador_docs = new Controlador_Docs();
+            this.controlador_correo = new Controlador_Correo();
             this.xls = new Xls_DAO();
         }
 
@@ -40,6 +42,7 @@ namespace Proyecto1.Controlador
             this.controlador_sesion = new Controlador_Sesion();
             this.controlador_solicitudes = new Controlador_Solicitudes();
             this.controlador_docs = new Controlador_Docs();
+            this.controlador_correo = new Controlador_Correo();
             this.xls = new Xls_DAO();
         }
 
@@ -155,18 +158,37 @@ namespace Proyecto1.Controlador
             //this.controlador_dao.aceptarSolicitud(this.controlador_sesion.getSesion().Numero,punto.Id_punto);
         }
 
-        public void crearActa(int tipo)
+        public Sesion getSesion()
         {
-            this.controlador_docs.setDocumento(tipo);
+            return this.controlador_sesion.getSesion();
+        }
+
+        public Sesion getSesion(string numero)
+        {
+            foreach(Sesion s in this.consejo.Sesiones)
+            {
+                if (s.Numero == numero)
+                    return s;
+            }
+            return null;
+        }
+
+        public void crearAgenda(string sesion)
+        {
+            this.controlador_docs.setDocumento(0);
+            string path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            this.controlador_docs.crearAgenda(this.getSesion(sesion), path);
             //Object o = this.controlador_docs.crearActa(this.controlador_sesion.getSesion());
             //this.controlador_dao.escribirActa(o);
         }
 
-        public void crearAgenda(int tipo)
+        public void crearActa(string sesion)
         {
-            this.controlador_docs.setDocumento(tipo);
-            //Object o = this.controlador_docs.crearAgenda(this.controlador_sesion.getSesion());
-            //this.controlador_dao.escribirAgenda(o);
+            this.controlador_docs.setDocumento(1);
+            string path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            this.controlador_docs.crearActa(this.getSesion(sesion), path);
+            //Object o = this.controlador_docs.crearActa(this.controlador_sesion.getSesion());
+            //this.controlador_dao.escribirActa(o);
         }
 
         public void modificarAsistencia(string correoMiembro, bool estado)
@@ -244,17 +266,14 @@ namespace Proyecto1.Controlador
 
         public void enviarNotificacion(string numeroSesion, DateTime fecha, string correo)
         {
+            this.controlador_correo.enviarNotificaciones(numeroSesion, fecha, correo);
+        }
 
+        public void enviarAgenda(string numeroSesion, DateTime fecha, string correo, string agenda)
+        {
+            this.controlador_correo.enviarAgenda(numeroSesion, fecha, correo, agenda);
         }
         
-        public void crearAgenda(int tipo, string path)
-        {
-
-        }
-
-        public void enviarAgenda(string correo, string path)
-        {
-
-        }
+        
     }
 }

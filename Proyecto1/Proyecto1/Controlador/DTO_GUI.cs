@@ -353,6 +353,12 @@ namespace Proyecto1.Controlador
                 }
                 this.gui.dg_AgendaPCGet.Rows.Add(s.Id_punto.ToString(), s.Nombre, s.Considerandos, s.Resultando, s.SeAcuerda, tipo);
             }
+
+            this.gui.comboBox1.Items.Clear();
+            foreach(string s in this.gestor.getAllNumeroSesiones())
+            {
+                this.gui.comboBox1.Items.Add(s);
+            }
         }
 
         public void cargarSesionFinalizada()
@@ -495,10 +501,39 @@ namespace Proyecto1.Controlador
             //this.controlador_dao.aceptarSolicitud(this.controlador_sesion.getSesion().Numero,punto.Id_punto);
         }
 
-        public void generarAcuerdo()
+        public bool generarActa()
         {
-            string path = this.gui.textBox1.Text;
+            //string path = this.gui.textBox1.Text;
+            string sesion = this.gui.comboBox1.Text;
+            if(sesion != "")
+            {
+                this.gestor.crearActa(sesion);
+                return true;
+            }
+            return false;
+        }
 
+        public bool generarAgenda()
+        {
+            //string path = this.gui.textBox1.Text;
+            string sesion = this.gui.comboBox1.Text;
+            if (sesion != "")
+            {
+                this.gestor.crearAgenda(sesion);
+                return true;
+            }
+            return false;
+        }
+
+        public void enviarNotificaciones()
+        {
+            
+            this.gestor.enviarNotificacion(this.gestor.getSesion().Numero, this.gestor.getSesion().Fecha, "grupoadfafe@gmail.com");
+        }
+
+        public void enviarAgenda(string archivo)
+        {
+            this.gestor.enviarAgenda(this.gestor.getSesion().Numero, this.gestor.getSesion().Fecha, "grupoadfafe@gmail.com", archivo);
         }
     }
 }

@@ -425,7 +425,7 @@ namespace Proyecto1.Vista
 
         private void button1_Click_3(object sender, EventArgs e)
         {
-
+            this.controladorDTO.generarActa();
         }
 
         private void GUI_Load(object sender, EventArgs e)
@@ -435,11 +435,31 @@ namespace Proyecto1.Vista
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            bool msg = this.controladorDTO.generarAcuerdo();
-            if (msg)
-                MessageBox.Show("Se agregó el comentario correctamente");
-            else
-                MessageBox.Show("Hubo un error, campos incompletos o no seleccionó el punto");
+         
+        }
+
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+            this.controladorDTO.generarAgenda();
+        }
+
+        private void button4_Click_1(object sender, EventArgs e)
+        {
+            this.controladorDTO.enviarNotificaciones();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            // Enviar Agenda
+            if (openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                System.IO.StreamReader sr = new
+                System.IO.StreamReader(openFileDialog1.FileName);
+                sr.Close();
+
+                controladorDTO.enviarAgenda(openFileDialog1.FileName);
+
+            }
         }
     }
 }
