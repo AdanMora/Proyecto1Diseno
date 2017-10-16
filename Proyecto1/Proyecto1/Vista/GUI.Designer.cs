@@ -111,6 +111,8 @@
             this.label26 = new System.Windows.Forms.Label();
             this.dg_PuntosAgendaFinal = new System.Windows.Forms.DataGridView();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
             this.Tab.SuspendLayout();
             this.tab_PrevioSec.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.s_numeroSesion)).BeginInit();
@@ -372,6 +374,7 @@
             // 
             // tab_PrevioPC
             // 
+            this.tab_PrevioPC.Controls.Add(this.button4);
             this.tab_PrevioPC.Controls.Add(this.btn_EliminarPunto);
             this.tab_PrevioPC.Controls.Add(this.btn_AgregarPuntoPrevio);
             this.tab_PrevioPC.Controls.Add(this.rtb_seAcuerdaPrevio);
@@ -557,7 +560,7 @@
             this.dg_AgendaPrevio.Name = "dg_AgendaPrevio";
             this.dg_AgendaPrevio.ReadOnly = true;
             this.dg_AgendaPrevio.RowTemplate.Height = 24;
-            this.dg_AgendaPrevio.Size = new System.Drawing.Size(628, 455);
+            this.dg_AgendaPrevio.Size = new System.Drawing.Size(471, 305);
             this.dg_AgendaPrevio.TabIndex = 31;
             // 
             // tab_DuranteSec
@@ -947,6 +950,7 @@
             // 
             // tab_SesionTerminada
             // 
+            this.tab_SesionTerminada.Controls.Add(this.button5);
             this.tab_SesionTerminada.Controls.Add(this.button2);
             this.tab_SesionTerminada.Controls.Add(this.button1);
             this.tab_SesionTerminada.Controls.Add(this.label28);
@@ -967,18 +971,19 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(675, 322);
-            this.button2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button2.Location = new System.Drawing.Point(506, 286);
+            this.button2.Margin = new System.Windows.Forms.Padding(2);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(184, 39);
             this.button2.TabIndex = 20;
-            this.button2.Text = "Generar acuerdo";
+            this.button2.Text = "Generar agenda";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click_1);
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(675, 263);
-            this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button1.Location = new System.Drawing.Point(506, 232);
+            this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(184, 39);
             this.button1.TabIndex = 19;
@@ -1049,6 +1054,26 @@
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(18, 371);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(135, 30);
+            this.button4.TabIndex = 48;
+            this.button4.Text = "Notificar";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click_1);
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(506, 339);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(138, 36);
+            this.button5.TabIndex = 21;
+            this.button5.Text = "Enviar agenda";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // GUI
             // 
@@ -1157,7 +1182,6 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label28;
-        private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         public System.Windows.Forms.Button btn_CrearSesion;
         public System.Windows.Forms.DataGridView dg_Solicitudes;
@@ -1176,5 +1200,8 @@
         public System.Windows.Forms.TextBox tb_Comentario;
         public System.Windows.Forms.NumericUpDown PosFinalDurante;
         public System.Windows.Forms.TextBox textBox1;
+        public System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button5;
     }
 }

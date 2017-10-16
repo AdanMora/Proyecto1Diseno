@@ -19,12 +19,12 @@ namespace Proyecto1
         [STAThread]
         static void Main()
         {
-            Consejo c;
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new GUI(c));
-            /*
-            Collection<Miembro> miembros = new Collection<Miembro>();
+            Application.Run(new GUI());
+
+            /*Collection<Miembro> miembros = new Collection<Miembro>();
 
             String miembro = "miembro";
             int cont = 0;
@@ -65,41 +65,7 @@ namespace Proyecto1
             GUI gui = new GUI(consejo);
             //gui.setConsejo(consejo);
 
-            gui.ShowDialog();
-            /*Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(gui);*/
-
-            //gestor.cargarDatos();
-
-            //Console.WriteLine(gestor.haySesion());
-
-            /*gestor.nuevaSesion("2", DateTime.Now, "CHANTE");
-            
-
-            while (cont < 20)
-            {
-                gestor.agregarSolicitud(cont, p + cont.ToString(), a, a, a, 'A');
-                cont++;
-            }
-
-            cont = 0;
-            while (cont < 8)
-            {
-                gestor.aceptarSolicitud(cont);
-                gestor.agregarComentario(cont, miembro + cont.ToString() + correo, cont, a);
-                cont++;
-            }
-            while(cont < 20)
-            {
-                gestor.eliminarSolicitud(cont);
-                cont++;
-            }
-
-            Console.WriteLine(gestor.getPuntosAgenda().ElementAt(0).Nombre);
-            gestor.cambiarPosicionPunto(1,5);
-            Console.WriteLine(gestor.getPuntosAgenda().ElementAt(0).Nombre);
-            Console.WriteLine(gestor.getPuntosAgenda().ElementAt(4).Nombre);
+            gui.ShowDialog();*/
 
             //gestor.agregarSolicitud("solicitud999",a,a,a,'S');
             //gestor.eliminarSolicitud(999);

@@ -60,20 +60,10 @@ namespace Proyecto1.Controlador
 
         }
 
-        /*public void cargarDatos()
+        public void cargarDatos()
         {
-            //this.consejo = this.controlador_dao.cargarDatos();
-            //foreach (Sesion sesion in this.consejo.Sesiones)
-            //{
-            //    if (!sesion.Estado)
-            //    {
-            //        this.controlador_sesion.setSesion(sesion);
-            //        this.controlador_sesion.setMiembros(this.consejo.Miembros);
-            //        this.controlador_solicitudes.setSolicitudes(this.consejo.Solicitudes);
-            //        break;
-            //    }
-            //}
-        }*/
+            this.gestor.cargarDatos();
+        }
 
         public void actualizarMiembros(String path)
         {
@@ -84,10 +74,8 @@ namespace Proyecto1.Controlador
 
         public void agregarSolicitud(string nombre, string resultando, string considerandos, string seAcuerda, char tipo)
         {
-            //PuntoAgenda punto = new PuntoAgenda(this.controlador_dao.getNextIDPunto(), nombre, resultando, considerandos, seAcuerda, 0, 0, 0, tipo);
-            //this.controlador_solicitudes.agregarSolicitud(punto);
-            //this.controlador_dao.agregarSolicitud(punto); 
-            
+            this.gestor.agregarSolicitud(nombre, resultando, considerandos, seAcuerda, tipo);
+
         }
 
         public void agregarSolicitud(int id, string nombre, string resultando, string considerandos, string seAcuerda, char tipo)
@@ -106,7 +94,7 @@ namespace Proyecto1.Controlador
             {
                 // (int idPunto, string correoMiembro, int idComentario, string txt)
                 int id = int.Parse(this.gui.dg_AgendaDuranteGet.SelectedRows[0].Cells["IDPunto"].Value.ToString());
-                this.gestor.agregarComentario(id, this.gui.cb_miembros.Text, 99, this.gui.tb_Comentario.Text );
+                this.gestor.agregarComentario(id, this.gui.cb_miembros.Text, this.gui.tb_Comentario.Text );
                 resultado = true;
                 this.gui.tb_Comentario.Text = "";
             }
@@ -114,25 +102,6 @@ namespace Proyecto1.Controlador
             return resultado;
         }
 
-        public void agregarComentario(int idPunto, string correoMiembro, string txt)
-        {
-            //this.controlador_sesion.agregarComentario(idPunto, correoMiembro, this.controlador_dao.getNextIDComentario(), txt);
-        }
-
-        public void eliminarSolicitud(int id)
-        {
-            //PuntoAgenda punto = this.controlador_solicitudes.eliminarSolicitud(id);
-            //this.controlador_dao.eliminarSolicitud(punto.Id_punto);
-        }
-
-        
-
-        public void crearActa(int tipo)
-        {
-            //this.controlador_docs.setDocumento(tipo);
-            //Object o = this.controlador_docs.crearActa(this.controlador_sesion.getSesion());
-            //this.controlador_dao.escribirActa(o);
-        }
 
         public void crearAgenda(int tipo)
         {
@@ -307,7 +276,7 @@ namespace Proyecto1.Controlador
                 if (asistencia[i] == 'P')
                     presente = true;
 
-                this.gui.clb_Asistencia.Items.Add(miembros.ElementAt(i).Nombre, true);
+                this.gui.clb_Asistencia.Items.Add(miembros.ElementAt(i).Nombre, presente);
                 this.gui.cb_miembros.Items.Add(miembros.ElementAt(i).Correo[0]);
             }
 
@@ -352,6 +321,12 @@ namespace Proyecto1.Controlador
                         break;
                 }
                 this.gui.dg_AgendaPCGet.Rows.Add(s.Id_punto.ToString(), s.Nombre, s.Considerandos, s.Resultando, s.SeAcuerda, tipo);
+            }
+
+            this.gui.comboBox1.Items.Clear();
+            foreach(string s in this.gestor.getAllNumeroSesiones())
+            {
+                this.gui.comboBox1.Items.Add(s);
             }
         }
 
@@ -402,7 +377,7 @@ namespace Proyecto1.Controlador
                 r = "resultando " + cont.ToString();
                 c = "considerando " + cont.ToString();
                 s = "seAcuerda " + cont.ToString();
-                this.agregarSolicitud(cont ,b, r, c, s, 'I');
+                this.agregarSolicitud(b, r, c, s, 'I');
                 cont++;
             }
         }
@@ -495,10 +470,39 @@ namespace Proyecto1.Controlador
             //this.controlador_dao.aceptarSolicitud(this.controlador_sesion.getSesion().Numero,punto.Id_punto);
         }
 
-        public void generarAcuerdo()
+        public bool generarActa()
         {
-            string path = this.gui.textBox1.Text;
+            //string path = this.gui.textBox1.Text;
+            string sesion = this.gui.comboBox1.Text;
+            if(sesion != "")
+            {
+                this.gestor.crearActa(sesion);
+                return true;
+            }
+            return false;
+        }
 
+        public bool generarAgenda()
+        {
+            //string path = this.gui.textBox1.Text;
+            string sesion = this.gui.comboBox1.Text;
+            if (sesion != "")
+            {
+                this.gestor.crearAgenda(sesion);
+                return true;
+            }
+            return false;
+        }
+
+        public void enviarNotificaciones()
+        {
+            
+            this.gestor.enviarNotificacion(this.gestor.getSesion().Numero, this.gestor.getSesion().Fecha, "grupoadfafe@gmail.com");
+        }
+
+        public void enviarAgenda(string archivo)
+        {
+            this.gestor.enviarAgenda(this.gestor.getSesion().Numero, this.gestor.getSesion().Fecha, "grupoadfafe@gmail.com", archivo);
         }
     }
 }
