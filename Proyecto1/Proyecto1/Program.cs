@@ -18,8 +18,14 @@ namespace Proyecto1
         /// </summary>
         [STAThread]
         static void Main()
-        {
+        {   
+            /*
+            Gestor g = new Gestor();
+            g.cargarDatos();
+            Console.WriteLine(g.getMiembrosConsejo().Count);
+            Console.Read();*/
 
+            
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new GUI());
@@ -83,7 +89,7 @@ namespace Proyecto1
             //gestor.getConsejo().Miembros.ElementAt(0).Nombre = "ivan";
             //Console.WriteLine(gestor.getMiembrosConsejo().ElementAt(0).Nombre);
             //Console.WriteLine(gestor.getAsistencia().Asistencia.ElementAt(0).Nombre);
-            Console.ReadKey();
+            /*
             DTO_consola temp = new DTO_consola();
             temp.nuevaSesion();
             temp.actualizarMiembros();
@@ -104,7 +110,7 @@ namespace Proyecto1
             temp.crearActa();  
             temp.controlAsistencia();
             temp.realizarVotacion();        
-            Console.ReadKey();  */
+            Console.ReadKey(); */
         }
     }
 }

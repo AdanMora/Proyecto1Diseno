@@ -25,7 +25,7 @@ namespace Proyecto1.Controlador
 
         public void actualizarMiembros()
         {            
-            g.actualizarMiembros(@"C:\\Users\\Fauricio\\Desktop\\Miembros.xlsx");
+            g.actualizarMiembros(@"C:\\Users\\Adán\\Desktop\\Miembros.xlsx");
             Console.WriteLine("Administración de consejos.\n\n Lista de miembros\n");
 
             foreach (Miembro nuevo in g.getMiembrosConsejo())
@@ -115,14 +115,14 @@ namespace Proyecto1.Controlador
 
         public void generarAgenda()
         {
-            g.crearAgenda(0,@"C:\\Users\\Fauricio\\Desktop\\");
+            //g.crearAgenda(0,@"C:\\Users\\Fauricio\\Desktop\\");
         }
 
         public void enviarAgenda()
         {
             foreach(Miembro n in g.getMiembrosConsejo())
             {
-                g.enviarAgenda(n.Correo[0], @"C:\\Users\\Fauricio\\Desktop\\Agenda Sesión Ordinaria-2.pdf");
+                //g.enviarAgenda(n.Correo[0], @"C:\\Users\\Fauricio\\Desktop\\Agenda Sesión Ordinaria-2.pdf");
             }
         }
 
