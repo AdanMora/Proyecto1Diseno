@@ -11,10 +11,13 @@ namespace Proyecto1
 {
     using System;
     
-    public partial class sp_ComentariosXPunto1_Result
+    public partial class sp_Solicitudes1_Result
     {
-        public string correo1 { get; set; }
-        public decimal id_Comentario { get; set; }
-        public string contenido { get; set; }
+        public decimal id_Punto { get; set; }
+        public string nombre { get; set; }
+        public string considerandos { get; set; }
+        public string resultandos { get; set; }
+        public string seAcuerda { get; set; }
+        public string tipoPunto { get; set; }
     }
 }

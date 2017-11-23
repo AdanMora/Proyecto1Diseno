@@ -11,12 +11,12 @@ namespace Proyecto1
 {
     using System;
     
-    public partial class sp_Solicitudes_Result
+    public partial class sp_MiembrosXSesion1_Result
     {
-        public decimal id_Punto { get; set; }
         public string nombre { get; set; }
-        public string considerandos { get; set; }
-        public string resultandos { get; set; }
-        public string seAcuerda { get; set; }
+        public string correo1 { get; set; }
+        public string correo2 { get; set; }
+        public string tipoMiembro { get; set; }
+        public string estadoAsistencia { get; set; }
     }
 }

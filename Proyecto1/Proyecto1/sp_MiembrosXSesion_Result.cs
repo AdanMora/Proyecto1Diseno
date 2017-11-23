@@ -13,10 +13,7 @@ namespace Proyecto1
     
     public partial class sp_MiembrosXSesion_Result
     {
-        public string nombre { get; set; }
         public string correo1 { get; set; }
-        public string correo2 { get; set; }
-        public string tipoMiembro { get; set; }
         public string estadoAsistencia { get; set; }
     }
 }

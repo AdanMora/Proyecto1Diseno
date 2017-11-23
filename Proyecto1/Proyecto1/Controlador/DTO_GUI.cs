@@ -83,7 +83,7 @@ namespace Proyecto1.Controlador
             //PuntoAgenda punto = new PuntoAgenda(id, nombre, resultando, considerandos, seAcuerda, 0, 0, 0, tipo);
             //this.controlador_solicitudes.agregarSolicitud(punto);
             //this.controlador_dao.agregarSolicitud(punto); 
-            this.gestor.agregarSolicitud(id,nombre, resultando, considerandos, seAcuerda, tipo);
+            //this.gestor.agregarSolicitud(id,nombre, resultando, considerandos, seAcuerda, tipo);
         }
 
         public bool agregarComentario()

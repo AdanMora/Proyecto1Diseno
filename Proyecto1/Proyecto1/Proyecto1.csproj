@@ -86,6 +86,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActualizacionesMiembrosDB.cs">
+      <DependentUpon>BaseDatosModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="AdjuntosXPuntoDB.cs">
       <DependentUpon>BaseDatosModel.tt</DependentUpon>
     </Compile>
@@ -132,6 +135,9 @@
     <Compile Include="DocXSesionDB.cs">
       <DependentUpon>BaseDatosModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="HistorialMiembrosDB.cs">
+      <DependentUpon>BaseDatosModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="MiembrosDB.cs">
       <DependentUpon>BaseDatosModel.tt</DependentUpon>
     </Compile>
@@ -169,28 +175,19 @@
     <Compile Include="sp_AdjuntosXPunto_Result.cs">
       <DependentUpon>BaseDatosModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="sp_Agenda1_Result.cs">
-      <DependentUpon>BaseDatosModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="sp_AgendaSesion_Result.cs">
       <DependentUpon>BaseDatosModel.tt</DependentUpon>
     </Compile>
     <Compile Include="sp_Agenda_Result.cs">
       <DependentUpon>BaseDatosModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="sp_ComentariosXPunto1_Result.cs">
-      <DependentUpon>BaseDatosModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="sp_ComentariosXPunto_Result.cs">
       <DependentUpon>BaseDatosModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="sp_helpdiagramdefinition_Result.cs">
-      <DependentUpon>BaseDatosModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="sp_helpdiagrams_Result.cs">
-      <DependentUpon>BaseDatosModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="sp_MiembrosXConsejo_Result.cs">
+      <DependentUpon>BaseDatosModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_MiembrosXSesion1_Result.cs">
       <DependentUpon>BaseDatosModel.tt</DependentUpon>
     </Compile>
     <Compile Include="sp_MiembrosXSesion_Result.cs">
@@ -199,7 +196,7 @@
     <Compile Include="sp_SesionesxConsejo_Result.cs">
       <DependentUpon>BaseDatosModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="sp_Solicitudes_Result.cs">
+    <Compile Include="sp_Solicitudes1_Result.cs">
       <DependentUpon>BaseDatosModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Vista\Consola.cs">
@@ -272,18 +269,6 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="BaseDatosModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>BaseDatosModel.edmx</DependentUpon>
-      <LastGenOutput>BaseDatosModel.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="BaseDatosModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>BaseDatosModel.edmx</DependentUpon>
-      <LastGenOutput>BaseDatosModel.cs</LastGenOutput>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
       <Visible>False</Visible>
       <ProductName>Microsoft .NET Framework 4.5.2 %28x86 and x64%29</ProductName>
@@ -294,6 +279,18 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="BaseDatosModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>BaseDatosModel.edmx</DependentUpon>
+      <LastGenOutput>BaseDatosModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="BaseDatosModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>BaseDatosModel.edmx</DependentUpon>
+      <LastGenOutput>BaseDatosModel.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

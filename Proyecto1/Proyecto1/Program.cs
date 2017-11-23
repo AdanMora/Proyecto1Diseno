@@ -18,17 +18,82 @@ namespace Proyecto1
         /// </summary>
         [STAThread]
         static void Main()
-        {   
-            /*
+        {
+
             Gestor g = new Gestor();
             g.cargarDatos();
-            Console.WriteLine(g.getMiembrosConsejo().Count);
-            Console.Read();*/
+            Console.WriteLine("\nConsejo - Carga de datos");
+            Console.WriteLine("\nMiembros");
+            foreach (Miembro m in g.getConsejo().Miembros)
+            {
+                Console.WriteLine(m.toString());
+            }
 
-            
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new GUI());
+            Console.WriteLine("\nSolicitudes");
+            foreach (PuntoAgenda p in g.getConsejo().Solicitudes)
+            {
+                Console.WriteLine(p.toString());
+            }
+
+            Console.WriteLine("\nSesiones");
+            foreach (Sesion s in g.getConsejo().Sesiones)
+            {
+                Console.WriteLine(s.toString());
+
+                foreach (PuntoAgenda p in s.Agenda)
+                {
+                    Console.WriteLine(p.toString());
+
+                    foreach (Comentario c in p.Comentarios)
+                    {
+                        Console.WriteLine(c.toString());
+                    }
+                }
+            }
+
+            Console.WriteLine("\nSesion Actual");
+
+            Console.WriteLine(g.getSesion().toString());
+
+            for (int i = 0; i < g.getSesion().MiembrosAsistencia.Asistencia.Count; i++)
+            {
+                Console.WriteLine(g.getSesion().MiembrosAsistencia.Asistencia.ElementAt(i).toString());
+
+                Console.WriteLine("||||||||" + g.getSesion().MiembrosAsistencia.ListaAsistencia.ElementAt(i) + "||||||||");
+            }
+
+            /*g.cerrarSesion();
+
+            g.nuevaSesion("prueba", DateTime.Today, "IC");
+
+            g.aceptarSolicitud(g.getSolicitudes().First().Id_punto);
+
+            g.agregarPuntoAgenda("Punto P1", "Resultado P1", "Considerando P1", "Se acuerda P1", 'T');
+
+            g.agregarPuntoAgenda("Punto P2", "Resultado P2", "Considerando P2", "Se acuerda P2", 'M');
+
+            g.agregarPuntoAgenda("Punto P3", "Resultado P3", "Considerando P3", "Se acuerda P3", 'T');
+
+            */
+            g.cambiarPosicionPunto(3, 1);
+
+            g.agregarComentario(5, g.getConsejo().Miembros.First().Correo[0], "Comentario de prueba P...");
+
+            g.agregarVotacion(4, 23, 3, 5);
+
+            foreach (Miembro m in g.getSesion().MiembrosAsistencia.Asistencia)
+            {
+                g.modificarAsistencia(m.Correo[0], false);
+            }
+
+            g.modificarAsistencia(g.getConsejo().Miembros.First().Correo[0], true);
+
+            Console.Read();
+
+
+            //Application.EnableVisualStyles();
+            //Application.SetCompatibleTextRenderingDefault(false);
+            //Application.Run(new GUI());
 
             /*Collection<Miembro> miembros = new Collection<Miembro>();
 

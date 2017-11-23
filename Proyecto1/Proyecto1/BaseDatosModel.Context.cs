@@ -27,19 +27,21 @@ namespace Proyecto1
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<ActualizacionesMiembrosDB> ActualizacionesMiembrosDBs { get; set; }
         public virtual DbSet<AdjuntosXPuntoDB> AdjuntosXPuntoDBs { get; set; }
         public virtual DbSet<ComentariosDB> ComentariosDBs { get; set; }
         public virtual DbSet<ComentariosXPuntoDB> ComentariosXPuntoDBs { get; set; }
         public virtual DbSet<ConsejoDB> ConsejoDBs { get; set; }
         public virtual DbSet<DocXSesionDB> DocXSesionDBs { get; set; }
+        public virtual DbSet<HistorialMiembrosDB> HistorialMiembrosDBs { get; set; }
         public virtual DbSet<Miembros_ConsejoDB> Miembros_ConsejoDB { get; set; }
         public virtual DbSet<Miembros_SesionDB> Miembros_SesionDB { get; set; }
         public virtual DbSet<MiembrosDB> MiembrosDBs { get; set; }
         public virtual DbSet<Punto_AgendaDB> Punto_AgendaDB { get; set; }
         public virtual DbSet<PuntosXSesionDB> PuntosXSesionDBs { get; set; }
         public virtual DbSet<SesionDB> SesionDBs { get; set; }
-        public virtual DbSet<Solicitudes_PuntosDB> Solicitudes_PuntosDB { get; set; }
         public virtual DbSet<SesionesXConsejoDB> SesionesXConsejoDBs { get; set; }
+        public virtual DbSet<Solicitudes_PuntosDB> Solicitudes_PuntosDB { get; set; }
     
         public virtual int sp_AceptarSolicitud(string num_Sesion, Nullable<decimal> id_Punto)
         {
@@ -54,171 +56,6 @@ namespace Proyecto1
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_AceptarSolicitud", num_SesionParameter, id_PuntoParameter);
         }
     
-        public virtual ObjectResult<sp_Agenda_Result> sp_Agenda(string num_Sesion)
-        {
-            var num_SesionParameter = num_Sesion != null ?
-                new ObjectParameter("Num_Sesion", num_Sesion) :
-                new ObjectParameter("Num_Sesion", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Agenda_Result>("sp_Agenda", num_SesionParameter);
-        }
-    
-        public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
-        {
-            var diagramnameParameter = diagramname != null ?
-                new ObjectParameter("diagramname", diagramname) :
-                new ObjectParameter("diagramname", typeof(string));
-    
-            var owner_idParameter = owner_id.HasValue ?
-                new ObjectParameter("owner_id", owner_id) :
-                new ObjectParameter("owner_id", typeof(int));
-    
-            var versionParameter = version.HasValue ?
-                new ObjectParameter("version", version) :
-                new ObjectParameter("version", typeof(int));
-    
-            var definitionParameter = definition != null ?
-                new ObjectParameter("definition", definition) :
-                new ObjectParameter("definition", typeof(byte[]));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_alterdiagram", diagramnameParameter, owner_idParameter, versionParameter, definitionParameter);
-        }
-    
-        public virtual ObjectResult<sp_ComentariosXPunto_Result> sp_ComentariosXPunto(Nullable<decimal> id_Punto)
-        {
-            var id_PuntoParameter = id_Punto.HasValue ?
-                new ObjectParameter("id_Punto", id_Punto) :
-                new ObjectParameter("id_Punto", typeof(decimal));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_ComentariosXPunto_Result>("sp_ComentariosXPunto", id_PuntoParameter);
-        }
-    
-        public virtual int sp_creatediagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
-        {
-            var diagramnameParameter = diagramname != null ?
-                new ObjectParameter("diagramname", diagramname) :
-                new ObjectParameter("diagramname", typeof(string));
-    
-            var owner_idParameter = owner_id.HasValue ?
-                new ObjectParameter("owner_id", owner_id) :
-                new ObjectParameter("owner_id", typeof(int));
-    
-            var versionParameter = version.HasValue ?
-                new ObjectParameter("version", version) :
-                new ObjectParameter("version", typeof(int));
-    
-            var definitionParameter = definition != null ?
-                new ObjectParameter("definition", definition) :
-                new ObjectParameter("definition", typeof(byte[]));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_creatediagram", diagramnameParameter, owner_idParameter, versionParameter, definitionParameter);
-        }
-    
-        public virtual int sp_dropdiagram(string diagramname, Nullable<int> owner_id)
-        {
-            var diagramnameParameter = diagramname != null ?
-                new ObjectParameter("diagramname", diagramname) :
-                new ObjectParameter("diagramname", typeof(string));
-    
-            var owner_idParameter = owner_id.HasValue ?
-                new ObjectParameter("owner_id", owner_id) :
-                new ObjectParameter("owner_id", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_dropdiagram", diagramnameParameter, owner_idParameter);
-        }
-    
-        public virtual ObjectResult<sp_helpdiagramdefinition_Result> sp_helpdiagramdefinition(string diagramname, Nullable<int> owner_id)
-        {
-            var diagramnameParameter = diagramname != null ?
-                new ObjectParameter("diagramname", diagramname) :
-                new ObjectParameter("diagramname", typeof(string));
-    
-            var owner_idParameter = owner_id.HasValue ?
-                new ObjectParameter("owner_id", owner_id) :
-                new ObjectParameter("owner_id", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_helpdiagramdefinition_Result>("sp_helpdiagramdefinition", diagramnameParameter, owner_idParameter);
-        }
-    
-        public virtual ObjectResult<sp_helpdiagrams_Result> sp_helpdiagrams(string diagramname, Nullable<int> owner_id)
-        {
-            var diagramnameParameter = diagramname != null ?
-                new ObjectParameter("diagramname", diagramname) :
-                new ObjectParameter("diagramname", typeof(string));
-    
-            var owner_idParameter = owner_id.HasValue ?
-                new ObjectParameter("owner_id", owner_id) :
-                new ObjectParameter("owner_id", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_helpdiagrams_Result>("sp_helpdiagrams", diagramnameParameter, owner_idParameter);
-        }
-    
-        public virtual ObjectResult<sp_MiembrosXConsejo_Result> sp_MiembrosXConsejo(Nullable<decimal> num_Consejo)
-        {
-            var num_ConsejoParameter = num_Consejo.HasValue ?
-                new ObjectParameter("Num_Consejo", num_Consejo) :
-                new ObjectParameter("Num_Consejo", typeof(decimal));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_MiembrosXConsejo_Result>("sp_MiembrosXConsejo", num_ConsejoParameter);
-        }
-    
-        public virtual ObjectResult<sp_MiembrosXSesion_Result> sp_MiembrosXSesion(string num_Sesion)
-        {
-            var num_SesionParameter = num_Sesion != null ?
-                new ObjectParameter("Num_Sesion", num_Sesion) :
-                new ObjectParameter("Num_Sesion", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_MiembrosXSesion_Result>("sp_MiembrosXSesion", num_SesionParameter);
-        }
-    
-        public virtual int sp_MoverPuntoAgenda(string num_Sesion, Nullable<decimal> id_PuntoPosVieja, Nullable<decimal> id_PuntoPosNueva)
-        {
-            var num_SesionParameter = num_Sesion != null ?
-                new ObjectParameter("Num_Sesion", num_Sesion) :
-                new ObjectParameter("Num_Sesion", typeof(string));
-    
-            var id_PuntoPosViejaParameter = id_PuntoPosVieja.HasValue ?
-                new ObjectParameter("id_PuntoPosVieja", id_PuntoPosVieja) :
-                new ObjectParameter("id_PuntoPosVieja", typeof(decimal));
-    
-            var id_PuntoPosNuevaParameter = id_PuntoPosNueva.HasValue ?
-                new ObjectParameter("id_PuntoPosNueva", id_PuntoPosNueva) :
-                new ObjectParameter("id_PuntoPosNueva", typeof(decimal));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_MoverPuntoAgenda", num_SesionParameter, id_PuntoPosViejaParameter, id_PuntoPosNuevaParameter);
-        }
-    
-        public virtual int sp_renamediagram(string diagramname, Nullable<int> owner_id, string new_diagramname)
-        {
-            var diagramnameParameter = diagramname != null ?
-                new ObjectParameter("diagramname", diagramname) :
-                new ObjectParameter("diagramname", typeof(string));
-    
-            var owner_idParameter = owner_id.HasValue ?
-                new ObjectParameter("owner_id", owner_id) :
-                new ObjectParameter("owner_id", typeof(int));
-    
-            var new_diagramnameParameter = new_diagramname != null ?
-                new ObjectParameter("new_diagramname", new_diagramname) :
-                new ObjectParameter("new_diagramname", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_renamediagram", diagramnameParameter, owner_idParameter, new_diagramnameParameter);
-        }
-    
-        public virtual ObjectResult<Nullable<decimal>> sp_Solicitudes(Nullable<decimal> num_Consejo)
-        {
-            var num_ConsejoParameter = num_Consejo.HasValue ?
-                new ObjectParameter("Num_Consejo", num_Consejo) :
-                new ObjectParameter("Num_Consejo", typeof(decimal));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<decimal>>("sp_Solicitudes", num_ConsejoParameter);
-        }
-    
-        public virtual int sp_upgraddiagrams()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_upgraddiagrams");
-        }
-    
         public virtual ObjectResult<sp_ActaSesion_Result> sp_ActaSesion(string num_Sesion)
         {
             var num_SesionParameter = num_Sesion != null ?
@@ -226,60 +63,6 @@ namespace Proyecto1
                 new ObjectParameter("Num_Sesion", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_ActaSesion_Result>("sp_ActaSesion", num_SesionParameter);
-        }
-    
-        public virtual ObjectResult<sp_AdjuntosXPunto_Result> sp_AdjuntosXPunto(Nullable<decimal> id_Punto)
-        {
-            var id_PuntoParameter = id_Punto.HasValue ?
-                new ObjectParameter("id_Punto", id_Punto) :
-                new ObjectParameter("id_Punto", typeof(decimal));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_AdjuntosXPunto_Result>("sp_AdjuntosXPunto", id_PuntoParameter);
-        }
-    
-        public virtual ObjectResult<sp_AgendaSesion_Result> sp_AgendaSesion(string num_Sesion)
-        {
-            var num_SesionParameter = num_Sesion != null ?
-                new ObjectParameter("Num_Sesion", num_Sesion) :
-                new ObjectParameter("Num_Sesion", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_AgendaSesion_Result>("sp_AgendaSesion", num_SesionParameter);
-        }
-    
-        public virtual ObjectResult<sp_Solicitudes_Result> sp_Solicitudes1(Nullable<decimal> num_Consejo)
-        {
-            var num_ConsejoParameter = num_Consejo.HasValue ?
-                new ObjectParameter("Num_Consejo", num_Consejo) :
-                new ObjectParameter("Num_Consejo", typeof(decimal));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Solicitudes_Result>("sp_Solicitudes1", num_ConsejoParameter);
-        }
-    
-        public virtual ObjectResult<sp_SesionesxConsejo_Result> sp_SesionesxConsejo(Nullable<decimal> num_Consejo)
-        {
-            var num_ConsejoParameter = num_Consejo.HasValue ?
-                new ObjectParameter("Num_Consejo", num_Consejo) :
-                new ObjectParameter("Num_Consejo", typeof(decimal));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_SesionesxConsejo_Result>("sp_SesionesxConsejo", num_ConsejoParameter);
-        }
-    
-        public virtual ObjectResult<sp_Agenda1_Result> sp_Agenda1(string num_Sesion)
-        {
-            var num_SesionParameter = num_Sesion != null ?
-                new ObjectParameter("Num_Sesion", num_Sesion) :
-                new ObjectParameter("Num_Sesion", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Agenda1_Result>("sp_Agenda1", num_SesionParameter);
-        }
-    
-        public virtual ObjectResult<sp_ComentariosXPunto1_Result> sp_ComentariosXPunto1(Nullable<decimal> id_Punto)
-        {
-            var id_PuntoParameter = id_Punto.HasValue ?
-                new ObjectParameter("id_Punto", id_Punto) :
-                new ObjectParameter("id_Punto", typeof(decimal));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_ComentariosXPunto1_Result>("sp_ComentariosXPunto1", id_PuntoParameter);
         }
     
         public virtual int sp_ActualizarMiembro(string correo1, string correo2, string nombre, string tipoMiembro)
@@ -303,12 +86,89 @@ namespace Proyecto1
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_ActualizarMiembro", correo1Parameter, correo2Parameter, nombreParameter, tipoMiembroParameter);
         }
     
+        public virtual ObjectResult<sp_AdjuntosXPunto_Result> sp_AdjuntosXPunto(Nullable<decimal> id_Punto)
+        {
+            var id_PuntoParameter = id_Punto.HasValue ?
+                new ObjectParameter("id_Punto", id_Punto) :
+                new ObjectParameter("id_Punto", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_AdjuntosXPunto_Result>("sp_AdjuntosXPunto", id_PuntoParameter);
+        }
+    
+        public virtual ObjectResult<sp_Agenda_Result> sp_Agenda(string num_Sesion)
+        {
+            var num_SesionParameter = num_Sesion != null ?
+                new ObjectParameter("Num_Sesion", num_Sesion) :
+                new ObjectParameter("Num_Sesion", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Agenda_Result>("sp_Agenda", num_SesionParameter);
+        }
+    
+        public virtual ObjectResult<sp_AgendaSesion_Result> sp_AgendaSesion(string num_Sesion)
+        {
+            var num_SesionParameter = num_Sesion != null ?
+                new ObjectParameter("Num_Sesion", num_Sesion) :
+                new ObjectParameter("Num_Sesion", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_AgendaSesion_Result>("sp_AgendaSesion", num_SesionParameter);
+        }
+    
+        public virtual ObjectResult<sp_ComentariosXPunto_Result> sp_ComentariosXPunto(Nullable<decimal> id_Punto)
+        {
+            var id_PuntoParameter = id_Punto.HasValue ?
+                new ObjectParameter("id_Punto", id_Punto) :
+                new ObjectParameter("id_Punto", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_ComentariosXPunto_Result>("sp_ComentariosXPunto", id_PuntoParameter);
+        }
+    
+        public virtual ObjectResult<sp_MiembrosXConsejo_Result> sp_MiembrosXConsejo()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_MiembrosXConsejo_Result>("sp_MiembrosXConsejo");
+        }
+    
+        public virtual ObjectResult<sp_MiembrosXSesion_Result> sp_MiembrosXSesion(string num_Sesion)
+        {
+            var num_SesionParameter = num_Sesion != null ?
+                new ObjectParameter("Num_Sesion", num_Sesion) :
+                new ObjectParameter("Num_Sesion", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_MiembrosXSesion_Result>("sp_MiembrosXSesion", num_SesionParameter);
+        }
+    
+        public virtual int sp_MoverPuntoAgenda(string num_Sesion, Nullable<decimal> nuevaPos, Nullable<decimal> viejaPos)
+        {
+            var num_SesionParameter = num_Sesion != null ?
+                new ObjectParameter("Num_Sesion", num_Sesion) :
+                new ObjectParameter("Num_Sesion", typeof(string));
+    
+            var nuevaPosParameter = nuevaPos.HasValue ?
+                new ObjectParameter("nuevaPos", nuevaPos) :
+                new ObjectParameter("nuevaPos", typeof(decimal));
+    
+            var viejaPosParameter = viejaPos.HasValue ?
+                new ObjectParameter("viejaPos", viejaPos) :
+                new ObjectParameter("viejaPos", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_MoverPuntoAgenda", num_SesionParameter, nuevaPosParameter, viejaPosParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<decimal>> sp_NextIDComentario()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<decimal>>("sp_NextIDComentario");
+        }
+    
+        public virtual ObjectResult<Nullable<decimal>> sp_NextIDPunto()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<decimal>>("sp_NextIDPunto");
+        }
+    
         public virtual int sp_nuevaActualizacion()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_nuevaActualizacion");
         }
     
-        public virtual int sp_NuevaSesion(string numero, Nullable<System.DateTime> fecha, string lugar, Nullable<bool> estado)
+        public virtual int sp_NuevaSesion(string numero, Nullable<System.DateTime> fecha, string lugar)
         {
             var numeroParameter = numero != null ?
                 new ObjectParameter("numero", numero) :
@@ -322,21 +182,36 @@ namespace Proyecto1
                 new ObjectParameter("lugar", lugar) :
                 new ObjectParameter("lugar", typeof(string));
     
-            var estadoParameter = estado.HasValue ?
-                new ObjectParameter("estado", estado) :
-                new ObjectParameter("estado", typeof(bool));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_NuevaSesion", numeroParameter, fechaParameter, lugarParameter, estadoParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_NuevaSesion", numeroParameter, fechaParameter, lugarParameter);
         }
     
-        public virtual ObjectResult<Nullable<decimal>> sp_NextIDComentario()
+        public virtual ObjectResult<sp_SesionesxConsejo_Result> sp_SesionesxConsejo()
         {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<decimal>>("sp_NextIDComentario");
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_SesionesxConsejo_Result>("sp_SesionesxConsejo");
         }
     
-        public virtual ObjectResult<Nullable<decimal>> sp_NextIDPunto()
+        public virtual ObjectResult<Nullable<decimal>> sp_Solicitudes()
         {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<decimal>>("sp_NextIDPunto");
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<decimal>>("sp_Solicitudes");
+        }
+    
+        public virtual ObjectResult<sp_Solicitudes1_Result> sp_Solicitudes1()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Solicitudes1_Result>("sp_Solicitudes1");
+        }
+    
+        public virtual ObjectResult<sp_MiembrosXSesion1_Result> sp_MiembrosXSesion1(string num_Sesion)
+        {
+            var num_SesionParameter = num_Sesion != null ?
+                new ObjectParameter("Num_Sesion", num_Sesion) :
+                new ObjectParameter("Num_Sesion", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_MiembrosXSesion1_Result>("sp_MiembrosXSesion1", num_SesionParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<decimal>> sp_ConsejoActual()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<decimal>>("sp_ConsejoActual");
         }
     }
 }

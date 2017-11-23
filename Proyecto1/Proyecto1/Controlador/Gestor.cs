@@ -52,9 +52,8 @@ namespace Proyecto1.Controlador
         public void nuevaSesion(String num, DateTime fecha, string lugar)
         {
             this.controlador_sesion.nuevaSesion(num, fecha, lugar);
-            this.controlador_sesion.setMiembros(this.consejo.Miembros);
             this.controlador_solicitudes.setSolicitudes(this.consejo.Solicitudes);
-            this.controlador_dao.nuevaSesion(num, fecha, lugar, false);
+            this.controlador_dao.nuevaSesion(num, fecha, lugar);
         }
 
         public bool cerrarSesion()
@@ -76,6 +75,9 @@ namespace Proyecto1.Controlador
                 this.consejo.Sesiones.Add(sesionActual);
                 //return true;
             }
+
+            controlador_dao.cerrarSesion(controlador_sesion.getSesion().Numero);
+
             return this.controlador_sesion.cerrarSesion();
             // ahora hagan lo que quieran con sesionActual
 
@@ -100,7 +102,7 @@ namespace Proyecto1.Controlador
         {
             Collection<Miembro> miembros = this.xls.cargaXls(path);
             this.consejo.Miembros = miembros;
-            //this.controlador_sesion.setMiembros(miembros);
+            this.controlador_sesion.setMiembros(miembros);
             this.controlador_dao.actualizarMiembros(miembros);
         }
 
@@ -112,36 +114,24 @@ namespace Proyecto1.Controlador
             this.controlador_dao.agregarSolicitud(punto);
         }
 
-        public void agregarSolicitud(int id, string nombre, string resultando, string considerandos, string seAcuerda, char tipo)
-        {
-            PuntoAgenda punto = new PuntoAgenda(id, nombre, resultando, considerandos, seAcuerda, 0, 0, 0, tipo);
-            this.controlador_solicitudes.agregarSolicitud(punto);
-            this.controlador_dao.agregarSolicitud(punto);
-        }
-
         public void agregarPuntoAgenda(string nombre, string resultando, string considerandos, string seAcuerda, char tipo)
         {
             int id = this.controlador_dao.getNextIDPunto();
             PuntoAgenda punto = new PuntoAgenda(id, nombre, resultando, considerandos, seAcuerda, 0, 0, 0, tipo);
             this.controlador_sesion.agregarPuntoAgenda(punto);
             this.controlador_dao.agregarSolicitud(punto);
-        }
-
-        public void agregarComentario(int idPunto, string correoMiembro, int idComentario, string txt)
-        {
-            this.controlador_sesion.agregarComentario(idPunto, correoMiembro, idComentario, txt);
-            this.controlador_dao.agregarComentario(idPunto, correoMiembro, idComentario, txt);
+            controlador_dao.aceptarSolicitud(controlador_sesion.getSesion().Numero, punto.Id_punto);
         }
 
         public void agregarComentario(int idPunto, string correoMiembro, string txt)
         {
             this.controlador_sesion.agregarComentario(idPunto, correoMiembro, this.controlador_dao.getNextIDComentario(), txt);
+            this.controlador_dao.agregarComentario(idPunto, correoMiembro, this.controlador_dao.getNextIDComentario(), txt);
         }
 
         public void eliminarSolicitud(int id)
         {
-            PuntoAgenda punto = this.controlador_solicitudes.eliminarSolicitud(id);
-            this.controlador_dao.eliminarSolicitud(punto.Id_punto);
+            this.controlador_solicitudes.eliminarSolicitud(id);
             this.controlador_dao.eliminarSolicitud(id);
         }
 
@@ -207,7 +197,11 @@ namespace Proyecto1.Controlador
 
         public void modificarAsistencia(string correoMiembro, bool estado)
         {
+            char estadoChar = 'A';
             this.controlador_sesion.modificarAsistencia(correoMiembro, estado);
+            if (estado)
+                estadoChar = 'P';
+            controlador_dao.modificarAsistencia(controlador_sesion.getSesion().Numero, correoMiembro, estadoChar);
         }
 
         public Collection<PuntoAgenda> getSolicitudes()
@@ -245,9 +239,10 @@ namespace Proyecto1.Controlador
             return this.controlador_sesion.haySesion();
         }
 
-        public void cambiarPosicionPunto(int idPunto, int idPosicion)
+        public void cambiarPosicionPunto(int posicionNueva, int posicionVieja)
         {
-            this.controlador_sesion.cambiarPosicionPunto(idPunto, idPosicion);
+            this.controlador_sesion.cambiarPosicionPunto(posicionNueva - 1, posicionVieja - 1);
+            controlador_dao.moverPuntoAgenda(controlador_sesion.getSesion().Numero, posicionNueva, posicionVieja);
         }
 
         public bool hayQuorum()

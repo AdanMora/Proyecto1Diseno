@@ -4,35 +4,39 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="e325ef36d83e4ba3b0f16fa872cd52f0" Name="Diagram1">
-        <EntityTypeShape EntityType="Proyecto1Model.AdjuntosXPuntoDB" Width="1.5" PointX="3" PointY="6.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="Proyecto1Model.ComentariosDB" Width="1.5" PointX="0.75" PointY="2.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="Proyecto1Model.ComentariosXPuntoDB" Width="1.5" PointX="3" PointY="3.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="Proyecto1Model.ConsejoDB" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Proyecto1Model.DocXSesionDB" Width="1.5" PointX="3" PointY="17.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="Proyecto1Model.Miembros_ConsejoDB" Width="1.5" PointX="6" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Proyecto1Model.Miembros_SesionDB" Width="1.5" PointX="3.75" PointY="14.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="Proyecto1Model.MiembrosDB" Width="1.5" PointX="1.5" PointY="12.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="Proyecto1Model.Punto_AgendaDB" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Proyecto1Model.PuntosXSesionDB" Width="1.5" PointX="3" PointY="9.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="Proyecto1Model.SesionDB" Width="1.5" PointX="0.75" PointY="16.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="Proyecto1Model.Solicitudes_PuntosDB" Width="1.5" PointX="6" PointY="6.5" IsExpanded="true" />
+      <Diagram DiagramId="1fff254956cd4d06b8a57c856766d92e" Name="Diagram1">
+        <EntityTypeShape EntityType="Proyecto1Model.ActualizacionesMiembrosDB" Width="1.5" PointX="3.75" PointY="19.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Proyecto1Model.AdjuntosXPuntoDB" Width="1.5" PointX="3" PointY="13.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Proyecto1Model.ComentariosDB" Width="1.5" PointX="3.75" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Proyecto1Model.ComentariosXPuntoDB" Width="1.5" PointX="6" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Proyecto1Model.ConsejoDB" Width="1.5" PointX="3.75" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Proyecto1Model.DocXSesionDB" Width="1.5" PointX="3" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Proyecto1Model.HistorialMiembrosDB" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Proyecto1Model.Miembros_ConsejoDB" Width="1.5" PointX="9" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="Proyecto1Model.Miembros_SesionDB" Width="1.5" PointX="3" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Proyecto1Model.MiembrosDB" Width="1.5" PointX="0.75" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Proyecto1Model.Punto_AgendaDB" Width="1.5" PointX="0.75" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="Proyecto1Model.PuntosXSesionDB" Width="1.5" PointX="3" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Proyecto1Model.SesionDB" Width="1.5" PointX="0.75" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Proyecto1Model.SesionesXConsejoDB" Width="1.5" PointX="6" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Proyecto1Model.Solicitudes_PuntosDB" Width="1.5" PointX="6" PointY="4.125" IsExpanded="true" />
+        <AssociationConnector Association="Proyecto1Model.fk_ActualizacionMiembroHistorial" ManuallyRouted="false" />
         <AssociationConnector Association="Proyecto1Model.fk_PuntosAdjunto" ManuallyRouted="false" />
         <AssociationConnector Association="Proyecto1Model.fk_ComentarioPunto" ManuallyRouted="false" />
         <AssociationConnector Association="Proyecto1Model.fk_MiembroComentario" ManuallyRouted="false" />
         <AssociationConnector Association="Proyecto1Model.fk_PuntoComentario" ManuallyRouted="false" />
         <AssociationConnector Association="Proyecto1Model.fk_ConsejoMiembros" ManuallyRouted="false" />
+        <AssociationConnector Association="Proyecto1Model.fk_ConsejoSesiones" ManuallyRouted="false" />
         <AssociationConnector Association="Proyecto1Model.fk_ConsejoSolicitud" ManuallyRouted="false" />
         <AssociationConnector Association="Proyecto1Model.fk_SesionDoc" ManuallyRouted="false" />
+        <AssociationConnector Association="Proyecto1Model.fk_MiembroHistorial" ManuallyRouted="false" />
         <AssociationConnector Association="Proyecto1Model.fk_MiembroConsejo" ManuallyRouted="false" />
         <AssociationConnector Association="Proyecto1Model.fk_MiembroSesion" ManuallyRouted="false" />
         <AssociationConnector Association="Proyecto1Model.fk_SesionMiembros" ManuallyRouted="false" />
         <AssociationConnector Association="Proyecto1Model.fk_ConsejoSolicitudes" ManuallyRouted="false" />
         <AssociationConnector Association="Proyecto1Model.fk_PuntosAgenda" ManuallyRouted="false" />
         <AssociationConnector Association="Proyecto1Model.fk_SesionAgenda" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="Proyecto1Model.SesionesXConsejoDB" Width="1.5" PointX="6" PointY="9.875" />
-        <AssociationConnector Association="Proyecto1Model.fk_ConsejoSesiones" />
-        <AssociationConnector Association="Proyecto1Model.fk_SesionesXConsejo" />
+        <AssociationConnector Association="Proyecto1Model.fk_SesionesXConsejo" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

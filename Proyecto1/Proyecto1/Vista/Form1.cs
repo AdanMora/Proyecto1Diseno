@@ -66,7 +66,7 @@ namespace Proyecto1
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
             saveFileDialog1.DefaultExt = "pdf";
             saveFileDialog1.ShowDialog();
-            System.IO.File.WriteAllBytes(saveFileDialog1.FileName, dao.cargarArchivo());
+            //System.IO.File.WriteAllBytes(saveFileDialog1.FileName, dao.cargarArchivo());
         }
 
         private void panel_Click(object sender, EventArgs e)
