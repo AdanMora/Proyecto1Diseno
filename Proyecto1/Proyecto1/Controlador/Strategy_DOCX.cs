@@ -52,9 +52,10 @@ namespace Proyecto1.Controlador
                 Console.WriteLine(ex);
             }
         }
-        public void crearAgenda(object sesion, string path)
+        public byte[] crearAgenda(Sesion sesion, string path)
         {
-            // Crea el DOCX
+            // Crea el DOCX           
+            return null;
         }
 
         public void crearAcuerdo(PuntoAgenda punto, string destinatario, string path)

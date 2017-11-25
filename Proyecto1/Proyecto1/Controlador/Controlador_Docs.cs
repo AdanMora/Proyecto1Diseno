@@ -21,9 +21,9 @@ namespace Proyecto1.Controlador
             strategy.crearActa(sesion,path);
         }
 
-        public void crearAgenda(object puntos, string path)
+        public byte[] crearAgenda(Sesion sesion, string path)
         {
-            strategy.crearAgenda(puntos,path);
+            return strategy.crearAgenda(sesion,path);
         }
 
         public void creaAcurdo(PuntoAgenda punto, string destinatario, string path)

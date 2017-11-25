@@ -488,7 +488,7 @@ namespace Proyecto1.Controlador
             string sesion = this.gui.comboBox1.Text;
             if (sesion != "")
             {
-                this.gestor.crearAgenda(sesion);
+                //this.gestor.crearAgenda(sesion);
                 return true;
             }
             return false;

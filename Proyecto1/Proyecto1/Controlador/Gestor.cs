@@ -169,11 +169,11 @@ namespace Proyecto1.Controlador
             return null;
         }
 
-        public void crearAgenda(string sesion)
+        public void crearAgenda(string sesion,string path)
         {
-            this.controlador_docs.setDocumento(0);
-            string path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-            this.controlador_docs.crearAgenda(this.getSesion(sesion), path);
+            this.controlador_docs.setDocumento(0);            
+            byte[] tira = this.controlador_docs.crearAgenda(this.controlador_sesion.getSesion(), path);
+            this.controlador_dao.guardarDocSesion(this.controlador_sesion.getSesion().Numero, "Agenda Sesión Ordinaria - " + this.controlador_sesion.getSesion().Numero, tira, 'A');
             //Object o = this.controlador_docs.crearActa(this.controlador_sesion.getSesion());
             //this.controlador_dao.escribirActa(o);
         }
@@ -271,6 +271,12 @@ namespace Proyecto1.Controlador
         public void enviarAgenda(string numeroSesion, DateTime fecha, string correo, string agenda)
         {
             this.controlador_correo.enviarAgenda(numeroSesion, fecha, correo, agenda);
+        }
+
+        public void obtenerAgenda(Sesion sesion,string path)
+        {
+            byte[] resultado = this.controlador_dao.getDocSesion(sesion.Numero,'A');
+            File.WriteAllBytes(path + "\\Agenda Sesión Ordinaria-" + sesion.Numero + ".pdf", resultado);
         }
 
     }

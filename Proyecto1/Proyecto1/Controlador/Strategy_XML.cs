@@ -113,7 +113,7 @@ namespace Proyecto1.Controlador
             throw new NotImplementedException();
         }
 
-        public void crearAgenda(object sesion, string path)
+        public byte[] crearAgenda(Sesion sesion, string path)
         {
             throw new NotImplementedException();
         }
