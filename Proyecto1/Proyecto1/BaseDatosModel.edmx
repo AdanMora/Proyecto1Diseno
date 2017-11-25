@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="Proyecto1Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="Proyecto1Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="ActualizacionesMiembrosDB">
           <Key>
             <PropertyRef Name="id_Actualizacion" />
@@ -502,7 +502,8 @@
             <End Role="Miembros_SesionDB" EntitySet="Miembros_SesionDB" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Proyecto1Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -996,7 +997,7 @@
             <Parameter Name="id_Punto" Mode="In" Type="Decimal" />
           </FunctionImport>
           <FunctionImport Name="sp_ActaSesion" ReturnType="Collection(Proyecto1Model.sp_ActaSesion_Result)">
-          <Parameter Name="Num_Sesion" Mode="In" Type="String" />
+            <Parameter Name="Num_Sesion" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_ActualizarMiembro">
             <Parameter Name="correo1" Mode="In" Type="String" />
@@ -1005,20 +1006,21 @@
             <Parameter Name="tipoMiembro" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_AdjuntosXPunto" ReturnType="Collection(Proyecto1Model.sp_AdjuntosXPunto_Result)">
-          <Parameter Name="id_Punto" Mode="In" Type="Decimal" />
+            <Parameter Name="id_Punto" Mode="In" Type="Decimal" />
           </FunctionImport>
           <FunctionImport Name="sp_Agenda" ReturnType="Collection(Proyecto1Model.sp_Agenda_Result)">
-          <Parameter Name="Num_Sesion" Mode="In" Type="String" />
+            <Parameter Name="Num_Sesion" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_AgendaSesion" ReturnType="Collection(Proyecto1Model.sp_AgendaSesion_Result)">
-          <Parameter Name="Num_Sesion" Mode="In" Type="String" />
+            <Parameter Name="Num_Sesion" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_ComentariosXPunto" ReturnType="Collection(Proyecto1Model.sp_ComentariosXPunto_Result)">
-          <Parameter Name="id_Punto" Mode="In" Type="Decimal" />
+            <Parameter Name="id_Punto" Mode="In" Type="Decimal" />
           </FunctionImport>
+          <FunctionImport Name="sp_ConsejoActual" ReturnType="Collection(Decimal)" />
           <FunctionImport Name="sp_MiembrosXConsejo" ReturnType="Collection(Proyecto1Model.sp_MiembrosXConsejo_Result)" />
           <FunctionImport Name="sp_MiembrosXSesion" ReturnType="Collection(Proyecto1Model.sp_MiembrosXSesion_Result)">
-          <Parameter Name="Num_Sesion" Mode="In" Type="String" />
+            <Parameter Name="Num_Sesion" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_MoverPuntoAgenda">
             <Parameter Name="Num_Sesion" Mode="In" Type="String" />
@@ -1034,12 +1036,7 @@
             <Parameter Name="lugar" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_SesionesxConsejo" ReturnType="Collection(Proyecto1Model.sp_SesionesxConsejo_Result)" />
-          <FunctionImport Name="sp_Solicitudes" ReturnType="Collection(Decimal)" />
-          <FunctionImport Name="sp_Solicitudes1" ReturnType="Collection(Proyecto1Model.sp_Solicitudes1_Result)" />
-          <FunctionImport Name="sp_MiembrosXSesion1" ReturnType="Collection(Proyecto1Model.sp_MiembrosXSesion1_Result)">
-          <Parameter Name="Num_Sesion" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="sp_ConsejoActual" ReturnType="Collection(Decimal)" />
+          <FunctionImport Name="sp_Solicitudes" ReturnType="Collection(Proyecto1Model.sp_Solicitudes_Result)" />
         </EntityContainer>
         <ComplexType Name="sp_ActaSesion_Result">
           <Property Type="String" Name="nombreArchivo" Nullable="false" MaxLength="100" />
@@ -1077,7 +1074,10 @@
           <Property Type="String" Name="tipoMiembro" Nullable="false" MaxLength="1" />
         </ComplexType>
         <ComplexType Name="sp_MiembrosXSesion_Result">
+          <Property Type="String" Name="nombre" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="correo1" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="correo2" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="tipoMiembro" Nullable="false" MaxLength="1" />
           <Property Type="String" Name="estadoAsistencia" Nullable="false" MaxLength="1" />
         </ComplexType>
         <ComplexType Name="sp_SesionesxConsejo_Result">
@@ -1086,20 +1086,13 @@
           <Property Type="String" Name="lugar" Nullable="false" MaxLength="50" />
           <Property Type="Boolean" Name="estado" Nullable="false" />
         </ComplexType>
-        <ComplexType Name="sp_Solicitudes1_Result">
+        <ComplexType Name="sp_Solicitudes_Result">
           <Property Type="Decimal" Name="id_Punto" Nullable="false" Precision="5" Scale="0" />
           <Property Type="String" Name="nombre" Nullable="false" MaxLength="500" />
           <Property Type="String" Name="considerandos" Nullable="false" MaxLength="1000" />
           <Property Type="String" Name="resultandos" Nullable="false" MaxLength="1000" />
           <Property Type="String" Name="seAcuerda" Nullable="false" MaxLength="1000" />
           <Property Type="String" Name="tipoPunto" Nullable="false" MaxLength="1" />
-        </ComplexType>
-        <ComplexType Name="sp_MiembrosXSesion1_Result">
-          <Property Type="String" Name="nombre" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="correo1" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="correo2" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="tipoMiembro" Nullable="false" MaxLength="1" />
-          <Property Type="String" Name="estadoAsistencia" Nullable="false" MaxLength="1" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1304,6 +1297,7 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_ConsejoActual" FunctionName="Proyecto1Model.Store.sp_ConsejoActual" />
           <FunctionImportMapping FunctionImportName="sp_MiembrosXConsejo" FunctionName="Proyecto1Model.Store.sp_MiembrosXConsejo">
             <ResultMapping>
               <ComplexTypeMapping TypeName="Proyecto1Model.sp_MiembrosXConsejo_Result">
@@ -1311,6 +1305,17 @@
                 <ScalarProperty Name="correo1" ColumnName="correo1" />
                 <ScalarProperty Name="correo2" ColumnName="correo2" />
                 <ScalarProperty Name="tipoMiembro" ColumnName="tipoMiembro" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_MiembrosXSesion" FunctionName="Proyecto1Model.Store.sp_MiembrosXSesion">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Proyecto1Model.sp_MiembrosXSesion_Result">
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="correo1" ColumnName="correo1" />
+                <ScalarProperty Name="correo2" ColumnName="correo2" />
+                <ScalarProperty Name="tipoMiembro" ColumnName="tipoMiembro" />
+                <ScalarProperty Name="estadoAsistencia" ColumnName="estadoAsistencia" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -1329,9 +1334,9 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_Solicitudes1" FunctionName="Proyecto1Model.Store.sp_Solicitudes">
+          <FunctionImportMapping FunctionImportName="sp_Solicitudes" FunctionName="Proyecto1Model.Store.sp_Solicitudes">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="Proyecto1Model.sp_Solicitudes1_Result">
+              <ComplexTypeMapping TypeName="Proyecto1Model.sp_Solicitudes_Result">
                 <ScalarProperty Name="id_Punto" ColumnName="id_Punto" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="considerandos" ColumnName="considerandos" />
@@ -1341,18 +1346,6 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_MiembrosXSesion1" FunctionName="Proyecto1Model.Store.sp_MiembrosXSesion">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="Proyecto1Model.sp_MiembrosXSesion1_Result">
-                <ScalarProperty Name="nombre" ColumnName="nombre" />
-                <ScalarProperty Name="correo1" ColumnName="correo1" />
-                <ScalarProperty Name="correo2" ColumnName="correo2" />
-                <ScalarProperty Name="tipoMiembro" ColumnName="tipoMiembro" />
-                <ScalarProperty Name="estadoAsistencia" ColumnName="estadoAsistencia" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_ConsejoActual" FunctionName="Proyecto1Model.Store.sp_ConsejoActual" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

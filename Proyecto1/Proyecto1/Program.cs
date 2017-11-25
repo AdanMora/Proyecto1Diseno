@@ -75,18 +75,25 @@ namespace Proyecto1
             g.agregarPuntoAgenda("Punto P3", "Resultado P3", "Considerando P3", "Se acuerda P3", 'T');
 
             */
-            g.cambiarPosicionPunto(3, 1);
+            //g.cambiarPosicionPunto(4, 1);
 
-            g.agregarComentario(5, g.getConsejo().Miembros.First().Correo[0], "Comentario de prueba P...");
+            //g.agregarComentario(6, g.getConsejo().Miembros.First().Correo[0], "Otro comentario de prueba c:");
 
-            g.agregarVotacion(4, 23, 3, 5);
+            //g.agregarVotacion(7, 23, 3, 5);
 
-            foreach (Miembro m in g.getSesion().MiembrosAsistencia.Asistencia)
-            {
-                g.modificarAsistencia(m.Correo[0], false);
-            }
+            //foreach (Miembro m in g.getSesion().MiembrosAsistencia.Asistencia)
+            //{
+            //    g.modificarAsistencia(m.Correo[0], false);
+            //}
 
-            g.modificarAsistencia(g.getConsejo().Miembros.First().Correo[0], true);
+            //g.modificarAsistencia(g.getConsejo().Miembros.First().Correo[0], true);
+
+
+
+
+            g.crearActa(2, "C:\\Users\\Adán\\Desktop");
+
+
 
             Console.Read();
 

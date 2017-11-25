@@ -65,11 +65,11 @@ namespace Proyecto1.Controlador
         private Collection<PuntoAgenda> obtenerSolicitudes()
         {
             Collection<PuntoAgenda> solicitudes = new Collection<PuntoAgenda>();
-            List<sp_Solicitudes1_Result> listaSolicitudes = db.sp_Solicitudes1().ToList();
+            List<sp_Solicitudes_Result> listaSolicitudes = db.sp_Solicitudes().ToList();
 
             if (listaSolicitudes.Any())
             {
-                foreach (sp_Solicitudes1_Result solicitudDB in listaSolicitudes)
+                foreach (sp_Solicitudes_Result solicitudDB in listaSolicitudes)
                 {
                     solicitudes.Add(new PuntoAgenda(Decimal.ToInt32(solicitudDB.id_Punto), solicitudDB.nombre, solicitudDB.resultandos, solicitudDB.considerandos, solicitudDB.seAcuerda, 0, 0, 0, solicitudDB.tipoPunto.First()));
                 }
@@ -123,11 +123,11 @@ namespace Proyecto1.Controlador
         {
             Collection<Miembro> miembrosSesion = new Collection<Miembro>();
             Prototype_Miembros miembrosPrototype;
-            List < sp_MiembrosXSesion1_Result > listaMiembrosXSesion = db.sp_MiembrosXSesion1(numSesion).ToList();
+            List < sp_MiembrosXSesion_Result > listaMiembrosXSesion = db.sp_MiembrosXSesion(numSesion).ToList();
 
             if (listaMiembrosXSesion.Any())
             {
-                foreach (sp_MiembrosXSesion1_Result miembrosSesionDB in listaMiembrosXSesion)
+                foreach (sp_MiembrosXSesion_Result miembrosSesionDB in listaMiembrosXSesion)
                 {
                     Miembro m = new Miembro(miembrosSesionDB.nombre, miembrosSesionDB.correo1, miembrosSesionDB.correo2, miembrosSesionDB.tipoMiembro.First());
                     miembrosSesion.Add(m);
@@ -135,7 +135,7 @@ namespace Proyecto1.Controlador
 
                 miembrosPrototype = new Prototype_Miembros(miembrosSesion);
 
-                foreach (sp_MiembrosXSesion1_Result miembrosSesionDB in listaMiembrosXSesion)
+                foreach (sp_MiembrosXSesion_Result miembrosSesionDB in listaMiembrosXSesion)
                 {
                     for (int i = 0; i < miembrosSesion.Count; i++)
                     {

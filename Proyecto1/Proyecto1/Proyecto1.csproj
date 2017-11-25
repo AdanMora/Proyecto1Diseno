@@ -51,10 +51,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Excel, Version=2.1.2.3, Culture=neutral, PublicKeyToken=93517dbe6a4012fa, processorArchitecture=MSIL">
       <HintPath>..\packages\ExcelDataReader.2.1.2.3\lib\net45\Excel.dll</HintPath>
@@ -131,6 +131,7 @@
     <Compile Include="Controlador\Strategy_Docs.cs" />
     <Compile Include="Controlador\Strategy_DOCX.cs" />
     <Compile Include="Controlador\Strategy_PDF.cs" />
+    <Compile Include="Controlador\Strategy_XML.cs" />
     <Compile Include="Controlador\Xls_DAO.cs" />
     <Compile Include="DocXSesionDB.cs">
       <DependentUpon>BaseDatosModel.tt</DependentUpon>
@@ -187,16 +188,13 @@
     <Compile Include="sp_MiembrosXConsejo_Result.cs">
       <DependentUpon>BaseDatosModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="sp_MiembrosXSesion1_Result.cs">
-      <DependentUpon>BaseDatosModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="sp_MiembrosXSesion_Result.cs">
       <DependentUpon>BaseDatosModel.tt</DependentUpon>
     </Compile>
     <Compile Include="sp_SesionesxConsejo_Result.cs">
       <DependentUpon>BaseDatosModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="sp_Solicitudes1_Result.cs">
+    <Compile Include="sp_Solicitudes_Result.cs">
       <DependentUpon>BaseDatosModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Vista\Consola.cs">
@@ -263,7 +261,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

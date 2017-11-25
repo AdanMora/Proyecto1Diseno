@@ -150,8 +150,7 @@ namespace Proyecto1.Controlador
 
         public void agregarVotacion(int id, int aFavor, int enContra, int blanco)
         {
-            PuntoAgenda punto = this.controlador_sesion.agregarVotacion(id, aFavor, enContra, blanco);
-            this.controlador_dao.aceptarSolicitud(this.controlador_sesion.getSesion().Numero,punto.Id_punto);
+            this.controlador_sesion.agregarVotacion(id, aFavor, enContra, blanco);
             this.controlador_dao.agregarVotacion(id, aFavor, enContra, blanco);
         }
 
@@ -184,15 +183,6 @@ namespace Proyecto1.Controlador
             //Object o = this.controlador_sesion.getSesion();
             this.controlador_docs.crearActa(this.controlador_sesion.getSesion(), path);
             //this.controlador_dao.escribirAgenda(o);
-        }
-
-        public void crearActa(string sesion)
-        {
-            this.controlador_docs.setDocumento(1);
-            string path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-            this.controlador_docs.crearActa(this.getSesion(sesion), path);
-            //Object o = this.controlador_docs.crearActa(this.controlador_sesion.getSesion());
-            //this.controlador_dao.escribirActa(o);
         }
 
         public void modificarAsistencia(string correoMiembro, bool estado)
@@ -282,7 +272,6 @@ namespace Proyecto1.Controlador
         {
             this.controlador_correo.enviarAgenda(numeroSesion, fecha, correo, agenda);
         }
-        
-        
+
     }
 }

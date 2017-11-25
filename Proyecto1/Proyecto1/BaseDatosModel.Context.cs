@@ -122,6 +122,11 @@ namespace Proyecto1
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_ComentariosXPunto_Result>("sp_ComentariosXPunto", id_PuntoParameter);
         }
     
+        public virtual ObjectResult<Nullable<decimal>> sp_ConsejoActual()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<decimal>>("sp_ConsejoActual");
+        }
+    
         public virtual ObjectResult<sp_MiembrosXConsejo_Result> sp_MiembrosXConsejo()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_MiembrosXConsejo_Result>("sp_MiembrosXConsejo");
@@ -190,28 +195,9 @@ namespace Proyecto1
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_SesionesxConsejo_Result>("sp_SesionesxConsejo");
         }
     
-        public virtual ObjectResult<Nullable<decimal>> sp_Solicitudes()
+        public virtual ObjectResult<sp_Solicitudes_Result> sp_Solicitudes()
         {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<decimal>>("sp_Solicitudes");
-        }
-    
-        public virtual ObjectResult<sp_Solicitudes1_Result> sp_Solicitudes1()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Solicitudes1_Result>("sp_Solicitudes1");
-        }
-    
-        public virtual ObjectResult<sp_MiembrosXSesion1_Result> sp_MiembrosXSesion1(string num_Sesion)
-        {
-            var num_SesionParameter = num_Sesion != null ?
-                new ObjectParameter("Num_Sesion", num_Sesion) :
-                new ObjectParameter("Num_Sesion", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_MiembrosXSesion1_Result>("sp_MiembrosXSesion1", num_SesionParameter);
-        }
-    
-        public virtual ObjectResult<Nullable<decimal>> sp_ConsejoActual()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<decimal>>("sp_ConsejoActual");
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Solicitudes_Result>("sp_Solicitudes");
         }
     }
 }

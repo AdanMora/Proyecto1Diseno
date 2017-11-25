@@ -72,9 +72,8 @@ namespace Proyecto1.Controlador
             this.sesionActual.agregarPuntoAgenda(punto);
         }
 
-        public PuntoAgenda agregarVotacion(int id, int aFavor, int enContra, int blanco)
+        public void agregarVotacion(int id, int aFavor, int enContra, int blanco)
         {
-            PuntoAgenda temp = null;
             foreach(PuntoAgenda punto in this.sesionActual.Agenda)
             {
                 if(punto.Id_punto == id)
@@ -82,10 +81,8 @@ namespace Proyecto1.Controlador
                     punto.Votacion[0] = aFavor;
                     punto.Votacion[1] = enContra;
                     punto.Votacion[2] = blanco;
-                    temp = punto;
                 }
             }
-            return temp;
         }
 
         public Miembro getMiembro(string correo)

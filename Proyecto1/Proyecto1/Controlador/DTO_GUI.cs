@@ -476,7 +476,7 @@ namespace Proyecto1.Controlador
             string sesion = this.gui.comboBox1.Text;
             if(sesion != "")
             {
-                this.gestor.crearActa(sesion);
+                //this.gestor.crearActa(sesion);
                 return true;
             }
             return false;
