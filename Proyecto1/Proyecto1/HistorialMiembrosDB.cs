@@ -10,13 +10,15 @@
 namespace Proyecto1
 {
     using System;
+    using System.Collections.Generic;
     
-    public partial class sp_helpdiagrams_Result
+    public partial class HistorialMiembrosDB
     {
-        public string Database { get; set; }
-        public string Name { get; set; }
-        public int ID { get; set; }
-        public string Owner { get; set; }
-        public int OwnerID { get; set; }
+        public decimal id_HistorialMiembrosDB { get; set; }
+        public Nullable<decimal> actualizacion { get; set; }
+        public string miembro { get; set; }
+    
+        public virtual ActualizacionesMiembrosDB ActualizacionesMiembrosDB { get; set; }
+        public virtual MiembrosDB MiembrosDB { get; set; }
     }
 }

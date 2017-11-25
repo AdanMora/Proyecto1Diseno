@@ -15,7 +15,7 @@ namespace Proyecto1.Controlador
 
         void actualizarMiembros(Collection<Miembro> m); // Falta
 
-        void nuevaSesion(string numero, DateTime fecha, string lugar, bool estado); // Listo
+        void nuevaSesion(string numero, DateTime fecha, string lugar); // Listo
 
         void cerrarSesion(String numeroSesion); // Listo
 
@@ -31,7 +31,7 @@ namespace Proyecto1.Controlador
 
         void agregarVotacion(int id_Punto, int aFavor, int enContra, int abstenciones); // Listo
 
-        void agregarComentario(int id_Punto, Comentario c); // Listo
+        void agregarComentario(int id_Punto, string correoMiembro, int idComentario, string txt); // Listo
 
         void modificarAsistencia(String numeroSesion, String miembro, char estado); // Listo
 
@@ -43,7 +43,7 @@ namespace Proyecto1.Controlador
 
         Collection<Object[]> getAdjuntosPunto(int id_Punto); // Falta
 
-        void moverPuntoAgenda(string numeroSesion, int id_PuntoViejaPOs, int id_PuntoNuevaPos);
+        void moverPuntoAgenda(string numeroSesion, int nuevaPos, int viejaPos);
 
     }
 }

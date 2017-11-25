@@ -18,119 +18,154 @@ namespace Proyecto1.Controlador
 
         }
 
-        public void guardarArchivo(byte[] archivo)
-        {
-            DocXSesionDB doc = new DocXSesionDB
-            {
-                nombreArchivo = "ejemplo",
-                sesion = "1",
-                contenido = archivo,
-                tipo = "A"
-            };
-            db.DocXSesionDBs.Add(doc);
-            db.SaveChanges();
-        }
-
-        public byte[] cargarArchivo()
-        {
-            foreach (DocXSesionDB d in db.DocXSesionDBs.ToList())
-            {
-                if (d.sesion == "1")
-                {
-                    return d.contenido;
-
-                }
-            }
-            return null;
-        }
-
         public Consejo cargarDatos()
         {
             Consejo consejo = new Consejo();
-
-            if (db.sp_MiembrosXConsejo(1).ToList().Any()) {
-                foreach (sp_MiembrosXConsejo_Result mBD in db.sp_MiembrosXConsejo(1).ToList())
-                {
-                    consejo.Miembros.Add(new Miembro(mBD.nombre, mBD.correo1, mBD.correo2, mBD.tipoMiembro.First()));
-                }
-            }
-
-            if (db.sp_Solicitudes1(1).ToList().Any())
-            {
-                foreach (sp_Solicitudes_Result solicitudBD in db.sp_Solicitudes1(1).ToList())
-                {
-                    consejo.Solicitudes.Add(new PuntoAgenda(Decimal.ToInt32(solicitudBD.id_Punto), solicitudBD.nombre, solicitudBD.resultandos, solicitudBD.considerandos, solicitudBD.seAcuerda, 0, 0, 0, 'A'));
-                }
-            }
-
-            if (db.sp_SesionesxConsejo(1).ToList().Any())
-            {
-                foreach (sp_SesionesxConsejo_Result sesionesBD in db.sp_SesionesxConsejo(1).ToList())
-                {
-                    consejo.Sesiones.Add(new Sesion(sesionesBD.numero, sesionesBD.fecha, sesionesBD.lugar, sesionesBD.estado));
-                }
-
-                foreach (Sesion s in consejo.Sesiones)
-                {
-                    if (db.sp_Agenda1(s.Numero).ToList().Any())
-                    {
-                        foreach (sp_Agenda1_Result agendaBD in db.sp_Agenda1(s.Numero).ToList())
-                        {
-                            PuntoAgenda p = new PuntoAgenda(Decimal.ToInt32(agendaBD.id_Punto), agendaBD.nombre, agendaBD.resultandos, agendaBD.considerandos, agendaBD.seAcuerda, Decimal.ToInt32(agendaBD.votosAFavor), Decimal.ToInt32(agendaBD.votosEnContra), Decimal.ToInt32(agendaBD.votosAbstenciones), agendaBD.tipoPunto.First());
-
-                            if (db.sp_ComentariosXPunto1(p.Id_punto).ToList().Any())
-                            {
-                                foreach (sp_ComentariosXPunto1_Result comentariosDB in db.sp_ComentariosXPunto1(p.Id_punto))
-                                {
-                                    foreach (Miembro m in consejo.Miembros)
-                                    {
-                                        if (m.Correo[0] == comentariosDB.correo1)
-                                        {
-                                            p.Comentarios.Add(new Comentario(Decimal.ToInt32(comentariosDB.id_Comentario), comentariosDB.contenido, m));
-                                        }
-                                    }
-                                }
-                            }
-                            s.Agenda.Add(p);
-                        }
-                    }
-                    if (db.sp_MiembrosXSesion(s.Numero).ToList().Any())
-                    {
-                        Collection<Miembro> miembros = new Collection<Miembro>();
-                        foreach (sp_MiembrosXSesion_Result mSesionDB in db.sp_MiembrosXSesion(s.Numero)) {
-                            miembros.Add(new Miembro(mSesionDB.nombre, mSesionDB.correo1, mSesionDB.correo2, mSesionDB.tipoMiembro.First()));
-                            s.MiembrosAsistencia = new Prototype_Miembros(miembros);
-                        }
-
-                        int i = 0;
-                        foreach (sp_MiembrosXSesion_Result mSesionDB in db.sp_MiembrosXSesion(s.Numero))
-                        {
-                            s.MiembrosAsistencia.ListaAsistencia[i] = mSesionDB.estadoAsistencia.First();
-                            i++;
-                        }
-                    }
-
-                }
-
-            }
-
+            consejo.Miembros = obtenerMiembros();
+            consejo.Sesiones = obtenerSesiones();
+            consejo.Solicitudes = obtenerSolicitudes();
 
             return consejo;
         }
 
+        private Collection<Miembro> obtenerMiembros()
+        {
+            Collection<Miembro> miembros = new Collection<Miembro>();
+            List<sp_MiembrosXConsejo_Result> listaMiembrosxConsejo = db.sp_MiembrosXConsejo().ToList();
+
+            if (listaMiembrosxConsejo.Any())
+            {
+                foreach (sp_MiembrosXConsejo_Result mBD in listaMiembrosxConsejo)
+                {
+                    miembros.Add(new Miembro(mBD.nombre, mBD.correo1, mBD.correo2, mBD.tipoMiembro.First()));
+                }
+            }
+
+            return miembros;
+        }
+
+        private Collection<Sesion> obtenerSesiones()
+        {
+            Collection<Sesion> sesiones = new Collection<Sesion>();
+            List<sp_SesionesxConsejo_Result> listaSesionesxConsejo = db.sp_SesionesxConsejo().ToList();
+
+            if (listaSesionesxConsejo.Any())
+        {
+            foreach (sp_SesionesxConsejo_Result sesionesBD in listaSesionesxConsejo)
+            {
+                Sesion s = new Sesion(sesionesBD.numero, sesionesBD.fecha, sesionesBD.lugar, sesionesBD.estado);
+                s.MiembrosAsistencia = obtenerMiembrosSesion(s.Numero);
+                s.Agenda = obtenerAgendaSesion(s.Numero, s.MiembrosAsistencia.Asistencia);
+                sesiones.Add(s);
+            }
+        }
+            return sesiones;
+        }
+
+        private Collection<PuntoAgenda> obtenerSolicitudes()
+        {
+            Collection<PuntoAgenda> solicitudes = new Collection<PuntoAgenda>();
+            List<sp_Solicitudes_Result> listaSolicitudes = db.sp_Solicitudes().ToList();
+
+            if (listaSolicitudes.Any())
+            {
+                foreach (sp_Solicitudes_Result solicitudDB in listaSolicitudes)
+                {
+                    solicitudes.Add(new PuntoAgenda(Decimal.ToInt32(solicitudDB.id_Punto), solicitudDB.nombre, solicitudDB.resultandos, solicitudDB.considerandos, solicitudDB.seAcuerda, 0, 0, 0, solicitudDB.tipoPunto.First()));
+                }
+            }
+
+            return solicitudes;
+            
+        }
+
+        private Collection<PuntoAgenda> obtenerAgendaSesion(String numSesion, Collection<Miembro> miembros)
+        {
+            Collection<PuntoAgenda> agendaSesion = new Collection<PuntoAgenda>();
+            List<sp_Agenda_Result> listaAgenda = db.sp_Agenda(numSesion).ToList();
+
+            if (listaAgenda.Any())
+            {
+                foreach (sp_Agenda_Result agendaDB in listaAgenda)
+                {
+                    PuntoAgenda p = new PuntoAgenda(Decimal.ToInt32(agendaDB.id_Punto), agendaDB.nombre, agendaDB.resultandos, agendaDB.considerandos, agendaDB.seAcuerda, Decimal.ToInt32(agendaDB.votosAFavor.Value), Decimal.ToInt32(agendaDB.votosEnContra.Value), Decimal.ToInt32(agendaDB.votosAbstenciones.Value), agendaDB.tipoPunto.First());
+                    p.Comentarios = obtenerComentarios(p.Id_punto, miembros);
+                    agendaSesion.Add(p);
+                }
+            }
+
+            return agendaSesion;
+        }
+
+        private Collection<Comentario> obtenerComentarios(int idPunto, Collection<Miembro> miembros)
+        {
+            Collection<Comentario> comentarios = new Collection<Comentario>();
+            List<sp_ComentariosXPunto_Result> listaComentariosXPunto = db.sp_ComentariosXPunto(idPunto).ToList();
+
+            if (listaComentariosXPunto.Any())
+            {
+                foreach (sp_ComentariosXPunto_Result comentariosDB in listaComentariosXPunto)
+                {
+                    foreach (Miembro m in miembros)
+                    {
+                        if (m.Correo[0] == comentariosDB.correo1)
+                        {
+                            comentarios.Add(new Comentario(Decimal.ToInt32(comentariosDB.id_Comentario), comentariosDB.contenido, m));
+                        }
+                    }
+                }
+            }
+
+            return comentarios;
+        }
+
+        private Prototype_Miembros obtenerMiembrosSesion(string numSesion)
+        {
+            Collection<Miembro> miembrosSesion = new Collection<Miembro>();
+            Prototype_Miembros miembrosPrototype;
+            List < sp_MiembrosXSesion_Result > listaMiembrosXSesion = db.sp_MiembrosXSesion(numSesion).ToList();
+
+            if (listaMiembrosXSesion.Any())
+            {
+                foreach (sp_MiembrosXSesion_Result miembrosSesionDB in listaMiembrosXSesion)
+                {
+                    Miembro m = new Miembro(miembrosSesionDB.nombre, miembrosSesionDB.correo1, miembrosSesionDB.correo2, miembrosSesionDB.tipoMiembro.First());
+                    miembrosSesion.Add(m);
+                }
+
+                miembrosPrototype = new Prototype_Miembros(miembrosSesion);
+
+                foreach (sp_MiembrosXSesion_Result miembrosSesionDB in listaMiembrosXSesion)
+                {
+                    for (int i = 0; i < miembrosSesion.Count; i++)
+                    {
+                        if (miembrosSesion.ElementAt(i).Correo[0] == miembrosSesionDB.correo1)
+                        {
+                            miembrosPrototype.ListaAsistencia.SetValue(miembrosSesionDB.estadoAsistencia.First(), i);
+                        }
+                    }
+                }
+
+                return miembrosPrototype;
+
+            }
+
+            return null;
+        }
+
         public void actualizarMiembros(Collection<Miembro> miembros)
         {
+            db.sp_nuevaActualizacion();
             foreach (Miembro m in miembros)
             {
-                db.sp_nuevaActualizacion();
                 db.sp_ActualizarMiembro(m.Correo[0], m.Correo[1], m.Nombre, m.TipoMiembro.ToString());
             }
             db.SaveChanges();
         }
 
-        public void nuevaSesion(string numero, DateTime fecha, string lugar, bool estado)
+        public void nuevaSesion(string numero, DateTime fecha, string lugar)
         {
-            db.sp_NuevaSesion(numero, fecha, lugar, estado);
+            db.sp_NuevaSesion(numero, fecha, lugar);
             db.SaveChanges();
         }
 
@@ -187,7 +222,7 @@ namespace Proyecto1.Controlador
 
             db.Solicitudes_PuntosDB.Add(new Solicitudes_PuntosDB
             {
-                id_Consejo = 1,
+                id_Consejo = Decimal.ToInt32(db.sp_ConsejoActual().First().Value),
                 punto = p.Id_punto
             });
 
@@ -225,18 +260,18 @@ namespace Proyecto1.Controlador
             db.SaveChanges();
         }
 
-        public void agregarComentario(int id_Punto, Comentario c)
+        public void agregarComentario(int id_Punto, string correoMiembro, int idComentario, string txt)
         {
             db.ComentariosDBs.Add(new ComentariosDB
             {
-                miembro = c.Miembro.Correo[0],
-                contenido = c.Txtcomentario
+                miembro = correoMiembro,
+                contenido = txt
             });
 
             db.ComentariosXPuntoDBs.Add(new ComentariosXPuntoDB
             {
                 punto = id_Punto,
-                comentario = c.Id_Comentario
+                comentario = idComentario
             });
             db.SaveChanges();
         }
@@ -290,9 +325,9 @@ namespace Proyecto1.Controlador
             return tuplaAdjunto;
         }
 
-        public void moverPuntoAgenda(string numeroSesion, int id_PuntoViejaPOs, int id_PuntoNuevaPos)
+        public void moverPuntoAgenda(string numeroSesion, int nuevaPos, int viejaPos)
         {
-            db.sp_MoverPuntoAgenda(numeroSesion, id_PuntoViejaPOs, id_PuntoNuevaPos);
+            db.sp_MoverPuntoAgenda(numeroSesion, nuevaPos, viejaPos);
             db.SaveChanges();
         }
     }

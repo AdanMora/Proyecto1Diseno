@@ -13,8 +13,8 @@ namespace Proyecto1
     
     public partial class sp_ComentariosXPunto_Result
     {
-        public string nombre { get; set; }
         public string correo1 { get; set; }
+        public decimal id_Comentario { get; set; }
         public string contenido { get; set; }
     }
 }

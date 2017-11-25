@@ -25,7 +25,7 @@ namespace Proyecto1.Controlador
 
         public void actualizarMiembros()
         {            
-            g.actualizarMiembros(@"C:\\Users\\Fauricio\\Desktop\\Miembros.xlsx");
+            g.actualizarMiembros(@"C:\\Users\\Adán\\Desktop\\Miembros.xlsx");
             Console.WriteLine("Administración de consejos.\n\n Lista de miembros\n");
 
             foreach (Miembro nuevo in g.getMiembrosConsejo())
@@ -60,13 +60,13 @@ namespace Proyecto1.Controlador
                     punto = "Solicitud de punto que requiere votación";
                     tipo = 'V';
                 }
-                g.agregarSolicitud(cont,g.getMiembrosConsejo().ElementAt(cont).Nombre,"",punto,"",tipo);                
+                //agregarSolicitud(cont,g.getMiembrosConsejo().ElementAt(cont).Nombre,"",punto,"",tipo);                
             }
         }
 
         public void agregarSolicitudPresidente()
         {
-            g.agregarSolicitud(21, g.getMiembrosConsejo().ElementAt(21).Nombre, "", "Aprovación de la Agenda", "", 'V');
+            //agregarSolicitud(21, g.getMiembrosConsejo().ElementAt(21).Nombre, "", "Aprovación de la Agenda", "", 'V');
             g.aceptarSolicitud(21);
             Console.WriteLine("\nEl presidente agregó un nuevo punto en la agenda.\n");
         }
@@ -98,7 +98,7 @@ namespace Proyecto1.Controlador
             for(int i = 1; i <= 10; i++)
             {
                 g.aceptarSolicitud(i);                
-                g.agregarComentario(i, g.getMiembrosConsejo().ElementAt(i).Correo[0],i, "");
+                //agregarComentario(i, g.getMiembrosConsejo().ElementAt(i).Correo[0],i, "");
                 Console.WriteLine("Solicitud aceptada para agrearse a la agenda");
             }
         }
@@ -115,14 +115,14 @@ namespace Proyecto1.Controlador
 
         public void generarAgenda()
         {
-            g.crearAgenda(@"C:\\Users\\Fauricio\\Desktop\\");
+            //g.crearAgenda(0,@"C:\\Users\\Fauricio\\Desktop\\");
         }
 
         public void enviarAgenda()
         {
             foreach(Miembro n in g.getMiembrosConsejo())
             {
-                g.enviarAgenda("1",DateTime.Now,n.Correo[0], @"C:\\Users\\Fauricio\\Desktop\\Agenda Sesión Ordinaria-2.pdf");
+                //g.enviarAgenda(n.Correo[0], @"C:\\Users\\Fauricio\\Desktop\\Agenda Sesión Ordinaria-2.pdf");
             }
         }
 

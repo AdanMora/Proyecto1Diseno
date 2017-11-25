@@ -79,7 +79,7 @@ namespace Proyecto1.Modelo
             }
         }
 
-        internal Collection<PuntoAgenda> Agenda
+        public Collection<PuntoAgenda> Agenda
         {
             get
             {
@@ -92,7 +92,7 @@ namespace Proyecto1.Modelo
             }
         }
 
-        internal Prototype_Miembros MiembrosAsistencia
+        public Prototype_Miembros MiembrosAsistencia
         {
             get
             {

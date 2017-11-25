@@ -17,6 +17,7 @@ namespace Proyecto1
         public decimal id_PuntosXSesion { get; set; }
         public string sesion { get; set; }
         public Nullable<decimal> punto { get; set; }
+        public decimal posicion { get; set; }
     
         public virtual Punto_AgendaDB Punto_AgendaDB { get; set; }
         public virtual SesionDB SesionDB { get; set; }

@@ -21,6 +21,7 @@ namespace Proyecto1.Controlador
         public void nuevaSesion(String num, DateTime fecha, string lugar)
         {
             this.sesionActual = new Sesion(num, fecha, lugar, false);
+            this.sesionActual.MiembrosAsistencia = (Prototype_Miembros)this.prototype.getPrototipo();
         }
 
         public bool cerrarSesion()
@@ -50,7 +51,6 @@ namespace Proyecto1.Controlador
         public void setMiembros(Collection<Miembro> miembros)
         {
             this.prototype.cargarPrototipo(miembros);
-            this.sesionActual.MiembrosAsistencia = (Prototype_Miembros)this.prototype.getPrototipo();
         }
 
         public PuntoAgenda getPuntoAgenda(int id)
@@ -72,9 +72,8 @@ namespace Proyecto1.Controlador
             this.sesionActual.agregarPuntoAgenda(punto);
         }
 
-        public PuntoAgenda agregarVotacion(int id, int aFavor, int enContra, int blanco)
+        public void agregarVotacion(int id, int aFavor, int enContra, int blanco)
         {
-            PuntoAgenda temp = null;
             foreach(PuntoAgenda punto in this.sesionActual.Agenda)
             {
                 if(punto.Id_punto == id)
@@ -82,10 +81,8 @@ namespace Proyecto1.Controlador
                     punto.Votacion[0] = aFavor;
                     punto.Votacion[1] = enContra;
                     punto.Votacion[2] = blanco;
-                    temp = punto;
                 }
             }
-            return temp;
         }
 
         public Miembro getMiembro(string correo)
@@ -181,15 +178,11 @@ namespace Proyecto1.Controlador
             return this.sesionActual.MiembrosAsistencia;
         }
 
-        public void cambiarPosicionPunto(int posicionActual, int posicionNueva)
+        public void cambiarPosicionPunto(int posicionNueva, int posicionVieja)
         {
-            int n = this.sesionActual.Agenda.Count;
-            posicionActual -= 1;
-            posicionNueva -= 1;
-
-            PuntoAgenda punto1 = this.sesionActual.Agenda.ElementAt(posicionActual);
-            this.sesionActual.Agenda.RemoveAt(posicionActual);
-            this.sesionActual.Agenda.Insert(posicionNueva, punto1);
+            PuntoAgenda puntoPosVieja = this.sesionActual.Agenda.ElementAt(posicionVieja);
+            this.sesionActual.Agenda.RemoveAt(posicionVieja);
+            this.sesionActual.Agenda.Insert(posicionNueva, puntoPosVieja);
 
         }
 

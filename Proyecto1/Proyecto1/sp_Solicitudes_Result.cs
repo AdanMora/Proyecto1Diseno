@@ -18,5 +18,6 @@ namespace Proyecto1
         public string considerandos { get; set; }
         public string resultandos { get; set; }
         public string seAcuerda { get; set; }
+        public string tipoPunto { get; set; }
     }
 }

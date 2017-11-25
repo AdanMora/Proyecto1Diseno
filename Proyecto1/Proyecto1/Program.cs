@@ -20,9 +20,87 @@ namespace Proyecto1
         static void Main()
         {
 
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new GUI());
+            Gestor g = new Gestor();
+            g.cargarDatos();
+            Console.WriteLine("\nConsejo - Carga de datos");
+            Console.WriteLine("\nMiembros");
+            foreach (Miembro m in g.getConsejo().Miembros)
+            {
+                Console.WriteLine(m.toString());
+            }
+
+            Console.WriteLine("\nSolicitudes");
+            foreach (PuntoAgenda p in g.getConsejo().Solicitudes)
+            {
+                Console.WriteLine(p.toString());
+            }
+
+            Console.WriteLine("\nSesiones");
+            foreach (Sesion s in g.getConsejo().Sesiones)
+            {
+                Console.WriteLine(s.toString());
+
+                foreach (PuntoAgenda p in s.Agenda)
+                {
+                    Console.WriteLine(p.toString());
+
+                    foreach (Comentario c in p.Comentarios)
+                    {
+                        Console.WriteLine(c.toString());
+                    }
+                }
+            }
+
+            Console.WriteLine("\nSesion Actual");
+
+            Console.WriteLine(g.getSesion().toString());
+
+            for (int i = 0; i < g.getSesion().MiembrosAsistencia.Asistencia.Count; i++)
+            {
+                Console.WriteLine(g.getSesion().MiembrosAsistencia.Asistencia.ElementAt(i).toString());
+
+                Console.WriteLine("||||||||" + g.getSesion().MiembrosAsistencia.ListaAsistencia.ElementAt(i) + "||||||||");
+            }
+
+            /*g.cerrarSesion();
+
+            g.nuevaSesion("prueba", DateTime.Today, "IC");
+
+            g.aceptarSolicitud(g.getSolicitudes().First().Id_punto);
+
+            g.agregarPuntoAgenda("Punto P1", "Resultado P1", "Considerando P1", "Se acuerda P1", 'T');
+
+            g.agregarPuntoAgenda("Punto P2", "Resultado P2", "Considerando P2", "Se acuerda P2", 'M');
+
+            g.agregarPuntoAgenda("Punto P3", "Resultado P3", "Considerando P3", "Se acuerda P3", 'T');
+
+            */
+            //g.cambiarPosicionPunto(4, 1);
+
+            //g.agregarComentario(6, g.getConsejo().Miembros.First().Correo[0], "Otro comentario de prueba c:");
+
+            //g.agregarVotacion(7, 23, 3, 5);
+
+            //foreach (Miembro m in g.getSesion().MiembrosAsistencia.Asistencia)
+            //{
+            //    g.modificarAsistencia(m.Correo[0], false);
+            //}
+
+            //g.modificarAsistencia(g.getConsejo().Miembros.First().Correo[0], true);
+
+
+
+
+            g.crearActa(2, "C:\\Users\\Adán\\Desktop");
+
+
+
+            Console.Read();
+
+
+            //Application.EnableVisualStyles();
+            //Application.SetCompatibleTextRenderingDefault(false);
+            //Application.Run(new GUI());
 
             /*Collection<Miembro> miembros = new Collection<Miembro>();
 
@@ -83,7 +161,7 @@ namespace Proyecto1
             //gestor.getConsejo().Miembros.ElementAt(0).Nombre = "ivan";
             //Console.WriteLine(gestor.getMiembrosConsejo().ElementAt(0).Nombre);
             //Console.WriteLine(gestor.getAsistencia().Asistencia.ElementAt(0).Nombre);
-            Console.ReadKey();
+            /*
             DTO_consola temp = new DTO_consola();
             temp.nuevaSesion();
             temp.actualizarMiembros();
@@ -104,7 +182,7 @@ namespace Proyecto1
             temp.crearActa();  
             temp.controlAsistencia();
             temp.realizarVotacion();        
-            Console.ReadKey();  
+            Console.ReadKey(); */
         }
     }
 }
