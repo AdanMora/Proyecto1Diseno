@@ -173,10 +173,11 @@ namespace Proyecto1.Controlador
             //this.controlador_dao.escribirAgenda(o);
         }
 
-        public void crearAgenda(int tipo)
+        public void crearAgenda(int tipo,string path)
         {
             this.controlador_docs.setDocumento(tipo);
-            //Object o = this.controlador_docs.crearAgenda(this.controlador_sesion.getSesion());
+            Object o = this.controlador_sesion.getSesion();
+            this.controlador_docs.crearAgenda(o,tipo,path);
             //this.controlador_dao.escribirAgenda(o);
         }
 
@@ -255,17 +256,18 @@ namespace Proyecto1.Controlador
 
         public void enviarNotificacion(string numeroSesion, DateTime fecha, string correo)
         {
-
+            controlador_correos.enviarNotificaciones(numeroSesion, fecha, correo);
         }
-        
-        public void crearAgenda(int tipo, string path)
-        {
+       
 
+        public void enviarAgenda(string numeroSesion, DateTime fecha,string correo, string path)
+        {
+            controlador_correos.enviarAgenda(numeroSesion,fecha,correo,path);
         }
 
-        public void enviarAgenda(string correo, string path)
+        public void generarAcuerdo(string destinatario,string path)
         {
-
+            controlador_docs.creaAcurdo(this.controlador_sesion.getSesion().Agenda.ElementAt(1), destinatario, path);
         }
     }
 }

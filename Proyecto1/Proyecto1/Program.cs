@@ -121,7 +121,7 @@ namespace Proyecto1
             DTO_consola temp = new DTO_consola();
             temp.nuevaSesion();
             temp.actualizarMiembros();
-            temp.envioNotificacion();
+            //temp.envioNotificacion();
             temp.agregarSolicitud();            
             temp.aceptarSolicitud();
             temp.agregarSolicitudPresidente();
@@ -131,13 +131,13 @@ namespace Proyecto1
             temp.verSolicitudes();
             temp.verPuntosAgenda();
             temp.generarAgenda();
-            temp.enviarAgenda();
+            //temp.enviarAgenda();
             Console.WriteLine("Ejecución del consejo");
             temp.controlAsistencia();
             temp.verAsistencia();
-            temp.crearActa();  
+            temp.crearActa();              
             temp.controlAsistencia();
-            temp.realizarVotacion();        
+            temp.realizarVotacion();                    
             Console.ReadKey();            
         }
     }

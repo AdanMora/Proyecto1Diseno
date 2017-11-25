@@ -115,14 +115,14 @@ namespace Proyecto1.Controlador
 
         public void generarAgenda()
         {
-            g.crearAgenda(0,@"C:\\Users\\Fauricio\\Desktop\\");
+            g.crearAgenda(0, "C:\\Users\\Fauricio\\Desktop\\");
         }
 
         public void enviarAgenda()
         {
             foreach(Miembro n in g.getMiembrosConsejo())
             {
-                g.enviarAgenda(n.Correo[0], @"C:\\Users\\Fauricio\\Desktop\\Agenda Sesión Ordinaria-2.pdf");
+                g.enviarAgenda("1", DateTime.Now, n.Correo[0], @"C:\\Users\\Fauricio\\Desktop\\Agenda Sesión Ordinaria-1.pdf");
             }
         }
 
@@ -175,6 +175,11 @@ namespace Proyecto1.Controlador
         {
             g.cambiarPosicionPunto(11,1);
             Console.WriteLine("\nEl presidente reorganiza los puntos dentro de la agenda.\n");
+        }
+
+        public void generarAcuerdo()
+        {
+            g.generarAcuerdo("Ericka Solano", "C:\\Users\\Fauricio\\Desktop\\");
         }
     }
 }
