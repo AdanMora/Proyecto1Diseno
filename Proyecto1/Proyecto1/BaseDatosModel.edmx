@@ -4,7 +4,14 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="Proyecto1Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="Proyecto1Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ActualizacionesMiembrosDB">
+          <Key>
+            <PropertyRef Name="id_Actualizacion" />
+          </Key>
+          <Property Name="id_Actualizacion" Type="numeric" Precision="5" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="estado" Type="bit" Nullable="false" />
+        </EntityType>
         <EntityType Name="AdjuntosXPuntoDB">
           <Key>
             <PropertyRef Name="id_Adjunto" />
@@ -46,6 +53,14 @@
           <Property Name="nombreArchivo" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="contenido" Type="varbinary(max)" Nullable="false" />
           <Property Name="tipo" Type="char" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="HistorialMiembrosDB">
+          <Key>
+            <PropertyRef Name="id_HistorialMiembrosDB" />
+          </Key>
+          <Property Name="id_HistorialMiembrosDB" Type="numeric" Precision="5" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="actualizacion" Type="numeric" Precision="5" Scale="0" />
+          <Property Name="miembro" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Miembros_ConsejoDB">
           <Key>
@@ -94,6 +109,7 @@
           <Property Name="id_PuntosXSesion" Type="numeric" Precision="5" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="sesion" Type="varchar" MaxLength="7" />
           <Property Name="punto" Type="numeric" Precision="5" Scale="0" />
+          <Property Name="posicion" Type="numeric" Precision="5" Scale="0" Nullable="false" />
         </EntityType>
         <EntityType Name="SesionDB">
           <Key>
@@ -120,6 +136,20 @@
           <Property Name="id_Consejo" Type="numeric" Precision="5" Scale="0" />
           <Property Name="punto" Type="numeric" Precision="5" Scale="0" />
         </EntityType>
+        <Association Name="fk_ActualizacionMiembroHistorial">
+          <End Role="ActualizacionesMiembrosDB" Type="Self.ActualizacionesMiembrosDB" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="HistorialMiembrosDB" Type="Self.HistorialMiembrosDB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ActualizacionesMiembrosDB">
+              <PropertyRef Name="id_Actualizacion" />
+            </Principal>
+            <Dependent Role="HistorialMiembrosDB">
+              <PropertyRef Name="actualizacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="fk_ComentarioPunto">
           <End Role="ComentariosDB" Type="Self.ComentariosDB" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
@@ -212,6 +242,20 @@
               <PropertyRef Name="correo1" />
             </Principal>
             <Dependent Role="Miembros_ConsejoDB">
+              <PropertyRef Name="miembro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_MiembroHistorial">
+          <End Role="MiembrosDB" Type="Self.MiembrosDB" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="HistorialMiembrosDB" Type="Self.HistorialMiembrosDB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MiembrosDB">
+              <PropertyRef Name="correo1" />
+            </Principal>
+            <Dependent Role="HistorialMiembrosDB">
               <PropertyRef Name="miembro" />
             </Dependent>
           </ReferentialConstraint>
@@ -328,7 +372,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
         <Function Name="sp_AceptarSolicitud" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Num_Sesion" Type="varchar" Mode="In" />
           <Parameter Name="id_Punto" Type="numeric" Mode="In" />
@@ -351,43 +394,18 @@
         <Function Name="sp_AgendaSesion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Num_Sesion" Type="varchar" Mode="In" />
         </Function>
-        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-          <Parameter Name="version" Type="int" Mode="In" />
-          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
-        </Function>
         <Function Name="sp_ComentariosXPunto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id_Punto" Type="numeric" Mode="In" />
         </Function>
-        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-          <Parameter Name="version" Type="int" Mode="In" />
-          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
-        </Function>
-        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-        </Function>
-        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-        </Function>
-        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-        </Function>
-        <Function Name="sp_MiembrosXConsejo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="Num_Consejo" Type="numeric" Mode="In" />
-        </Function>
+        <Function Name="sp_ConsejoActual" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_MiembrosXConsejo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="sp_MiembrosXSesion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Num_Sesion" Type="varchar" Mode="In" />
         </Function>
         <Function Name="sp_MoverPuntoAgenda" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Num_Sesion" Type="varchar" Mode="In" />
-          <Parameter Name="id_PuntoPosVieja" Type="numeric" Mode="In" />
-          <Parameter Name="id_PuntoPosNueva" Type="numeric" Mode="In" />
+          <Parameter Name="nuevaPos" Type="numeric" Mode="In" />
+          <Parameter Name="viejaPos" Type="numeric" Mode="In" />
         </Function>
         <Function Name="sp_NextIDComentario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="sp_NextIDPunto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
@@ -396,26 +414,17 @@
           <Parameter Name="numero" Type="varchar" Mode="In" />
           <Parameter Name="fecha" Type="datetime" Mode="In" />
           <Parameter Name="lugar" Type="varchar" Mode="In" />
-          <Parameter Name="estado" Type="bit" Mode="In" />
         </Function>
-        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
-        </Function>
-        <Function Name="sp_SesionesxConsejo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="Num_Consejo" Type="numeric" Mode="In" />
-        </Function>
-        <Function Name="sp_Solicitudes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="Num_Consejo" Type="numeric" Mode="In" />
-        </Function>
-        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_SesionesxConsejo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_Solicitudes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="Proyecto1ModelStoreContainer">
+          <EntitySet Name="ActualizacionesMiembrosDB" EntityType="Self.ActualizacionesMiembrosDB" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AdjuntosXPuntoDB" EntityType="Self.AdjuntosXPuntoDB" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ComentariosDB" EntityType="Self.ComentariosDB" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ComentariosXPuntoDB" EntityType="Self.ComentariosXPuntoDB" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ConsejoDB" EntityType="Self.ConsejoDB" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DocXSesionDB" EntityType="Self.DocXSesionDB" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HistorialMiembrosDB" EntityType="Self.HistorialMiembrosDB" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Miembros_ConsejoDB" EntityType="Self.Miembros_ConsejoDB" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Miembros_SesionDB" EntityType="Self.Miembros_SesionDB" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MiembrosDB" EntityType="Self.MiembrosDB" Schema="dbo" store:Type="Tables" />
@@ -424,6 +433,10 @@
           <EntitySet Name="SesionDB" EntityType="Self.SesionDB" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SesionesXConsejoDB" EntityType="Self.SesionesXConsejoDB" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Solicitudes_PuntosDB" EntityType="Self.Solicitudes_PuntosDB" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="fk_ActualizacionMiembroHistorial" Association="Self.fk_ActualizacionMiembroHistorial">
+            <End Role="ActualizacionesMiembrosDB" EntitySet="ActualizacionesMiembrosDB" />
+            <End Role="HistorialMiembrosDB" EntitySet="HistorialMiembrosDB" />
+          </AssociationSet>
           <AssociationSet Name="fk_ComentarioPunto" Association="Self.fk_ComentarioPunto">
             <End Role="ComentariosDB" EntitySet="ComentariosDB" />
             <End Role="ComentariosXPuntoDB" EntitySet="ComentariosXPuntoDB" />
@@ -451,6 +464,10 @@
           <AssociationSet Name="fk_MiembroConsejo" Association="Self.fk_MiembroConsejo">
             <End Role="MiembrosDB" EntitySet="MiembrosDB" />
             <End Role="Miembros_ConsejoDB" EntitySet="Miembros_ConsejoDB" />
+          </AssociationSet>
+          <AssociationSet Name="fk_MiembroHistorial" Association="Self.fk_MiembroHistorial">
+            <End Role="MiembrosDB" EntitySet="MiembrosDB" />
+            <End Role="HistorialMiembrosDB" EntitySet="HistorialMiembrosDB" />
           </AssociationSet>
           <AssociationSet Name="fk_MiembroSesion" Association="Self.fk_MiembroSesion">
             <End Role="MiembrosDB" EntitySet="MiembrosDB" />
@@ -485,10 +502,19 @@
             <End Role="Miembros_SesionDB" EntitySet="Miembros_SesionDB" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Proyecto1Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ActualizacionesMiembrosDB">
+          <Key>
+            <PropertyRef Name="id_Actualizacion" />
+          </Key>
+          <Property Name="id_Actualizacion" Type="Decimal" Precision="5" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="estado" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="HistorialMiembrosDBs" Relationship="Self.fk_ActualizacionMiembroHistorial" FromRole="ActualizacionesMiembrosDB" ToRole="HistorialMiembrosDB" />
+        </EntityType>
         <EntityType Name="AdjuntosXPuntoDB">
           <Key>
             <PropertyRef Name="id_Adjunto" />
@@ -526,8 +552,8 @@
           </Key>
           <Property Name="id_Consejo" Type="Decimal" Precision="5" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="Miembros_ConsejoDB" Relationship="Self.fk_ConsejoMiembros" FromRole="ConsejoDB" ToRole="Miembros_ConsejoDB" />
+          <NavigationProperty Name="SesionesXConsejoDBs" Relationship="Self.fk_ConsejoSesiones" FromRole="ConsejoDB" ToRole="SesionesXConsejoDB" />
           <NavigationProperty Name="Solicitudes_PuntosDB" Relationship="Self.fk_ConsejoSolicitud" FromRole="ConsejoDB" ToRole="Solicitudes_PuntosDB" />
-          <NavigationProperty Name="SesionesXConsejoDBs" Relationship="Proyecto1Model.fk_ConsejoSesiones" FromRole="ConsejoDB" ToRole="SesionesXConsejoDB" />
         </EntityType>
         <EntityType Name="DocXSesionDB">
           <Key>
@@ -539,6 +565,16 @@
           <Property Name="contenido" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
           <Property Name="tipo" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
           <NavigationProperty Name="SesionDB" Relationship="Self.fk_SesionDoc" FromRole="DocXSesionDB" ToRole="SesionDB" />
+        </EntityType>
+        <EntityType Name="HistorialMiembrosDB">
+          <Key>
+            <PropertyRef Name="id_HistorialMiembrosDB" />
+          </Key>
+          <Property Name="id_HistorialMiembrosDB" Type="Decimal" Precision="5" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="actualizacion" Type="Decimal" Precision="5" Scale="0" />
+          <Property Name="miembro" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ActualizacionesMiembrosDB" Relationship="Self.fk_ActualizacionMiembroHistorial" FromRole="HistorialMiembrosDB" ToRole="ActualizacionesMiembrosDB" />
+          <NavigationProperty Name="MiembrosDB" Relationship="Self.fk_MiembroHistorial" FromRole="HistorialMiembrosDB" ToRole="MiembrosDB" />
         </EntityType>
         <EntityType Name="Miembros_ConsejoDB">
           <Key>
@@ -570,6 +606,7 @@
           <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="tipoMiembro" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
           <NavigationProperty Name="ComentariosDBs" Relationship="Self.fk_MiembroComentario" FromRole="MiembrosDB" ToRole="ComentariosDB" />
+          <NavigationProperty Name="HistorialMiembrosDBs" Relationship="Self.fk_MiembroHistorial" FromRole="MiembrosDB" ToRole="HistorialMiembrosDB" />
           <NavigationProperty Name="Miembros_ConsejoDB" Relationship="Self.fk_MiembroConsejo" FromRole="MiembrosDB" ToRole="Miembros_ConsejoDB" />
           <NavigationProperty Name="Miembros_SesionDB" Relationship="Self.fk_MiembroSesion" FromRole="MiembrosDB" ToRole="Miembros_SesionDB" />
         </EntityType>
@@ -598,6 +635,7 @@
           <Property Name="id_PuntosXSesion" Type="Decimal" Precision="5" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="sesion" Type="String" MaxLength="7" FixedLength="false" Unicode="false" />
           <Property Name="punto" Type="Decimal" Precision="5" Scale="0" />
+          <Property Name="posicion" Type="Decimal" Precision="5" Scale="0" Nullable="false" />
           <NavigationProperty Name="Punto_AgendaDB" Relationship="Self.fk_PuntosAgenda" FromRole="PuntosXSesionDB" ToRole="Punto_AgendaDB" />
           <NavigationProperty Name="SesionDB" Relationship="Self.fk_SesionAgenda" FromRole="PuntosXSesionDB" ToRole="SesionDB" />
         </EntityType>
@@ -612,7 +650,17 @@
           <NavigationProperty Name="DocXSesionDBs" Relationship="Self.fk_SesionDoc" FromRole="SesionDB" ToRole="DocXSesionDB" />
           <NavigationProperty Name="Miembros_SesionDB" Relationship="Self.fk_SesionMiembros" FromRole="SesionDB" ToRole="Miembros_SesionDB" />
           <NavigationProperty Name="PuntosXSesionDBs" Relationship="Self.fk_SesionAgenda" FromRole="SesionDB" ToRole="PuntosXSesionDB" />
-          <NavigationProperty Name="SesionesXConsejoDBs" Relationship="Proyecto1Model.fk_SesionesXConsejo" FromRole="SesionDB" ToRole="SesionesXConsejoDB" />
+          <NavigationProperty Name="SesionesXConsejoDBs" Relationship="Self.fk_SesionesXConsejo" FromRole="SesionDB" ToRole="SesionesXConsejoDB" />
+        </EntityType>
+        <EntityType Name="SesionesXConsejoDB">
+          <Key>
+            <PropertyRef Name="id_SesionesXConsejo" />
+          </Key>
+          <Property Name="id_SesionesXConsejo" Type="Decimal" Precision="5" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_Consejo" Type="Decimal" Precision="5" Scale="0" />
+          <Property Name="sesion" Type="String" MaxLength="7" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ConsejoDB" Relationship="Self.fk_ConsejoSesiones" FromRole="SesionesXConsejoDB" ToRole="ConsejoDB" />
+          <NavigationProperty Name="SesionDB" Relationship="Self.fk_SesionesXConsejo" FromRole="SesionesXConsejoDB" ToRole="SesionDB" />
         </EntityType>
         <EntityType Name="Solicitudes_PuntosDB">
           <Key>
@@ -624,6 +672,20 @@
           <NavigationProperty Name="ConsejoDB" Relationship="Self.fk_ConsejoSolicitud" FromRole="Solicitudes_PuntosDB" ToRole="ConsejoDB" />
           <NavigationProperty Name="Punto_AgendaDB" Relationship="Self.fk_ConsejoSolicitudes" FromRole="Solicitudes_PuntosDB" ToRole="Punto_AgendaDB" />
         </EntityType>
+        <Association Name="fk_ActualizacionMiembroHistorial">
+          <End Role="ActualizacionesMiembrosDB" Type="Self.ActualizacionesMiembrosDB" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="HistorialMiembrosDB" Type="Self.HistorialMiembrosDB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ActualizacionesMiembrosDB">
+              <PropertyRef Name="id_Actualizacion" />
+            </Principal>
+            <Dependent Role="HistorialMiembrosDB">
+              <PropertyRef Name="actualizacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="fk_PuntosAdjunto">
           <End Role="Punto_AgendaDB" Type="Self.Punto_AgendaDB" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
@@ -692,6 +754,20 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="fk_ConsejoSesiones">
+          <End Role="ConsejoDB" Type="Self.ConsejoDB" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="SesionesXConsejoDB" Type="Self.SesionesXConsejoDB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ConsejoDB">
+              <PropertyRef Name="id_Consejo" />
+            </Principal>
+            <Dependent Role="SesionesXConsejoDB">
+              <PropertyRef Name="id_Consejo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="fk_ConsejoSolicitud">
           <End Role="ConsejoDB" Type="Self.ConsejoDB" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
@@ -717,6 +793,20 @@
             </Principal>
             <Dependent Role="DocXSesionDB">
               <PropertyRef Name="sesion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_MiembroHistorial">
+          <End Role="MiembrosDB" Type="Self.MiembrosDB" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="HistorialMiembrosDB" Type="Self.HistorialMiembrosDB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MiembrosDB">
+              <PropertyRef Name="correo1" />
+            </Principal>
+            <Dependent Role="HistorialMiembrosDB">
+              <PropertyRef Name="miembro" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -804,19 +894,40 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="fk_SesionesXConsejo">
+          <End Role="SesionDB" Type="Self.SesionDB" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="SesionesXConsejoDB" Type="Self.SesionesXConsejoDB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SesionDB">
+              <PropertyRef Name="numero" />
+            </Principal>
+            <Dependent Role="SesionesXConsejoDB">
+              <PropertyRef Name="sesion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="Proyecto1DB" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ActualizacionesMiembrosDBs" EntityType="Self.ActualizacionesMiembrosDB" />
           <EntitySet Name="AdjuntosXPuntoDBs" EntityType="Self.AdjuntosXPuntoDB" />
           <EntitySet Name="ComentariosDBs" EntityType="Self.ComentariosDB" />
           <EntitySet Name="ComentariosXPuntoDBs" EntityType="Self.ComentariosXPuntoDB" />
           <EntitySet Name="ConsejoDBs" EntityType="Self.ConsejoDB" />
           <EntitySet Name="DocXSesionDBs" EntityType="Self.DocXSesionDB" />
+          <EntitySet Name="HistorialMiembrosDBs" EntityType="Self.HistorialMiembrosDB" />
           <EntitySet Name="Miembros_ConsejoDB" EntityType="Self.Miembros_ConsejoDB" />
           <EntitySet Name="Miembros_SesionDB" EntityType="Self.Miembros_SesionDB" />
           <EntitySet Name="MiembrosDBs" EntityType="Self.MiembrosDB" />
           <EntitySet Name="Punto_AgendaDB" EntityType="Self.Punto_AgendaDB" />
           <EntitySet Name="PuntosXSesionDBs" EntityType="Self.PuntosXSesionDB" />
           <EntitySet Name="SesionDBs" EntityType="Self.SesionDB" />
+          <EntitySet Name="SesionesXConsejoDBs" EntityType="Self.SesionesXConsejoDB" />
           <EntitySet Name="Solicitudes_PuntosDB" EntityType="Self.Solicitudes_PuntosDB" />
+          <AssociationSet Name="fk_ActualizacionMiembroHistorial" Association="Self.fk_ActualizacionMiembroHistorial">
+            <End Role="ActualizacionesMiembrosDB" EntitySet="ActualizacionesMiembrosDBs" />
+            <End Role="HistorialMiembrosDB" EntitySet="HistorialMiembrosDBs" />
+          </AssociationSet>
           <AssociationSet Name="fk_PuntosAdjunto" Association="Self.fk_PuntosAdjunto">
             <End Role="Punto_AgendaDB" EntitySet="Punto_AgendaDB" />
             <End Role="AdjuntosXPuntoDB" EntitySet="AdjuntosXPuntoDBs" />
@@ -837,6 +948,10 @@
             <End Role="ConsejoDB" EntitySet="ConsejoDBs" />
             <End Role="Miembros_ConsejoDB" EntitySet="Miembros_ConsejoDB" />
           </AssociationSet>
+          <AssociationSet Name="fk_ConsejoSesiones" Association="Self.fk_ConsejoSesiones">
+            <End Role="ConsejoDB" EntitySet="ConsejoDBs" />
+            <End Role="SesionesXConsejoDB" EntitySet="SesionesXConsejoDBs" />
+          </AssociationSet>
           <AssociationSet Name="fk_ConsejoSolicitud" Association="Self.fk_ConsejoSolicitud">
             <End Role="ConsejoDB" EntitySet="ConsejoDBs" />
             <End Role="Solicitudes_PuntosDB" EntitySet="Solicitudes_PuntosDB" />
@@ -844,6 +959,10 @@
           <AssociationSet Name="fk_SesionDoc" Association="Self.fk_SesionDoc">
             <End Role="SesionDB" EntitySet="SesionDBs" />
             <End Role="DocXSesionDB" EntitySet="DocXSesionDBs" />
+          </AssociationSet>
+          <AssociationSet Name="fk_MiembroHistorial" Association="Self.fk_MiembroHistorial">
+            <End Role="MiembrosDB" EntitySet="MiembrosDBs" />
+            <End Role="HistorialMiembrosDB" EntitySet="HistorialMiembrosDBs" />
           </AssociationSet>
           <AssociationSet Name="fk_MiembroConsejo" Association="Self.fk_MiembroConsejo">
             <End Role="MiembrosDB" EntitySet="MiembrosDBs" />
@@ -869,89 +988,16 @@
             <End Role="SesionDB" EntitySet="SesionDBs" />
             <End Role="PuntosXSesionDB" EntitySet="PuntosXSesionDBs" />
           </AssociationSet>
+          <AssociationSet Name="fk_SesionesXConsejo" Association="Self.fk_SesionesXConsejo">
+            <End Role="SesionDB" EntitySet="SesionDBs" />
+            <End Role="SesionesXConsejoDB" EntitySet="SesionesXConsejoDBs" />
+          </AssociationSet>
           <FunctionImport Name="sp_AceptarSolicitud">
             <Parameter Name="Num_Sesion" Mode="In" Type="String" />
             <Parameter Name="id_Punto" Mode="In" Type="Decimal" />
           </FunctionImport>
-          <FunctionImport Name="sp_Agenda" ReturnType="Collection(Proyecto1Model.sp_Agenda_Result)">
-          <Parameter Name="Num_Sesion" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="sp_alterdiagram">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-            <Parameter Name="version" Mode="In" Type="Int32" />
-            <Parameter Name="definition" Mode="In" Type="Binary" />
-          </FunctionImport>
-          <FunctionImport Name="sp_ComentariosXPunto" ReturnType="Collection(Proyecto1Model.sp_ComentariosXPunto_Result)">
-          <Parameter Name="id_Punto" Mode="In" Type="Decimal" />
-          </FunctionImport>
-          <FunctionImport Name="sp_creatediagram">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-            <Parameter Name="version" Mode="In" Type="Int32" />
-            <Parameter Name="definition" Mode="In" Type="Binary" />
-          </FunctionImport>
-          <FunctionImport Name="sp_dropdiagram">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(Proyecto1Model.sp_helpdiagramdefinition_Result)">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(Proyecto1Model.sp_helpdiagrams_Result)">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="sp_MiembrosXConsejo" ReturnType="Collection(Proyecto1Model.sp_MiembrosXConsejo_Result)">
-          <Parameter Name="Num_Consejo" Mode="In" Type="Decimal" />
-          </FunctionImport>
-          <FunctionImport Name="sp_MiembrosXSesion" ReturnType="Collection(Proyecto1Model.sp_MiembrosXSesion_Result)">
-          <Parameter Name="Num_Sesion" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="sp_MoverPuntoAgenda">
-            <Parameter Name="Num_Sesion" Mode="In" Type="String" />
-            <Parameter Name="id_PuntoPosVieja" Mode="In" Type="Decimal" />
-            <Parameter Name="id_PuntoPosNueva" Mode="In" Type="Decimal" />
-          </FunctionImport>
-          <FunctionImport Name="sp_renamediagram">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-            <Parameter Name="new_diagramname" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="sp_Solicitudes" ReturnType="Collection(Decimal)">
-          <Parameter Name="Num_Consejo" Mode="In" Type="Decimal" />
-          </FunctionImport>
-          <FunctionImport Name="sp_upgraddiagrams" />
           <FunctionImport Name="sp_ActaSesion" ReturnType="Collection(Proyecto1Model.sp_ActaSesion_Result)">
-          <Parameter Name="Num_Sesion" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="sp_AdjuntosXPunto" ReturnType="Collection(Proyecto1Model.sp_AdjuntosXPunto_Result)">
-          <Parameter Name="id_Punto" Mode="In" Type="Decimal" />
-          </FunctionImport>
-          <FunctionImport Name="sp_AgendaSesion" ReturnType="Collection(Proyecto1Model.sp_AgendaSesion_Result)">
-          <Parameter Name="Num_Sesion" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="sp_Solicitudes1" ReturnType="Collection(Proyecto1Model.sp_Solicitudes_Result)">
-          <Parameter Name="Num_Consejo" Mode="In" Type="Decimal" />
-          </FunctionImport>
-          <EntitySet Name="SesionesXConsejoDBs" EntityType="Proyecto1Model.SesionesXConsejoDB" />
-          <AssociationSet Name="fk_ConsejoSesiones" Association="Proyecto1Model.fk_ConsejoSesiones">
-            <End Role="ConsejoDB" EntitySet="ConsejoDBs" />
-            <End Role="SesionesXConsejoDB" EntitySet="SesionesXConsejoDBs" />
-          </AssociationSet>
-          <AssociationSet Name="fk_SesionesXConsejo" Association="Proyecto1Model.fk_SesionesXConsejo">
-            <End Role="SesionDB" EntitySet="SesionDBs" />
-            <End Role="SesionesXConsejoDB" EntitySet="SesionesXConsejoDBs" />
-          </AssociationSet>
-          <FunctionImport Name="sp_SesionesxConsejo" ReturnType="Collection(Proyecto1Model.sp_SesionesxConsejo_Result)">
-          <Parameter Name="Num_Consejo" Mode="In" Type="Decimal" />
-          </FunctionImport>
-          <FunctionImport Name="sp_Agenda1" ReturnType="Collection(Proyecto1Model.sp_Agenda1_Result)">
-          <Parameter Name="Num_Sesion" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="sp_ComentariosXPunto1" ReturnType="Collection(Proyecto1Model.sp_ComentariosXPunto1_Result)">
-          <Parameter Name="id_Punto" Mode="In" Type="Decimal" />
+            <Parameter Name="Num_Sesion" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_ActualizarMiembro">
             <Parameter Name="correo1" Mode="In" Type="String" />
@@ -959,35 +1005,67 @@
             <Parameter Name="nombre" Mode="In" Type="String" />
             <Parameter Name="tipoMiembro" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="sp_AdjuntosXPunto" ReturnType="Collection(Proyecto1Model.sp_AdjuntosXPunto_Result)">
+            <Parameter Name="id_Punto" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Agenda" ReturnType="Collection(Proyecto1Model.sp_Agenda_Result)">
+            <Parameter Name="Num_Sesion" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_AgendaSesion" ReturnType="Collection(Proyecto1Model.sp_AgendaSesion_Result)">
+            <Parameter Name="Num_Sesion" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_ComentariosXPunto" ReturnType="Collection(Proyecto1Model.sp_ComentariosXPunto_Result)">
+            <Parameter Name="id_Punto" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="sp_ConsejoActual" ReturnType="Collection(Decimal)" />
+          <FunctionImport Name="sp_MiembrosXConsejo" ReturnType="Collection(Proyecto1Model.sp_MiembrosXConsejo_Result)" />
+          <FunctionImport Name="sp_MiembrosXSesion" ReturnType="Collection(Proyecto1Model.sp_MiembrosXSesion_Result)">
+            <Parameter Name="Num_Sesion" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_MoverPuntoAgenda">
+            <Parameter Name="Num_Sesion" Mode="In" Type="String" />
+            <Parameter Name="nuevaPos" Mode="In" Type="Decimal" />
+            <Parameter Name="viejaPos" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="sp_NextIDComentario" ReturnType="Collection(Decimal)" />
+          <FunctionImport Name="sp_NextIDPunto" ReturnType="Collection(Decimal)" />
           <FunctionImport Name="sp_nuevaActualizacion" />
           <FunctionImport Name="sp_NuevaSesion">
             <Parameter Name="numero" Mode="In" Type="String" />
             <Parameter Name="fecha" Mode="In" Type="DateTime" />
             <Parameter Name="lugar" Mode="In" Type="String" />
-            <Parameter Name="estado" Mode="In" Type="Boolean" />
           </FunctionImport>
-          <FunctionImport Name="sp_NextIDComentario" ReturnType="Collection(Decimal)" />
-          <FunctionImport Name="sp_NextIDPunto" ReturnType="Collection(Decimal)" />
+          <FunctionImport Name="sp_SesionesxConsejo" ReturnType="Collection(Proyecto1Model.sp_SesionesxConsejo_Result)" />
+          <FunctionImport Name="sp_Solicitudes" ReturnType="Collection(Proyecto1Model.sp_Solicitudes_Result)" />
         </EntityContainer>
+        <ComplexType Name="sp_ActaSesion_Result">
+          <Property Type="String" Name="nombreArchivo" Nullable="false" MaxLength="100" />
+          <Property Type="Binary" Name="contenido" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="sp_AdjuntosXPunto_Result">
+          <Property Type="String" Name="nombreArchivo" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="extension" Nullable="false" MaxLength="4" />
+          <Property Type="Binary" Name="contenido" Nullable="false" />
+        </ComplexType>
         <ComplexType Name="sp_Agenda_Result">
-          <Property Type="Decimal" Name="id_PuntosXSesion" Nullable="false" Precision="5" Scale="0" />
           <Property Type="Decimal" Name="id_Punto" Nullable="false" Precision="5" Scale="0" />
+          <Property Type="String" Name="nombre" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="considerandos" Nullable="false" MaxLength="1000" />
+          <Property Type="String" Name="resultandos" Nullable="false" MaxLength="1000" />
+          <Property Type="String" Name="seAcuerda" Nullable="false" MaxLength="1000" />
+          <Property Type="Decimal" Name="votosAFavor" Nullable="true" Precision="2" Scale="0" />
+          <Property Type="Decimal" Name="votosEnContra" Nullable="true" Precision="2" Scale="0" />
+          <Property Type="Decimal" Name="votosAbstenciones" Nullable="true" Precision="2" Scale="0" />
+          <Property Type="String" Name="tipoPunto" Nullable="false" MaxLength="1" />
+        </ComplexType>
+        <ComplexType Name="sp_AgendaSesion_Result">
+          <Property Type="String" Name="nombreArchivo" Nullable="false" MaxLength="100" />
+          <Property Type="Binary" Name="contenido" Nullable="false" />
         </ComplexType>
         <ComplexType Name="sp_ComentariosXPunto_Result">
-          <Property Type="String" Name="nombre" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="correo1" Nullable="false" MaxLength="50" />
+          <Property Type="Decimal" Name="id_Comentario" Nullable="false" Precision="5" Scale="0" />
           <Property Type="String" Name="contenido" Nullable="false" MaxLength="1000" />
-        </ComplexType>
-        <ComplexType Name="sp_helpdiagramdefinition_Result">
-          <Property Type="Int32" Name="version" Nullable="true" />
-          <Property Type="Binary" Name="definition" Nullable="true" />
-        </ComplexType>
-        <ComplexType Name="sp_helpdiagrams_Result">
-          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
-          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
-          <Property Type="Int32" Name="ID" Nullable="false" />
-          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
-          <Property Type="Int32" Name="OwnerID" Nullable="false" />
         </ComplexType>
         <ComplexType Name="sp_MiembrosXConsejo_Result">
           <Property Type="String" Name="nombre" Nullable="false" MaxLength="50" />
@@ -1002,18 +1080,11 @@
           <Property Type="String" Name="tipoMiembro" Nullable="false" MaxLength="1" />
           <Property Type="String" Name="estadoAsistencia" Nullable="false" MaxLength="1" />
         </ComplexType>
-        <ComplexType Name="sp_ActaSesion_Result">
-          <Property Type="String" Name="nombreArchivo" Nullable="false" MaxLength="100" />
-          <Property Type="Binary" Name="contenido" Nullable="false" />
-        </ComplexType>
-        <ComplexType Name="sp_AdjuntosXPunto_Result">
-          <Property Type="String" Name="nombreArchivo" Nullable="false" MaxLength="100" />
-          <Property Type="String" Name="extension" Nullable="false" MaxLength="4" />
-          <Property Type="Binary" Name="contenido" Nullable="false" />
-        </ComplexType>
-        <ComplexType Name="sp_AgendaSesion_Result">
-          <Property Type="String" Name="nombreArchivo" Nullable="false" MaxLength="100" />
-          <Property Type="Binary" Name="contenido" Nullable="false" />
+        <ComplexType Name="sp_SesionesxConsejo_Result">
+          <Property Type="String" Name="numero" Nullable="false" MaxLength="7" />
+          <Property Type="DateTime" Name="fecha" Nullable="false" Precision="23" />
+          <Property Type="String" Name="lugar" Nullable="false" MaxLength="50" />
+          <Property Type="Boolean" Name="estado" Nullable="false" />
         </ComplexType>
         <ComplexType Name="sp_Solicitudes_Result">
           <Property Type="Decimal" Name="id_Punto" Nullable="false" Precision="5" Scale="0" />
@@ -1021,66 +1092,7 @@
           <Property Type="String" Name="considerandos" Nullable="false" MaxLength="1000" />
           <Property Type="String" Name="resultandos" Nullable="false" MaxLength="1000" />
           <Property Type="String" Name="seAcuerda" Nullable="false" MaxLength="1000" />
-        </ComplexType>
-        <EntityType Name="SesionesXConsejoDB">
-          <Key>
-            <PropertyRef Name="id_SesionesXConsejo" />
-          </Key>
-          <Property Name="id_SesionesXConsejo" Type="Decimal" Nullable="false" Precision="5" Scale="0" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="id_Consejo" Type="Decimal" Precision="5" Scale="0" />
-          <Property Name="sesion" Type="String" MaxLength="7" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="ConsejoDB" Relationship="Proyecto1Model.fk_ConsejoSesiones" FromRole="SesionesXConsejoDB" ToRole="ConsejoDB" />
-          <NavigationProperty Name="SesionDB" Relationship="Proyecto1Model.fk_SesionesXConsejo" FromRole="SesionesXConsejoDB" ToRole="SesionDB" />
-        </EntityType>
-        <Association Name="fk_ConsejoSesiones">
-          <End Type="Proyecto1Model.ConsejoDB" Role="ConsejoDB" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Type="Proyecto1Model.SesionesXConsejoDB" Role="SesionesXConsejoDB" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ConsejoDB">
-              <PropertyRef Name="id_Consejo" />
-            </Principal>
-            <Dependent Role="SesionesXConsejoDB">
-              <PropertyRef Name="id_Consejo" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="fk_SesionesXConsejo">
-          <End Type="Proyecto1Model.SesionDB" Role="SesionDB" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Type="Proyecto1Model.SesionesXConsejoDB" Role="SesionesXConsejoDB" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SesionDB">
-              <PropertyRef Name="numero" />
-            </Principal>
-            <Dependent Role="SesionesXConsejoDB">
-              <PropertyRef Name="sesion" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <ComplexType Name="sp_SesionesxConsejo_Result">
-          <Property Type="String" Name="numero" Nullable="false" MaxLength="7" />
-          <Property Type="DateTime" Name="fecha" Nullable="false" Precision="23" />
-          <Property Type="String" Name="lugar" Nullable="false" MaxLength="50" />
-          <Property Type="Boolean" Name="estado" Nullable="false" />
-        </ComplexType>
-        <ComplexType Name="sp_Agenda1_Result">
-          <Property Type="Decimal" Name="id_Punto" Nullable="false" Precision="5" Scale="0" />
-          <Property Type="String" Name="nombre" Nullable="false" MaxLength="500" />
-          <Property Type="String" Name="considerandos" Nullable="false" MaxLength="1000" />
-          <Property Type="String" Name="resultandos" Nullable="false" MaxLength="1000" />
-          <Property Type="String" Name="seAcuerda" Nullable="false" MaxLength="1000" />
-          <Property Type="Decimal" Name="votosAFavor" Nullable="false" />
-          <Property Type="Decimal" Name="votosEnContra" Nullable="false" />
-          <Property Type="Decimal" Name="votosAbstenciones" Nullable="false" />
           <Property Type="String" Name="tipoPunto" Nullable="false" MaxLength="1" />
-        </ComplexType>
-        <ComplexType Name="sp_ComentariosXPunto1_Result">
-          <Property Type="String" Name="correo1" Nullable="false" MaxLength="50" />
-          <Property Type="Decimal" Name="id_Comentario" Nullable="false" Precision="5" Scale="0" />
-          <Property Type="String" Name="contenido" Nullable="false" MaxLength="1000" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1088,6 +1100,14 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="Proyecto1ModelStoreContainer" CdmEntityContainer="Proyecto1DB">
+          <EntitySetMapping Name="ActualizacionesMiembrosDBs">
+            <EntityTypeMapping TypeName="Proyecto1Model.ActualizacionesMiembrosDB">
+              <MappingFragment StoreEntitySet="ActualizacionesMiembrosDB">
+                <ScalarProperty Name="id_Actualizacion" ColumnName="id_Actualizacion" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="AdjuntosXPuntoDBs">
             <EntityTypeMapping TypeName="Proyecto1Model.AdjuntosXPuntoDB">
               <MappingFragment StoreEntitySet="AdjuntosXPuntoDB">
@@ -1132,6 +1152,15 @@
                 <ScalarProperty Name="nombreArchivo" ColumnName="nombreArchivo" />
                 <ScalarProperty Name="contenido" ColumnName="contenido" />
                 <ScalarProperty Name="tipo" ColumnName="tipo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HistorialMiembrosDBs">
+            <EntityTypeMapping TypeName="Proyecto1Model.HistorialMiembrosDB">
+              <MappingFragment StoreEntitySet="HistorialMiembrosDB">
+                <ScalarProperty Name="id_HistorialMiembrosDB" ColumnName="id_HistorialMiembrosDB" />
+                <ScalarProperty Name="actualizacion" ColumnName="actualizacion" />
+                <ScalarProperty Name="miembro" ColumnName="miembro" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1185,6 +1214,7 @@
                 <ScalarProperty Name="id_PuntosXSesion" ColumnName="id_PuntosXSesion" />
                 <ScalarProperty Name="sesion" ColumnName="sesion" />
                 <ScalarProperty Name="punto" ColumnName="punto" />
+                <ScalarProperty Name="posicion" ColumnName="posicion" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1198,6 +1228,15 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="SesionesXConsejoDBs">
+            <EntityTypeMapping TypeName="Proyecto1Model.SesionesXConsejoDB">
+              <MappingFragment StoreEntitySet="SesionesXConsejoDB">
+                <ScalarProperty Name="id_SesionesXConsejo" ColumnName="id_SesionesXConsejo" />
+                <ScalarProperty Name="id_Consejo" ColumnName="id_Consejo" />
+                <ScalarProperty Name="sesion" ColumnName="sesion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Solicitudes_PuntosDB">
             <EntityTypeMapping TypeName="Proyecto1Model.Solicitudes_PuntosDB">
               <MappingFragment StoreEntitySet="Solicitudes_PuntosDB">
@@ -1208,45 +1247,57 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="sp_AceptarSolicitud" FunctionName="Proyecto1Model.Store.sp_AceptarSolicitud" />
-          <FunctionImportMapping FunctionImportName="sp_Agenda" FunctionName="Proyecto1Model.Store.sp_Agenda">
+          <FunctionImportMapping FunctionImportName="sp_ActaSesion" FunctionName="Proyecto1Model.Store.sp_ActaSesion">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="Proyecto1Model.sp_Agenda_Result">
-                <ScalarProperty Name="id_PuntosXSesion" ColumnName="id_PuntosXSesion" />
-                <ScalarProperty Name="id_Punto" ColumnName="id_Punto" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="Proyecto1Model.Store.sp_alterdiagram" />
-          <FunctionImportMapping FunctionImportName="sp_ComentariosXPunto" FunctionName="Proyecto1Model.Store.sp_ComentariosXPunto">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="Proyecto1Model.sp_ComentariosXPunto_Result">
-                <ScalarProperty Name="nombre" ColumnName="nombre" />
-                <ScalarProperty Name="correo1" ColumnName="correo1" />
+              <ComplexTypeMapping TypeName="Proyecto1Model.sp_ActaSesion_Result">
+                <ScalarProperty Name="nombreArchivo" ColumnName="nombreArchivo" />
                 <ScalarProperty Name="contenido" ColumnName="contenido" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="Proyecto1Model.Store.sp_creatediagram" />
-          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="Proyecto1Model.Store.sp_dropdiagram" />
-          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="Proyecto1Model.Store.sp_helpdiagramdefinition">
+          <FunctionImportMapping FunctionImportName="sp_ActualizarMiembro" FunctionName="Proyecto1Model.Store.sp_ActualizarMiembro" />
+          <FunctionImportMapping FunctionImportName="sp_AdjuntosXPunto" FunctionName="Proyecto1Model.Store.sp_AdjuntosXPunto">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="Proyecto1Model.sp_helpdiagramdefinition_Result">
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="definition" ColumnName="definition" />
+              <ComplexTypeMapping TypeName="Proyecto1Model.sp_AdjuntosXPunto_Result">
+                <ScalarProperty Name="nombreArchivo" ColumnName="nombreArchivo" />
+                <ScalarProperty Name="extension" ColumnName="extension" />
+                <ScalarProperty Name="contenido" ColumnName="contenido" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="Proyecto1Model.Store.sp_helpdiagrams">
+          <FunctionImportMapping FunctionImportName="sp_Agenda" FunctionName="Proyecto1Model.Store.sp_Agenda">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="Proyecto1Model.sp_helpdiagrams_Result">
-                <ScalarProperty Name="Database" ColumnName="Database" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Owner" ColumnName="Owner" />
-                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+              <ComplexTypeMapping TypeName="Proyecto1Model.sp_Agenda_Result">
+                <ScalarProperty Name="id_Punto" ColumnName="id_Punto" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="considerandos" ColumnName="considerandos" />
+                <ScalarProperty Name="resultandos" ColumnName="resultandos" />
+                <ScalarProperty Name="seAcuerda" ColumnName="seAcuerda" />
+                <ScalarProperty Name="votosAFavor" ColumnName="votosAFavor" />
+                <ScalarProperty Name="votosEnContra" ColumnName="votosEnContra" />
+                <ScalarProperty Name="votosAbstenciones" ColumnName="votosAbstenciones" />
+                <ScalarProperty Name="tipoPunto" ColumnName="tipoPunto" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_AgendaSesion" FunctionName="Proyecto1Model.Store.sp_AgendaSesion">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Proyecto1Model.sp_AgendaSesion_Result">
+                <ScalarProperty Name="nombreArchivo" ColumnName="nombreArchivo" />
+                <ScalarProperty Name="contenido" ColumnName="contenido" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_ComentariosXPunto" FunctionName="Proyecto1Model.Store.sp_ComentariosXPunto">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Proyecto1Model.sp_ComentariosXPunto_Result">
+                <ScalarProperty Name="correo1" ColumnName="correo1" />
+                <ScalarProperty Name="id_Comentario" ColumnName="id_Comentario" />
+                <ScalarProperty Name="contenido" ColumnName="contenido" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_ConsejoActual" FunctionName="Proyecto1Model.Store.sp_ConsejoActual" />
           <FunctionImportMapping FunctionImportName="sp_MiembrosXConsejo" FunctionName="Proyecto1Model.Store.sp_MiembrosXConsejo">
             <ResultMapping>
               <ComplexTypeMapping TypeName="Proyecto1Model.sp_MiembrosXConsejo_Result">
@@ -1269,54 +1320,10 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_MoverPuntoAgenda" FunctionName="Proyecto1Model.Store.sp_MoverPuntoAgenda" />
-          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="Proyecto1Model.Store.sp_renamediagram" />
-          <FunctionImportMapping FunctionImportName="sp_Solicitudes" FunctionName="Proyecto1Model.Store.sp_Solicitudes" />
-          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="Proyecto1Model.Store.sp_upgraddiagrams" />
-          <FunctionImportMapping FunctionImportName="sp_ActaSesion" FunctionName="Proyecto1Model.Store.sp_ActaSesion">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="Proyecto1Model.sp_ActaSesion_Result">
-                <ScalarProperty Name="nombreArchivo" ColumnName="nombreArchivo" />
-                <ScalarProperty Name="contenido" ColumnName="contenido" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_AdjuntosXPunto" FunctionName="Proyecto1Model.Store.sp_AdjuntosXPunto">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="Proyecto1Model.sp_AdjuntosXPunto_Result">
-                <ScalarProperty Name="nombreArchivo" ColumnName="nombreArchivo" />
-                <ScalarProperty Name="extension" ColumnName="extension" />
-                <ScalarProperty Name="contenido" ColumnName="contenido" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_AgendaSesion" FunctionName="Proyecto1Model.Store.sp_AgendaSesion">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="Proyecto1Model.sp_AgendaSesion_Result">
-                <ScalarProperty Name="nombreArchivo" ColumnName="nombreArchivo" />
-                <ScalarProperty Name="contenido" ColumnName="contenido" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_Solicitudes1" FunctionName="Proyecto1Model.Store.sp_Solicitudes">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="Proyecto1Model.sp_Solicitudes_Result">
-                <ScalarProperty Name="id_Punto" ColumnName="id_Punto" />
-                <ScalarProperty Name="nombre" ColumnName="nombre" />
-                <ScalarProperty Name="considerandos" ColumnName="considerandos" />
-                <ScalarProperty Name="resultandos" ColumnName="resultandos" />
-                <ScalarProperty Name="seAcuerda" ColumnName="seAcuerda" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <EntitySetMapping Name="SesionesXConsejoDBs">
-            <EntityTypeMapping TypeName="Proyecto1Model.SesionesXConsejoDB">
-              <MappingFragment StoreEntitySet="SesionesXConsejoDB">
-                <ScalarProperty Name="sesion" ColumnName="sesion" />
-                <ScalarProperty Name="id_Consejo" ColumnName="id_Consejo" />
-                <ScalarProperty Name="id_SesionesXConsejo" ColumnName="id_SesionesXConsejo" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_NextIDComentario" FunctionName="Proyecto1Model.Store.sp_NextIDComentario" />
+          <FunctionImportMapping FunctionImportName="sp_NextIDPunto" FunctionName="Proyecto1Model.Store.sp_NextIDPunto" />
+          <FunctionImportMapping FunctionImportName="sp_nuevaActualizacion" FunctionName="Proyecto1Model.Store.sp_nuevaActualizacion" />
+          <FunctionImportMapping FunctionImportName="sp_NuevaSesion" FunctionName="Proyecto1Model.Store.sp_NuevaSesion" />
           <FunctionImportMapping FunctionImportName="sp_SesionesxConsejo" FunctionName="Proyecto1Model.Store.sp_SesionesxConsejo">
             <ResultMapping>
               <ComplexTypeMapping TypeName="Proyecto1Model.sp_SesionesxConsejo_Result">
@@ -1327,35 +1334,18 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_Agenda1" FunctionName="Proyecto1Model.Store.sp_Agenda">
+          <FunctionImportMapping FunctionImportName="sp_Solicitudes" FunctionName="Proyecto1Model.Store.sp_Solicitudes">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="Proyecto1Model.sp_Agenda1_Result">
+              <ComplexTypeMapping TypeName="Proyecto1Model.sp_Solicitudes_Result">
                 <ScalarProperty Name="id_Punto" ColumnName="id_Punto" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="considerandos" ColumnName="considerandos" />
                 <ScalarProperty Name="resultandos" ColumnName="resultandos" />
                 <ScalarProperty Name="seAcuerda" ColumnName="seAcuerda" />
-                <ScalarProperty Name="votosAFavor" ColumnName="votosAFavor" />
-                <ScalarProperty Name="votosEnContra" ColumnName="votosEnContra" />
-                <ScalarProperty Name="votosAbstenciones" ColumnName="votosAbstenciones" />
                 <ScalarProperty Name="tipoPunto" ColumnName="tipoPunto" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_ComentariosXPunto1" FunctionName="Proyecto1Model.Store.sp_ComentariosXPunto">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="Proyecto1Model.sp_ComentariosXPunto1_Result">
-                <ScalarProperty Name="correo1" ColumnName="correo1" />
-                <ScalarProperty Name="id_Comentario" ColumnName="id_Comentario" />
-                <ScalarProperty Name="contenido" ColumnName="contenido" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_ActualizarMiembro" FunctionName="Proyecto1Model.Store.sp_ActualizarMiembro" />
-          <FunctionImportMapping FunctionImportName="sp_nuevaActualizacion" FunctionName="Proyecto1Model.Store.sp_nuevaActualizacion" />
-          <FunctionImportMapping FunctionImportName="sp_NuevaSesion" FunctionName="Proyecto1Model.Store.sp_NuevaSesion" />
-          <FunctionImportMapping FunctionImportName="sp_NextIDComentario" FunctionName="Proyecto1Model.Store.sp_NextIDComentario" />
-          <FunctionImportMapping FunctionImportName="sp_NextIDPunto" FunctionName="Proyecto1Model.Store.sp_NextIDPunto" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

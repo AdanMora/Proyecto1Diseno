@@ -20,11 +20,89 @@ namespace Proyecto1
         static void Main()
         {
 
-            /*Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new GUI());
+            Gestor g = new Gestor();
+            g.cargarDatos();
+            Console.WriteLine("\nConsejo - Carga de datos");
+            Console.WriteLine("\nMiembros");
+            foreach (Miembro m in g.getConsejo().Miembros)
+            {
+                Console.WriteLine(m.toString());
+            }
 
-            Collection<Miembro> miembros = new Collection<Miembro>();
+            Console.WriteLine("\nSolicitudes");
+            foreach (PuntoAgenda p in g.getConsejo().Solicitudes)
+            {
+                Console.WriteLine(p.toString());
+            }
+
+            Console.WriteLine("\nSesiones");
+            foreach (Sesion s in g.getConsejo().Sesiones)
+            {
+                Console.WriteLine(s.toString());
+
+                foreach (PuntoAgenda p in s.Agenda)
+                {
+                    Console.WriteLine(p.toString());
+
+                    foreach (Comentario c in p.Comentarios)
+                    {
+                        Console.WriteLine(c.toString());
+                    }
+                }
+            }
+
+            Console.WriteLine("\nSesion Actual");
+
+            Console.WriteLine(g.getSesion().toString());
+
+            for (int i = 0; i < g.getSesion().MiembrosAsistencia.Asistencia.Count; i++)
+            {
+                Console.WriteLine(g.getSesion().MiembrosAsistencia.Asistencia.ElementAt(i).toString());
+
+                Console.WriteLine("||||||||" + g.getSesion().MiembrosAsistencia.ListaAsistencia.ElementAt(i) + "||||||||");
+            }
+
+            /*g.cerrarSesion();
+
+            g.nuevaSesion("prueba", DateTime.Today, "IC");
+
+            g.aceptarSolicitud(g.getSolicitudes().First().Id_punto);
+
+            g.agregarPuntoAgenda("Punto P1", "Resultado P1", "Considerando P1", "Se acuerda P1", 'T');
+
+            g.agregarPuntoAgenda("Punto P2", "Resultado P2", "Considerando P2", "Se acuerda P2", 'M');
+
+            g.agregarPuntoAgenda("Punto P3", "Resultado P3", "Considerando P3", "Se acuerda P3", 'T');
+
+            */
+            //g.cambiarPosicionPunto(4, 1);
+
+            //g.agregarComentario(6, g.getConsejo().Miembros.First().Correo[0], "Otro comentario de prueba c:");
+
+            //g.agregarVotacion(7, 23, 3, 5);
+
+            //foreach (Miembro m in g.getSesion().MiembrosAsistencia.Asistencia)
+            //{
+            //    g.modificarAsistencia(m.Correo[0], false);
+            //}
+
+            //g.modificarAsistencia(g.getConsejo().Miembros.First().Correo[0], true);
+
+
+
+
+            g.crearActa(2, "C:\\Users\\Fauricio\\Desktop");
+            g.crearAgenda(g.getSesion().Numero, "C:\\Users\\Fauricio\\Desktop");
+            g.obtenerAgenda(g.getSesion(), "C:\\Users\\Fauricio\\Desktop\\cakephp_ex1");
+
+            Console.Read();
+
+
+            //Application.EnableVisualStyles();
+            //Application.SetCompatibleTextRenderingDefault(false);
+            //Application.Run(new GUI());
+
+            /*Collection<Miembro> miembros = new Collection<Miembro>();
 
             String miembro = "miembro";
             int cont = 0;
@@ -65,41 +143,7 @@ namespace Proyecto1
             GUI gui = new GUI(consejo);
             //gui.setConsejo(consejo);
 
-            gui.ShowDialog();
-            /*Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(gui);*/
-
-            //gestor.cargarDatos();
-
-            //Console.WriteLine(gestor.haySesion());
-
-            /*gestor.nuevaSesion("2", DateTime.Now, "CHANTE");
-            
-
-            while (cont < 20)
-            {
-                gestor.agregarSolicitud(cont, p + cont.ToString(), a, a, a, 'A');
-                cont++;
-            }
-
-            cont = 0;
-            while (cont < 8)
-            {
-                gestor.aceptarSolicitud(cont);
-                gestor.agregarComentario(cont, miembro + cont.ToString() + correo, cont, a);
-                cont++;
-            }
-            while(cont < 20)
-            {
-                gestor.eliminarSolicitud(cont);
-                cont++;
-            }
-
-            Console.WriteLine(gestor.getPuntosAgenda().ElementAt(0).Nombre);
-            gestor.cambiarPosicionPunto(1,5);
-            Console.WriteLine(gestor.getPuntosAgenda().ElementAt(0).Nombre);
-            Console.WriteLine(gestor.getPuntosAgenda().ElementAt(4).Nombre);
+            gui.ShowDialog();*/
 
             //gestor.agregarSolicitud("solicitud999",a,a,a,'S');
             //gestor.eliminarSolicitud(999);
@@ -117,11 +161,11 @@ namespace Proyecto1
             //gestor.getConsejo().Miembros.ElementAt(0).Nombre = "ivan";
             //Console.WriteLine(gestor.getMiembrosConsejo().ElementAt(0).Nombre);
             //Console.WriteLine(gestor.getAsistencia().Asistencia.ElementAt(0).Nombre);
-            Console.ReadKey();*/
+            /*
             DTO_consola temp = new DTO_consola();
             temp.nuevaSesion();
             temp.actualizarMiembros();
-            //temp.envioNotificacion();
+            temp.envioNotificacion();
             temp.agregarSolicitud();            
             temp.aceptarSolicitud();
             temp.agregarSolicitudPresidente();
@@ -131,14 +175,14 @@ namespace Proyecto1
             temp.verSolicitudes();
             temp.verPuntosAgenda();
             temp.generarAgenda();
-            //temp.enviarAgenda();
+            temp.enviarAgenda();
             Console.WriteLine("Ejecución del consejo");
             temp.controlAsistencia();
             temp.verAsistencia();
-            temp.crearActa();              
+            temp.crearActa();  
             temp.controlAsistencia();
-            temp.realizarVotacion();                    
-            Console.ReadKey();            
+            temp.realizarVotacion();        
+            Console.ReadKey(); */
         }
     }
 }

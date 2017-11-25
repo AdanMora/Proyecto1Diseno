@@ -49,7 +49,7 @@ namespace Proyecto1.Modelo
             }
         }
 
-        internal Collection<PuntoAgenda> Solicitudes
+        public Collection<PuntoAgenda> Solicitudes
         {
             get
             {

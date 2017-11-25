@@ -41,19 +41,16 @@ namespace Proyecto1.Controlador
             return solicitud;
         }
 
-        public PuntoAgenda eliminarSolicitud(int id)
+        public void eliminarSolicitud(int id)
         {
-            PuntoAgenda solicitud = null;
             foreach (PuntoAgenda s in this.solicitudes)
             {
                 if (s.Id_punto == id)
                 {
                     this.solicitudes.Remove(s);
-                    solicitud = s;
                     break;
                 }
             }
-            return solicitud;
         }
 
         public Collection<PuntoAgenda> getSolicitudes()

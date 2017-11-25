@@ -12,6 +12,7 @@ namespace Proyecto1.Controlador
         private Strategy_Docs strategy;
         private const int pdf = 0;
         private const int word = 1;
+        private const int xml = 2;
 
         public Controlador_Docs() { }
 
@@ -20,9 +21,9 @@ namespace Proyecto1.Controlador
             strategy.crearActa(sesion,path);
         }
 
-        public void crearAgenda(object puntos, int tipo, string path)
+        public byte[] crearAgenda(Sesion sesion, string path)
         {
-            strategy.crearAgenda(puntos,path);
+            return strategy.crearAgenda(sesion,path);
         }
 
         public void creaAcurdo(PuntoAgenda punto, string destinatario, string path)
@@ -41,6 +42,9 @@ namespace Proyecto1.Controlador
                     break;
                 case word:
                     strategy = new Strategy_DOCX();
+                    break;
+                case xml:
+                    strategy = new Strategy_XML();
                     break;
             }
         }

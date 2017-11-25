@@ -13,7 +13,14 @@ namespace Proyecto1
     
     public partial class sp_Agenda_Result
     {
-        public decimal id_PuntosXSesion { get; set; }
         public decimal id_Punto { get; set; }
+        public string nombre { get; set; }
+        public string considerandos { get; set; }
+        public string resultandos { get; set; }
+        public string seAcuerda { get; set; }
+        public Nullable<decimal> votosAFavor { get; set; }
+        public Nullable<decimal> votosEnContra { get; set; }
+        public Nullable<decimal> votosAbstenciones { get; set; }
+        public string tipoPunto { get; set; }
     }
 }

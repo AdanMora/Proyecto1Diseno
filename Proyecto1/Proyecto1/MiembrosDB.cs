@@ -18,6 +18,7 @@ namespace Proyecto1
         public MiembrosDB()
         {
             this.ComentariosDBs = new HashSet<ComentariosDB>();
+            this.HistorialMiembrosDBs = new HashSet<HistorialMiembrosDB>();
             this.Miembros_ConsejoDB = new HashSet<Miembros_ConsejoDB>();
             this.Miembros_SesionDB = new HashSet<Miembros_SesionDB>();
         }
@@ -29,6 +30,8 @@ namespace Proyecto1
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ComentariosDB> ComentariosDBs { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<HistorialMiembrosDB> HistorialMiembrosDBs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Miembros_ConsejoDB> Miembros_ConsejoDB { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
