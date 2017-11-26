@@ -15,7 +15,7 @@ namespace Proyecto1.Controlador
     {
         public void crearActa(Sesion puntos, string path)
         {
-            // throw new NotImplementedException();
+            // throw new NotImplementedException();            
         }
 
         public byte[] crearAgenda(Sesion n, string path)

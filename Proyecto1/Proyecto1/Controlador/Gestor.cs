@@ -182,6 +182,7 @@ namespace Proyecto1.Controlador
             this.controlador_docs.setDocumento(tipo);
             //Object o = this.controlador_sesion.getSesion();
             this.controlador_docs.crearActa(this.controlador_sesion.getSesion(), path);
+            //this.controlador_dao.guardarDocSesion(this.controlador_sesion.getSesion().Numero, "Acta Sesión Ordinaria - " + this.controlador_sesion.getSesion().Numero, tira, 'A');
             //this.controlador_dao.escribirAgenda(o);
         }
 
@@ -279,5 +280,10 @@ namespace Proyecto1.Controlador
             File.WriteAllBytes(path + "\\Agenda Sesión Ordinaria-" + sesion.Numero + ".pdf", resultado);
         }
 
+        public void obtenerActa(Sesion sesion, string path)
+        {
+            byte[] resultado = this.controlador_dao.getDocSesion(sesion.Numero, 'A');
+            File.WriteAllBytes(path + "\\Acta Sesión Ordinaria-" + sesion.Numero + ".doc", resultado);
+        }
     }
 }

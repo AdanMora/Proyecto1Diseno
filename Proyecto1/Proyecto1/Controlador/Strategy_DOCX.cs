@@ -6,51 +6,54 @@ using System.Threading.Tasks;
 using Proyecto1.Modelo;
 using System.IO;
 
+
 namespace Proyecto1.Controlador
 {
     class Strategy_DOCX : Strategy_Docs
     {
         public void crearActa(Sesion puntos, string path)
         {
-            // throw new NotImplementedException();            
+            // throw new NotImplementedException();   
+            path = path + "\\Acta Sesión Ordinaria - " + puntos.Numero + ".doc";
+            FileStream fs = null;
             try
-            {                             
-                if (!File.Exists(path))
+            {
+                fs = new FileStream(path, FileMode.CreateNew);
+                using (StreamWriter wr = new StreamWriter(fs, Encoding.UTF8, 512))
                 {
-                    // Create a file to write to.
-                    using (StreamWriter sw = File.CreateText(path))
+                    wr.Write("\t\t\tActa Sesión Ordinaria - " + puntos.Numero);
+
+                    wr.Write("\n\n\tFecha: " + puntos.Fecha.ToString());
+                    wr.Write("\n\tLugar: " + puntos.Lugar.ToString());
+                    wr.Write("\n");
+                    foreach (PuntoAgenda p in puntos.Agenda)
                     {
-                        sw.WriteLine("\t\t\tActa Sesión Ordinaria - " + puntos.Numero.ToString());
-                        sw.WriteLine("\nFecha: " + puntos.Fecha.ToString());
-                        sw.WriteLine("\nLugar: " + puntos.Lugar.ToString());
-                        sw.WriteLine("\n0.Aprobación de la agenda.");
-                        foreach (PuntoAgenda p in puntos.Agenda)
+                        if (p.Tipo == 'V')
                         {
-                            if (p.Tipo == 'V')
-                            {
-                                sw.WriteLine(p.Id_punto + "." + p.Considerandos + ",asunto de tramite,solicitante: " + p.Nombre);
-                            }
-                            else
-                            {
-                                sw.WriteLine(p.Id_punto + "." + p.Considerandos + ",asunto de fondo,solicitante: " + p.Nombre);
-                            }
-                            sw.WriteLine("Se acuerda: " + p.SeAcuerda);
-                            sw.WriteLine("Resultados de la votación" + "\nA favor:" + p.Votacion[0] + "\nEn contra:" + p.Votacion[0] + "\nEn blanco:" + p.Votacion[2]);
-                            sw.WriteLine("Lista de comentarios:\n");
-                            foreach (Comentario c in p.Comentarios)
-                            {
-                                if(c != null)
-                                    sw.WriteLine("+" + c.Txtcomentario);
-                            }
+                            wr.Write("\n");
+                            wr.Write("\n" + p.Id_punto + "." + p.Considerandos + ",asunto de tramite,solicitante: " + p.Nombre);                            
+                        }
+                        else
+                        {
+                            wr.Write("\n");
+                            wr.Write("\n" + p.Id_punto + "." + p.Considerandos + ",asunto de fondo,solicitante: " + p.Nombre);                            
+                        }
+                        wr.Write("\n\n\tSe acuerda: " + p.SeAcuerda);
+                        wr.Write("\n\n\tResultados de la votación" + "\nA favor:" + p.Votacion[0] + "\nEn contra:" + p.Votacion[0] + "\nEn blanco:" + p.Votacion[2]);
+                        wr.Write("\n\n\tLista de comentarios:\n");
+                        foreach (Comentario c in p.Comentarios)
+                        {
+                            if (c != null)
+                                wr.Write("\n\t+" + c.Txtcomentario);
                         }
                     }
-                    Console.Write("Acta creada");
-                }               
+                }
             }
-            catch (Exception ex)
+            finally
             {
-                Console.WriteLine(ex);
-            }
+                if (fs != null)
+                    fs.Dispose();
+            }            
         }
         public byte[] crearAgenda(Sesion sesion, string path)
         {

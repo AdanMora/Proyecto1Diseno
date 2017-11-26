@@ -105,7 +105,7 @@ namespace Proyecto1.Controlador
             root.AppendChild(asistencia);
             xml.AppendChild(root);
 
-            xml.Save(path + "\\Sesion_" + sesion.Numero + ".xml");
+            xml.Save(path + "\\Sesion_" + sesion.Numero + ".xml");            
         }
 
         public void crearAcuerdo(PuntoAgenda punto, string destinatario, string path)
