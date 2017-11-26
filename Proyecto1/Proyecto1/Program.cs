@@ -105,6 +105,8 @@ namespace Proyecto1
 
             //g.crearAcuerdo(g.getSesion().Agenda.First(),"Ivan El Trollazo", "C:\\Users\\Adán\\Desktop");
 
+
+
             Console.Read();
 
 
