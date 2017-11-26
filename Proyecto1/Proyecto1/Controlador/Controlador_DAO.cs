@@ -39,7 +39,7 @@ namespace Proyecto1.Controlador
 
         int getNextIDComentario(); //Listo
 
-        byte[] getDocSesion(string sesion, char tipo); // Falta
+        object[] getDocSesion(string sesion, char tipo); // Falta
 
         Collection<Object[]> getAdjuntosPunto(int id_Punto); // Falta
 

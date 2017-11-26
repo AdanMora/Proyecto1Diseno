@@ -174,16 +174,11 @@ namespace Proyecto1.Controlador
             this.controlador_docs.setDocumento(0);            
             byte[] tira = this.controlador_docs.crearAgenda(this.controlador_sesion.getSesion(), path);
             this.controlador_dao.guardarDocSesion(this.controlador_sesion.getSesion().Numero, "Agenda Sesión Ordinaria - " + this.controlador_sesion.getSesion().Numero, tira, 'A');
-            //Object o = this.controlador_docs.crearActa(this.controlador_sesion.getSesion());
-            //this.controlador_dao.escribirActa(o);
         }
         public void crearActa(int tipo, string path)
         {
             this.controlador_docs.setDocumento(tipo);
-            //Object o = this.controlador_sesion.getSesion();
             this.controlador_docs.crearActa(this.controlador_sesion.getSesion(), path);
-            //this.controlador_dao.guardarDocSesion(this.controlador_sesion.getSesion().Numero, "Acta Sesión Ordinaria - " + this.controlador_sesion.getSesion().Numero, tira, 'A');
-            //this.controlador_dao.escribirAgenda(o);
         }
 
         public void modificarAsistencia(string correoMiembro, bool estado)
@@ -276,14 +271,62 @@ namespace Proyecto1.Controlador
 
         public void obtenerAgenda(Sesion sesion,string path)
         {
-            byte[] resultado = this.controlador_dao.getDocSesion(sesion.Numero,'A');
+            byte[] resultado = (byte[])this.controlador_dao.getDocSesion(sesion.Numero,'A')[1];
             File.WriteAllBytes(path + "\\Agenda Sesión Ordinaria-" + sesion.Numero + ".pdf", resultado);
         }
 
-        public void obtenerActa(Sesion sesion, string path)
+        public void asociarActa(string numSesion, string path, string nombreArchivo)
         {
-            byte[] resultado = this.controlador_dao.getDocSesion(sesion.Numero, 'A');
-            File.WriteAllBytes(path + "\\Acta Sesión Ordinaria-" + sesion.Numero + ".doc", resultado);
+            byte[] contenido = File.ReadAllBytes(path);
+            controlador_dao.guardarDocSesion(numSesion, nombreArchivo, contenido, 'B');
+        }
+
+        public void obtenerActa(string numSesion, string path)
+        {
+            object[] resultado = this.controlador_dao.getDocSesion(numSesion, 'B');
+            File.WriteAllBytes(path + "\\" + (string)resultado[0] + ".pdf", (byte[])resultado[1]);
+        }
+
+        public void asociarAdjunto(int idPunto, string path, string nombreArchivo, string extension)
+        {
+            byte[] contenido = File.ReadAllBytes(path);
+            controlador_dao.guardarAdjunto(idPunto, nombreArchivo, extension, contenido);
+        }
+
+        public Collection<String> getAdjuntos(int idPunto)
+        {
+            Collection<String> adjuntos = new Collection<string>();
+            Collection<Object[]> resultado = controlador_dao.getAdjuntosPunto(idPunto);
+
+            if (resultado.Any())
+            {
+                foreach (object[] adjunto in resultado)
+                {
+                    adjuntos.Add((string)adjunto[0]);
+                }
+            }
+            
+            return adjuntos;
+        }
+
+        public void obtenerAdjunto(int idPunto, string nombreAdjunto, string path)
+        {
+            Collection<Object[]> resultado = controlador_dao.getAdjuntosPunto(idPunto);
+
+            foreach (object[] adjunto in resultado)
+            {
+                if ((string)adjunto[0] == nombreAdjunto)
+                {
+                    File.WriteAllBytes(path + "\\" + (string)adjunto[0] + "." + (string)adjunto[1], (byte[])adjunto[2]);
+                }
+            }
+
+        }
+
+        public void crearAcuerdo(PuntoAgenda punto, string destinatario, string path)
+        {
+            this.controlador_docs.setDocumento(0);
+            this.controlador_docs.creaAcuerdo(punto, destinatario, path);
         }
     }
 }

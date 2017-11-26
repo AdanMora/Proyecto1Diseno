@@ -26,7 +26,7 @@ namespace Proyecto1.Controlador
             return strategy.crearAgenda(sesion,path);
         }
 
-        public void creaAcurdo(PuntoAgenda punto, string destinatario, string path)
+        public void creaAcuerdo(PuntoAgenda punto, string destinatario, string path)
         {
             strategy.crearAcuerdo(punto, destinatario, path);
         }

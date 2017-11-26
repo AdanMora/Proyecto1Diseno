@@ -59,7 +59,7 @@ namespace Proyecto1.Controlador
         public void crearAcuerdo(PuntoAgenda punto, string destinatario, string path)
         {
             //Crea el con la sesion            
-            FileStream fs = new FileStream(path + "Acuerdo" + ".pdf", FileMode.Create, FileAccess.Write, FileShare.None);
+            FileStream fs = new FileStream(path + "\\Acuerdo Punto - " + punto.Nombre + ".pdf", FileMode.Create, FileAccess.Write, FileShare.None);
             Document doc = new Document();
             PdfWriter writer = PdfWriter.GetInstance(doc, fs);
             doc.Open();
