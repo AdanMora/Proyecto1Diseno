@@ -299,13 +299,13 @@ namespace Proyecto1.Controlador
             return Decimal.ToInt32(db.sp_NextIDComentario().First().Value);
         }        
 
-        public byte[] getDocSesion(string sesion, char tipo)
+        public object[] getDocSesion(string sesion, char tipo)
         {
             foreach (DocXSesionDB d in db.DocXSesionDBs.ToList())
             {
                 if ((d.sesion == sesion) && (d.tipo[0] == tipo))
                 {
-                    return d.contenido;
+                    return new object[] { d.nombreArchivo, d.contenido };
                 }
             }
             return null;

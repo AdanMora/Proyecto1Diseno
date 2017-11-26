@@ -91,9 +91,13 @@ namespace Proyecto1
 
 
 
-            g.crearActa(2, "C:\\Users\\Fauricio\\Desktop");
-            g.crearAgenda(g.getSesion().Numero, "C:\\Users\\Fauricio\\Desktop");
-            g.obtenerAgenda(g.getSesion(), "C:\\Users\\Fauricio\\Desktop\\cakephp_ex1");
+            //g.crearActa(2, "C:\\Users\\Fauricio\\Desktop");
+            //g.crearAgenda(g.getSesion().Numero, "C:\\Users\\Fauricio\\Desktop");
+            //g.obtenerAgenda(g.getSesion(), "C:\\Users\\Fauricio\\Desktop\\cakephp_ex1");
+
+            //g.asociarActa(g.getSesion().Numero, "C:\\Users\\Adán\\Desktop\\Acta.pdf", "Acta");
+
+            //g.obtenerActa(g.getSesion().Numero, "C:\\Users\\Adán\\Desktop\\IO");
 
             Console.Read();
 
