@@ -99,6 +99,12 @@ namespace Proyecto1
 
             //g.obtenerActa(g.getSesion().Numero, "C:\\Users\\Adán\\Desktop\\IO");
 
+            //g.asociarAdjunto(g.getSesion().Agenda.First().Id_punto, "C:\\Users\\Adán\\Desktop\\Adjunto1.pdf", "Adjunto1", "pdf");
+
+            //g.obtenerAdjunto(g.getSesion().Agenda.First().Id_punto, "Adjunto1", "C:\\Users\\Adán\\Desktop\\IO");
+
+            //g.crearAcuerdo(g.getSesion().Agenda.First(),"Ivan El Trollazo", "C:\\Users\\Adán\\Desktop");
+
             Console.Read();
 
 

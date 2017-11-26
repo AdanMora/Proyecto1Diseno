@@ -287,9 +287,10 @@ namespace Proyecto1.Controlador
             File.WriteAllBytes(path + "\\" + (string)resultado[0] + ".pdf", (byte[])resultado[1]);
         }
 
-        public void asociarAdjunto(int idPunto, string path, string nombreArchivo)
+        public void asociarAdjunto(int idPunto, string path, string nombreArchivo, string extension)
         {
-
+            byte[] contenido = File.ReadAllBytes(path);
+            controlador_dao.guardarAdjunto(idPunto, nombreArchivo, extension, contenido);
         }
 
         public Collection<String> getAdjuntos(int idPunto)
@@ -297,17 +298,35 @@ namespace Proyecto1.Controlador
             Collection<String> adjuntos = new Collection<string>();
             Collection<Object[]> resultado = controlador_dao.getAdjuntosPunto(idPunto);
 
-            foreach (object[] adjunto in resultado)
+            if (resultado.Any())
             {
-
+                foreach (object[] adjunto in resultado)
+                {
+                    adjuntos.Add((string)adjunto[0]);
+                }
             }
-
+            
             return adjuntos;
         }
 
-        public void obtenerAdjunto(int idPunto, string nombreAdjunto)
+        public void obtenerAdjunto(int idPunto, string nombreAdjunto, string path)
         {
+            Collection<Object[]> resultado = controlador_dao.getAdjuntosPunto(idPunto);
 
+            foreach (object[] adjunto in resultado)
+            {
+                if ((string)adjunto[0] == nombreAdjunto)
+                {
+                    File.WriteAllBytes(path + "\\" + (string)adjunto[0] + "." + (string)adjunto[1], (byte[])adjunto[2]);
+                }
+            }
+
+        }
+
+        public void crearAcuerdo(PuntoAgenda punto, string destinatario, string path)
+        {
+            this.controlador_docs.setDocumento(0);
+            this.controlador_docs.creaAcuerdo(punto, destinatario, path);
         }
     }
 }
