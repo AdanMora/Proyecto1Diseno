@@ -16,7 +16,7 @@ namespace Proyecto1.Controlador
 {
     class Controlador_Correo
     {
-        public void enviarNotificaciones(string numeroSesion,DateTime diaConsejo,string destinatario)
+        public void enviarNotificaciones(string numeroSesion,DateTime diaConsejo,string destinatario,string pathMemo)
         {
             
             string encabezado = "Sesión Ordinaria "+numeroSesion+" - "+ diaConsejo.Year;
@@ -27,13 +27,10 @@ namespace Proyecto1.Controlador
                 "durante la mañana.\n\n" +
                 "Adjunto formulario de solicitud de puntos para consejos, el formulario para justificación de ausencia al Consejo y el formulario de mociones de \nfondo.\n\n" +
                 "Cualquier consulta con mucho gusto.\n\n" +
-                "Saludos;";
-            string memo = @"C:\Users\Fauricio\Desktop\MEMO_JUSTIFICACION_DE_AUSENCIAS_AL_CONSEJO.doc";
-            string punto = @"C:\Users\Fauricio\Desktop\MACHOTE_OFICIO_SOLICITUD_DE_PUNTOS_de_propuesta_base.docx";
+                "Saludos;";            
             try
-            {
-                Attachment data = new Attachment(punto, MediaTypeNames.Application.Octet);
-                Attachment data1 = new Attachment(memo, MediaTypeNames.Application.Octet);
+            {                
+                Attachment data1 = new Attachment(pathMemo, MediaTypeNames.Application.Octet);
 
                 SmtpClient client = new SmtpClient();
                 client.Port = 587;
@@ -46,8 +43,7 @@ namespace Proyecto1.Controlador
 
                 MailMessage mail = new MailMessage("grupoadfafe@gmail.com", destinatario, encabezado, cuerpo);
                 mail.BodyEncoding = UTF8Encoding.UTF8;
-                mail.DeliveryNotificationOptions = DeliveryNotificationOptions.OnFailure;
-                mail.Attachments.Add(data);
+                mail.DeliveryNotificationOptions = DeliveryNotificationOptions.OnFailure;                
                 mail.Attachments.Add(data1);
                 client.Send(mail);
                 Console.WriteLine("Correo Enviado");

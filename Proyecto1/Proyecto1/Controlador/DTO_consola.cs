@@ -38,11 +38,8 @@ namespace Proyecto1.Controlador
         {
             Console.WriteLine(linea);
             Console.WriteLine("\nEnvío de notificaciones\n\n");
-            foreach (Miembro temp in g.getMiembrosConsejo())
-            {                
-                g.enviarNotificacion("1", DateTime.Now,temp.Correo[0]);
+            g.enviarNotificacion("1", DateTime.Now,"fariciocr@gmail.com", @"C:\Users\Fauricio\Desktop\MEMO_JUSTIFICACION_DE_AUSENCIAS_AL_CONSEJO.doc");
                 
-            }
         }
 
         public void agregarSolicitud()

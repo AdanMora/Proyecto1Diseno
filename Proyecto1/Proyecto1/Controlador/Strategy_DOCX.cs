@@ -19,7 +19,7 @@ namespace Proyecto1.Controlador
             try
             {
                 fs = new FileStream(path, FileMode.CreateNew);
-                using (StreamWriter wr = new StreamWriter(fs, Encoding.UTF8, 512))
+                using (StreamWriter wr = new StreamWriter(fs, Encoding.Default))
                 {
                     wr.Write("\t\t\tActa Sesión Ordinaria - " + puntos.Numero);
 
@@ -39,7 +39,7 @@ namespace Proyecto1.Controlador
                             wr.Write("\n" + p.Id_punto + "." + p.Considerandos + ",asunto de fondo,solicitante: " + p.Nombre);                            
                         }
                         wr.Write("\n\n\tSe acuerda: " + p.SeAcuerda);
-                        wr.Write("\n\n\tResultados de la votación" + "\nA favor:" + p.Votacion[0] + "\nEn contra:" + p.Votacion[0] + "\nEn blanco:" + p.Votacion[2]);
+                        wr.Write("\n\n\tResultados de la votación" + "\n\tA favor:" + p.Votacion[0] + "\n\tEn contra:" + p.Votacion[0] + "\n\tEn blanco:" + p.Votacion[2]);
                         wr.Write("\n\n\tLista de comentarios:\n");
                         foreach (Comentario c in p.Comentarios)
                         {

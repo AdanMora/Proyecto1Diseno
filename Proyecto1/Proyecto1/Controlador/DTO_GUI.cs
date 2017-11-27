@@ -497,7 +497,7 @@ namespace Proyecto1.Controlador
         public void enviarNotificaciones()
         {
             
-            this.gestor.enviarNotificacion(this.gestor.getSesion().Numero, this.gestor.getSesion().Fecha, "grupoadfafe@gmail.com");
+            //this.gestor.enviarNotificacion(this.gestor.getSesion().Numero, this.gestor.getSesion().Fecha, "grupoadfafe@gmail.com");
         }
 
         public void enviarAgenda(string archivo)

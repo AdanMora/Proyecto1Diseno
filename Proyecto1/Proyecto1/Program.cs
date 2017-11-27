@@ -90,7 +90,7 @@ namespace Proyecto1
 
 
 
-
+            /*
             g.crearActa(2, "C:\\Users\\Fauricio\\Desktop");
             Console.WriteLine("Crea Acta.xml");
             g.crearAgenda(g.getSesion().Numero, "C:\\Users\\Fauricio\\Desktop");
@@ -98,8 +98,10 @@ namespace Proyecto1
             g.crearActa(1, "C:\\Users\\Fauricio\\Desktop");
             Console.WriteLine("Crea Acta.doc");
             g.obtenerAgenda(g.getSesion(), "C:\\Users\\Fauricio\\Desktop\\cakephp_ex1");
-            //g.obtenerActa(g.getSesion(), "C:\\Users\\Fauricio\\Desktop\\cakephp_ex1");
-
+            Console.WriteLine("Envío notificación consejo");
+            */
+            //g.enviarNotificacion(g.getSesion().Numero, DateTime.Now, "fauriciocr@gmail.com", @"C:\Users\Fauricio\Desktop\MEMO_JUSTIFICACION_DE_AUSENCIAS_AL_CONSEJO.doc");
+            g.enviarAgenda(g.getSesion().Numero, DateTime.Now, "fauriciocr@gmail.com", @"C:\Users\Fauricio\Desktop\Agenda Sesión Ordinaria-prueba.pdf");
             Console.Read();
 
 

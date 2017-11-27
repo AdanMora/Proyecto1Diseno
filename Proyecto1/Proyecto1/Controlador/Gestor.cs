@@ -259,9 +259,9 @@ namespace Proyecto1.Controlador
             return numeros;
         }
 
-        public void enviarNotificacion(string numeroSesion, DateTime fecha, string correo)
+        public void enviarNotificacion(string numeroSesion, DateTime fecha, string correo,string pathMemo)
         {
-            this.controlador_correo.enviarNotificaciones(numeroSesion, fecha, correo);
+            this.controlador_correo.enviarNotificaciones(numeroSesion, fecha, correo,pathMemo);
         }
 
         public void enviarAgenda(string numeroSesion, DateTime fecha, string correo, string agenda)
