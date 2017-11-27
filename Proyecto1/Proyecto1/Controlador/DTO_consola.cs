@@ -146,7 +146,7 @@ namespace Proyecto1.Controlador
         
         public void crearActa()
         {
-            g.crearActa(1, "C:\\Users\\Fauricio\\Desktop\\Acta Sesión ordinaria.doc");
+            //g.crearActa(1, "C:\\Users\\Fauricio\\Desktop\\Acta Sesión ordinaria.doc");
         }
 
         public void realizarVotacion()

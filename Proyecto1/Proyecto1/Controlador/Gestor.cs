@@ -175,10 +175,10 @@ namespace Proyecto1.Controlador
             byte[] tira = this.controlador_docs.crearAgenda(this.controlador_sesion.getSesion(), path);
             this.controlador_dao.guardarDocSesion(this.controlador_sesion.getSesion().Numero, "Agenda Sesión Ordinaria - " + this.controlador_sesion.getSesion().Numero, tira, 'A');
         }
-        public void crearActa(int tipo, string path)
+        public void crearActa(string numSesion, int tipo, string path)
         {
             this.controlador_docs.setDocumento(tipo);
-            this.controlador_docs.crearActa(this.controlador_sesion.getSesion(), path);
+            this.controlador_docs.crearActa(getSesion(numSesion), path);
         }
 
         public void modificarAsistencia(string correoMiembro, bool estado)
