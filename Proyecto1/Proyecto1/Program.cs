@@ -101,7 +101,13 @@ namespace Proyecto1
             Console.WriteLine("Envío notificación consejo");
             */
             //g.enviarNotificacion(g.getSesion().Numero, DateTime.Now, "fauriciocr@gmail.com", @"C:\Users\Fauricio\Desktop\MEMO_JUSTIFICACION_DE_AUSENCIAS_AL_CONSEJO.doc");
-            g.enviarAgenda(g.getSesion().Numero, DateTime.Now, "fauriciocr@gmail.com", @"C:\Users\Fauricio\Desktop\Agenda Sesión Ordinaria-prueba.pdf");
+            //g.enviarAgenda(g.getSesion().Numero, DateTime.Now, "fauriciocr@gmail.com", @"C:\Users\Fauricio\Desktop\Agenda Sesión Ordinaria-prueba.pdf");
+
+            foreach (string s in g.getAllNumeroSesiones())
+            {
+                Console.WriteLine(s);
+            }
+
             Console.Read();
 
 

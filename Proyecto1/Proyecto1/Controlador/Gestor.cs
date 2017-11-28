@@ -254,7 +254,12 @@ namespace Proyecto1.Controlador
                 numeros.Add(sesion.Numero);
 
             if (this.controlador_sesion.getSesion() != null)
-                numeros.Add(this.controlador_sesion.getSesion().Numero);
+            {
+                if (!numeros.Contains(this.controlador_sesion.getSesion().Numero))
+                {
+                    numeros.Add(this.controlador_sesion.getSesion().Numero);
+                }
+            }
 
             return numeros;
         }
