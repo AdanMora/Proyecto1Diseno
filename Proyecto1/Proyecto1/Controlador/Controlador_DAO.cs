@@ -45,5 +45,7 @@ namespace Proyecto1.Controlador
 
         void moverPuntoAgenda(string numeroSesion, int nuevaPos, int viejaPos);
 
+        void iniciarSesion(string numSesion);
+
     }
 }

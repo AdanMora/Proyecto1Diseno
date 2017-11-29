@@ -52,6 +52,7 @@ namespace Proyecto1.Controlador
         public void nuevaSesion(String num, DateTime fecha, string lugar)
         {
             this.controlador_sesion.nuevaSesion(num, fecha, lugar);
+            consejo.Sesiones.Add(controlador_sesion.getSesion());
             this.controlador_solicitudes.setSolicitudes(this.consejo.Solicitudes);
             this.controlador_dao.nuevaSesion(num, fecha, lugar);
         }
@@ -88,13 +89,13 @@ namespace Proyecto1.Controlador
             this.consejo = this.controlador_dao.cargarDatos();
             foreach (Sesion sesion in this.consejo.Sesiones)
             {
-                if (sesion.Estado == false)
+                if (sesion.Estado == null || sesion.Estado == false)
                 {
                     this.controlador_sesion.setSesion(sesion);
-                    this.controlador_sesion.setMiembros(this.consejo.Miembros);
-                    this.controlador_solicitudes.setSolicitudes(this.consejo.Solicitudes);
                     break;
                 }
+                this.controlador_sesion.setMiembros(this.consejo.Miembros);
+                this.controlador_solicitudes.setSolicitudes(this.consejo.Solicitudes);
             }
         }
 
@@ -332,6 +333,12 @@ namespace Proyecto1.Controlador
         {
             this.controlador_docs.setDocumento(0);
             this.controlador_docs.creaAcuerdo(punto, destinatario, path);
+        }
+
+        public void iniciarSesion(string numSesion)
+        {
+            this.controlador_sesion.getSesion().Estado = false;
+            controlador_dao.iniciarSesion(numSesion);
         }
     }
 }

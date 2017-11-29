@@ -20,7 +20,7 @@ namespace Proyecto1.Controlador
 
         public void nuevaSesion(String num, DateTime fecha, string lugar)
         {
-            this.sesionActual = new Sesion(num, fecha, lugar, false);
+            this.sesionActual = new Sesion(num, fecha, lugar, null);
             this.sesionActual.MiembrosAsistencia = (Prototype_Miembros)this.prototype.getPrototipo();
         }
 
@@ -163,7 +163,7 @@ namespace Proyecto1.Controlador
         public bool haySesion()
         {
             bool hay = true;
-            if (this.sesionActual == null)
+            if (this.sesionActual == null || sesionActual.Estado == false)
                 hay = false;
             return hay;
         }

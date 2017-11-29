@@ -26,7 +26,7 @@ namespace Proyecto1
         public string numero { get; set; }
         public System.DateTime fecha { get; set; }
         public string lugar { get; set; }
-        public bool estado { get; set; }
+        public Nullable<bool> estado { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DocXSesionDB> DocXSesionDBs { get; set; }

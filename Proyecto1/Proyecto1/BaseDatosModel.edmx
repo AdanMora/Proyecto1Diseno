@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Proyecto1Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Proyecto1Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="ActualizacionesMiembrosDB">
           <Key>
             <PropertyRef Name="id_Actualizacion" />
@@ -118,7 +118,7 @@
           <Property Name="numero" Type="varchar" MaxLength="7" Nullable="false" />
           <Property Name="fecha" Type="datetime" Nullable="false" />
           <Property Name="lugar" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="estado" Type="bit" Nullable="false" />
+          <Property Name="estado" Type="bit" />
         </EntityType>
         <EntityType Name="SesionesXConsejoDB">
           <Key>
@@ -502,8 +502,7 @@
             <End Role="Miembros_SesionDB" EntitySet="Miembros_SesionDB" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Proyecto1Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -646,7 +645,7 @@
           <Property Name="numero" Type="String" MaxLength="7" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="fecha" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="lugar" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="estado" Type="Boolean" Nullable="false" />
+          <Property Name="estado" Type="Boolean" />
           <NavigationProperty Name="DocXSesionDBs" Relationship="Self.fk_SesionDoc" FromRole="SesionDB" ToRole="DocXSesionDB" />
           <NavigationProperty Name="Miembros_SesionDB" Relationship="Self.fk_SesionMiembros" FromRole="SesionDB" ToRole="Miembros_SesionDB" />
           <NavigationProperty Name="PuntosXSesionDBs" Relationship="Self.fk_SesionAgenda" FromRole="SesionDB" ToRole="PuntosXSesionDB" />
@@ -997,7 +996,7 @@
             <Parameter Name="id_Punto" Mode="In" Type="Decimal" />
           </FunctionImport>
           <FunctionImport Name="sp_ActaSesion" ReturnType="Collection(Proyecto1Model.sp_ActaSesion_Result)">
-            <Parameter Name="Num_Sesion" Mode="In" Type="String" />
+          <Parameter Name="Num_Sesion" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_ActualizarMiembro">
             <Parameter Name="correo1" Mode="In" Type="String" />
@@ -1006,21 +1005,21 @@
             <Parameter Name="tipoMiembro" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_AdjuntosXPunto" ReturnType="Collection(Proyecto1Model.sp_AdjuntosXPunto_Result)">
-            <Parameter Name="id_Punto" Mode="In" Type="Decimal" />
+          <Parameter Name="id_Punto" Mode="In" Type="Decimal" />
           </FunctionImport>
           <FunctionImport Name="sp_Agenda" ReturnType="Collection(Proyecto1Model.sp_Agenda_Result)">
-            <Parameter Name="Num_Sesion" Mode="In" Type="String" />
+          <Parameter Name="Num_Sesion" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_AgendaSesion" ReturnType="Collection(Proyecto1Model.sp_AgendaSesion_Result)">
-            <Parameter Name="Num_Sesion" Mode="In" Type="String" />
+          <Parameter Name="Num_Sesion" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_ComentariosXPunto" ReturnType="Collection(Proyecto1Model.sp_ComentariosXPunto_Result)">
-            <Parameter Name="id_Punto" Mode="In" Type="Decimal" />
+          <Parameter Name="id_Punto" Mode="In" Type="Decimal" />
           </FunctionImport>
           <FunctionImport Name="sp_ConsejoActual" ReturnType="Collection(Decimal)" />
           <FunctionImport Name="sp_MiembrosXConsejo" ReturnType="Collection(Proyecto1Model.sp_MiembrosXConsejo_Result)" />
           <FunctionImport Name="sp_MiembrosXSesion" ReturnType="Collection(Proyecto1Model.sp_MiembrosXSesion_Result)">
-            <Parameter Name="Num_Sesion" Mode="In" Type="String" />
+          <Parameter Name="Num_Sesion" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_MoverPuntoAgenda">
             <Parameter Name="Num_Sesion" Mode="In" Type="String" />
@@ -1084,7 +1083,7 @@
           <Property Type="String" Name="numero" Nullable="false" MaxLength="7" />
           <Property Type="DateTime" Name="fecha" Nullable="false" Precision="23" />
           <Property Type="String" Name="lugar" Nullable="false" MaxLength="50" />
-          <Property Type="Boolean" Name="estado" Nullable="false" />
+          <Property Type="Boolean" Name="estado" Nullable="true" />
         </ComplexType>
         <ComplexType Name="sp_Solicitudes_Result">
           <Property Type="Decimal" Name="id_Punto" Nullable="false" Precision="5" Scale="0" />

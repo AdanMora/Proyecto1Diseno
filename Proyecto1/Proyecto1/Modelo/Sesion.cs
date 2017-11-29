@@ -13,11 +13,11 @@ namespace Proyecto1.Modelo
         private String numero;
         private DateTime fechaHora;
         private string lugar;
-        private bool estado;
+        private bool? estado;
         private Prototype_Miembros miembrosAsistencia = null;
         private Collection<PuntoAgenda> agenda = new Collection<PuntoAgenda>();
 
-        public Sesion(String num, DateTime fecha, string lugar, bool estado)
+        public Sesion(String num, DateTime fecha, string lugar, bool? estado)
         {
             this.numero = num;
             this.fechaHora = fecha;
@@ -66,7 +66,7 @@ namespace Proyecto1.Modelo
             }
         }
 
-        public bool Estado
+        public bool? Estado
         {
             get
             {
@@ -114,6 +114,14 @@ namespace Proyecto1.Modelo
 
         public string toString()
         {
+            if (estado == null)
+            {
+                return "Numero: " + this.numero +
+                "\nFecha: " + this.fechaHora +
+                "\nLugar: " + this.lugar +
+                "\nEstado: Null"+
+                "\n#########################################";
+            }
             return "Numero: " + this.numero +
                 "\nFecha: " + this.fechaHora +
                 "\nLugar: " + this.lugar +

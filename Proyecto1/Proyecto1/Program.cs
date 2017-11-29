@@ -22,7 +22,7 @@ namespace Proyecto1
 
             Gestor g = new Gestor();
             g.cargarDatos();
-            Console.WriteLine("\nConsejo - Carga de datos");
+            /*Console.WriteLine("\nConsejo - Carga de datos");
             Console.WriteLine("\nMiembros");
             foreach (Miembro m in g.getConsejo().Miembros)
             {
@@ -50,7 +50,7 @@ namespace Proyecto1
                     }
                 }
             }
-
+            */
             Console.WriteLine("\nSesion Actual");
 
             Console.WriteLine(g.getSesion().toString());
@@ -61,23 +61,23 @@ namespace Proyecto1
 
                 Console.WriteLine("||||||||" + g.getSesion().MiembrosAsistencia.ListaAsistencia.ElementAt(i) + "||||||||");
             }
+            
 
-            /*g.cerrarSesion();
+            //g.cerrarSesion();
 
-            g.nuevaSesion("prueba", DateTime.Today, "IC");
+            //g.nuevaSesion("pNull", DateTime.Today, "CIC");
+            //g.aceptarSolicitud(g.getSolicitudes().First().Id_punto);
 
-            g.aceptarSolicitud(g.getSolicitudes().First().Id_punto);
+            //g.agregarPuntoAgenda("Punto P13", "Resultado P13", "Considerando P13", "Se acuerda P13", 'T');
 
-            g.agregarPuntoAgenda("Punto P1", "Resultado P1", "Considerando P1", "Se acuerda P1", 'T');
+            //g.agregarPuntoAgenda("Punto P24", "Resultado P23", "Considerando P23", "Se acuerda P23", 'M');
 
-            g.agregarPuntoAgenda("Punto P2", "Resultado P2", "Considerando P2", "Se acuerda P2", 'M');
+            //g.agregarPuntoAgenda("Punto P35", "Resultado P33", "Considerando P33", "Se acuerda P33", 'T');
 
-            g.agregarPuntoAgenda("Punto P3", "Resultado P3", "Considerando P3", "Se acuerda P3", 'T');
-
-            */
+            
             //g.cambiarPosicionPunto(4, 1);
 
-            //g.agregarComentario(6, g.getConsejo().Miembros.First().Correo[0], "Otro comentario de prueba c:");
+            //g.agregarComentario(9, g.getConsejo().Miembros.First().Correo[0], "Otro comentario de prueba c:");
 
             //g.agregarVotacion(7, 23, 3, 5);
 
@@ -103,10 +103,12 @@ namespace Proyecto1
             //g.enviarNotificacion(g.getSesion().Numero, DateTime.Now, "fauriciocr@gmail.com", @"C:\Users\Fauricio\Desktop\MEMO_JUSTIFICACION_DE_AUSENCIAS_AL_CONSEJO.doc");
             //g.enviarAgenda(g.getSesion().Numero, DateTime.Now, "fauriciocr@gmail.com", @"C:\Users\Fauricio\Desktop\Agenda Sesión Ordinaria-prueba.pdf");
 
-            foreach (string s in g.getAllNumeroSesiones())
+            if (g.getSesion("10-2017").Estado == null)
             {
-                Console.WriteLine(s);
+                Console.WriteLine("Estado de pruebaNull es NULL");
             }
+
+            Console.WriteLine(g.getSesion("pNull").Estado);
 
             Console.Read();
 

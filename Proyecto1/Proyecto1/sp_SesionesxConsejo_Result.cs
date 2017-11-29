@@ -16,6 +16,6 @@ namespace Proyecto1
         public string numero { get; set; }
         public System.DateTime fecha { get; set; }
         public string lugar { get; set; }
-        public bool estado { get; set; }
+        public Nullable<bool> estado { get; set; }
     }
 }

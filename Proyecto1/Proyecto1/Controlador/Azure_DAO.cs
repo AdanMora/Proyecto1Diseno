@@ -330,5 +330,17 @@ namespace Proyecto1.Controlador
             db.sp_MoverPuntoAgenda(numeroSesion, nuevaPos, viejaPos);
             db.SaveChanges();
         }
+
+        public void iniciarSesion(string numSesion)
+        {
+            foreach (SesionDB s in db.SesionDBs.ToList())
+            {
+                if (s.numero == numSesion)
+                {
+                    s.estado = false;
+                }
+            }
+            db.SaveChanges();
+        }
     }
 }
